@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocMaker", "DocMaker\DocMaker.csproj", "{78BA4256-75A9-4FE2-9250-87A5701C94C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{78BA4256-75A9-4FE2-9250-87A5701C94C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78BA4256-75A9-4FE2-9250-87A5701C94C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78BA4256-75A9-4FE2-9250-87A5701C94C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78BA4256-75A9-4FE2-9250-87A5701C94C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {470C8BA4-30A0-4EA5-A955-0AEF028C4995}
+	EndGlobalSection
+EndGlobal
