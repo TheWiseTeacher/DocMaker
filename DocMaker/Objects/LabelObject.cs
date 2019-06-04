@@ -55,7 +55,7 @@ namespace DocMaker
 
         public Bitmap Render(string lang)
         {
-            Font font = Fonts.GetFont(FontID, FontSize, (FontStyle)FontStyle);
+            Font font = Fonts.GetFont(FontID, Zoom.GetFontSize(FontSize), (FontStyle)FontStyle);
 
             Graphics g = Graphics.FromHwnd(IntPtr.Zero);
             ApplyGraphicsQuality(g);

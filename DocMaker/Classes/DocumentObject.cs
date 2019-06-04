@@ -12,12 +12,18 @@ namespace DocMaker
         //public ObjectType Type;
         public object Data;
 
+        /*
         public int X;
         public int Y;
+        */
 
+        public Point RealLocation;
+
+        //public Size RealSize;
+        /*
         public int Width;
         public int Height;
-
+        */
         public PictureBox Canvas;
 
         private bool isMouseDown = false;
@@ -28,8 +34,8 @@ namespace DocMaker
             //Type = type;
             Data = null;
 
-            X = Y = 0;
-            Width = Height = 0;
+            RealLocation = Point.Empty;
+            //RealSize = Size.Empty;
 
             Canvas = new PictureBox();
             Canvas.DoubleClick += Canvas_DoubleClick;
@@ -45,7 +51,7 @@ namespace DocMaker
         {
             Console.WriteLine(e.Delta);
 
-            if (e.Delta == 0)
+            if (e.Delta == 0 || Control.ModifierKeys != Keys.Shift)
                 return;
 
             
@@ -76,6 +82,9 @@ namespace DocMaker
         {
             LivePreview.currentObject = this;
             EditObject();
+
+            LivePreview.currentObject = null;
+
         }
 
         public void RenderObject()
@@ -84,8 +93,16 @@ namespace DocMaker
             {
                 case LabelObject l:
                     Canvas.Image = l.Render(Project.UsedLanguages[0]);
-                    Canvas.Width = Canvas.Image.Width;
-                    Canvas.Height = Canvas.Image.Height;
+
+                    //Get the real Width and height
+                    /*
+                    Width = Canvas.Image.Width;
+                    Height = Canvas.Image.Height;
+                    */
+
+                    Canvas.Size = Canvas.Image.Size;
+                    //Canvas.Size = Zoom.Calculate(RealSize);
+
                     break;
 
                 case null:
@@ -118,14 +135,31 @@ namespace DocMaker
             return false;
         }
 
+        public void ApplyZoom()
+        {
+            Canvas.Location = Zoom.Calculate(RealLocation);
+            //Canvas.Size = Zoom.Calculate(RealSize);
+
+            RenderObject();
+
+            //Console.WriteLine($"Zoom: {RealLocation} > {Canvas.Location}");
+        }
+
+
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
             if (isMouseDown)
             {
-                X = X - mouseLastLocation.X + e.X;
-                Y = Y - mouseLastLocation.Y + e.Y;
+                //X = X - mouseLastLocation.X + e.X;
+                //Y = Y - mouseLastLocation.Y + e.Y;
 
-                Canvas.Location = new Point(X, Y);
+                // Calcualte the Canvas's new location
+                Canvas.Location = new Point(Canvas.Location.X - mouseLastLocation.X + e.X,
+                                            Canvas.Location.Y - mouseLastLocation.Y + e.Y);
+
+                // This class X and Y members represent the real X and Y without zoom
+                RealLocation = Zoom.CalculateReal(Canvas.Location);
+
                 Canvas.Update();
             }
         }
@@ -133,12 +167,14 @@ namespace DocMaker
         private void Canvas_MouseUp(object sender, MouseEventArgs e)
         {
             isMouseDown = false;
+            Canvas.Cursor = Cursors.Default;
         }
 
         private void Canvas_MouseDown(object sender, MouseEventArgs e)
         {
             isMouseDown = true;
             mouseLastLocation = e.Location;
+            Canvas.Cursor = Cursors.SizeAll;
         }
 
         public object Clone()

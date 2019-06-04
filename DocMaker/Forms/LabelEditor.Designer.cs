@@ -91,6 +91,7 @@
             this.label1.Size = new System.Drawing.Size(104, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Object name";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tb_name
             // 
@@ -150,6 +151,7 @@
             this.label2.Size = new System.Drawing.Size(104, 20);
             this.label2.TabIndex = 0;
             this.label2.Text = "Key name";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tb_key
             // 
@@ -480,6 +482,7 @@
             // 
             // fontList
             // 
+            this.fontList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.fontList.FormattingEnabled = true;
             this.fontList.Location = new System.Drawing.Point(122, 1);
             this.fontList.Margin = new System.Windows.Forms.Padding(0, 1, 0, 2);
@@ -778,6 +781,7 @@
             this.Name = "LabelEditor";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Label editor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LabelEditor_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.textTable)).EndInit();

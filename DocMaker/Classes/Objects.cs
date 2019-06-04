@@ -38,21 +38,11 @@ namespace DocMaker
                 holder.Controls.Add(documentObject.Canvas);
                 objectList.Add(documentObject);
             }
-            
-            /*
-            LabelEditor labelEditor = new LabelEditor(data);
-            if(labelEditor.ShowDialog() == DialogResult.OK)
+            else
             {
-                
-                documentObject.Data = data;
-
-                //Render object
-                documentObject.RenderObject();
-
-                //add object to the holder panel
-                
+                //We did not add a label
+                labelObjCounter--;
             }
-            */
         }
 
 
@@ -79,6 +69,12 @@ namespace DocMaker
             }
         }
 
-
+        public static void ApplyZoom()
+        {
+            foreach (DocumentObject obj in objectList)
+            {
+                obj.ApplyZoom();
+            }
+        }
     }
 }

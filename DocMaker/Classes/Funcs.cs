@@ -25,6 +25,11 @@ namespace DocMaker
             }
         }
 
+        public static int Clamp(int value, int min, int max)
+        {
+            return (value < min) ? min : (value > max) ? max : value;
+        }
+
         public static DialogResult Question(string message)
         {
             return MessageBox.Show(message, "Please confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -137,11 +142,6 @@ namespace DocMaker
         public static int Min(int v, int m)
         {
             return (v <= m) ? v : m;
-        }
-
-        public static int Clamp(int min, int v, int max)
-        {
-            return (v <= min) ? min : ((v >= max) ? max: v);
         }
 
         public static FontStyle GetFontStyle(bool B, bool I, bool U, bool S)

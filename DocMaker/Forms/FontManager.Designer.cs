@@ -36,10 +36,10 @@
             this.btn_delete = new System.Windows.Forms.Button();
             this.btn_close = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lab_preview = new System.Windows.Forms.Label();
-            this.btn_size_up = new System.Windows.Forms.Button();
             this.btn_size_down = new System.Windows.Forms.Button();
+            this.btn_size_up = new System.Windows.Forms.Button();
             this.lab_preview_size = new System.Windows.Forms.Label();
+            this.lab_preview = new System.Windows.Forms.Label();
             this.btn_edit_name = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fontsTable)).BeginInit();
             this.panel1.SuspendLayout();
@@ -147,22 +147,17 @@
             this.panel1.Size = new System.Drawing.Size(388, 90);
             this.panel1.TabIndex = 2;
             // 
-            // lab_preview
+            // btn_size_down
             // 
-            this.lab_preview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.btn_size_down.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lab_preview.BackColor = System.Drawing.SystemColors.Control;
-            this.lab_preview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lab_preview.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_preview.Location = new System.Drawing.Point(0, 0);
-            this.lab_preview.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.lab_preview.Name = "lab_preview";
-            this.lab_preview.Size = new System.Drawing.Size(356, 88);
-            this.lab_preview.TabIndex = 0;
-            this.lab_preview.Text = "Preview تجربة";
-            this.lab_preview.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lab_preview.Click += new System.EventHandler(this.Lab_preview_Click);
+            this.btn_size_down.Location = new System.Drawing.Point(359, 61);
+            this.btn_size_down.Name = "btn_size_down";
+            this.btn_size_down.Size = new System.Drawing.Size(24, 24);
+            this.btn_size_down.TabIndex = 3;
+            this.btn_size_down.Text = "-";
+            this.btn_size_down.UseVisualStyleBackColor = true;
+            this.btn_size_down.Click += new System.EventHandler(this.Btn_size_down_Click);
             // 
             // btn_size_up
             // 
@@ -176,18 +171,6 @@
             this.btn_size_up.UseVisualStyleBackColor = true;
             this.btn_size_up.Click += new System.EventHandler(this.Btn_size_up_Click);
             // 
-            // btn_size_down
-            // 
-            this.btn_size_down.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_size_down.Location = new System.Drawing.Point(359, 61);
-            this.btn_size_down.Name = "btn_size_down";
-            this.btn_size_down.Size = new System.Drawing.Size(24, 24);
-            this.btn_size_down.TabIndex = 3;
-            this.btn_size_down.Text = "-";
-            this.btn_size_down.UseVisualStyleBackColor = true;
-            this.btn_size_down.Click += new System.EventHandler(this.Btn_size_down_Click);
-            // 
             // lab_preview_size
             // 
             this.lab_preview_size.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -200,6 +183,23 @@
             this.lab_preview_size.TabIndex = 0;
             this.lab_preview_size.Text = "12";
             this.lab_preview_size.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lab_preview
+            // 
+            this.lab_preview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lab_preview.BackColor = System.Drawing.SystemColors.Control;
+            this.lab_preview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lab_preview.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_preview.Location = new System.Drawing.Point(0, 0);
+            this.lab_preview.Margin = new System.Windows.Forms.Padding(0);
+            this.lab_preview.Name = "lab_preview";
+            this.lab_preview.Size = new System.Drawing.Size(356, 88);
+            this.lab_preview.TabIndex = 0;
+            this.lab_preview.Text = "Preview تجربة";
+            this.lab_preview.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lab_preview.Click += new System.EventHandler(this.Lab_preview_Click);
             // 
             // btn_edit_name
             // 
@@ -231,6 +231,7 @@
             this.Name = "FontManager";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Fonts Manager";
             this.Load += new System.EventHandler(this.FontManager_Load);
             ((System.ComponentModel.ISupportInitialize)(this.fontsTable)).EndInit();

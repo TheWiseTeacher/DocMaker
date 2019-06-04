@@ -41,7 +41,7 @@
             this.textBox.Size = new System.Drawing.Size(341, 20);
             this.textBox.TabIndex = 0;
             // 
-            // info
+            // StringEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -51,10 +51,11 @@
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "info";
+            this.Name = "StringEditor";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Insert your new text here";
             this.Load += new System.EventHandler(this.info_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.info_KeyDown);

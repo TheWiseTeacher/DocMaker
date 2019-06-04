@@ -61,6 +61,7 @@
     <Compile Include="Classes\Project.cs" />
     <Compile Include="Classes\Structures.cs" />
     <Compile Include="Classes\Config.cs" />
+    <Compile Include="Classes\Zoom.cs" />
     <Compile Include="CustomPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -83,6 +84,12 @@
       <DependentUpon>LanguageManager.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Funcs.cs" />
+    <Compile Include="Forms\PaperManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PaperManager.Designer.cs">
+      <DependentUpon>PaperManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\StringEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LanguageManager.resx">
       <DependentUpon>LanguageManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PaperManager.resx">
+      <DependentUpon>PaperManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\StringEditor.resx">
       <DependentUpon>StringEditor.cs</DependentUpon>
