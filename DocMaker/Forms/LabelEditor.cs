@@ -185,14 +185,14 @@ namespace DocMaker
             btn_VAU.BackColor = btn_VAM.BackColor = btn_VAD.BackColor =
             Color.FromArgb(192, 192, 192);
 
-            Color c = Color.FromArgb(255, 148, 0);
+            Color c = Color.FromArgb(0, 128, 255);
 
-            if ((labelObject.Alignment & (int)LabelObject.AlignmentFlags.Left) > 0) btn_HAL.BackColor = c;
-            if ((labelObject.Alignment & (int)LabelObject.AlignmentFlags.Center) > 0) btn_HAC.BackColor = c;
-            if ((labelObject.Alignment & (int)LabelObject.AlignmentFlags.Right) > 0) btn_HAR.BackColor = c;
-            if ((labelObject.Alignment & (int)LabelObject.AlignmentFlags.Up) > 0) btn_VAU.BackColor = c;
-            if ((labelObject.Alignment & (int)LabelObject.AlignmentFlags.Middle) > 0) btn_VAM.BackColor = c;
-            if ((labelObject.Alignment & (int)LabelObject.AlignmentFlags.Down) > 0) btn_VAD.BackColor = c;
+            if ((labelObject.Alignment & (int)DocumentObject.AlignmentFlags.Left) > 0) btn_HAL.BackColor = c;
+            if ((labelObject.Alignment & (int)DocumentObject.AlignmentFlags.Center) > 0) btn_HAC.BackColor = c;
+            if ((labelObject.Alignment & (int)DocumentObject.AlignmentFlags.Right) > 0) btn_HAR.BackColor = c;
+            if ((labelObject.Alignment & (int)DocumentObject.AlignmentFlags.Up) > 0) btn_VAU.BackColor = c;
+            if ((labelObject.Alignment & (int)DocumentObject.AlignmentFlags.Middle) > 0) btn_VAM.BackColor = c;
+            if ((labelObject.Alignment & (int)DocumentObject.AlignmentFlags.Down) > 0) btn_VAD.BackColor = c;
         }
 
         private void ShowFontStyle()
@@ -225,51 +225,32 @@ namespace DocMaker
 
         private void Alignment_OnClick(object sender, EventArgs e)
         {
-            /*
-                Byte                    :   00 000 000
-                Signification           :   -- DMU RCL
-                To erase HA and with    :   00 111 000   = 0x38
-                To erase VA and with    :   00 000 111   = 0x07
-            */
-
-            byte eraser = 0;        // Keep the side that have the other alignement
-            byte selector = 0;      // Set this one to the selected alignment
-
             switch (((Button)sender).Tag.ToString().ToUpper())
             {
                 case "L":
-                    eraser = 0x38;
-                    selector = (int)LabelObject.AlignmentFlags.Left;
+                    labelObject.SetAlignment(DocumentObject.AlignmentFlags.Left);
                     break;
 
                 case "C":
-                    eraser = 0x38;
-                    selector = (int)LabelObject.AlignmentFlags.Center;
+                    labelObject.SetAlignment(DocumentObject.AlignmentFlags.Center);
                     break;
 
                 case "R":
-                    eraser = 0x38;
-                    selector = (int)LabelObject.AlignmentFlags.Right;
+                    labelObject.SetAlignment(DocumentObject.AlignmentFlags.Right);
                     break;
 
                 case "U":
-                    eraser = 0x07;
-                    selector = (int)LabelObject.AlignmentFlags.Up;
+                    labelObject.SetAlignment(DocumentObject.AlignmentFlags.Up);
                     break;
 
                 case "M":
-                    eraser = 0x07;
-                    selector = (int)LabelObject.AlignmentFlags.Middle;
+                    labelObject.SetAlignment(DocumentObject.AlignmentFlags.Middle);
                     break;
 
                 case "D":
-                    eraser = 0x07;
-                    selector = (int)LabelObject.AlignmentFlags.Down;
+                    labelObject.SetAlignment(DocumentObject.AlignmentFlags.Down);
                     break;
             }
-
-            labelObject.Alignment &= eraser;
-            labelObject.Alignment ^= selector;
 
             ShowAlignment();
             LivePreview.Update();

@@ -5,10 +5,11 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace DocMaker
 {
-    public class LabelObject : ICloneable
+    public class LabelObject : DocumentObject
     {
         public string Name { get; set; }
 
@@ -18,7 +19,6 @@ namespace DocMaker
 
         public byte FontSize { get; set; }
 
-        public byte Alignment { get; set; }
 
         public byte FontStyle { get; set; }
 
@@ -37,16 +37,8 @@ namespace DocMaker
             F5 = 16
         }
 
-        [Flags]
-        public enum AlignmentFlags
-        {
-            Left = 1,
-            Center = 2,
-            Right = 4,
-            Up = 8,
-            Middle = 16,
-            Down = 32
-        }
+  
+
 
         public LabelObject(int labelCounter)
         {
@@ -55,10 +47,9 @@ namespace DocMaker
 
             FontID = 0;
             FontSize = 12;
+            SetAlignment(AlignmentFlags.Left | AlignmentFlags.Down);
 
-            Alignment = (int)AlignmentFlags.Left | (int)AlignmentFlags.Down;
             FontStyle = 0;
-
             Flags = 0;
 
             //Create a text value for each language
@@ -67,56 +58,6 @@ namespace DocMaker
                 ContentTable.Add(lang, "");
 
             ContentTable[Project.UsedLanguages[0]] = $"New Label {labelCounter}";
-        }
-
-        public Bitmap Render(string lang)
-        {
-            Font font = Fonts.GetFont(FontID, Zoom.GetFontSize(FontSize), (FontStyle)FontStyle);
-
-            Graphics g = Graphics.FromHwnd(IntPtr.Zero);
-            ApplyGraphicsQuality(g);
-
-            //Measure label size
-            SizeF s = g.MeasureString(ContentTable[lang], font);
-            g.Dispose();
-
-            Bitmap b = new Bitmap((int)s.Width, (int)s.Height);
-
-            g = Graphics.FromImage(b);
-            ApplyGraphicsQuality(g);
-
-            g.DrawString(ContentTable[lang], font, Brushes.Black, new Point(0, 0));
-
-            //g.DrawLine(new Pen(Color.Red, 2), 0, 0, 4, 0);
-            //g.DrawLine(new Pen(Color.Red, 2), 0, 0, 0, 4);
-
-            var p = new Pen(Color.Red, 1);
-            //g.DrawRectangle(p, new Rectangle(0, 0, 16, 2));
-            //g.DrawRectangle(p, new Rectangle(0, 0, 2, 16));
-
-            float X = 0;
-            float Y = 0;
-
-            if ((Alignment & (int)AlignmentFlags.Left) > 0) X = 0;
-            if ((Alignment & (int)AlignmentFlags.Center) > 0) X = (s.Width * 0.5F);
-            if ((Alignment & (int)AlignmentFlags.Right) > 0) X = s.Width - 1;
-
-            if ((Alignment & (int)AlignmentFlags.Up) > 0) Y = 0;
-            if ((Alignment & (int)AlignmentFlags.Middle) > 0) Y = (s.Height * 0.5F);
-            if ((Alignment & (int)AlignmentFlags.Down) > 0) Y = s.Height - 1;
-
-            g.DrawLine(p, X - 5, Y, X + 5, Y);
-            g.DrawLine(p, X, Y - 5, X, Y + 5);
-
-            //b.Save("test.jpg");
-
-            return b;
-        }
-
-        private void RenderAnchorPoint()
-        {
-
-
         }
 
         private void ApplyGraphicsQuality(Graphics g)
@@ -140,9 +81,56 @@ namespace DocMaker
                 ContentTable.Remove(languageCode);
         }
 
-        public object Clone()
+        public override void RenderObject()
         {
-            return this.MemberwiseClone();
+            Font font = Fonts.GetFont(FontID, Zoom.GetFontSize(FontSize), (FontStyle)FontStyle);
+
+            Graphics g = Graphics.FromHwnd(IntPtr.Zero);
+            ApplyGraphicsQuality(g);
+
+            //Measure label size
+            SizeF s = g.MeasureString(ContentTable[Project.UsedLanguages[0]], font);
+            s = new SizeF((float)Math.Ceiling(s.Width), (float)Math.Ceiling(s.Height));
+
+            g.Dispose();
+
+            Bitmap b = new Bitmap((int)s.Width, (int)s.Height);
+
+            g = Graphics.FromImage(b);
+            ApplyGraphicsQuality(g);
+
+            g.DrawString(ContentTable[Project.UsedLanguages[0]], font, Brushes.Black, new Point(0, 0));
+
+            var p = new Pen(Color.Red, 1);
+
+            int X = 0;
+            int Y = 0;
+
+            if ((Alignment & (int)AlignmentFlags.Left) > 0) X = 0;
+            if ((Alignment & (int)AlignmentFlags.Center) > 0) X = (int)(s.Width * 0.5F);
+            if ((Alignment & (int)AlignmentFlags.Right) > 0) X = (int)s.Width - 1;
+
+            if ((Alignment & (int)AlignmentFlags.Up) > 0) Y = 0;
+            if ((Alignment & (int)AlignmentFlags.Middle) > 0) Y = (int)(s.Height * 0.5F);
+            if ((Alignment & (int)AlignmentFlags.Down) > 0) Y = (int)s.Height - 1;
+
+            g.DrawLine(p, X - Config.ANCHOR_SIZE, Y, X + Config.ANCHOR_SIZE, Y);
+            g.DrawLine(p, X, Y - Config.ANCHOR_SIZE, X, Y + Config.ANCHOR_SIZE);
+
+            Canvas.Image = b;
+            Canvas.Size = Canvas.Image.Size;
+        }
+
+        public override bool EditObject()
+        {
+            LabelEditor editor = new LabelEditor(this);
+            if (editor.ShowDialog() == DialogResult.OK)
+            {
+                RenderObject();
+                return true;
+            }
+
+            return false;
         }
     }
 

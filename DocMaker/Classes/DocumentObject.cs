@@ -9,32 +9,30 @@ namespace DocMaker
 {
     public class DocumentObject : ICloneable
     {
-        //public ObjectType Type;
-        public object Data;
-
-        /*
-        public int X;
-        public int Y;
-        */
-
         public Point RealLocation;
-
-        //public Size RealSize;
-        /*
-        public int Width;
-        public int Height;
-        */
         public PictureBox Canvas;
 
         private bool isMouseDown = false;
         private Point mouseLastLocation;
 
+        public byte Alignment { get; set; }
+
+        [Flags]
+        public enum AlignmentFlags
+        {
+            Left = 1,
+            Center = 2,
+            Right = 4,
+            Up = 8,
+            Middle = 16,
+            Down = 32
+        }
+
         public DocumentObject(/*ObjectType type*/)
         {
-            //Type = type;
-            Data = null;
-
             RealLocation = Point.Empty;
+            Alignment = (int)AlignmentFlags.Left | (int)AlignmentFlags.Down;
+
             //RealSize = Size.Empty;
 
             Canvas = new PictureBox();
@@ -87,44 +85,13 @@ namespace DocMaker
 
         }
 
-        public void RenderObject()
+        public virtual void RenderObject()
         {
-            switch (Data)
-            {
-                case LabelObject l:
-                    Canvas.Image = l.Render(Project.UsedLanguages[0]);
-                    Canvas.Size = Canvas.Image.Size;
-
-
-                    break;
-
-                case null:
-                default:
-                    Funcs.Error("Object not initialized");
-                    break;
-            }
 
         }
 
-        public bool EditObject()
+        public virtual bool EditObject()
         {
-            switch (Data)
-            {
-                case LabelObject label:
-                    LabelEditor editor = new LabelEditor(label);
-                    if (editor.ShowDialog() == DialogResult.OK)
-                    {
-                        RenderObject();
-                        return true;
-                    }
-                    break;
-
-                case null:
-                default:
-                    Funcs.Error("Object not initialized");
-                    break;
-            }
-
             return false;
         }
 
@@ -175,6 +142,26 @@ namespace DocMaker
         public object Clone()
         {
             return this.MemberwiseClone();
+        }
+
+        public void SetAlignment(AlignmentFlags newAlignment)
+        {
+            /*
+                Byte                    :   00 000 000
+                Signification           :   -- DMU RCL
+                To erase HA and with    :   00 111 000   = 0x38
+                To erase VA and with    :   00 000 111   = 0x07
+            */
+
+            // If alignement is an horizontal alignment
+            if(((int)newAlignment & 0x07) > 0) 
+                Alignment &= 0x38;
+
+            // If alignement is a vertical alignment
+            if (((int)newAlignment & 0x38) > 0)
+                Alignment &= 0x07;
+
+            Alignment ^= (byte)newAlignment;
         }
     }
 }

@@ -26,17 +26,14 @@ namespace DocMaker
         { 
             labelObjCounter++;
 
-            //Create a new document object
-            DocumentObject documentObject = new DocumentObject();
-
             //Set document object to label type
-            documentObject.Data = new LabelObject(labelObjCounter);
+            LabelObject label = new LabelObject(labelObjCounter);
 
             //Call object editor and add object to objectsList if edited and confirmed
-            if(documentObject.EditObject())
+            if(label.EditObject())
             {
-                holder.Controls.Add(documentObject.Canvas);
-                objectList.Add(documentObject);
+                holder.Controls.Add(label.Canvas);
+                objectList.Add(label);
             }
             else
             {
@@ -49,22 +46,22 @@ namespace DocMaker
 
         public static void AddLanguage(string languageCode)
         {
-            foreach(DocumentObject obj in objectList)
+            foreach(DocumentObject docObject in objectList)
             {
-                if(obj.Data is LabelObject)
+                if(docObject is LabelObject)
                 {
-                    ((LabelObject)obj.Data).AddLanguage(languageCode);
+                    ((LabelObject)docObject).AddLanguage(languageCode);
                 }
             }
         }
 
         public static void RemoveLanguage(string languageCode)
         {
-            foreach(DocumentObject obj in objectList)
+            foreach (DocumentObject docObject in objectList)
             {
-                if(obj.Data is LabelObject)
+                if (docObject is LabelObject)
                 {
-                    ((LabelObject)obj.Data).RemoveLanguage(languageCode);
+                    ((LabelObject)docObject).RemoveLanguage(languageCode);
                 }
             }
         }

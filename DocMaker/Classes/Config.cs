@@ -10,6 +10,7 @@ namespace DocMaker
 {
     class Config
     {
+        public const int ANCHOR_SIZE = 4;
         public const double PAPER_WIDTH_A4 = 1024;
         public const double PAPER_RATIO_A4 = 1.414d;
 

@@ -205,6 +205,7 @@
             this.btn_F1.BackColor = System.Drawing.Color.Silver;
             this.btn_F1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_F1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btn_F1.FlatAppearance.BorderSize = 0;
             this.btn_F1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_F1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_F1.ForeColor = System.Drawing.Color.Black;
@@ -224,6 +225,7 @@
             this.btn_F2.BackColor = System.Drawing.Color.Silver;
             this.btn_F2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_F2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btn_F2.FlatAppearance.BorderSize = 0;
             this.btn_F2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_F2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_F2.ForeColor = System.Drawing.Color.Black;
@@ -243,6 +245,7 @@
             this.btn_F3.BackColor = System.Drawing.Color.Silver;
             this.btn_F3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_F3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btn_F3.FlatAppearance.BorderSize = 0;
             this.btn_F3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_F3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_F3.ForeColor = System.Drawing.Color.Black;
@@ -277,6 +280,7 @@
             this.btn_F5.BackColor = System.Drawing.Color.Silver;
             this.btn_F5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_F5.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btn_F5.FlatAppearance.BorderSize = 0;
             this.btn_F5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_F5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_F5.ForeColor = System.Drawing.Color.Black;
@@ -296,6 +300,7 @@
             this.btn_F4.BackColor = System.Drawing.Color.Silver;
             this.btn_F4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_F4.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btn_F4.FlatAppearance.BorderSize = 0;
             this.btn_F4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_F4.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_F4.ForeColor = System.Drawing.Color.Black;
@@ -331,6 +336,7 @@
             this.btn_FSR.BackColor = System.Drawing.Color.Silver;
             this.btn_FSR.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_FSR.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btn_FSR.FlatAppearance.BorderSize = 0;
             this.btn_FSR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_FSR.Font = new System.Drawing.Font("Lucida Sans Typewriter", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_FSR.ForeColor = System.Drawing.Color.Black;
@@ -351,6 +357,7 @@
             this.btn_FSB.BackColor = System.Drawing.Color.Silver;
             this.btn_FSB.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_FSB.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btn_FSB.FlatAppearance.BorderSize = 0;
             this.btn_FSB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_FSB.Font = new System.Drawing.Font("Lucida Sans Typewriter", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_FSB.Location = new System.Drawing.Point(147, 0);
@@ -370,6 +377,7 @@
             this.btn_FSI.BackColor = System.Drawing.Color.Silver;
             this.btn_FSI.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_FSI.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btn_FSI.FlatAppearance.BorderSize = 0;
             this.btn_FSI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_FSI.Font = new System.Drawing.Font("Lucida Sans Typewriter", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_FSI.Location = new System.Drawing.Point(172, 0);
@@ -405,6 +413,7 @@
             this.btn_FSS.BackColor = System.Drawing.Color.Silver;
             this.btn_FSS.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_FSS.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btn_FSS.FlatAppearance.BorderSize = 0;
             this.btn_FSS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_FSS.Font = new System.Drawing.Font("Lucida Sans Typewriter", 9.75F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_FSS.Location = new System.Drawing.Point(222, 0);
@@ -424,6 +433,7 @@
             this.btn_FSU.BackColor = System.Drawing.Color.Silver;
             this.btn_FSU.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_FSU.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btn_FSU.FlatAppearance.BorderSize = 0;
             this.btn_FSU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_FSU.Font = new System.Drawing.Font("Lucida Sans Typewriter", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_FSU.Location = new System.Drawing.Point(197, 0);
@@ -579,6 +589,7 @@
             this.btn_VAU.BackColor = System.Drawing.Color.Silver;
             this.btn_VAU.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_VAU.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btn_VAU.FlatAppearance.BorderSize = 0;
             this.btn_VAU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_VAU.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_VAU.Image = ((System.Drawing.Image)(resources.GetObject("btn_VAU.Image")));
@@ -614,6 +625,7 @@
             this.btn_VAD.BackColor = System.Drawing.Color.Silver;
             this.btn_VAD.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_VAD.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btn_VAD.FlatAppearance.BorderSize = 0;
             this.btn_VAD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_VAD.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_VAD.Image = ((System.Drawing.Image)(resources.GetObject("btn_VAD.Image")));
@@ -634,6 +646,7 @@
             this.btn_VAM.BackColor = System.Drawing.Color.Silver;
             this.btn_VAM.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_VAM.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btn_VAM.FlatAppearance.BorderSize = 0;
             this.btn_VAM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_VAM.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_VAM.Image = ((System.Drawing.Image)(resources.GetObject("btn_VAM.Image")));
@@ -668,6 +681,7 @@
             this.btn_HAL.BackColor = System.Drawing.Color.Silver;
             this.btn_HAL.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_HAL.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btn_HAL.FlatAppearance.BorderSize = 0;
             this.btn_HAL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_HAL.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_HAL.Image = global::DocMaker.Properties.Resources.icons8_align_left_18;
@@ -703,6 +717,7 @@
             this.btn_HAR.BackColor = System.Drawing.Color.Silver;
             this.btn_HAR.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_HAR.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btn_HAR.FlatAppearance.BorderSize = 0;
             this.btn_HAR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_HAR.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_HAR.Image = global::DocMaker.Properties.Resources.icons8_align_right_18;
@@ -723,6 +738,7 @@
             this.btn_HAC.BackColor = System.Drawing.Color.Silver;
             this.btn_HAC.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_HAC.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btn_HAC.FlatAppearance.BorderSize = 0;
             this.btn_HAC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_HAC.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_HAC.Image = global::DocMaker.Properties.Resources.icons8_align_center_18;
