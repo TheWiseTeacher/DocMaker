@@ -13,15 +13,53 @@ namespace DocMaker
 {
     public partial class MainForm : Form
     {
-        private bool MouseOverPaperWrap;
-        private bool MouseOverPaper;
-        private KeyEventArgs keys = new KeyEventArgs(0);
 
-        private bool pressedControl = false;
-        private bool pressedShift = false;
-        private bool pressedAlt = false;
+        #region Paper and PaperWrap MouseWheel Event Handler
 
+        private void PaperWrap_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (Control.ModifierKeys == Keys.Control)
+            {
+                if (PaperWrap.WheelDelta < 0)
+                {
+                    if (comboZoom.SelectedIndex + 1 < comboZoom.Items.Count)
+                        comboZoom.SelectedIndex = comboZoom.SelectedIndex + 1;
+                }
+                else
+                {
+                    if (comboZoom.SelectedIndex - 1 >= 0)
+                        comboZoom.SelectedIndex = comboZoom.SelectedIndex - 1;
+                }
+            }
 
+            if (Control.ModifierKeys == Keys.Alt)
+            {
+                int newvalue = Funcs.Clamp((PaperWrap.HorizontalScroll.Value - PaperWrap.WheelDelta),
+                               PaperWrap.HorizontalScroll.Minimum, PaperWrap.HorizontalScroll.Maximum);
+
+                // Don't ask me but if you don't set the value twice the H Scroll seems
+                // To not register the value at first call (debugged for f'ing 5 hours)
+                //
+                PaperWrap.HorizontalScroll.Value = newvalue;
+                PaperWrap.HorizontalScroll.Value = newvalue;
+                //
+            }
+
+            PaperWrap.Update();
+        }
+
+        protected override void OnMouseWheel(MouseEventArgs e)
+        {
+            PaperWrap.TriggerMouseWheel(e);
+            base.OnMouseWheel(e);
+        }
+
+        private void PaperWrap_OnClick(object sender, EventArgs e)
+        {
+            ActiveControl = PaperWrap;
+        }
+
+        #endregion
 
         private void CenterPaper()
         {
@@ -68,92 +106,14 @@ namespace DocMaker
             CenterPaper();                      //Center paper for better view
         }
 
-
-
         public MainForm()
         {
             InitializeComponent();
             LivePreview.mainForm = this;
 
             PaperWrap.MouseWheel += PaperWrap_MouseWheel;
+            ActiveControl = lab_paperSize;
 
-            MouseOverPaperWrap = false;
-            MouseOverPaper = false;
-
-
-        }
-
-        int oldVerticalScroll;
-        private void NegateScroll(bool goingDown)
-        {
-            if(goingDown)
-            {
-                PaperWrap.VerticalScroll.Value = Funcs.Clamp(PaperWrap.VerticalScroll.Value + PaperWrap.VerticalScroll.SmallChange,
-                        PaperWrap.VerticalScroll.Minimum, PaperWrap.VerticalScroll.Maximum);
-            }
-            else
-            {
-                PaperWrap.VerticalScroll.Value = Funcs.Clamp(PaperWrap.VerticalScroll.Value - PaperWrap.VerticalScroll.SmallChange,
-                        PaperWrap.VerticalScroll.Minimum, PaperWrap.VerticalScroll.Maximum);
-            }
-
-        }
-
-        private void PaperWrap_MouseWheel(object sender, MouseEventArgs e)
-        {
-            if(Control.ModifierKeys == Keys.Shift)
-            {
-                if (e.Delta < 0)
-                    NegateScroll(true);
-                else
-                    NegateScroll(false);
-
-                return;    
-            }
-
-            if (Control.ModifierKeys == Keys.Control)
-            {
-                if (e.Delta < 0)
-                {
-                    NegateScroll(true);
-
-                    if (comboZoom.SelectedIndex + 1 < comboZoom.Items.Count)
-                        comboZoom.SelectedIndex = comboZoom.SelectedIndex + 1;
-                }
-                else
-                {
-                    NegateScroll(false);
-
-                    if (comboZoom.SelectedIndex - 1 >= 0)
-                        comboZoom.SelectedIndex = comboZoom.SelectedIndex - 1;
-                }
-
-                return;
-            }
-
-            if(Control.ModifierKeys == Keys.Alt)
-            {
-                if (e.Delta < 0)
-                {
-                    NegateScroll(true);
-
-                    PaperWrap.HorizontalScroll.Value = 
-                        Funcs.Clamp(PaperWrap.HorizontalScroll.Value + PaperWrap.HorizontalScroll.LargeChange,
-                        PaperWrap.HorizontalScroll.Minimum, PaperWrap.HorizontalScroll.Maximum);
-                }
-                else
-                {
-                    NegateScroll(false);
-
-                    PaperWrap.HorizontalScroll.Value =
-                        Funcs.Clamp(PaperWrap.HorizontalScroll.Value - PaperWrap.HorizontalScroll.LargeChange,
-                        PaperWrap.HorizontalScroll.Minimum, PaperWrap.HorizontalScroll.Maximum);
-                }
-
-                return;
-            }
-
-            PaperWrap.Update();
         }
 
         private void LoadZoomList()
@@ -162,73 +122,22 @@ namespace DocMaker
 
             foreach (int z in Zoom.avaibleZooms)
             {
-                comboZoom.Items.Add(z);
-                if (z == 100) comboZoom.SelectedItem = z;
+                comboZoom.Items.Add(z + " %");
+                if (z == 100) comboZoom.SelectedItem = z + " %";
             }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
-
-            x_pos.Minimum = 0;
-            x_pos.Maximum = Paper.Width;
-
-            y_pos.Minimum = 0;
-            y_pos.Maximum = Paper.Height;
-
-
             newToolStripMenuItem.PerformClick();
+
+
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
         {
             CenterPaper();
         }
-
-        private void PaperWrap_MouseEnter(object sender, EventArgs e)
-        {
-            if (!MouseOverPaperWrap)
-            {
-                MouseOverPaperWrap = true;
-                PaperWrap.Focus();
-            }           
-        }
-
-        private void PaperWrap_MouseLeave(object sender, EventArgs e)
-        {
-            if (MouseOverPaperWrap)
-            {
-                MouseOverPaperWrap = false;
-                StatusIcon.Focus();
-            }
-        }
-
-        private void Paper_MouseEnter(object sender, EventArgs e)
-        {
-            if (!MouseOverPaper)
-            {
-                MouseOverPaper = true;
-                PaperWrap.Focus();
-            }
-        }
-
-        private void Paper_MouseLeave(object sender, EventArgs e)
-        {
-            if (MouseOverPaper)
-            {
-                MouseOverPaper = false;
-                StatusIcon.Focus();
-            }
-        }
-
-
-
-        private void MainFormMenuStrip_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
 
 
 
@@ -294,50 +203,24 @@ namespace DocMaker
 
         private void ComboZoom_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Zoom.ApplyZoom((int)comboZoom.SelectedItem);
+            Zoom.ApplyZoom(Zoom.avaibleZooms[comboZoom.SelectedIndex]);
 
             ResizePaper();
             Objects.ApplyZoom();
         }
 
-
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Control || e.Alt || e.Shift)
-                oldVerticalScroll = PaperWrap.VerticalScroll.Value;
-            /*
-            pressedControl = e.Control;
-            pressedShift = e.Shift;
-            pressedAlt = e.Alt;*/
+
+
         }
 
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
-        {/*
-            pressedControl = e.Control;
-            pressedShift = e.Shift;
-            pressedAlt = e.Alt;*/
-        }
-
-        private void PaperWrap_Scroll(object sender, ScrollEventArgs e)
         {
-            Console.WriteLine("maybe");
-        }
 
-        /*
-        private void ZoomBar_Scroll(object sender, EventArgs e)
-        {
-            zoomPercent.Text = zoomBar.Value + "%";
-            
-            Zoom.ApplyZoom(zoomBar.Value);
+
 
 
         }
-
-        private void ZoomPercent_Click(object sender, EventArgs e)
-        {
-            zoomBar.Value = 100;
-            ZoomBar_Scroll(zoomBar, null);
-        }
-        */
     }
 }

@@ -20,23 +20,28 @@ namespace DocMaker
 
             this.labelObject = labelObject;
 
-            //Save the original configuration to apply if cancled
+            // Save the original configuration to apply if cancled
             originalLabelObject = (LabelObject)labelObject.Clone();
 
-            //Clone the text table too
+            // Clone the text table too
             originalLabelObject.ContentTable =
                 labelObject.ContentTable.ToDictionary(entry => entry.Key,entry => (string)entry.Value.Clone());
 
+            // Load object name and label key
             tb_name.Text = this.labelObject.Name;
             tb_key.Text = this.labelObject.Key;
 
-            fontSize.Value = labelObject.FontSize;
-
-            //Load fonts
+            // Load and select the used font
             LoadFontList();
             fontList.SelectedIndex = labelObject.FontID;
+            fontSize.Value = labelObject.FontSize;
 
-            //Load text for each language code
+            // Load other 
+            ShowAlignment();
+            ShowFontStyle();
+            ShowFlags();
+
+            // Load text for each language code
             LoadTextTable();
         }
 
@@ -110,7 +115,10 @@ namespace DocMaker
 
                 if (stringEditor.ShowDialog() == DialogResult.OK)
                 {
-                    labelObject.ContentTable[langCode] = stringEditor.textBox.Text;
+                    if (stringEditor.textBox.Text.Length == 0)
+                        Funcs.Error("The label text must be at least 1 character long !");
+                    else
+                        labelObject.ContentTable[langCode] = stringEditor.textBox.Text;
                 }
 
                 LoadTextTable();
@@ -140,8 +148,10 @@ namespace DocMaker
                 labelObject.FontID = originalLabelObject.FontID;
                 labelObject.FontSize = originalLabelObject.FontSize;
 
-                labelObject.HorizontalAlignment = originalLabelObject.HorizontalAlignment;
-                labelObject.VerticalAlignment = originalLabelObject.VerticalAlignment;
+                //labelObject.HorizontalAlignment = originalLabelObject.HorizontalAlignment;
+                //labelObject.VerticalAlignment = originalLabelObject.VerticalAlignment;
+
+                labelObject.Alignment = originalLabelObject.Alignment;
 
                 labelObject.FontStyle = originalLabelObject.FontStyle;
                 labelObject.Flags = originalLabelObject.Flags;
@@ -157,58 +167,6 @@ namespace DocMaker
 
         #region Style & alignement buttons methods
 
-        private byte GetAlignment(string a)
-        {
-            switch (a)
-            {
-                case "Center":
-                case "Middle":
-                case "C":
-                case "M":
-                    return (byte)StringAlignment.Center;
-
-                case "Left":
-                case "Up":
-                case "L":
-                case "U":
-                    return (byte)StringAlignment.Near;
-
-                case "Right":
-                case "Down":
-                case "R":
-                case "D":
-                    return (byte)StringAlignment.Far;
-
-                default:
-                    return (byte)StringAlignment.Near;
-            }
-        }
-
-        private void ResetHAlign()
-        {
-            btn_HAL.BackColor = btn_HAC.BackColor = btn_HAR.BackColor = Color.FromArgb(192, 192, 192);
-        }
-
-        private void ResetVAlign()
-        {
-            btn_VAU.BackColor = btn_VAM.BackColor = btn_VAD.BackColor = Color.FromArgb(192, 192, 192);
-        }
-
-        private void HorizantalAlignment_OnClick(object sender, EventArgs e)
-        {
-            ResetHAlign();
-            ((Button)sender).BackColor = Color.FromArgb(115, 181, 19);
-            labelObject.HorizontalAlignment = GetAlignment(((Button)sender).Tag.ToString());
-        }
-
-        private void VerticalAlignment_OnClick(object sender, EventArgs e)
-        {
-            ResetVAlign();
-            ((Button)sender).BackColor = Color.FromArgb(115, 181, 19);
-            labelObject.VerticalAlignment = GetAlignment(((Button)sender).Tag.ToString());
-        }
-  
-
         private void FontSize_ValueChanged(object sender, EventArgs e)
         {
             labelObject.FontSize = (byte)fontSize.Value;
@@ -221,99 +179,157 @@ namespace DocMaker
             LivePreview.Update();
         }
 
-        private void SelectFontStyle(int fontStyle)
+        private void ShowAlignment()
+        {
+            btn_HAL.BackColor = btn_HAC.BackColor = btn_HAR.BackColor =
+            btn_VAU.BackColor = btn_VAM.BackColor = btn_VAD.BackColor =
+            Color.FromArgb(192, 192, 192);
+
+            Color c = Color.FromArgb(255, 148, 0);
+
+            if ((labelObject.Alignment & (int)LabelObject.AlignmentFlags.Left) > 0) btn_HAL.BackColor = c;
+            if ((labelObject.Alignment & (int)LabelObject.AlignmentFlags.Center) > 0) btn_HAC.BackColor = c;
+            if ((labelObject.Alignment & (int)LabelObject.AlignmentFlags.Right) > 0) btn_HAR.BackColor = c;
+            if ((labelObject.Alignment & (int)LabelObject.AlignmentFlags.Up) > 0) btn_VAU.BackColor = c;
+            if ((labelObject.Alignment & (int)LabelObject.AlignmentFlags.Middle) > 0) btn_VAM.BackColor = c;
+            if ((labelObject.Alignment & (int)LabelObject.AlignmentFlags.Down) > 0) btn_VAD.BackColor = c;
+        }
+
+        private void ShowFontStyle()
         {
             btn_FSR.BackColor = btn_FSB.BackColor = btn_FSI.BackColor = btn_FSU.BackColor =
             btn_FSS.BackColor = Color.FromArgb(192, 192, 192);
 
             Color c = Color.FromArgb(255, 148, 0);
 
-            if (fontStyle == 0) btn_FSR.BackColor = c;
-            if ((fontStyle & (int)FontStyle.Bold) > 0) btn_FSB.BackColor = c;
-            if ((fontStyle & (int)FontStyle.Italic) > 0) btn_FSI.BackColor = c;
-            if ((fontStyle & (int)FontStyle.Underline) > 0) btn_FSU.BackColor = c;
-            if ((fontStyle & (int)FontStyle.Strikeout) > 0) btn_FSS.BackColor = c;
+            if (labelObject.FontStyle == 0) btn_FSR.BackColor = c;
+            if ((labelObject.FontStyle & (int)FontStyle.Bold) > 0) btn_FSB.BackColor = c;
+            if ((labelObject.FontStyle & (int)FontStyle.Italic) > 0) btn_FSI.BackColor = c;
+            if ((labelObject.FontStyle & (int)FontStyle.Underline) > 0) btn_FSU.BackColor = c;
+            if ((labelObject.FontStyle & (int)FontStyle.Strikeout) > 0) btn_FSS.BackColor = c;
         }
 
-        private void SelectFlags(int flags)
+        private void ShowFlags()
         {
             btn_F1.BackColor = btn_F2.BackColor = btn_F3.BackColor = btn_F4.BackColor =
             btn_F5.BackColor = Color.FromArgb(192, 192, 192);
 
             Color c = Color.FromArgb(166, 62, 63);
 
-            if ((flags & (int)LabelObject.ItemFlags.F1) > 0) btn_F1.BackColor = c;
-            if ((flags & (int)LabelObject.ItemFlags.F2) > 0) btn_F2.BackColor = c;
-            if ((flags & (int)LabelObject.ItemFlags.F3) > 0) btn_F3.BackColor = c;
-            if ((flags & (int)LabelObject.ItemFlags.F4) > 0) btn_F4.BackColor = c;
-            if ((flags & (int)LabelObject.ItemFlags.F5) > 0) btn_F5.BackColor = c;
+            if ((labelObject.Flags & (int)LabelObject.ItemFlags.F1) > 0) btn_F1.BackColor = c;
+            if ((labelObject.Flags & (int)LabelObject.ItemFlags.F2) > 0) btn_F2.BackColor = c;
+            if ((labelObject.Flags & (int)LabelObject.ItemFlags.F3) > 0) btn_F3.BackColor = c;
+            if ((labelObject.Flags & (int)LabelObject.ItemFlags.F4) > 0) btn_F4.BackColor = c;
+            if ((labelObject.Flags & (int)LabelObject.ItemFlags.F5) > 0) btn_F5.BackColor = c;
+        }
 
+        private void Alignment_OnClick(object sender, EventArgs e)
+        {
+            /*
+                Byte                    :   00 000 000
+                Signification           :   -- DMU RCL
+                To erase HA and with    :   00 111 000   = 0x38
+                To erase VA and with    :   00 000 111   = 0x07
+            */
+
+            byte eraser = 0;        // Keep the side that have the other alignement
+            byte selector = 0;      // Set this one to the selected alignment
+
+            switch (((Button)sender).Tag.ToString().ToUpper())
+            {
+                case "L":
+                    eraser = 0x38;
+                    selector = (int)LabelObject.AlignmentFlags.Left;
+                    break;
+
+                case "C":
+                    eraser = 0x38;
+                    selector = (int)LabelObject.AlignmentFlags.Center;
+                    break;
+
+                case "R":
+                    eraser = 0x38;
+                    selector = (int)LabelObject.AlignmentFlags.Right;
+                    break;
+
+                case "U":
+                    eraser = 0x07;
+                    selector = (int)LabelObject.AlignmentFlags.Up;
+                    break;
+
+                case "M":
+                    eraser = 0x07;
+                    selector = (int)LabelObject.AlignmentFlags.Middle;
+                    break;
+
+                case "D":
+                    eraser = 0x07;
+                    selector = (int)LabelObject.AlignmentFlags.Down;
+                    break;
+            }
+
+            labelObject.Alignment &= eraser;
+            labelObject.Alignment ^= selector;
+
+            ShowAlignment();
+            LivePreview.Update();
         }
 
         private void FontStyle_OnClick(object sender, EventArgs e)
         {
-            int fontStyle = labelObject.FontStyle;
-
             switch (((Button)sender).Tag.ToString().ToUpper())
             {
                 case "R":
-                    fontStyle = 0;
+                    labelObject.FontStyle = 0;
                     break;
 
                 case "B":
-                    fontStyle ^= (int)FontStyle.Bold;
+                    labelObject.FontStyle ^= (int)FontStyle.Bold;
                     break;
 
                 case "I":
-                    fontStyle ^= (int)FontStyle.Italic;
+                    labelObject.FontStyle ^= (int)FontStyle.Italic;
                     break;
 
                 case "U":
-                    fontStyle ^= (int)FontStyle.Underline;
+                    labelObject.FontStyle ^= (int)FontStyle.Underline;
                     break;
 
                 case "S":
-                    fontStyle ^= (int)FontStyle.Strikeout;
+                    labelObject.FontStyle ^= (int)FontStyle.Strikeout;
                     break;
             }
 
-
-            labelObject.FontStyle = (byte)fontStyle;
-
-            SelectFontStyle(fontStyle);
+            ShowFontStyle();
             LivePreview.Update();
         }
 
         private void Flags_OnClick(object sender, EventArgs e)
         {
-            int flags = labelObject.Flags;
-
             switch (((Button)sender).Text.ToUpper())
             {
                 case "1":
-                    flags ^= (int)LabelObject.ItemFlags.F1;
+                    labelObject.Flags ^= (int)LabelObject.ItemFlags.F1;
                     break;
 
                 case "2":
-                    flags ^= (int)LabelObject.ItemFlags.F2;
+                    labelObject.Flags ^= (int)LabelObject.ItemFlags.F2;
                     break;
 
                 case "3":
-                    flags ^= (int)LabelObject.ItemFlags.F3;
+                    labelObject.Flags ^= (int)LabelObject.ItemFlags.F3;
                     break;
 
                 case "4":
-                    flags ^= (int)LabelObject.ItemFlags.F4;
+                    labelObject.Flags ^= (int)LabelObject.ItemFlags.F4;
                     break;
 
                 case "5":
-                    flags ^= (int)LabelObject.ItemFlags.F5;
+                    labelObject.Flags ^= (int)LabelObject.ItemFlags.F5;
                     break;
             }
 
-            labelObject.Flags = (byte)flags;
-
-            SelectFlags(flags);
+            ShowFlags();
             LivePreview.Update();
         }
 

@@ -590,7 +590,7 @@
             this.btn_VAU.TabIndex = 3;
             this.btn_VAU.Tag = "U";
             this.btn_VAU.UseVisualStyleBackColor = false;
-            this.btn_VAU.Click += new System.EventHandler(this.VerticalAlignment_OnClick);
+            this.btn_VAU.Click += new System.EventHandler(this.Alignment_OnClick);
             // 
             // label4
             // 
@@ -625,7 +625,7 @@
             this.btn_VAD.TabIndex = 3;
             this.btn_VAD.Tag = "D";
             this.btn_VAD.UseVisualStyleBackColor = false;
-            this.btn_VAD.Click += new System.EventHandler(this.VerticalAlignment_OnClick);
+            this.btn_VAD.Click += new System.EventHandler(this.Alignment_OnClick);
             // 
             // btn_VAM
             // 
@@ -645,7 +645,7 @@
             this.btn_VAM.TabIndex = 3;
             this.btn_VAM.Tag = "M";
             this.btn_VAM.UseVisualStyleBackColor = false;
-            this.btn_VAM.Click += new System.EventHandler(this.VerticalAlignment_OnClick);
+            this.btn_VAM.Click += new System.EventHandler(this.Alignment_OnClick);
             // 
             // panel3
             // 
@@ -679,7 +679,7 @@
             this.btn_HAL.TabIndex = 3;
             this.btn_HAL.Tag = "L";
             this.btn_HAL.UseVisualStyleBackColor = false;
-            this.btn_HAL.Click += new System.EventHandler(this.HorizantalAlignment_OnClick);
+            this.btn_HAL.Click += new System.EventHandler(this.Alignment_OnClick);
             // 
             // label3
             // 
@@ -714,7 +714,7 @@
             this.btn_HAR.TabIndex = 3;
             this.btn_HAR.Tag = "R";
             this.btn_HAR.UseVisualStyleBackColor = false;
-            this.btn_HAR.Click += new System.EventHandler(this.HorizantalAlignment_OnClick);
+            this.btn_HAR.Click += new System.EventHandler(this.Alignment_OnClick);
             // 
             // btn_HAC
             // 
@@ -734,7 +734,7 @@
             this.btn_HAC.TabIndex = 3;
             this.btn_HAC.Tag = "C";
             this.btn_HAC.UseVisualStyleBackColor = false;
-            this.btn_HAC.Click += new System.EventHandler(this.HorizantalAlignment_OnClick);
+            this.btn_HAC.Click += new System.EventHandler(this.Alignment_OnClick);
             // 
             // btn_cancel
             // 
@@ -784,6 +784,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Label editor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LabelEditor_FormClosing);
+            this.Click += new System.EventHandler(this.Alignment_OnClick);
             ((System.ComponentModel.ISupportInitialize)(this.textTable)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel12.ResumeLayout(false);

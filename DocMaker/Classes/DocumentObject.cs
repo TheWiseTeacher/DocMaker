@@ -93,15 +93,8 @@ namespace DocMaker
             {
                 case LabelObject l:
                     Canvas.Image = l.Render(Project.UsedLanguages[0]);
-
-                    //Get the real Width and height
-                    /*
-                    Width = Canvas.Image.Width;
-                    Height = Canvas.Image.Height;
-                    */
-
                     Canvas.Size = Canvas.Image.Size;
-                    //Canvas.Size = Zoom.Calculate(RealSize);
+
 
                     break;
 
@@ -137,6 +130,8 @@ namespace DocMaker
 
         public void ApplyZoom()
         {
+            
+
             Canvas.Location = Zoom.Calculate(RealLocation);
             //Canvas.Size = Zoom.Calculate(RealSize);
 
