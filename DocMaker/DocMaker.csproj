@@ -147,17 +147,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
-    <None Include="imgs\ico_nvisible.png" />
-    <None Include="imgs\ico_visible.png" />
-    <None Include="imgs\ico_alignment_CM.png" />
-    <None Include="imgs\ico_alignment_CD.png" />
-    <None Include="imgs\ico_alignment_RU.png" />
-    <None Include="imgs\ico_alignment_RM.png" />
-    <None Include="imgs\ico_alignment_RD.png" />
-    <None Include="imgs\ico_alignment_LM.png" />
-    <None Include="imgs\ico_alignment_LD.png" />
-    <None Include="imgs\ico_alignment_CU.png" />
-    <None Include="imgs\ico_alignment_LU.png" />
+    <None Include="Ressources\ico_nvisible.png" />
+    <None Include="Ressources\ico_visible.png" />
+    <None Include="Ressources\ico_alignment_CM.png" />
+    <None Include="Ressources\ico_alignment_CD.png" />
+    <None Include="Ressources\ico_alignment_RU.png" />
+    <None Include="Ressources\ico_alignment_RM.png" />
+    <None Include="Ressources\ico_alignment_RD.png" />
+    <None Include="Ressources\ico_alignment_LM.png" />
+    <None Include="Ressources\ico_alignment_LD.png" />
+    <None Include="Ressources\ico_alignment_CU.png" />
+    <None Include="Ressources\ico_alignment_LU.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
