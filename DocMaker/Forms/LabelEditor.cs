@@ -37,12 +37,13 @@ namespace DocMaker
             fontSize.Value = labelObject.FontSize;
 
             // Load other 
-            ShowAlignment();
             ShowFontStyle();
             ShowFlags();
 
             // Load text for each language code
             LoadTextTable();
+
+            ActiveControl = label1;
         }
 
         private void LoadTextTable()
@@ -126,6 +127,7 @@ namespace DocMaker
             }
         }
 
+
         private void Btn_confirm_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
@@ -179,22 +181,6 @@ namespace DocMaker
             LivePreview.Update();
         }
 
-        private void ShowAlignment()
-        {
-            btn_HAL.BackColor = btn_HAC.BackColor = btn_HAR.BackColor =
-            btn_VAU.BackColor = btn_VAM.BackColor = btn_VAD.BackColor =
-            Color.FromArgb(192, 192, 192);
-
-            Color c = Color.FromArgb(0, 128, 255);
-
-            if ((labelObject.Alignment & (int)DocumentObject.AlignmentFlags.Left) > 0) btn_HAL.BackColor = c;
-            if ((labelObject.Alignment & (int)DocumentObject.AlignmentFlags.Center) > 0) btn_HAC.BackColor = c;
-            if ((labelObject.Alignment & (int)DocumentObject.AlignmentFlags.Right) > 0) btn_HAR.BackColor = c;
-            if ((labelObject.Alignment & (int)DocumentObject.AlignmentFlags.Up) > 0) btn_VAU.BackColor = c;
-            if ((labelObject.Alignment & (int)DocumentObject.AlignmentFlags.Middle) > 0) btn_VAM.BackColor = c;
-            if ((labelObject.Alignment & (int)DocumentObject.AlignmentFlags.Down) > 0) btn_VAD.BackColor = c;
-        }
-
         private void ShowFontStyle()
         {
             btn_FSR.BackColor = btn_FSB.BackColor = btn_FSI.BackColor = btn_FSU.BackColor =
@@ -221,39 +207,6 @@ namespace DocMaker
             if ((labelObject.Flags & (int)LabelObject.ItemFlags.F3) > 0) btn_F3.BackColor = c;
             if ((labelObject.Flags & (int)LabelObject.ItemFlags.F4) > 0) btn_F4.BackColor = c;
             if ((labelObject.Flags & (int)LabelObject.ItemFlags.F5) > 0) btn_F5.BackColor = c;
-        }
-
-        private void Alignment_OnClick(object sender, EventArgs e)
-        {
-            switch (((Button)sender).Tag.ToString().ToUpper())
-            {
-                case "L":
-                    labelObject.SetAlignment(DocumentObject.AlignmentFlags.Left);
-                    break;
-
-                case "C":
-                    labelObject.SetAlignment(DocumentObject.AlignmentFlags.Center);
-                    break;
-
-                case "R":
-                    labelObject.SetAlignment(DocumentObject.AlignmentFlags.Right);
-                    break;
-
-                case "U":
-                    labelObject.SetAlignment(DocumentObject.AlignmentFlags.Up);
-                    break;
-
-                case "M":
-                    labelObject.SetAlignment(DocumentObject.AlignmentFlags.Middle);
-                    break;
-
-                case "D":
-                    labelObject.SetAlignment(DocumentObject.AlignmentFlags.Down);
-                    break;
-            }
-
-            ShowAlignment();
-            LivePreview.Update();
         }
 
         private void FontStyle_OnClick(object sender, EventArgs e)
@@ -316,5 +269,9 @@ namespace DocMaker
 
         #endregion
 
+        private void TextTable_Enter(object sender, EventArgs e)
+        {
+            ActiveControl = label1;
+        }
     }
 }

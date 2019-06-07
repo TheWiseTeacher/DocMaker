@@ -63,9 +63,9 @@ namespace DocMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_align_center_18 {
+        internal static System.Drawing.Bitmap ico_alignment_CD {
             get {
-                object obj = ResourceManager.GetObject("icons8_align_center_18", resourceCulture);
+                object obj = ResourceManager.GetObject("ico_alignment_CD", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace DocMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_align_left_18 {
+        internal static System.Drawing.Bitmap ico_alignment_CM {
             get {
-                object obj = ResourceManager.GetObject("icons8_align_left_18", resourceCulture);
+                object obj = ResourceManager.GetObject("ico_alignment_CM", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace DocMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_align_right_18 {
+        internal static System.Drawing.Bitmap ico_alignment_CU {
             get {
-                object obj = ResourceManager.GetObject("icons8_align_right_18", resourceCulture);
+                object obj = ResourceManager.GetObject("ico_alignment_CU", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace DocMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_bold_filled_16 {
+        internal static System.Drawing.Bitmap ico_alignment_LD {
             get {
-                object obj = ResourceManager.GetObject("icons8_bold_filled_16", resourceCulture);
+                object obj = ResourceManager.GetObject("ico_alignment_LD", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace DocMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_italic_16 {
+        internal static System.Drawing.Bitmap ico_alignment_LM {
             get {
-                object obj = ResourceManager.GetObject("icons8_italic_16", resourceCulture);
+                object obj = ResourceManager.GetObject("ico_alignment_LM", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace DocMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_plus_math_16 {
+        internal static System.Drawing.Bitmap ico_alignment_LU {
             get {
-                object obj = ResourceManager.GetObject("icons8_plus_math_16", resourceCulture);
+                object obj = ResourceManager.GetObject("ico_alignment_LU", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +123,9 @@ namespace DocMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_sort_down_16 {
+        internal static System.Drawing.Bitmap ico_alignment_RD {
             get {
-                object obj = ResourceManager.GetObject("icons8_sort_down_16", resourceCulture);
+                object obj = ResourceManager.GetObject("ico_alignment_RD", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +133,9 @@ namespace DocMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_sort_up_16 {
+        internal static System.Drawing.Bitmap ico_alignment_RM {
             get {
-                object obj = ResourceManager.GetObject("icons8_sort_up_16", resourceCulture);
+                object obj = ResourceManager.GetObject("ico_alignment_RM", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +143,9 @@ namespace DocMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_spellcheck_16 {
+        internal static System.Drawing.Bitmap ico_alignment_RU {
             get {
-                object obj = ResourceManager.GetObject("icons8_spellcheck_16", resourceCulture);
+                object obj = ResourceManager.GetObject("ico_alignment_RU", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +153,9 @@ namespace DocMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_strikethrough_filled_16 {
+        internal static System.Drawing.Bitmap ico_nvisible {
             get {
-                object obj = ResourceManager.GetObject("icons8_strikethrough_filled_16", resourceCulture);
+                object obj = ResourceManager.GetObject("ico_nvisible", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,19 +163,9 @@ namespace DocMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_trash_16 {
+        internal static System.Drawing.Bitmap ico_visible {
             get {
-                object obj = ResourceManager.GetObject("icons8_trash_16", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_underlined_16 {
-            get {
-                object obj = ResourceManager.GetObject("icons8_underlined_16", resourceCulture);
+                object obj = ResourceManager.GetObject("ico_visible", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

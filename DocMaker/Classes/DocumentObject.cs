@@ -9,13 +9,15 @@ namespace DocMaker
 {
     public class DocumentObject : ICloneable
     {
+        public string Name { get; set; }
+
+        public byte Alignment { get; set; }
+
         public Point RealLocation;
         public PictureBox Canvas;
 
         private bool isMouseDown = false;
         private Point mouseLastLocation;
-
-        public byte Alignment { get; set; }
 
         [Flags]
         public enum AlignmentFlags
@@ -28,12 +30,11 @@ namespace DocMaker
             Down = 32
         }
 
-        public DocumentObject(/*ObjectType type*/)
+        public DocumentObject()
         {
-            RealLocation = Point.Empty;
+            Name = "Object";
             Alignment = (int)AlignmentFlags.Left | (int)AlignmentFlags.Down;
-
-            //RealSize = Size.Empty;
+            RealLocation = Point.Empty;
 
             Canvas = new PictureBox();
             Canvas.DoubleClick += Canvas_DoubleClick;
@@ -45,14 +46,16 @@ namespace DocMaker
             Canvas.MouseWheel += Canvas_MouseWheel;
         }
 
+        public bool ToggleVisibility()
+        {
+            Canvas.Visible = !Canvas.Visible;
+            return Canvas.Visible;
+        }
+
         private void Canvas_MouseWheel(object sender, MouseEventArgs e)
         {
-            Console.WriteLine(e.Delta);
-
             if (e.Delta == 0 || Control.ModifierKeys != Keys.Shift)
                 return;
-
-            
 
             if(e.Delta > 0)
             {
@@ -81,13 +84,77 @@ namespace DocMaker
             LivePreview.currentObject = this;
             EditObject();
 
-            LivePreview.currentObject = null;
+            //LivePreview.currentObject = null;
 
+        }
+        private void Canvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isMouseDown)
+            {
+                //X = X - mouseLastLocation.X + e.X;
+                //Y = Y - mouseLastLocation.Y + e.Y;
+
+                // Calcualte the Canvas's new location
+                Point p = new Point(Canvas.Location.X - mouseLastLocation.X + e.X,
+                                    Canvas.Location.Y - mouseLastLocation.Y + e.Y);
+
+                // Clamp Position to inside the document
+                p.X = Funcs.Clamp(p.X, 0, Zoom.paperSize.Width - Canvas.Width);
+                p.Y = Funcs.Clamp(p.Y, 0, Zoom.paperSize.Height - Canvas.Height);
+
+                Canvas.Location = p;
+                Canvas.Update();
+            }
+        }
+
+        private void Canvas_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (isMouseDown)
+            {
+                // Mouse Released
+
+                Point p = Canvas.Location;
+
+                if ((Alignment & (int)DocumentObject.AlignmentFlags.Center) > 0) p.X += (int)((float)Canvas.Width * 0.5);
+                if ((Alignment & (int)DocumentObject.AlignmentFlags.Right) > 0) p.X += (int)((float)Canvas.Width);
+
+                if ((Alignment & (int)DocumentObject.AlignmentFlags.Middle) > 0) p.Y += (int)((float)Canvas.Height * 0.5);
+                if ((Alignment & (int)DocumentObject.AlignmentFlags.Down) > 0) p.Y += (int)((float)Canvas.Height);
+
+                // Calculate the Real position without zoom
+                RealLocation = Zoom.CalculateReal(p);
+
+            }
+
+            isMouseDown = false;
+            Canvas.Cursor = Cursors.Default;
+        }
+
+        private void Canvas_MouseDown(object sender, MouseEventArgs e)
+        {
+            isMouseDown = true;
+            LivePreview.currentObject = this;
+
+            mouseLastLocation = e.Location;
+            Canvas.Cursor = Cursors.SizeAll;
         }
 
         public virtual void RenderObject()
         {
+            Point p = Zoom.Calculate(RealLocation);
 
+            if ((Alignment & (int)DocumentObject.AlignmentFlags.Center) > 0) p.X -= (int)((float)Canvas.Width * 0.5);
+            if ((Alignment & (int)DocumentObject.AlignmentFlags.Right) > 0) p.X -= (int)((float)Canvas.Width);
+
+            if ((Alignment & (int)DocumentObject.AlignmentFlags.Middle) > 0) p.Y -= (int)((float)Canvas.Height * 0.5);
+            if ((Alignment & (int)DocumentObject.AlignmentFlags.Down) > 0) p.Y -= (int)((float)Canvas.Height);
+
+            // Clamp Position to inside the document
+            p.X = Funcs.Clamp(p.X, 0, Zoom.paperSize.Width - Canvas.Width);
+            p.Y = Funcs.Clamp(p.Y, 0, Zoom.paperSize.Height - Canvas.Height);
+
+            // Finally set theposition clamped and with zoom applied
+            Canvas.Location = p;
         }
 
         public virtual bool EditObject()
@@ -97,47 +164,11 @@ namespace DocMaker
 
         public void ApplyZoom()
         {
-            
-
-            Canvas.Location = Zoom.Calculate(RealLocation);
-            //Canvas.Size = Zoom.Calculate(RealSize);
-
             RenderObject();
-
-            //Console.WriteLine($"Zoom: {RealLocation} > {Canvas.Location}");
         }
 
 
-        private void Canvas_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (isMouseDown)
-            {
-                //X = X - mouseLastLocation.X + e.X;
-                //Y = Y - mouseLastLocation.Y + e.Y;
 
-                // Calcualte the Canvas's new location
-                Canvas.Location = new Point(Canvas.Location.X - mouseLastLocation.X + e.X,
-                                            Canvas.Location.Y - mouseLastLocation.Y + e.Y);
-
-                // This class X and Y members represent the real X and Y without zoom
-                RealLocation = Zoom.CalculateReal(Canvas.Location);
-
-                Canvas.Update();
-            }
-        }
-
-        private void Canvas_MouseUp(object sender, MouseEventArgs e)
-        {
-            isMouseDown = false;
-            Canvas.Cursor = Cursors.Default;
-        }
-
-        private void Canvas_MouseDown(object sender, MouseEventArgs e)
-        {
-            isMouseDown = true;
-            mouseLastLocation = e.Location;
-            Canvas.Cursor = Cursors.SizeAll;
-        }
 
         public object Clone()
         {

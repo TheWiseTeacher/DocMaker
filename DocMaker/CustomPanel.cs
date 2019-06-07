@@ -12,7 +12,6 @@ namespace DocMaker
     {
         public int WheelDelta = 0;
 
-
         protected override System.Drawing.Point ScrollToControl(System.Windows.Forms.Control activeControl)
         {
             /* Thanks to Untouchable

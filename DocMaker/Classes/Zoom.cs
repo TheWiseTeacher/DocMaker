@@ -11,6 +11,8 @@ namespace DocMaker
         public static double zoomWidthRatio = 1;
         public static double zoomHeightRatio = 1;
 
+        public static Size paperSize;
+
         public static readonly int[] avaibleZooms = {800, 700, 600, 500, 400, 300, 200, 150, 100, 50, 25};
 
         public static void ApplyZoom(int percent)
@@ -26,6 +28,9 @@ namespace DocMaker
 
             if (Project.isLandscape)
                 s = new Size(s.Height, s.Width);
+
+            // Method called whenever paper size is changed
+            Zoom.paperSize = s;
 
             return s;
         }

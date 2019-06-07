@@ -11,14 +11,12 @@ namespace DocMaker
 {
     public class LabelObject : DocumentObject
     {
-        public string Name { get; set; }
 
         public string Key { get; set; }
 
         public byte FontID { get; set; }
 
         public byte FontSize { get; set; }
-
 
         public byte FontStyle { get; set; }
 
@@ -36,9 +34,6 @@ namespace DocMaker
             F4 = 8,
             F5 = 16
         }
-
-  
-
 
         public LabelObject(int labelCounter)
         {
@@ -119,6 +114,8 @@ namespace DocMaker
 
             Canvas.Image = b;
             Canvas.Size = Canvas.Image.Size;
+
+            base.RenderObject();
         }
 
         public override bool EditObject()

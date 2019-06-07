@@ -41,7 +41,6 @@ namespace DocMaker
         public static void AddFont(bool isExternal, string fontName, string fontData)
         {
             FontEntry fe = new FontEntry();
-            Console.WriteLine($"Adding font : EXT : {isExternal}, {fontName}, {fontData}");
 
             if(isExternal)
             {

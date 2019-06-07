@@ -97,10 +97,10 @@
       <DependentUpon>StringEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Item.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Objects\LabelObject.cs" />
@@ -121,7 +121,7 @@
     <EmbeddedResource Include="Forms\StringEditor.resx">
       <DependentUpon>StringEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -147,18 +147,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
-    <Content Include="imgs\icons8-align-center-18.png" />
-    <Content Include="imgs\icons8-align-left-18.png" />
-    <Content Include="imgs\icons8-align-right-18.png" />
-    <Content Include="imgs\icons8-bold-filled-16.png" />
-    <Content Include="imgs\icons8-italic-16.png" />
-    <Content Include="imgs\icons8-plus-math-16.png" />
-    <Content Include="imgs\icons8-sort-down-16.png" />
-    <Content Include="imgs\icons8-sort-up-16.png" />
-    <Content Include="imgs\icons8-spellcheck-16.png" />
-    <Content Include="imgs\icons8-strikethrough-filled-16.png" />
-    <Content Include="imgs\icons8-trash-16.png" />
-    <Content Include="imgs\icons8-underlined-16.png" />
+    <None Include="imgs\ico_nvisible.png" />
+    <None Include="imgs\ico_visible.png" />
+    <None Include="imgs\ico_alignment_CM.png" />
+    <None Include="imgs\ico_alignment_CD.png" />
+    <None Include="imgs\ico_alignment_RU.png" />
+    <None Include="imgs\ico_alignment_RM.png" />
+    <None Include="imgs\ico_alignment_RD.png" />
+    <None Include="imgs\ico_alignment_LM.png" />
+    <None Include="imgs\ico_alignment_LD.png" />
+    <None Include="imgs\ico_alignment_CU.png" />
+    <None Include="imgs\ico_alignment_LU.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
