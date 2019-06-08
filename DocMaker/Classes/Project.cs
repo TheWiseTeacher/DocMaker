@@ -4,6 +4,7 @@ using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace DocMaker
 {
@@ -13,6 +14,7 @@ namespace DocMaker
         public static PrinterSettings printerSettings = new PrinterSettings();
         public static IEnumerable<PaperSize> paperSizes = printerSettings.PaperSizes.Cast<PaperSize>();
 
+        public static ColorDialog colorDialog;
 
         // Selected paperSize for this project
         public static PaperSize paperSize = null;
@@ -34,11 +36,14 @@ namespace DocMaker
                 tempFile.Dispose();
             }
 
+            if (colorDialog != null)
+                colorDialog.Dispose();
+
+            colorDialog = new ColorDialog();
+            colorDialog.FullOpen = true;
+
             // Select default paper size "A4" for the new project
             paperSize = paperSizes.First<PaperSize>(size => size.Kind == PaperKind.A4);
-
-            
-
 
             tempFile = File.OpenWrite(ProjectTemp);
 

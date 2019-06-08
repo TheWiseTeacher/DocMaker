@@ -25,6 +25,8 @@ namespace DocMaker
             }
         }
 
+
+
         public static int Clamp(int value, int min, int max)
         {
             return (value < min) ? min : (value > max) ? max : value;
@@ -153,9 +155,19 @@ namespace DocMaker
             return (v >= m) ? v : m;
         }
 
+        public static int Max(object v, int m)
+        {
+            return Max(ToInt(v), m);
+        }
+
         public static int Min(int v, int m)
         {
             return (v <= m) ? v : m;
+        }
+
+        public static int Min(object v, int m)
+        {
+            return Min(ToInt(v), m);
         }
 
         public static FontStyle GetFontStyle(bool B, bool I, bool U, bool S)

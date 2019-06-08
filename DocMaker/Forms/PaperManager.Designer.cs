@@ -81,7 +81,7 @@
             this.radioPortrait.Location = new System.Drawing.Point(0, 0);
             this.radioPortrait.Margin = new System.Windows.Forms.Padding(0);
             this.radioPortrait.Name = "radioPortrait";
-            this.radioPortrait.Size = new System.Drawing.Size(120, 24);
+            this.radioPortrait.Size = new System.Drawing.Size(103, 24);
             this.radioPortrait.TabIndex = 2;
             this.radioPortrait.Text = "Portrait";
             this.radioPortrait.UseVisualStyleBackColor = true;
@@ -91,10 +91,10 @@
             // 
             this.radioLandscape.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioLandscape.Location = new System.Drawing.Point(120, 0);
+            this.radioLandscape.Location = new System.Drawing.Point(103, 0);
             this.radioLandscape.Margin = new System.Windows.Forms.Padding(0);
             this.radioLandscape.Name = "radioLandscape";
-            this.radioLandscape.Size = new System.Drawing.Size(121, 24);
+            this.radioLandscape.Size = new System.Drawing.Size(104, 24);
             this.radioLandscape.TabIndex = 2;
             this.radioLandscape.Text = "Landscape";
             this.radioLandscape.UseVisualStyleBackColor = true;
@@ -102,6 +102,8 @@
             // 
             // pan_paperMode
             // 
+            this.pan_paperMode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pan_paperMode.ColumnCount = 2;
             this.pan_paperMode.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.pan_paperMode.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -111,7 +113,7 @@
             this.pan_paperMode.Name = "pan_paperMode";
             this.pan_paperMode.RowCount = 1;
             this.pan_paperMode.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.pan_paperMode.Size = new System.Drawing.Size(241, 24);
+            this.pan_paperMode.Size = new System.Drawing.Size(207, 24);
             this.pan_paperMode.TabIndex = 3;
             // 
             // label2

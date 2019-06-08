@@ -11,9 +11,10 @@ namespace DocMaker
 {
     public class LineObject : DocumentObject
     {
-        public byte Length { get; set; }
+        public Int32 Length { get; set; }
         public byte Thickness { get; set; }
         public bool IsVertical { get; set; }
+        public bool SizeInPercent { get; set; }
 
         public LineObject(int lineCounter)
         {
@@ -23,9 +24,10 @@ namespace DocMaker
 
             IsVertical = false;
             Thickness = 2;
-            Length = 20;
+            Length = 50;
 
             IsVertical = false;
+            SizeInPercent = false;
         }
 
         public override void RenderObject()
@@ -48,8 +50,14 @@ namespace DocMaker
 
         public override bool EditObject()
         {
-            RenderObject();
-            return true;
+            LineEditor editor = new LineEditor(this);
+            if (editor.ShowDialog() == DialogResult.OK)
+            {
+                RenderObject();
+                return true;
+            }
+
+            return false;
         }
     }
 

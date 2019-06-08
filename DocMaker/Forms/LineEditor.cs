@@ -1,0 +1,155 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace DocMaker
+{
+    public partial class LineEditor : Form
+    {
+        private LineObject Target;
+
+        public LineEditor(LineObject lineObject)
+        {
+            InitializeComponent();
+
+            Target = lineObject;
+
+            LoadParameters();
+
+            
+
+            ActiveControl = label1;
+        }
+
+        private void LoadParameters()
+        {
+            tb_name.Text = this.Target.Name;
+            tb_name.Tag = this.Target.Name;
+
+            tb_key.Text = this.Target.Key;
+            tb_key.Tag = this.Target.Key;
+
+            LoadColor();
+            lab_color.Tag = Target.BackColor;
+
+            ShowOrientation();
+            pan_LineOrientation.Tag = Target.IsVertical;
+
+            lineLength.Text = Target.Length.ToString();
+            lineLength.Tag = Target.Length;
+
+            ShowSizeMode();
+            sizeMode.Tag = Target.IsVertical;
+
+            lineThickness.Value = Target.Thickness;
+            lineThickness.Tag = Target.Thickness;
+        }
+
+        private void DiscardChanges()
+        {
+            this.Target.Name = (string)tb_name.Tag;
+            this.Target.Key = (string)tb_key.Tag;
+
+            Target.BackColor = (Color)lab_color.Tag;
+
+            Target.IsVertical = (bool)pan_LineOrientation.Tag;
+            Target.Length = (int)lineLength.Tag;
+
+            Target.IsVertical = (bool)sizeMode.Tag;
+
+            Target.Thickness = (byte)lineThickness.Tag;
+        }
+
+
+        private void ShowOrientation()
+        {
+            if (!Target.IsVertical)
+            {
+                radioHorizontal.Checked = true;
+                radioVertical.Checked = false;
+            }
+            else
+            {
+                radioHorizontal.Checked = false;
+                radioVertical.Checked = true;
+            }
+        }
+
+
+        public void ShowSizeMode()
+        {
+           if (!Target.SizeInPercent)
+                sizeMode.SelectedItem = "Px";
+            else
+                sizeMode.SelectedItem = "%";
+        }
+
+        #region Color parameter methods
+
+        private void LoadColor()
+        {
+            tb_color_r.Text = Target.BackColor.R.ToString();
+            tb_color_g.Text = Target.BackColor.G.ToString();
+            tb_color_b.Text = Target.BackColor.B.ToString();
+
+            lab_color.BackColor = Target.BackColor;
+            LivePreview.Update();
+        }
+
+        private void Lab_color_Click(object sender, EventArgs e)
+        {
+            Project.colorDialog.Color = Target.BackColor;
+
+            if (Project.colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Target.BackColor = Project.colorDialog.Color;
+                LoadColor();
+            }
+        }
+
+        private void OnValidatingColorInput(object sender, CancelEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            int colorValue = Funcs.ToInt(tb.Text);
+
+            if (colorValue < 0 || colorValue > 255)
+                e.Cancel = true;
+
+            // To prevent any exception I'm using a special Clamp method :3
+            Target.BackColor = Color.FromArgb(Funcs.Clamp(tb_color_r.Text, 0, 255),
+                                              Funcs.Clamp(tb_color_g.Text, 0, 255),
+                                              Funcs.Clamp(tb_color_b.Text, 0, 255));
+
+            // Reload all inputs and display the color
+            LoadColor();
+        }
+
+        #endregion
+
+        private void LabelEditor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(DialogResult != DialogResult.OK)
+            {
+                DiscardChanges();
+                LivePreview.Update();
+            }
+        }
+
+        private void LineThickness_ValueChanged(object sender, EventArgs e)
+        {
+            Target.Thickness = (byte)Funcs.Min(lineThickness.Value, 1);
+            LivePreview.Update();
+        }
+
+        private void LineLength_TextChanged(object sender, EventArgs e)
+        {
+            Target.Length = Funcs.Min(lineLength.Text, 1);
+            LivePreview.Update();
+        }
+    }
+}

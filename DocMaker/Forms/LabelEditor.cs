@@ -36,7 +36,7 @@ namespace DocMaker
 
             fontList.SelectedIndex = labelObject.FontID;
             fontSize.Value = labelObject.FontSize;
-            LoadFontColor();
+            LoadColor();
 
             // Load other 
             ShowFontStyle();
@@ -122,7 +122,7 @@ namespace DocMaker
             }
         }
 
-        #region Style & alignement buttons methods
+        #region Label Style inputs methods
 
         private void FontSize_ValueChanged(object sender, EventArgs e)
         {
@@ -224,12 +224,9 @@ namespace DocMaker
 
         #endregion
 
-        private void TextTable_Enter(object sender, EventArgs e)
-        {
-            ActiveControl = label1;
-        }
+        #region Color parameter methods
 
-        private void LoadFontColor()
+        private void LoadColor()
         {
             tb_color_r.Text = labelObject.TextColor.R.ToString();
             tb_color_g.Text = labelObject.TextColor.G.ToString();
@@ -241,13 +238,12 @@ namespace DocMaker
 
         private void Lab_color_Click(object sender, EventArgs e)
         {
-            ColorDialog dialog = new ColorDialog();
-            dialog.Color = labelObject.TextColor;
+            Project.colorDialog.Color = labelObject.TextColor;
 
-            if(dialog.ShowDialog() == DialogResult.OK)
+            if (Project.colorDialog.ShowDialog() == DialogResult.OK)
             {
-                labelObject.TextColor = dialog.Color;
-                LoadFontColor();
+                labelObject.TextColor = Project.colorDialog.Color;
+                LoadColor();
             }
         }
 
@@ -265,7 +261,16 @@ namespace DocMaker
                                                    Funcs.Clamp(tb_color_b.Text, 0, 255));
 
             // Reload all inputs and display the color
-            LoadFontColor();
+            LoadColor();
         }
+
+        #endregion
+
+        private void TextTable_Enter(object sender, EventArgs e)
+        {
+            ActiveControl = label1;
+        }
+
+
     }
 }

@@ -79,8 +79,12 @@ namespace DocMaker
 
         private void Canvas_MouseEnter(object sender, EventArgs e)
         {
+            // To capture wheel input 
+            // Note : I'm setting AvtiveControl and not LivePreview.currentObject !
+            //
+            LivePreview.mainForm.ActiveControl = Canvas;
+
             Canvas.BackColor = Color.FromArgb(184, 150, 207);
-            //LivePreview.mainForm.ActiveControl = Canvas;
         }
 
         private void Canvas_MouseLeave(object sender, EventArgs e)

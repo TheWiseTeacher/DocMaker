@@ -62,6 +62,12 @@
     <Compile Include="Classes\Structures.cs" />
     <Compile Include="Classes\Config.cs" />
     <Compile Include="Classes\Zoom.cs" />
+    <Compile Include="Forms\LineEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LineEditor.Designer.cs">
+      <DependentUpon>LineEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\CustomTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -112,6 +118,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\FontManager.resx">
       <DependentUpon>FontManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LineEditor.resx">
+      <DependentUpon>LineEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LabelEditor.resx">
       <DependentUpon>LabelEditor.cs</DependentUpon>

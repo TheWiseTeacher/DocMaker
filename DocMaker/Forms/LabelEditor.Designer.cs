@@ -56,17 +56,17 @@
             this.btn_confirm = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tb_color_r = new DocMaker.CustomTextBox();
+            this.tb_color_b = new DocMaker.CustomTextBox();
+            this.tb_color_g = new DocMaker.CustomTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.pan_Flags = new System.Windows.Forms.TableLayoutPanel();
             this.pan_FontStyle = new System.Windows.Forms.TableLayoutPanel();
+            this.tb_key = new DocMaker.CustomTextBox();
             this.pan_color = new System.Windows.Forms.TableLayoutPanel();
             this.lab_color = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.tb_color_r = new DocMaker.CustomTextBox();
-            this.tb_color_b = new DocMaker.CustomTextBox();
-            this.tb_color_g = new DocMaker.CustomTextBox();
-            this.tb_key = new DocMaker.CustomTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.textTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fontSize)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -427,7 +427,7 @@
             this.label6.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.label6.Size = new System.Drawing.Size(262, 24);
             this.label6.TabIndex = 11;
-            this.label6.Text = "Font styling";
+            this.label6.Text = "Label style";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // fontList
@@ -437,7 +437,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fontList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.fontList.FormattingEnabled = true;
-            this.fontList.Location = new System.Drawing.Point(110, 118);
+            this.fontList.Location = new System.Drawing.Point(110, 182);
             this.fontList.Margin = new System.Windows.Forms.Padding(4, 6, 4, 5);
             this.fontList.Name = "fontList";
             this.fontList.Size = new System.Drawing.Size(148, 21);
@@ -451,7 +451,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(0, 112);
+            this.label7.Location = new System.Drawing.Point(0, 176);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.MinimumSize = new System.Drawing.Size(0, 28);
             this.label7.Name = "label7";
@@ -535,13 +535,10 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 156F));
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.tb_name, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label6, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.fontList, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label12, 0, 8);
             this.tableLayoutPanel1.Controls.Add(this.pan_Flags, 1, 8);
@@ -550,7 +547,10 @@
             this.tableLayoutPanel1.Controls.Add(this.tb_key, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.fontSize, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.pan_color, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.pan_color, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.fontList, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 4);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(430, 12);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 10;
@@ -579,13 +579,61 @@
             this.tableLayoutPanel2.Controls.Add(this.tb_color_r, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tb_color_b, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.tb_color_g, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(110, 180);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(110, 116);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(148, 24);
             this.tableLayoutPanel2.TabIndex = 5;
+            // 
+            // tb_color_r
+            // 
+            this.tb_color_r.AllowSpace = false;
+            this.tb_color_r.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_color_r.Location = new System.Drawing.Point(0, 2);
+            this.tb_color_r.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.tb_color_r.MaxLength = 3;
+            this.tb_color_r.Name = "tb_color_r";
+            this.tb_color_r.Size = new System.Drawing.Size(47, 20);
+            this.tb_color_r.TabIndex = 1;
+            this.tb_color_r.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_color_r.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.tb_color_r.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatingColorInput);
+            // 
+            // tb_color_b
+            // 
+            this.tb_color_b.AllowSpace = false;
+            this.tb_color_b.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_color_b.Location = new System.Drawing.Point(100, 2);
+            this.tb_color_b.Margin = new System.Windows.Forms.Padding(3, 2, 0, 2);
+            this.tb_color_b.MaxLength = 3;
+            this.tb_color_b.Name = "tb_color_b";
+            this.tb_color_b.Size = new System.Drawing.Size(48, 20);
+            this.tb_color_b.TabIndex = 3;
+            this.tb_color_b.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_color_b.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.tb_color_b.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatingColorInput);
+            // 
+            // tb_color_g
+            // 
+            this.tb_color_g.AllowSpace = false;
+            this.tb_color_g.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_color_g.Location = new System.Drawing.Point(50, 2);
+            this.tb_color_g.Margin = new System.Windows.Forms.Padding(3, 2, 0, 2);
+            this.tb_color_g.MaxLength = 3;
+            this.tb_color_g.Name = "tb_color_g";
+            this.tb_color_g.Size = new System.Drawing.Size(47, 20);
+            this.tb_color_g.TabIndex = 2;
+            this.tb_color_g.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_color_g.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.tb_color_g.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatingColorInput);
             // 
             // label3
             // 
@@ -653,6 +701,20 @@
             this.pan_FontStyle.Size = new System.Drawing.Size(148, 24);
             this.pan_FontStyle.TabIndex = 6;
             // 
+            // tb_key
+            // 
+            this.tb_key.AllowSpace = false;
+            this.tb_key.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_key.Location = new System.Drawing.Point(110, 62);
+            this.tb_key.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.tb_key.MaxLength = 32;
+            this.tb_key.Name = "tb_key";
+            this.tb_key.Size = new System.Drawing.Size(148, 20);
+            this.tb_key.TabIndex = 12;
+            this.tb_key.UsedFilter = DocMaker.CustomTextBox.Filter.Special;
+            // 
             // pan_color
             // 
             this.pan_color.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -663,7 +725,7 @@
             this.pan_color.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.pan_color.Controls.Add(this.lab_color, 1, 0);
             this.pan_color.Controls.Add(this.label4, 0, 0);
-            this.pan_color.Location = new System.Drawing.Point(0, 176);
+            this.pan_color.Location = new System.Drawing.Point(0, 112);
             this.pan_color.Margin = new System.Windows.Forms.Padding(0);
             this.pan_color.Name = "pan_color";
             this.pan_color.RowCount = 1;
@@ -703,70 +765,8 @@
             this.label4.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.label4.Size = new System.Drawing.Size(86, 32);
             this.label4.TabIndex = 2;
-            this.label4.Text = "Font color";
+            this.label4.Text = "Text color";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tb_color_r
-            // 
-            this.tb_color_r.AllowSpace = false;
-            this.tb_color_r.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_color_r.Location = new System.Drawing.Point(0, 2);
-            this.tb_color_r.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.tb_color_r.MaxLength = 3;
-            this.tb_color_r.Name = "tb_color_r";
-            this.tb_color_r.Size = new System.Drawing.Size(47, 20);
-            this.tb_color_r.TabIndex = 1;
-            this.tb_color_r.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tb_color_r.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.tb_color_r.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatingColorInput);
-            // 
-            // tb_color_b
-            // 
-            this.tb_color_b.AllowSpace = false;
-            this.tb_color_b.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_color_b.Location = new System.Drawing.Point(100, 2);
-            this.tb_color_b.Margin = new System.Windows.Forms.Padding(3, 2, 0, 2);
-            this.tb_color_b.MaxLength = 3;
-            this.tb_color_b.Name = "tb_color_b";
-            this.tb_color_b.Size = new System.Drawing.Size(48, 20);
-            this.tb_color_b.TabIndex = 3;
-            this.tb_color_b.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tb_color_b.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.tb_color_b.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatingColorInput);
-            // 
-            // tb_color_g
-            // 
-            this.tb_color_g.AllowSpace = false;
-            this.tb_color_g.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_color_g.Location = new System.Drawing.Point(50, 2);
-            this.tb_color_g.Margin = new System.Windows.Forms.Padding(3, 2, 0, 2);
-            this.tb_color_g.MaxLength = 3;
-            this.tb_color_g.Name = "tb_color_g";
-            this.tb_color_g.Size = new System.Drawing.Size(47, 20);
-            this.tb_color_g.TabIndex = 2;
-            this.tb_color_g.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tb_color_g.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.tb_color_g.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatingColorInput);
-            // 
-            // tb_key
-            // 
-            this.tb_key.AllowSpace = false;
-            this.tb_key.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_key.Location = new System.Drawing.Point(110, 62);
-            this.tb_key.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.tb_key.MaxLength = 32;
-            this.tb_key.Name = "tb_key";
-            this.tb_key.Size = new System.Drawing.Size(148, 20);
-            this.tb_key.TabIndex = 12;
-            this.tb_key.UsedFilter = DocMaker.CustomTextBox.Filter.Special;
             // 
             // LabelEditor
             // 
