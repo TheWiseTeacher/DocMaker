@@ -6,9 +6,7 @@ using System.Windows.Forms;
 
 namespace DocMaker
 {
-
-
-    public class CustomPanel : System.Windows.Forms.Panel
+    public class CustomPanel : Panel
     {
         public int WheelDelta = 0;
 

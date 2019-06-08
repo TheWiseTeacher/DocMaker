@@ -19,7 +19,7 @@ namespace DocMaker
 
         public byte Flags { get; set; }
 
-        private Color TextColor { get; set; }
+        public Color TextColor { get; set; }
 
         public Dictionary<string, string> ContentTable;
 
@@ -40,6 +40,8 @@ namespace DocMaker
 
             FontID = 0;
             FontSize = 12;
+            TextColor = Color.FromArgb(0, 0, 0);
+
             SetAlignment(AlignmentFlags.Left | AlignmentFlags.Down);
 
             FontStyle = 0;
@@ -67,12 +69,13 @@ namespace DocMaker
 
         public override void RenderObject()
         {
+            Point anchor = new Point(0, 0);
+
             Font font = Fonts.GetFont(FontID, Zoom.GetFontSize(FontSize), (FontStyle)FontStyle);
 
             Graphics g = Graphics.FromHwnd(IntPtr.Zero);
             g.ApplyGraphicsQuality();
             
-
             //Measure label size
             SizeF s = g.MeasureString(ContentTable[Project.UsedLanguages[0]], font);
             s = new SizeF((float)Math.Ceiling(s.Width), (float)Math.Ceiling(s.Height));
@@ -84,23 +87,27 @@ namespace DocMaker
             g = Graphics.FromImage(b);
             g.ApplyGraphicsQuality();
 
-            g.DrawString(ContentTable[Project.UsedLanguages[0]], font, Brushes.Black, new Point(0, 0));
+            g.DrawString(ContentTable[Project.UsedLanguages[0]], 
+                         font, 
+                         new SolidBrush(TextColor), 
+                         Point.Empty);
 
-            var p = new Pen(Color.Red, 1);
 
-            int X = 0;
-            int Y = 0;
+            // Draw the anchor point for this label
 
-            if ((Alignment & (int)AlignmentFlags.Left) > 0) X = 0;
-            if ((Alignment & (int)AlignmentFlags.Center) > 0) X = (int)(s.Width * 0.5F);
-            if ((Alignment & (int)AlignmentFlags.Right) > 0) X = (int)s.Width - 1;
+            if ((Alignment & (int)AlignmentFlags.Left) > 0) anchor.X = 0;
+            if ((Alignment & (int)AlignmentFlags.Center) > 0) anchor.X = (int)(s.Width * 0.5F);
+            if ((Alignment & (int)AlignmentFlags.Right) > 0) anchor.X = (int)s.Width - 1;
 
-            if ((Alignment & (int)AlignmentFlags.Up) > 0) Y = 0;
-            if ((Alignment & (int)AlignmentFlags.Middle) > 0) Y = (int)(s.Height * 0.5F);
-            if ((Alignment & (int)AlignmentFlags.Down) > 0) Y = (int)s.Height - 1;
+            if ((Alignment & (int)AlignmentFlags.Up) > 0) anchor.Y = 0;
+            if ((Alignment & (int)AlignmentFlags.Middle) > 0) anchor.Y = (int)(s.Height * 0.5F);
+            if ((Alignment & (int)AlignmentFlags.Down) > 0) anchor.Y = (int)s.Height - 1;
 
-            g.DrawLine(p, X - Config.ANCHOR_SIZE, Y, X + Config.ANCHOR_SIZE, Y);
-            g.DrawLine(p, X, Y - Config.ANCHOR_SIZE, X, Y + Config.ANCHOR_SIZE);
+            g.DrawLine(Config.AnchorPen, anchor.X - Config.ANCHOR_SIZE, anchor.Y, anchor.X + Config.ANCHOR_SIZE, anchor.Y);
+            g.DrawLine(Config.AnchorPen, anchor.X, anchor.Y - Config.ANCHOR_SIZE, anchor.X, anchor.Y + Config.ANCHOR_SIZE);
+
+
+            // Set Canvas image
 
             Canvas.Image = b;
             Canvas.Size = Canvas.Image.Size;

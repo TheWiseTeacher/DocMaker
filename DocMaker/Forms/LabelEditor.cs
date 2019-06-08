@@ -33,8 +33,10 @@ namespace DocMaker
 
             // Load and select the used font
             LoadFontList();
+
             fontList.SelectedIndex = labelObject.FontID;
             fontSize.Value = labelObject.FontSize;
+            LoadFontColor();
 
             // Load other 
             ShowFontStyle();
@@ -66,40 +68,6 @@ namespace DocMaker
             }
         }
 
-        private bool IsValidKeyChar(char c)
-        {
-            return
-                (char.IsLetterOrDigit(c) && ((c >= 32 && c <= 127))) ||
-                c == '_' || c == '$' || c == '#' ||
-                c == (char)Keys.Delete ||
-                c == (char)Keys.Back
-                ;           
-        }
-
-        private void Tb_key_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if(!IsValidKeyChar(e.KeyChar))
-            {
-                System.Media.SystemSounds.Beep.Play();
-                e.Handled = true;
-            }           
-        }
-
-        private void Tb_key_Validated(object sender, EventArgs e)
-        {
-            string validString = "";
-            foreach(char c in tb_key.Text)
-            {
-                if (IsValidKeyChar(c))
-                    validString += c;
-            }
-            if(!tb_key.Text.Equals(validString))
-            {
-                System.Media.SystemSounds.Beep.Play();
-                tb_key.Text = validString;
-            }
-        }
-
         private void TextTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
@@ -125,19 +93,6 @@ namespace DocMaker
                 LoadTextTable();
                 LivePreview.Update();
             }
-        }
-
-
-        private void Btn_confirm_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        private void Btn_cancel_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
         }
 
         private void LabelEditor_FormClosing(object sender, FormClosingEventArgs e)
@@ -272,6 +227,45 @@ namespace DocMaker
         private void TextTable_Enter(object sender, EventArgs e)
         {
             ActiveControl = label1;
+        }
+
+        private void LoadFontColor()
+        {
+            tb_color_r.Text = labelObject.TextColor.R.ToString();
+            tb_color_g.Text = labelObject.TextColor.G.ToString();
+            tb_color_b.Text = labelObject.TextColor.B.ToString();
+
+            lab_color.BackColor = labelObject.TextColor;
+            LivePreview.Update();
+        }
+
+        private void Lab_color_Click(object sender, EventArgs e)
+        {
+            ColorDialog dialog = new ColorDialog();
+            dialog.Color = labelObject.TextColor;
+
+            if(dialog.ShowDialog() == DialogResult.OK)
+            {
+                labelObject.TextColor = dialog.Color;
+                LoadFontColor();
+            }
+        }
+
+        private void OnValidatingColorInput(object sender, CancelEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            int colorValue = Funcs.ToInt(tb.Text);
+
+            if (colorValue < 0 || colorValue > 255)
+                e.Cancel = true;
+
+            // To prevent any exception I'm using a special Clamp method :3
+            labelObject.TextColor = Color.FromArgb(Funcs.Clamp(tb_color_r.Text, 0, 255),
+                                                   Funcs.Clamp(tb_color_g.Text, 0, 255),
+                                                   Funcs.Clamp(tb_color_b.Text, 0, 255));
+
+            // Reload all inputs and display the color
+            LoadFontColor();
         }
     }
 }

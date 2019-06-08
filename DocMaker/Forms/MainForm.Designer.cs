@@ -75,6 +75,9 @@
             this.btn_RU = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.layers = new System.Windows.Forms.DataGridView();
+            this.layer_visible = new System.Windows.Forms.DataGridViewImageColumn();
+            this.layer_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.layer_object = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.span_SidePanel = new System.Windows.Forms.SplitContainer();
@@ -94,9 +97,6 @@
             this.pan_MainSide = new System.Windows.Forms.TableLayoutPanel();
             this.PaperWrap = new DocMaker.CustomPanel();
             this.Paper = new System.Windows.Forms.Panel();
-            this.layer_visible = new System.Windows.Forms.DataGridViewImageColumn();
-            this.layer_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.layer_object = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MainFormMenuStrip.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.pan_zoom.SuspendLayout();
@@ -792,6 +792,39 @@
             this.layers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Layers_CellDoubleClick);
             this.layers.SelectionChanged += new System.EventHandler(this.Layers_SelectionChanged);
             // 
+            // layer_visible
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle1.NullValue")));
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(4);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.layer_visible.DefaultCellStyle = dataGridViewCellStyle1;
+            this.layer_visible.HeaderText = "visible";
+            this.layer_visible.Name = "layer_visible";
+            this.layer_visible.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.layer_visible.Width = 30;
+            // 
+            // layer_name
+            // 
+            this.layer_name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.layer_name.DefaultCellStyle = dataGridViewCellStyle2;
+            this.layer_name.HeaderText = "name";
+            this.layer_name.Name = "layer_name";
+            this.layer_name.ReadOnly = true;
+            // 
+            // layer_object
+            // 
+            this.layer_object.HeaderText = "Object";
+            this.layer_object.Name = "layer_object";
+            this.layer_object.Visible = false;
+            // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1050,39 +1083,6 @@
             this.Paper.Size = new System.Drawing.Size(43, 55);
             this.Paper.TabIndex = 0;
             this.Paper.Click += new System.EventHandler(this.PaperWrap_OnClick);
-            // 
-            // layer_visible
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle1.NullValue")));
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(4);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.layer_visible.DefaultCellStyle = dataGridViewCellStyle1;
-            this.layer_visible.HeaderText = "visible";
-            this.layer_visible.Name = "layer_visible";
-            this.layer_visible.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.layer_visible.Width = 30;
-            // 
-            // layer_name
-            // 
-            this.layer_name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.layer_name.DefaultCellStyle = dataGridViewCellStyle2;
-            this.layer_name.HeaderText = "name";
-            this.layer_name.Name = "layer_name";
-            this.layer_name.ReadOnly = true;
-            // 
-            // layer_object
-            // 
-            this.layer_object.HeaderText = "Object";
-            this.layer_object.Name = "layer_object";
-            this.layer_object.Visible = false;
             // 
             // MainForm
             // 

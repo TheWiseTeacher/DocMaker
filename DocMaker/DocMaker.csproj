@@ -62,7 +62,10 @@
     <Compile Include="Classes\Structures.cs" />
     <Compile Include="Classes\Config.cs" />
     <Compile Include="Classes\Zoom.cs" />
-    <Compile Include="CustomPanel.cs">
+    <Compile Include="UserControls\CustomTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\CustomPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\FontManager.cs">
@@ -160,5 +163,6 @@
     <None Include="Ressources\ico_alignment_CU.png" />
     <None Include="Ressources\ico_alignment_LU.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

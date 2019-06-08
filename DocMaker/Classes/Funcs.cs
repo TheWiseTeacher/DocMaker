@@ -21,13 +21,18 @@ namespace DocMaker
             }
             catch (Exception)
             {
-                return -1;
+                return 0;
             }
         }
 
         public static int Clamp(int value, int min, int max)
         {
             return (value < min) ? min : (value > max) ? max : value;
+        }
+
+        public static int Clamp(object value, int min, int max)
+        {
+            return Clamp(ToInt(value), min, max);
         }
 
         public static DialogResult Question(string message)
