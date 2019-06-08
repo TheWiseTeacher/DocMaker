@@ -11,9 +11,6 @@ namespace DocMaker
 {
     public class LabelObject : DocumentObject
     {
-
-        public string Key { get; set; }
-
         public byte FontID { get; set; }
 
         public byte FontSize { get; set; }
@@ -21,6 +18,8 @@ namespace DocMaker
         public byte FontStyle { get; set; }
 
         public byte Flags { get; set; }
+
+        private Color TextColor { get; set; }
 
         public Dictionary<string, string> ContentTable;
 
@@ -38,7 +37,6 @@ namespace DocMaker
         public LabelObject(int labelCounter)
         {
             Name = "Label " + labelCounter.ToString();
-            Key = "";
 
             FontID = 0;
             FontSize = 12;
@@ -53,15 +51,6 @@ namespace DocMaker
                 ContentTable.Add(lang, "");
 
             ContentTable[Project.UsedLanguages[0]] = $"New Label {labelCounter}";
-        }
-
-        private void ApplyGraphicsQuality(Graphics g)
-        {
-            g.CompositingQuality = CompositingQuality.HighQuality;
-            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            g.TextRenderingHint = TextRenderingHint.AntiAlias;
-            g.PixelOffsetMode = PixelOffsetMode.HighSpeed;
-            g.SmoothingMode = SmoothingMode.HighSpeed;
         }
 
         public void AddLanguage(string languageCode)
@@ -81,7 +70,8 @@ namespace DocMaker
             Font font = Fonts.GetFont(FontID, Zoom.GetFontSize(FontSize), (FontStyle)FontStyle);
 
             Graphics g = Graphics.FromHwnd(IntPtr.Zero);
-            ApplyGraphicsQuality(g);
+            g.ApplyGraphicsQuality();
+            
 
             //Measure label size
             SizeF s = g.MeasureString(ContentTable[Project.UsedLanguages[0]], font);
@@ -92,7 +82,7 @@ namespace DocMaker
             Bitmap b = new Bitmap((int)s.Width, (int)s.Height);
 
             g = Graphics.FromImage(b);
-            ApplyGraphicsQuality(g);
+            g.ApplyGraphicsQuality();
 
             g.DrawString(ContentTable[Project.UsedLanguages[0]], font, Brushes.Black, new Point(0, 0));
 

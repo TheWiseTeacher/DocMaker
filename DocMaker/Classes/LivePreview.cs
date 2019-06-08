@@ -8,7 +8,7 @@ namespace DocMaker
 {
     static class LivePreview
     {
-        public static Form mainForm = null;
+        public static MainForm mainForm = null;
         public static DocumentObject currentObject = null;
 
         public static void Update()
@@ -18,8 +18,6 @@ namespace DocMaker
 
             currentObject.RenderObject();
             currentObject.Canvas.Update();
-
         }
-
     }
 }

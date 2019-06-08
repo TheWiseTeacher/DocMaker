@@ -22,6 +22,10 @@ namespace DocMaker
         public static PrivateFontCollection TTF_Jannah;
         public static PrivateFontCollection TTF_Roboto;
 
+        public static readonly Cursor OnHoveringObject = Cursors.Hand;
+        public static readonly Cursor OnMovingObject = Cursors.SizeAll;
+
+
         public static void Init()
         {
             CurrentPaperRatio = PAPER_RATIO_A4;

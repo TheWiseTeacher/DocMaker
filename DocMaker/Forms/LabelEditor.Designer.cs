@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.tb_name = new System.Windows.Forms.TextBox();
             this.textTable = new System.Windows.Forms.DataGridView();
@@ -58,6 +59,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.pan_Flags = new System.Windows.Forms.TableLayoutPanel();
             this.pan_FontStyle = new System.Windows.Forms.TableLayoutPanel();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.textTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fontSize)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -79,6 +81,8 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Object name";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolTip.SetToolTip(this.label1, "The local name for this object.\r\nName used to identify object in the object list." +
+        "");
             // 
             // tb_name
             // 
@@ -150,6 +154,8 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Key name";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolTip.SetToolTip(this.label2, "The object key name.\r\nThis name is used in your project to edit the configuration" +
+        " in real time.");
             // 
             // tb_key
             // 
@@ -578,7 +584,7 @@
             this.label3.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.label3.Size = new System.Drawing.Size(262, 24);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Object alignment";
+            this.label3.Text = "Object identification";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pan_Flags
@@ -691,5 +697,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TableLayoutPanel pan_Flags;
         private System.Windows.Forms.TableLayoutPanel pan_FontStyle;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

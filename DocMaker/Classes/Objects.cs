@@ -9,37 +9,49 @@ namespace DocMaker
 {
     static class Objects
     {
-        private static int labelObjCounter = 0;
         public static List<DocumentObject> objectList = new List<DocumentObject>();
 
+        private static int labelObjCounter = 0;
+        private static int lineObjCounter = 0;
 
         public static void Initialize()
         {
+
             //Clear object list
             objectList.Clear();
 
             labelObjCounter = 0;
+            lineObjCounter = 0;
         }
 
+        public static DocumentObject NewLabel()
+        {
+            LabelObject docObject = new LabelObject(labelObjCounter + 1);
 
-        public static void AddLabel(Panel holder)
-        { 
-            labelObjCounter++;
-
-            //Set document object to label type
-            LabelObject label = new LabelObject(labelObjCounter);
-
-            //Call object editor and add object to objectsList if edited and confirmed
-            if(label.EditObject())
+            if (docObject.EditObject())
             {
-                holder.Controls.Add(label.Canvas);
-                objectList.Add(label);
+                objectList.Add(docObject);
+
+                labelObjCounter++;
+                return docObject;
             }
-            else
+
+            return null;
+        }
+
+        public static DocumentObject NewLine()
+        {
+            LineObject docObject = new LineObject(lineObjCounter + 1);
+
+            if(docObject.EditObject())
             {
-                //We did not add a label
-                labelObjCounter--;
+                objectList.Add(docObject);
+
+                lineObjCounter++;
+                return docObject;
             }
+
+            return null;
         }
 
 

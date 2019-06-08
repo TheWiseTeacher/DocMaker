@@ -9,7 +9,8 @@ namespace DocMaker
 {
     public class DocumentObject : ICloneable
     {
-        public string Name { get; set; }
+        public string Name { get; set; }        // The object name to use in the object list
+        public string Key { get; set; }         // The Key name to edit object in real time in the user's project
 
         public byte Alignment { get; set; }
 
@@ -18,6 +19,8 @@ namespace DocMaker
 
         private bool isMouseDown = false;
         private Point mouseLastLocation;
+
+        public Color BackColor { get; set; }
 
         [Flags]
         public enum AlignmentFlags
@@ -33,10 +36,16 @@ namespace DocMaker
         public DocumentObject()
         {
             Name = "Object";
+            Key = "";
+
             Alignment = (int)AlignmentFlags.Left | (int)AlignmentFlags.Down;
+
+            BackColor = Color.Transparent;
             RealLocation = Point.Empty;
 
             Canvas = new PictureBox();
+            Canvas.Cursor = Config.OnHoveringObject;
+
             Canvas.DoubleClick += Canvas_DoubleClick;
             Canvas.MouseDown += Canvas_MouseDown;
             Canvas.MouseMove += Canvas_MouseMove;
@@ -70,13 +79,13 @@ namespace DocMaker
 
         private void Canvas_MouseEnter(object sender, EventArgs e)
         {
-            Canvas.BackColor = Color.Red;
-            LivePreview.mainForm.ActiveControl = Canvas;
+            Canvas.BackColor = Color.FromArgb(184, 150, 207);
+            //LivePreview.mainForm.ActiveControl = Canvas;
         }
 
         private void Canvas_MouseLeave(object sender, EventArgs e)
         {
-            Canvas.BackColor = Color.Transparent;
+            Canvas.BackColor = BackColor;
         }
 
         private void Canvas_DoubleClick(object sender, EventArgs e)
@@ -112,7 +121,6 @@ namespace DocMaker
             if (isMouseDown)
             {
                 // Mouse Released
-
                 Point p = Canvas.Location;
 
                 if ((Alignment & (int)DocumentObject.AlignmentFlags.Center) > 0) p.X += (int)((float)Canvas.Width * 0.5);
@@ -123,20 +131,21 @@ namespace DocMaker
 
                 // Calculate the Real position without zoom
                 RealLocation = Zoom.CalculateReal(p);
-
             }
 
             isMouseDown = false;
-            Canvas.Cursor = Cursors.Default;
+            Canvas.Cursor = Config.OnHoveringObject;
         }
 
         private void Canvas_MouseDown(object sender, MouseEventArgs e)
         {
             isMouseDown = true;
+
             LivePreview.currentObject = this;
+            LivePreview.mainForm.SelectObject();
 
             mouseLastLocation = e.Location;
-            Canvas.Cursor = Cursors.SizeAll;
+            Canvas.Cursor = Config.OnMovingObject;
         }
 
         public virtual void RenderObject()

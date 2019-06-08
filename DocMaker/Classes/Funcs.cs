@@ -45,6 +45,15 @@ namespace DocMaker
             return MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        public static void ApplyGraphicsQuality(this Graphics g)
+        {
+            g.CompositingQuality = CompositingQuality.HighQuality;
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            g.TextRenderingHint = TextRenderingHint.AntiAlias;
+            g.PixelOffsetMode = PixelOffsetMode.HighSpeed;
+            g.SmoothingMode = SmoothingMode.HighSpeed;
+        }
+
         public static StringAlignment GetAlignment(object config)
         {
             if (config == null)
