@@ -39,23 +39,23 @@
             this.btn_confirm = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
-            this.tb_key = new DocMaker.CustomTextBox();
             this.pan_color = new System.Windows.Forms.TableLayoutPanel();
             this.lab_color = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.tb_color_r = new DocMaker.CustomTextBox();
-            this.tb_color_b = new DocMaker.CustomTextBox();
-            this.tb_color_g = new DocMaker.CustomTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.pan_LineSize = new System.Windows.Forms.TableLayoutPanel();
             this.sizeMode = new System.Windows.Forms.ComboBox();
-            this.lineLength = new DocMaker.CustomTextBox();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.label8 = new System.Windows.Forms.Label();
             this.pan_LineOrientation = new System.Windows.Forms.TableLayoutPanel();
             this.radioHorizontal = new System.Windows.Forms.RadioButton();
             this.radioVertical = new System.Windows.Forms.RadioButton();
-            this.label8 = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.tb_key = new DocMaker.CustomTextBox();
+            this.tb_color_r = new DocMaker.CustomTextBox();
+            this.tb_color_b = new DocMaker.CustomTextBox();
+            this.tb_color_g = new DocMaker.CustomTextBox();
+            this.lineLength = new DocMaker.CustomTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.lineThickness)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.pan_color.SuspendLayout();
@@ -149,7 +149,7 @@
             this.lineThickness.Size = new System.Drawing.Size(148, 20);
             this.lineThickness.TabIndex = 4;
             this.lineThickness.Value = new decimal(new int[] {
-            8,
+            1,
             0,
             0,
             0});
@@ -252,20 +252,6 @@
             this.label3.Text = "Object identification";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // tb_key
-            // 
-            this.tb_key.AllowSpace = false;
-            this.tb_key.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_key.Location = new System.Drawing.Point(110, 62);
-            this.tb_key.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.tb_key.MaxLength = 32;
-            this.tb_key.Name = "tb_key";
-            this.tb_key.Size = new System.Drawing.Size(148, 20);
-            this.tb_key.TabIndex = 12;
-            this.tb_key.UsedFilter = DocMaker.CustomTextBox.Filter.Special;
-            // 
             // pan_color
             // 
             this.pan_color.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -339,54 +325,6 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(148, 24);
             this.tableLayoutPanel2.TabIndex = 5;
             // 
-            // tb_color_r
-            // 
-            this.tb_color_r.AllowSpace = false;
-            this.tb_color_r.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_color_r.Location = new System.Drawing.Point(0, 2);
-            this.tb_color_r.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.tb_color_r.MaxLength = 3;
-            this.tb_color_r.Name = "tb_color_r";
-            this.tb_color_r.Size = new System.Drawing.Size(47, 20);
-            this.tb_color_r.TabIndex = 1;
-            this.tb_color_r.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tb_color_r.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.tb_color_r.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatingColorInput);
-            // 
-            // tb_color_b
-            // 
-            this.tb_color_b.AllowSpace = false;
-            this.tb_color_b.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_color_b.Location = new System.Drawing.Point(100, 2);
-            this.tb_color_b.Margin = new System.Windows.Forms.Padding(3, 2, 0, 2);
-            this.tb_color_b.MaxLength = 3;
-            this.tb_color_b.Name = "tb_color_b";
-            this.tb_color_b.Size = new System.Drawing.Size(48, 20);
-            this.tb_color_b.TabIndex = 3;
-            this.tb_color_b.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tb_color_b.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.tb_color_b.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatingColorInput);
-            // 
-            // tb_color_g
-            // 
-            this.tb_color_g.AllowSpace = false;
-            this.tb_color_g.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_color_g.Location = new System.Drawing.Point(50, 2);
-            this.tb_color_g.Margin = new System.Windows.Forms.Padding(3, 2, 0, 2);
-            this.tb_color_g.MaxLength = 3;
-            this.tb_color_g.Name = "tb_color_g";
-            this.tb_color_g.Size = new System.Drawing.Size(47, 20);
-            this.tb_color_g.TabIndex = 2;
-            this.tb_color_g.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tb_color_g.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.tb_color_g.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatingColorInput);
-            // 
             // label7
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -438,20 +376,22 @@
             this.sizeMode.Size = new System.Drawing.Size(42, 21);
             this.sizeMode.TabIndex = 14;
             // 
-            // lineLength
+            // label8
             // 
-            this.lineLength.AllowSpace = false;
-            this.lineLength.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lineLength.Location = new System.Drawing.Point(4, 6);
-            this.lineLength.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.lineLength.MaxLength = 32;
-            this.lineLength.Name = "lineLength";
-            this.lineLength.Size = new System.Drawing.Size(98, 20);
-            this.lineLength.TabIndex = 12;
-            this.lineLength.UsedFilter = DocMaker.CustomTextBox.Filter.Special;
-            this.lineLength.TextChanged += new System.EventHandler(this.LineLength_TextChanged);
+            this.label8.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(0, 144);
+            this.label8.Margin = new System.Windows.Forms.Padding(0);
+            this.label8.MinimumSize = new System.Drawing.Size(0, 28);
+            this.label8.Name = "label8";
+            this.label8.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.label8.Size = new System.Drawing.Size(106, 32);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Line orientation";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pan_LineOrientation
             // 
@@ -482,6 +422,7 @@
             this.radioHorizontal.TabIndex = 2;
             this.radioHorizontal.Text = "Horizontal";
             this.radioHorizontal.UseVisualStyleBackColor = true;
+            this.radioHorizontal.CheckedChanged += new System.EventHandler(this.RadioHorizontal_CheckedChanged);
             // 
             // radioVertical
             // 
@@ -495,23 +436,85 @@
             this.radioVertical.TabIndex = 2;
             this.radioVertical.Text = "Vertical";
             this.radioVertical.UseVisualStyleBackColor = true;
+            this.radioVertical.CheckedChanged += new System.EventHandler(this.RadioVertical_CheckedChanged);
             // 
-            // label8
+            // tb_key
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tb_key.AllowSpace = false;
+            this.tb_key.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(0, 144);
-            this.label8.Margin = new System.Windows.Forms.Padding(0);
-            this.label8.MinimumSize = new System.Drawing.Size(0, 28);
-            this.label8.Name = "label8";
-            this.label8.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.label8.Size = new System.Drawing.Size(106, 32);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Line orientation";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tb_key.Location = new System.Drawing.Point(110, 62);
+            this.tb_key.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.tb_key.MaxLength = 32;
+            this.tb_key.Name = "tb_key";
+            this.tb_key.Size = new System.Drawing.Size(148, 20);
+            this.tb_key.TabIndex = 12;
+            this.tb_key.UsedFilter = DocMaker.CustomTextBox.Filter.Special;
+            // 
+            // tb_color_r
+            // 
+            this.tb_color_r.AllowSpace = false;
+            this.tb_color_r.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_color_r.Location = new System.Drawing.Point(0, 2);
+            this.tb_color_r.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.tb_color_r.MaxLength = 3;
+            this.tb_color_r.Name = "tb_color_r";
+            this.tb_color_r.Size = new System.Drawing.Size(47, 20);
+            this.tb_color_r.TabIndex = 1;
+            this.tb_color_r.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_color_r.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.tb_color_r.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatingColorInput);
+            // 
+            // tb_color_b
+            // 
+            this.tb_color_b.AllowSpace = false;
+            this.tb_color_b.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_color_b.Location = new System.Drawing.Point(100, 2);
+            this.tb_color_b.Margin = new System.Windows.Forms.Padding(3, 2, 0, 2);
+            this.tb_color_b.MaxLength = 3;
+            this.tb_color_b.Name = "tb_color_b";
+            this.tb_color_b.Size = new System.Drawing.Size(48, 20);
+            this.tb_color_b.TabIndex = 3;
+            this.tb_color_b.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_color_b.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.tb_color_b.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatingColorInput);
+            // 
+            // tb_color_g
+            // 
+            this.tb_color_g.AllowSpace = false;
+            this.tb_color_g.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_color_g.Location = new System.Drawing.Point(50, 2);
+            this.tb_color_g.Margin = new System.Windows.Forms.Padding(3, 2, 0, 2);
+            this.tb_color_g.MaxLength = 3;
+            this.tb_color_g.Name = "tb_color_g";
+            this.tb_color_g.Size = new System.Drawing.Size(47, 20);
+            this.tb_color_g.TabIndex = 2;
+            this.tb_color_g.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_color_g.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.tb_color_g.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatingColorInput);
+            // 
+            // lineLength
+            // 
+            this.lineLength.AllowSpace = false;
+            this.lineLength.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lineLength.Location = new System.Drawing.Point(4, 6);
+            this.lineLength.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.lineLength.MaxLength = 32;
+            this.lineLength.Name = "lineLength";
+            this.lineLength.Size = new System.Drawing.Size(98, 20);
+            this.lineLength.TabIndex = 12;
+            this.lineLength.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.lineLength.TextChanged += new System.EventHandler(this.LineLength_TextChanged);
+            this.lineLength.Validated += new System.EventHandler(this.LineLength_Validated);
             // 
             // LineEditor
             // 
@@ -530,7 +533,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Label editor";
+            this.Text = "Line editor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LabelEditor_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.lineThickness)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);

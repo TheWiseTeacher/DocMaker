@@ -27,6 +27,8 @@ namespace DocMaker
 
         public static Pen AnchorPen = new Pen(Color.FromArgb(255, 0, 0));
 
+        public static int MaxLineSize = 10000;
+
         public static void Init()
         {
             CurrentPaperRatio = PAPER_RATIO_A4;

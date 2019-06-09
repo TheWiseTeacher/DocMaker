@@ -36,13 +36,11 @@ namespace DocMaker
 
             if (IsVertical)
             {
-                Canvas.Width = Thickness;
-                Canvas.Height = Length;
+                Canvas.Size = Zoom.Calculate(new Size(Thickness, Length));
             }
             else
             {
-                Canvas.Width = Length;
-                Canvas.Height = Thickness;
+                Canvas.Size = Zoom.Calculate(new Size(Length, Thickness));
             }
 
             base.RenderObject();

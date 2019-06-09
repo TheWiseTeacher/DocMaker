@@ -440,6 +440,9 @@ namespace DocMaker
 
         public void AddObjectToPaper(DocumentObject obj)
         {
+            if (obj == null)
+                return;
+
             Paper.Controls.Add(obj.Canvas);
             LivePreview.currentObject = obj;
 

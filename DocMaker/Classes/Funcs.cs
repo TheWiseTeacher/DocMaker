@@ -160,6 +160,13 @@ namespace DocMaker
             return Max(ToInt(v), m);
         }
 
+        public static int Force(int i)
+        {
+            if (i == 0) return 0;
+            if (i > 0) return 1;
+            else return -1;
+        }
+
         public static int Min(int v, int m)
         {
             return (v <= m) ? v : m;

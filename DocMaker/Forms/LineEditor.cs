@@ -21,9 +21,15 @@ namespace DocMaker
 
             LoadParameters();
 
-            
-
             ActiveControl = label1;
+            lineLength.MouseWheel += LineLength_MouseWheel;
+        }
+
+        private void LineLength_MouseWheel(object sender, MouseEventArgs e)
+        {
+            lineLength.Text =
+                Funcs.Clamp((Funcs.ToInt(lineLength.Text) + 4 * Funcs.Force(Funcs.ToInt(e.Delta))),
+                            1, Config.MaxLineSize).ToString();
         }
 
         private void LoadParameters()
@@ -89,7 +95,7 @@ namespace DocMaker
                 sizeMode.SelectedItem = "%";
         }
 
-        #region Color parameter methods
+            #region Color parameter methods
 
         private void LoadColor()
         {
@@ -129,7 +135,7 @@ namespace DocMaker
             LoadColor();
         }
 
-        #endregion
+            #endregion
 
         private void LabelEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -142,14 +148,41 @@ namespace DocMaker
 
         private void LineThickness_ValueChanged(object sender, EventArgs e)
         {
-            Target.Thickness = (byte)Funcs.Min(lineThickness.Value, 1);
+            Target.Thickness = (byte)Funcs.Max(lineThickness.Value, 1);
             LivePreview.Update();
         }
 
         private void LineLength_TextChanged(object sender, EventArgs e)
         {
-            Target.Length = Funcs.Min(lineLength.Text, 1);
+            Target.Length = Funcs.Clamp(lineLength.Text, 1, Config.MaxLineSize);
             LivePreview.Update();
         }
+
+        private void LineLength_Validated(object sender, EventArgs e)
+        {
+            Target.Length = Funcs.Clamp(lineLength.Text, 1, Config.MaxLineSize);
+            lineLength.Text = Target.Length.ToString();
+            LivePreview.Update();
+        }
+
+        private void RadioHorizontal_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!radioHorizontal.Checked)
+                return;
+
+            Target.IsVertical = false;
+            ShowOrientation();
+        }
+
+        private void RadioVertical_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!radioVertical.Checked)
+                return;
+
+            Target.IsVertical = true;
+            ShowOrientation();
+        }
+
+
     }
 }
