@@ -7,6 +7,12 @@ namespace DocMaker
 {
     public partial class DocumentObject
     {
+        private uint flags;         // All object parameters are here 
+                                    // (for quick save load methods and memory optimisation)
+
+        private uint Savedflags;    // Save the value of flags here in case of discarding changes
+
+
         [Flags]
         public enum Flags : uint
         {
@@ -56,6 +62,10 @@ namespace DocMaker
             if (b) flags = flags | i; 
             else flags = flags & (~i);
         }
+
+        public void SaveFlags() => Savedflags = flags;
+        public void LoadFlags() => flags = Savedflags;
+
 
         public bool Visible
         {

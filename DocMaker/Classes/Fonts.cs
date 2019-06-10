@@ -76,7 +76,7 @@ namespace DocMaker
 
         public static Font GetFont(int id, int emSize = 12, FontStyle fontStyle = 0)
         {
-            if (id < 0 || id > fontList.Count)
+            if (id < 0 || id >= fontList.Count)
                 return new Font("arial", emSize);
 
             if(fontList[id].IsExternal)

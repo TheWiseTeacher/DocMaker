@@ -11,63 +11,69 @@ namespace DocMaker
 {
     public partial class LabelEditor : Form
     {
-        private LabelObject labelObject;
-        private LabelObject originalLabelObject;
+        private LabelObject Target;
 
         public LabelEditor(LabelObject labelObject)
         {
             InitializeComponent();
 
-            this.labelObject = labelObject;
-
-            // Save the original configuration to apply if cancled
-            originalLabelObject = (LabelObject)labelObject.Clone();
-
-            // Clone the text table too
-            originalLabelObject.ContentTable =
-                labelObject.ContentTable.ToDictionary(entry => entry.Key,entry => (string)entry.Value.Clone());
-
-            // Load object name and label key
-            tb_name.Text = this.labelObject.Name;
-            tb_key.Text = this.labelObject.Key;
-
-            // Load and select the used font
-            LoadFontList();
-
-            fontList.SelectedIndex = labelObject.FontID;
-            fontSize.Value = labelObject.FontSize;
-            LoadColor();
-
-            // Load other 
-            ShowFontStyle();
-            ShowFlags();
-
-            // Load text for each language code
-            LoadTextTable();
-
-            ActiveControl = label1;
-
+            this.Target = labelObject;
             LoadParameters();
         }
 
         private void LoadParameters()
         {
+            Target.SaveFlags();
+
+            tb_name.Text = Target.Name;
+            tb_name.Tag = Target.Name;
+
+            tb_key.Text = Target.Key;
+            tb_key.Tag = Target.Key;
+
+            LoadColor();
+            lab_color.Tag = Target.TextColor;
+
+            fontSize.Value = Target.FontSize;
+            fontSize.Tag = Target.FontSize;
+
+            LoadFontList();
+            fontList.SelectedIndex = Target.FontID;
+            fontList.Tag = Target.FontID;
+
+            ShowFontStyle();
+            pan_FontStyle.Tag = Target.FontStyle;
+
             ShowRotation();
+            LoadTextTable();
         }
 
         private void DiscardChanges()
         {
-            
+            Target.LoadFlags();
+
+            Target.Name = (string)tb_name.Tag;
+            Target.Key = (string)tb_key.Tag;
+
+            Target.TextColor = (Color)lab_color.Tag;
+            Target.FontSize = (byte)fontSize.Tag;
+
+            Target.FontID = (byte)fontList.Tag;
+            Target.FontStyle = (byte)pan_FontStyle.Tag;
+
+            for (int i = 0; i < textTable.Rows.Count; i++)
+            {
+                string langCode = textTable[grid_lang.Index, i].Value.ToString();
+                Target.ContentTable[langCode] = textTable[grid_old_value.Index, i].Value.ToString();
+            }   
         }
 
         private void LoadTextTable()
         {
             textTable.Rows.Clear();
 
-            foreach (var lang in labelObject.ContentTable)
-            {
-                textTable.Rows.Add(lang.Key, lang.Value);
-            }
+            foreach (var lang in Target.ContentTable)
+                textTable.Rows.Add(lang.Key, lang.Value, lang.Value);
         }
 
         private void LoadFontList()
@@ -87,22 +93,22 @@ namespace DocMaker
 
             if (textTable.SelectedCells.Count > 0)
             {
-                string langCode = textTable[grid_lang.Index, textTable.SelectedCells[0].RowIndex].Value.ToString();
+                string langCode = textTable[grid_lang.Index, e.RowIndex].Value.ToString();
 
                 StringEditor stringEditor = new StringEditor("Insert the text to display - " + langCode);
 
                 stringEditor.textBox.Text =
-                    textTable[grid_content.Index, textTable.SelectedCells[0].RowIndex].Value.ToString();
+                    textTable[grid_content.Index, e.RowIndex].Value.ToString();
 
                 if (stringEditor.ShowDialog() == DialogResult.OK)
                 {
                     if (stringEditor.textBox.Text.Length == 0)
                         Funcs.Error("The label text must be at least 1 character long !");
                     else
-                        labelObject.ContentTable[langCode] = stringEditor.textBox.Text;
+                        Target.ContentTable[langCode] = stringEditor.textBox.Text;
                 }
 
-                LoadTextTable();
+                textTable[grid_content.Index, e.RowIndex].Value = Target.ContentTable[langCode];
                 LivePreview.Update();
             }
         }
@@ -111,25 +117,7 @@ namespace DocMaker
         {
             if(DialogResult != DialogResult.OK)
             {
-                labelObject.Name = originalLabelObject.Name;
-                labelObject.Key = originalLabelObject.Key;
-
-                labelObject.FontID = originalLabelObject.FontID;
-                labelObject.FontSize = originalLabelObject.FontSize;
-
-                //labelObject.HorizontalAlignment = originalLabelObject.HorizontalAlignment;
-                //labelObject.VerticalAlignment = originalLabelObject.VerticalAlignment;
-
-                labelObject.Alignment = originalLabelObject.Alignment;
-
-                labelObject.FontStyle = originalLabelObject.FontStyle;
-                labelObject.LabelFlags = originalLabelObject.LabelFlags;
-
-                foreach(string k in labelObject.ContentTable.Keys.ToList())
-                {
-                    labelObject.ContentTable[k] = (string)originalLabelObject.ContentTable[k].Clone();
-                }
-
+                DiscardChanges();
                 LivePreview.Update();
             }
         }
@@ -138,13 +126,13 @@ namespace DocMaker
 
         private void FontSize_ValueChanged(object sender, EventArgs e)
         {
-            labelObject.FontSize = (byte)fontSize.Value;
+            Target.FontSize = (byte)fontSize.Value;
             LivePreview.Update();
         }
 
         private void FontList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            labelObject.FontID = (byte)fontList.SelectedIndex;
+            Target.FontID = (byte)fontList.SelectedIndex;
             LivePreview.Update();
         }
 
@@ -155,11 +143,11 @@ namespace DocMaker
 
             Color c = Color.FromArgb(255, 148, 0);
 
-            if (labelObject.FontStyle == 0) btn_FSR.BackColor = c;
-            if ((labelObject.FontStyle & (int)FontStyle.Bold) > 0) btn_FSB.BackColor = c;
-            if ((labelObject.FontStyle & (int)FontStyle.Italic) > 0) btn_FSI.BackColor = c;
-            if ((labelObject.FontStyle & (int)FontStyle.Underline) > 0) btn_FSU.BackColor = c;
-            if ((labelObject.FontStyle & (int)FontStyle.Strikeout) > 0) btn_FSS.BackColor = c;
+            if (Target.FontStyle == 0) btn_FSR.BackColor = c;
+            if ((Target.FontStyle & (int)FontStyle.Bold) > 0) btn_FSB.BackColor = c;
+            if ((Target.FontStyle & (int)FontStyle.Italic) > 0) btn_FSI.BackColor = c;
+            if ((Target.FontStyle & (int)FontStyle.Underline) > 0) btn_FSU.BackColor = c;
+            if ((Target.FontStyle & (int)FontStyle.Strikeout) > 0) btn_FSS.BackColor = c;
         }
 
         private void ShowFlags()
@@ -169,11 +157,11 @@ namespace DocMaker
 
             Color c = Color.FromArgb(166, 62, 63);
 
-            if ((labelObject.LabelFlags & (int)LabelObject.ItemFlags.F1) > 0) btn_F1.BackColor = c;
-            if ((labelObject.LabelFlags & (int)LabelObject.ItemFlags.F2) > 0) btn_F2.BackColor = c;
-            if ((labelObject.LabelFlags & (int)LabelObject.ItemFlags.F3) > 0) btn_F3.BackColor = c;
-            if ((labelObject.LabelFlags & (int)LabelObject.ItemFlags.F4) > 0) btn_F4.BackColor = c;
-            if ((labelObject.LabelFlags & (int)LabelObject.ItemFlags.F5) > 0) btn_F5.BackColor = c;
+            if ((Target.LabelFlags & (int)LabelObject.ItemFlags.F1) > 0) btn_F1.BackColor = c;
+            if ((Target.LabelFlags & (int)LabelObject.ItemFlags.F2) > 0) btn_F2.BackColor = c;
+            if ((Target.LabelFlags & (int)LabelObject.ItemFlags.F3) > 0) btn_F3.BackColor = c;
+            if ((Target.LabelFlags & (int)LabelObject.ItemFlags.F4) > 0) btn_F4.BackColor = c;
+            if ((Target.LabelFlags & (int)LabelObject.ItemFlags.F5) > 0) btn_F5.BackColor = c;
         }
 
         private void FontStyle_OnClick(object sender, EventArgs e)
@@ -181,23 +169,23 @@ namespace DocMaker
             switch (((Button)sender).Tag.ToString().ToUpper())
             {
                 case "R":
-                    labelObject.FontStyle = 0;
+                    Target.FontStyle = 0;
                     break;
 
                 case "B":
-                    labelObject.FontStyle ^= (int)FontStyle.Bold;
+                    Target.FontStyle ^= (int)FontStyle.Bold;
                     break;
 
                 case "I":
-                    labelObject.FontStyle ^= (int)FontStyle.Italic;
+                    Target.FontStyle ^= (int)FontStyle.Italic;
                     break;
 
                 case "U":
-                    labelObject.FontStyle ^= (int)FontStyle.Underline;
+                    Target.FontStyle ^= (int)FontStyle.Underline;
                     break;
 
                 case "S":
-                    labelObject.FontStyle ^= (int)FontStyle.Strikeout;
+                    Target.FontStyle ^= (int)FontStyle.Strikeout;
                     break;
             }
 
@@ -210,23 +198,23 @@ namespace DocMaker
             switch (((Button)sender).Text.ToUpper())
             {
                 case "1":
-                    labelObject.LabelFlags ^= (int)LabelObject.ItemFlags.F1;
+                    Target.LabelFlags ^= (int)LabelObject.ItemFlags.F1;
                     break;
 
                 case "2":
-                    labelObject.LabelFlags ^= (int)LabelObject.ItemFlags.F2;
+                    Target.LabelFlags ^= (int)LabelObject.ItemFlags.F2;
                     break;
 
                 case "3":
-                    labelObject.LabelFlags ^= (int)LabelObject.ItemFlags.F3;
+                    Target.LabelFlags ^= (int)LabelObject.ItemFlags.F3;
                     break;
 
                 case "4":
-                    labelObject.LabelFlags ^= (int)LabelObject.ItemFlags.F4;
+                    Target.LabelFlags ^= (int)LabelObject.ItemFlags.F4;
                     break;
 
                 case "5":
-                    labelObject.LabelFlags ^= (int)LabelObject.ItemFlags.F5;
+                    Target.LabelFlags ^= (int)LabelObject.ItemFlags.F5;
                     break;
             }
 
@@ -240,21 +228,21 @@ namespace DocMaker
 
         private void LoadColor()
         {
-            tb_color_r.Text = labelObject.TextColor.R.ToString();
-            tb_color_g.Text = labelObject.TextColor.G.ToString();
-            tb_color_b.Text = labelObject.TextColor.B.ToString();
+            tb_color_r.Text = Target.TextColor.R.ToString();
+            tb_color_g.Text = Target.TextColor.G.ToString();
+            tb_color_b.Text = Target.TextColor.B.ToString();
 
-            lab_color.BackColor = labelObject.TextColor;
+            lab_color.BackColor = Target.TextColor;
             LivePreview.Update();
         }
 
         private void Lab_color_Click(object sender, EventArgs e)
         {
-            Project.colorDialog.Color = labelObject.TextColor;
+            Project.colorDialog.Color = Target.TextColor;
 
             if (Project.colorDialog.ShowDialog() == DialogResult.OK)
             {
-                labelObject.TextColor = Project.colorDialog.Color;
+                Target.TextColor = Project.colorDialog.Color;
                 LoadColor();
             }
         }
@@ -268,7 +256,7 @@ namespace DocMaker
                 e.Cancel = true;
 
             // To prevent any exception I'm using a special Clamp method :3
-            labelObject.TextColor = Color.FromArgb(Funcs.Clamp(tb_color_r.Text, 0, 255),
+            Target.TextColor = Color.FromArgb(Funcs.Clamp(tb_color_r.Text, 0, 255),
                                                    Funcs.Clamp(tb_color_g.Text, 0, 255),
                                                    Funcs.Clamp(tb_color_b.Text, 0, 255));
 
@@ -285,14 +273,14 @@ namespace DocMaker
 
         private void Tb_key_Validated(object sender, EventArgs e)
         {
-            labelObject.Key = tb_key.Text;
+            Target.Key = tb_key.Text;
         }
 
         private void ShowRotation()
         {
             int angle = 0;
-            if (labelObject.IsVertical) angle += 90;
-            if (labelObject.IsTurned180) angle += 180;
+            if (Target.IsVertical) angle += 90;
+            if (Target.IsTurned180) angle += 180;
 
             lab_angle.Text = $"{angle} °";
 
@@ -301,13 +289,13 @@ namespace DocMaker
 
         private void Btn_rotate_r_Click(object sender, EventArgs e)
         {
-            labelObject.Rotate();
+            Target.Rotate();
             ShowRotation();
         }
 
         private void Btn_rotate_l_Click(object sender, EventArgs e)
         {
-            labelObject.Rotate(true);
+            Target.Rotate(true);
             ShowRotation();
         }
     }

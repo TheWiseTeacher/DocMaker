@@ -12,7 +12,6 @@ namespace DocMaker
         public string Name { get; set; }        // The object name to use in the object list
         public string Key { get; set; }         // The Key name to edit object in real time in the user's project
 
-        private uint flags;                     // All object parameters are here (for quick save load methods and memory optimisation)
 
         public PictureBox Canvas;               // The drawing board of the object
 
