@@ -50,7 +50,7 @@ namespace DocMaker
             lineLength.Tag = Target.Length;
 
             ShowSizeMode();
-            sizeMode.Tag = Target.IsVertical;
+            sizeMode.Tag = Target.SizeInPercent;
 
             lineThickness.Value = Target.Thickness;
             lineThickness.Tag = Target.Thickness;
@@ -95,7 +95,7 @@ namespace DocMaker
                 sizeMode.SelectedItem = "%";
         }
 
-            #region Color parameter methods
+        #region Color parameter methods
 
         private void LoadColor()
         {
@@ -135,7 +135,7 @@ namespace DocMaker
             LoadColor();
         }
 
-            #endregion
+        #endregion
 
         private void LabelEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -183,6 +183,10 @@ namespace DocMaker
             ShowOrientation();
         }
 
-
+        private void SizeMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Target.SizeInPercent = !sizeMode.SelectedItem.Equals("Px");
+            LivePreview.Update();
+        }
     }
 }

@@ -7,38 +7,31 @@ using System.Windows.Forms;
 
 namespace DocMaker
 {
-    public class DocumentObject : ICloneable
+    public partial class DocumentObject : ICloneable
     {
         public string Name { get; set; }        // The object name to use in the object list
         public string Key { get; set; }         // The Key name to edit object in real time in the user's project
 
-        public byte Alignment { get; set; }
+        private uint flags;                     // All object parameters are here (for quick save load methods and memory optimisation)
 
-        public Point RealLocation;
-        public PictureBox Canvas;
+        public PictureBox Canvas;               // The drawing board of the object
+
+        public Point RealLocation;              // Contains the real object position despite zooming
 
         private bool isMouseDown = false;
         private Point mouseLastLocation;
 
         public Color BackColor { get; set; }
 
-        [Flags]
-        public enum AlignmentFlags
-        {
-            Left = 1,
-            Center = 2,
-            Right = 4,
-            Up = 8,
-            Middle = 16,
-            Down = 32
-        }
 
         public DocumentObject()
         {
             Name = "Object";
             Key = "";
 
-            Alignment = (int)AlignmentFlags.Left | (int)AlignmentFlags.Down;
+            flags = 0;
+
+            SetAlignment(Flags.Left | Flags.Down);
 
             BackColor = Color.Transparent;
             RealLocation = Point.Empty;
@@ -60,6 +53,8 @@ namespace DocMaker
             Canvas.Visible = !Canvas.Visible;
             return Canvas.Visible;
         }
+
+
 
         private void Canvas_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -127,11 +122,11 @@ namespace DocMaker
                 // Mouse Released
                 Point p = Canvas.Location;
 
-                if ((Alignment & (int)DocumentObject.AlignmentFlags.Center) > 0) p.X += (int)((float)Canvas.Width * 0.5);
-                if ((Alignment & (int)DocumentObject.AlignmentFlags.Right) > 0) p.X += (int)((float)Canvas.Width);
+                if (IsCenter()) p.X += (int)((float)Canvas.Width * 0.5);
+                if (IsRight()) p.X += (int)((float)Canvas.Width);
 
-                if ((Alignment & (int)DocumentObject.AlignmentFlags.Middle) > 0) p.Y += (int)((float)Canvas.Height * 0.5);
-                if ((Alignment & (int)DocumentObject.AlignmentFlags.Down) > 0) p.Y += (int)((float)Canvas.Height);
+                if (IsMiddle()) p.Y += (int)((float)Canvas.Height * 0.5);
+                if (IsDown()) p.Y += (int)((float)Canvas.Height);
 
                 // Calculate the Real position without zoom
                 RealLocation = Zoom.CalculateReal(p);
@@ -156,11 +151,11 @@ namespace DocMaker
         {
             Point p = Zoom.Calculate(RealLocation);
 
-            if ((Alignment & (int)DocumentObject.AlignmentFlags.Center) > 0) p.X -= (int)((float)Canvas.Width * 0.5);
-            if ((Alignment & (int)DocumentObject.AlignmentFlags.Right) > 0) p.X -= (int)((float)Canvas.Width);
+            if (IsCenter()) p.X -= (int)((float)Canvas.Width * 0.5);
+            if (IsRight()) p.X -= (int)((float)Canvas.Width);
 
-            if ((Alignment & (int)DocumentObject.AlignmentFlags.Middle) > 0) p.Y -= (int)((float)Canvas.Height * 0.5);
-            if ((Alignment & (int)DocumentObject.AlignmentFlags.Down) > 0) p.Y -= (int)((float)Canvas.Height);
+            if (IsMiddle()) p.Y -= (int)((float)Canvas.Height * 0.5);
+            if (IsDown()) p.Y -= (int)((float)Canvas.Height);
 
             // Clamp Position to inside the document
             p.X = Funcs.Clamp(p.X, 0, Zoom.paperSize.Width - Canvas.Width);
@@ -188,24 +183,14 @@ namespace DocMaker
             return this.MemberwiseClone();
         }
 
-        public void SetAlignment(AlignmentFlags newAlignment)
+
+        public void Rotate(bool rotateLeft = false)
         {
-            /*
-                Byte                    :   00 000 000
-                Signification           :   -- DMU RCL
-                To erase HA and with    :   00 111 000   = 0x38
-                To erase VA and with    :   00 000 111   = 0x07
-            */
+            if ((!rotateLeft && IsVertical) || (rotateLeft && !IsVertical))
+                IsTurned180 = !IsTurned180;
 
-            // If alignement is an horizontal alignment
-            if(((int)newAlignment & 0x07) > 0) 
-                Alignment &= 0x38;
-
-            // If alignement is a vertical alignment
-            if (((int)newAlignment & 0x38) > 0)
-                Alignment &= 0x07;
-
-            Alignment ^= (byte)newAlignment;
+            IsVertical = !IsVertical;
         }
+
     }
 }

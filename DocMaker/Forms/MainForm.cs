@@ -170,17 +170,17 @@ namespace DocMaker
 
         private void InitializeAlignmentButtons()
         {
-            btn_LU.Tag = DocumentObject.AlignmentFlags.Left | DocumentObject.AlignmentFlags.Up;
-            btn_CU.Tag = DocumentObject.AlignmentFlags.Center | DocumentObject.AlignmentFlags.Up;
-            btn_RU.Tag = DocumentObject.AlignmentFlags.Right | DocumentObject.AlignmentFlags.Up;
+            btn_LU.Tag = DocumentObject.Flags.Left | DocumentObject.Flags.Up;
+            btn_CU.Tag = DocumentObject.Flags.Center | DocumentObject.Flags.Up;
+            btn_RU.Tag = DocumentObject.Flags.Right | DocumentObject.Flags.Up;
 
-            btn_LM.Tag = DocumentObject.AlignmentFlags.Left | DocumentObject.AlignmentFlags.Middle;
-            btn_CM.Tag = DocumentObject.AlignmentFlags.Center | DocumentObject.AlignmentFlags.Middle;
-            btn_RM.Tag = DocumentObject.AlignmentFlags.Right | DocumentObject.AlignmentFlags.Middle;
+            btn_LM.Tag = DocumentObject.Flags.Left | DocumentObject.Flags.Middle;
+            btn_CM.Tag = DocumentObject.Flags.Center | DocumentObject.Flags.Middle;
+            btn_RM.Tag = DocumentObject.Flags.Right | DocumentObject.Flags.Middle;
 
-            btn_LD.Tag = DocumentObject.AlignmentFlags.Left | DocumentObject.AlignmentFlags.Down;
-            btn_CD.Tag = DocumentObject.AlignmentFlags.Center | DocumentObject.AlignmentFlags.Down;
-            btn_RD.Tag = DocumentObject.AlignmentFlags.Right | DocumentObject.AlignmentFlags.Down;
+            btn_LD.Tag = DocumentObject.Flags.Left | DocumentObject.Flags.Down;
+            btn_CD.Tag = DocumentObject.Flags.Center | DocumentObject.Flags.Down;
+            btn_RD.Tag = DocumentObject.Flags.Right | DocumentObject.Flags.Down;
         }
 
         private void ShowAlignment()
@@ -198,7 +198,7 @@ namespace DocMaker
                 if (c.Tag == null)
                     continue;
 
-                if ((byte)((DocumentObject.AlignmentFlags)c.Tag) == LivePreview.currentObject.Alignment)
+                if ((uint)((DocumentObject.Flags)c.Tag) == LivePreview.currentObject.Alignment)
                 {
                     c.BackColor = Color.FromArgb(0, 128, 255);
                 }
@@ -210,7 +210,7 @@ namespace DocMaker
             if (LivePreview.currentObject == null)
                 return;
 
-            LivePreview.currentObject.Alignment = (byte)((DocumentObject.AlignmentFlags)((Control)sender).Tag);
+            LivePreview.currentObject.Alignment = (uint)((Control)sender).Tag;
 
             ShowAlignment();
             LivePreview.Update();
@@ -462,5 +462,31 @@ namespace DocMaker
 
         #endregion
 
+
+        ImageObject obj = new ImageObject(0);
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            obj.AutoSize = true;
+        }
+
+  
+        private void Button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Y_pos_Scroll(object sender, EventArgs e)
+        {
+            LivePreview.currentObject.Key = y_pos.Value.ToString();
+            box_y.Text = y_pos.Value.ToString();
+            LivePreview.Update();
+        }
+
+        private void X_pos_Scroll(object sender, EventArgs e)
+        {
+            LivePreview.currentObject.Name = x_pos.Value.ToString();
+            box_x.Text = x_pos.Value.ToString();
+            LivePreview.Update();
+        }
     }
 }

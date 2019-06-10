@@ -55,6 +55,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\DocumentObject.cs" />
+    <Compile Include="Classes\DocumentObject.Flags.cs" />
+    <Compile Include="Classes\Extensions.cs" />
     <Compile Include="Classes\Fonts.cs" />
     <Compile Include="Classes\LivePreview.cs" />
     <Compile Include="Classes\Objects.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="Forms\LineEditor.Designer.cs">
       <DependentUpon>LineEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Objects\ImageObject.cs" />
     <Compile Include="UserControls\CustomTextBox.cs">
       <SubType>Component</SubType>
     </Compile>

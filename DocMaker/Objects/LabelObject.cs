@@ -17,7 +17,7 @@ namespace DocMaker
 
         public byte FontStyle { get; set; }
 
-        public byte Flags { get; set; }
+        public byte LabelFlags { get; set; }
 
         public Color TextColor { get; set; }
 
@@ -42,10 +42,10 @@ namespace DocMaker
             FontSize = 12;
             TextColor = Color.FromArgb(0, 0, 0);
 
-            SetAlignment(AlignmentFlags.Left | AlignmentFlags.Down);
+            SetAlignment(DocumentObject.Flags.Left | DocumentObject.Flags.Down);
 
             FontStyle = 0;
-            Flags = 0;
+            LabelFlags = 0;
 
             //Create a text value for each language
             ContentTable = new Dictionary<string, string>();
@@ -75,38 +75,64 @@ namespace DocMaker
 
             Graphics g = Graphics.FromHwnd(IntPtr.Zero);
             g.ApplyGraphicsQuality();
-            
-            //Measure label size
+
+            // Measure label size
             SizeF s = g.MeasureString(ContentTable[Project.UsedLanguages[0]], font);
             s = new SizeF((float)Math.Ceiling(s.Width), (float)Math.Ceiling(s.Height));
 
             g.Dispose();
 
+            // Is Object Vertical
+            if (IsVertical)
+                s.Flip();
+
+            //s = new SizeF(300, 300);
             Bitmap b = new Bitmap((int)s.Width, (int)s.Height);
 
             g = Graphics.FromImage(b);
             g.ApplyGraphicsQuality();
+
+            Point trans = Point.Empty;
+            int angle = 0;
+
+            if(IsVertical)
+            {
+                if (!IsTurned180) trans.X = (int)s.Width;
+                angle += 90;
+            }
+
+            if(IsTurned180)
+            {
+                if (!IsVertical) trans = new Point((int)s.Width, (int)s.Height);
+                else trans.Y = Funcs.ToInt(s.Height);
+
+                angle += 180;
+            }
+
+            g.TranslateTransform(trans.X, trans.Y);
+            g.RotateTransform(angle);
 
             g.DrawString(ContentTable[Project.UsedLanguages[0]], 
                          font, 
                          new SolidBrush(TextColor), 
                          Point.Empty);
 
+            g.ResetTransform();
 
             // Draw the anchor point for this label
 
-            if ((Alignment & (int)AlignmentFlags.Left) > 0) anchor.X = 0;
-            if ((Alignment & (int)AlignmentFlags.Center) > 0) anchor.X = (int)(s.Width * 0.5F);
-            if ((Alignment & (int)AlignmentFlags.Right) > 0) anchor.X = (int)s.Width - 1;
+            //if (IsLeft()) anchor.X = 0;
+            if (IsCenter()) anchor.X = (int)(s.Width * 0.5F);
+            if (IsRight()) anchor.X = (int)s.Width - 1;
 
-            if ((Alignment & (int)AlignmentFlags.Up) > 0) anchor.Y = 0;
-            if ((Alignment & (int)AlignmentFlags.Middle) > 0) anchor.Y = (int)(s.Height * 0.5F);
-            if ((Alignment & (int)AlignmentFlags.Down) > 0) anchor.Y = (int)s.Height - 1;
+            //if (IsUp()) anchor.Y = 0;
+            if (IsMiddle()) anchor.Y = (int)(s.Height * 0.5F);
+            if (IsDown()) anchor.Y = (int)s.Height - 1;
 
             g.DrawLine(Config.AnchorPen, anchor.X - Config.ANCHOR_SIZE, anchor.Y, anchor.X + Config.ANCHOR_SIZE, anchor.Y);
             g.DrawLine(Config.AnchorPen, anchor.X, anchor.Y - Config.ANCHOR_SIZE, anchor.X, anchor.Y + Config.ANCHOR_SIZE);
 
-
+            //g.Restore(state);
             // Set Canvas image
 
             Canvas.Image = b;
@@ -126,6 +152,6 @@ namespace DocMaker
 
             return false;
         }
-    }
 
+    }
 }

@@ -9,12 +9,15 @@ using System.Windows.Forms;
 
 namespace DocMaker
 {
-    public class LineObject : DocumentObject
+    public class ImageObject : DocumentObject
     {
+        private byte flags;
+
         public int Length { get; set; }
         public byte Thickness { get; set; }
 
-        public LineObject(int lineCounter)
+
+        public ImageObject(int lineCounter)
         {
             Name = "Line " + lineCounter.ToString();
 
@@ -31,19 +34,14 @@ namespace DocMaker
         public override void RenderObject()
         {
             Canvas.BackColor = BackColor;
-            int realLength = Length;
-
-            if (SizeInPercent)
-                realLength = (int)(((float)Length / 100.0F) * 
-                                    (float)(IsVertical ? Project.paperSize.Height : Project.paperSize.Width));
 
             if (IsVertical)
             {
-                Canvas.Size = Zoom.Calculate(new Size(Thickness, realLength));
+                Canvas.Size = Zoom.Calculate(new Size(Thickness, Length));
             }
             else
             {
-                Canvas.Size = Zoom.Calculate(new Size(realLength, Thickness));
+                Canvas.Size = Zoom.Calculate(new Size(Length, Thickness));
             }
 
             base.RenderObject();
@@ -51,12 +49,14 @@ namespace DocMaker
 
         public override bool EditObject()
         {
+            /*
             LineEditor editor = new LineEditor(this);
             if (editor.ShowDialog() == DialogResult.OK)
             {
                 RenderObject();
                 return true;
             }
+            */
 
             return false;
         }

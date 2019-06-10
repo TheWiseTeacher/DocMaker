@@ -46,6 +46,18 @@ namespace DocMaker
             LoadTextTable();
 
             ActiveControl = label1;
+
+            LoadParameters();
+        }
+
+        private void LoadParameters()
+        {
+            ShowRotation();
+        }
+
+        private void DiscardChanges()
+        {
+            
         }
 
         private void LoadTextTable()
@@ -111,7 +123,7 @@ namespace DocMaker
                 labelObject.Alignment = originalLabelObject.Alignment;
 
                 labelObject.FontStyle = originalLabelObject.FontStyle;
-                labelObject.Flags = originalLabelObject.Flags;
+                labelObject.LabelFlags = originalLabelObject.LabelFlags;
 
                 foreach(string k in labelObject.ContentTable.Keys.ToList())
                 {
@@ -157,11 +169,11 @@ namespace DocMaker
 
             Color c = Color.FromArgb(166, 62, 63);
 
-            if ((labelObject.Flags & (int)LabelObject.ItemFlags.F1) > 0) btn_F1.BackColor = c;
-            if ((labelObject.Flags & (int)LabelObject.ItemFlags.F2) > 0) btn_F2.BackColor = c;
-            if ((labelObject.Flags & (int)LabelObject.ItemFlags.F3) > 0) btn_F3.BackColor = c;
-            if ((labelObject.Flags & (int)LabelObject.ItemFlags.F4) > 0) btn_F4.BackColor = c;
-            if ((labelObject.Flags & (int)LabelObject.ItemFlags.F5) > 0) btn_F5.BackColor = c;
+            if ((labelObject.LabelFlags & (int)LabelObject.ItemFlags.F1) > 0) btn_F1.BackColor = c;
+            if ((labelObject.LabelFlags & (int)LabelObject.ItemFlags.F2) > 0) btn_F2.BackColor = c;
+            if ((labelObject.LabelFlags & (int)LabelObject.ItemFlags.F3) > 0) btn_F3.BackColor = c;
+            if ((labelObject.LabelFlags & (int)LabelObject.ItemFlags.F4) > 0) btn_F4.BackColor = c;
+            if ((labelObject.LabelFlags & (int)LabelObject.ItemFlags.F5) > 0) btn_F5.BackColor = c;
         }
 
         private void FontStyle_OnClick(object sender, EventArgs e)
@@ -198,23 +210,23 @@ namespace DocMaker
             switch (((Button)sender).Text.ToUpper())
             {
                 case "1":
-                    labelObject.Flags ^= (int)LabelObject.ItemFlags.F1;
+                    labelObject.LabelFlags ^= (int)LabelObject.ItemFlags.F1;
                     break;
 
                 case "2":
-                    labelObject.Flags ^= (int)LabelObject.ItemFlags.F2;
+                    labelObject.LabelFlags ^= (int)LabelObject.ItemFlags.F2;
                     break;
 
                 case "3":
-                    labelObject.Flags ^= (int)LabelObject.ItemFlags.F3;
+                    labelObject.LabelFlags ^= (int)LabelObject.ItemFlags.F3;
                     break;
 
                 case "4":
-                    labelObject.Flags ^= (int)LabelObject.ItemFlags.F4;
+                    labelObject.LabelFlags ^= (int)LabelObject.ItemFlags.F4;
                     break;
 
                 case "5":
-                    labelObject.Flags ^= (int)LabelObject.ItemFlags.F5;
+                    labelObject.LabelFlags ^= (int)LabelObject.ItemFlags.F5;
                     break;
             }
 
@@ -271,6 +283,32 @@ namespace DocMaker
             ActiveControl = label1;
         }
 
+        private void Tb_key_Validated(object sender, EventArgs e)
+        {
+            labelObject.Key = tb_key.Text;
+        }
 
+        private void ShowRotation()
+        {
+            int angle = 0;
+            if (labelObject.IsVertical) angle += 90;
+            if (labelObject.IsTurned180) angle += 180;
+
+            lab_angle.Text = $"{angle} °";
+
+            LivePreview.Update();
+        }
+
+        private void Btn_rotate_r_Click(object sender, EventArgs e)
+        {
+            labelObject.Rotate();
+            ShowRotation();
+        }
+
+        private void Btn_rotate_l_Click(object sender, EventArgs e)
+        {
+            labelObject.Rotate(true);
+            ShowRotation();
+        }
     }
 }

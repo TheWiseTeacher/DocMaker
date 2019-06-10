@@ -375,6 +375,7 @@
             this.sizeMode.Name = "sizeMode";
             this.sizeMode.Size = new System.Drawing.Size(42, 21);
             this.sizeMode.TabIndex = 14;
+            this.sizeMode.SelectedIndexChanged += new System.EventHandler(this.SizeMode_SelectedIndexChanged);
             // 
             // label8
             // 
