@@ -169,14 +169,6 @@ namespace DocMaker
             return false;
         }
 
-        public void ApplyZoom()
-        {
-            RenderObject();
-        }
-
-
-
-
         public object Clone()
         {
             return this.MemberwiseClone();

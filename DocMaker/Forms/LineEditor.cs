@@ -34,6 +34,8 @@ namespace DocMaker
 
         private void LoadParameters()
         {
+            Target.SaveFlags();
+
             tb_name.Text = this.Target.Name;
             tb_name.Tag = this.Target.Name;
 
@@ -43,30 +45,26 @@ namespace DocMaker
             LoadColor();
             lab_color.Tag = Target.BackColor;
 
-            ShowOrientation();
-            pan_LineOrientation.Tag = Target.IsVertical;
-
             lineLength.Text = Target.Length.ToString();
             lineLength.Tag = Target.Length;
 
-            ShowSizeMode();
-            sizeMode.Tag = Target.SizeInPercent;
-
             lineThickness.Value = Target.Thickness;
             lineThickness.Tag = Target.Thickness;
+
+            ShowOrientation();
+            ShowSizeMode();
         }
 
         private void DiscardChanges()
         {
+            Target.LoadFlags();
+
             this.Target.Name = (string)tb_name.Tag;
             this.Target.Key = (string)tb_key.Tag;
 
             Target.BackColor = (Color)lab_color.Tag;
 
-            Target.IsVertical = (bool)pan_LineOrientation.Tag;
             Target.Length = (int)lineLength.Tag;
-
-            Target.IsVertical = (bool)sizeMode.Tag;
 
             Target.Thickness = (byte)lineThickness.Tag;
         }

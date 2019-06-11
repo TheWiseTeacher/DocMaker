@@ -18,64 +18,120 @@ namespace DocMaker
             public string FontData { get; set; }
         }
 
-        public static List<FontEntry> fontList = new List<FontEntry>();
-        private static List<byte[]> ExternalFontRaw = new List<byte[]>();
-        private static List<PrivateFontCollection> ExternalFont = new List<PrivateFontCollection>();
+        //public static List<FontEntry> fontList = new List<FontEntry>();
 
-        
-        private static int lastEntryIndex = 0;
+        //private static List<byte[]> ExternalFontRaw = new List<byte[]>();
+        //private static List<PrivateFontCollection> ExternalFont = new List<PrivateFontCollection>();
+
+
+        public class FontData
+        {
+            public bool IsExternal { get; set; }
+
+            public string CustomName { get; set; }
+
+            public byte[] fontRawBytes { get; set; }
+
+            public PrivateFontCollection pfc { get; set; }
+
+            public FontData()
+            {
+                IsExternal = false;
+                CustomName = "";
+
+                fontRawBytes = null;
+                pfc = null;
+            }
+
+            public FontFamily GetFamily()
+            {
+                if(pfc != null)
+                    return pfc.Families[0];
+
+                return FontFamily.GenericMonospace;           
+            }
+        }
+
+        public static Dictionary<string, FontData> fontList = new Dictionary<string, FontData>();
+
 
         public static void Initialize()
         {
             //Clear all lists
-            fontList.Clear();    
-            ExternalFontRaw.Clear();
+            //fontList.Clear();    
+            //ExternalFontRaw.Clear();
 
             //Free some memory
-            foreach (var pfc in ExternalFont) pfc.Dispose();
-            ExternalFont.Clear();
+            //foreach (var pfc in ExternalFont) pfc.Dispose();
+            //ExternalFont.Clear();
 
-            AddFont(false, "Arial (default)", "Arial");
+            // Free some memory
+            foreach (var p in fontList.Values)
+            {
+                if (p.pfc != null)
+                    p.pfc.Dispose();
+
+                if (p.fontRawBytes != null)
+                    p.fontRawBytes = null;
+            }
+
+            fontList.Clear();
+
+            // Add a default font
+            AddFont(false, $"{Config.DefaultFont} (default)", Config.DefaultFont);
         }
 
-        public static void AddFont(bool isExternal, string fontName, string fontData)
+        public static void AddFont(bool isExternal, string customName, string fontNameOrFile)
         {
-            FontEntry fe = new FontEntry();
+            FontData data = new FontData();     // Here lies the soult of the font data :3
 
-            if(isExternal)
+            data.IsExternal = isExternal;       // True if it's an external file else False for system fonts
+            data.CustomName = customName;       // a custom name for the font
+
+            string keyName  = fontNameOrFile;
+
+            if (isExternal)
             {
-                lastEntryIndex = ExternalFontRaw.Count;
-
-                //Load font and add its raw data to ExternalFontsRaw list
-                ExternalFontRaw.Add(File.ReadAllBytes(fontData));
+                // Load font and add its raw data to ExternalFontsRaw list
+                data.fontRawBytes = File.ReadAllBytes(fontNameOrFile);
 
                 // ASSIGN MEMORY AND COPY  BYTE[] ON THAT MEMORY ADDRESS
-                IntPtr ptrData = Marshal.AllocCoTaskMem(ExternalFontRaw[lastEntryIndex].Length);
-                Marshal.Copy(ExternalFontRaw[lastEntryIndex], 0, ptrData, ExternalFontRaw[lastEntryIndex].Length);
+                IntPtr ptrData = Marshal.AllocCoTaskMem(data.fontRawBytes.Length);
+                Marshal.Copy(data.fontRawBytes, 0, ptrData, data.fontRawBytes.Length);
 
-                //Read the font file
-                ExternalFont.Add(new PrivateFontCollection());
-                ExternalFont[lastEntryIndex].AddMemoryFont(ptrData, ExternalFontRaw[lastEntryIndex].Length);
+                // Read the font file
+                data.pfc = new PrivateFontCollection();
+                data.pfc.AddMemoryFont(ptrData, data.fontRawBytes.Length);
 
-                //FREE THE  "UNSAFE" MEMORY
+                // FREE THE  "UNSAFE" MEMORY
                 Marshal.FreeCoTaskMem(ptrData);
 
-                fe.IsExternal = true;
-                fe.FontName = ExternalFont[lastEntryIndex].Families[0].Name;
-                fe.FontData = lastEntryIndex.ToString();
-            }
-            else
-            {
-                fe.IsExternal = false;
-                fe.FontName = fontName;
-                fe.FontData = fontData;
+                // Check if we already added the same font earlier
+                keyName = data.pfc.Families[0].Name;
             }
 
-            fontList.Add(fe);
+            if (fontList.ContainsKey(keyName))
+                Funcs.Information("This font already exist in the list !");
+            else
+                fontList.Add(keyName, data);
+
         }
 
-        public static Font GetFont(int id, int emSize = 12, FontStyle fontStyle = 0)
+        public static Font GetFont(string id, int emSize = 12, FontStyle fontStyle = 0)
         {
+
+            if(fontList.ContainsKey(id))
+            {
+                if(fontList[id].IsExternal)
+                    return new Font(fontList[id].GetFamily(), emSize, fontStyle, GraphicsUnit.Pixel);
+                else
+                    return new Font(id, emSize, fontStyle, GraphicsUnit.Pixel);
+            }
+
+            return new Font("arial", emSize);
+
+
+            /*
             if (id < 0 || id >= fontList.Count)
                 return new Font("arial", emSize);
 
@@ -88,7 +144,7 @@ namespace DocMaker
             {
                 return new Font(fontList[id].FontData, emSize, fontStyle, GraphicsUnit.Pixel);
             }
-
+            */
         }
 
     }

@@ -11,8 +11,6 @@ namespace DocMaker
 {
     public class ImageObject : DocumentObject
     {
-        private byte flags;
-
         public int Length { get; set; }
         public byte Thickness { get; set; }
 

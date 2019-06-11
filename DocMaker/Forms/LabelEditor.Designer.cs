@@ -32,6 +32,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tb_name = new System.Windows.Forms.TextBox();
             this.textTable = new System.Windows.Forms.DataGridView();
+            this.grid_lang = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grid_content = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grid_old_value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_F1 = new System.Windows.Forms.Button();
             this.btn_F2 = new System.Windows.Forms.Button();
@@ -58,29 +61,26 @@
             this.btn_rotate_l = new System.Windows.Forms.Button();
             this.lab_angle = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.pan_Flags = new System.Windows.Forms.TableLayoutPanel();
             this.pan_FontStyle = new System.Windows.Forms.TableLayoutPanel();
+            this.tb_key = new DocMaker.CustomTextBox();
             this.pan_color = new System.Windows.Forms.TableLayoutPanel();
             this.lab_color = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.pan_Flags = new System.Windows.Forms.TableLayoutPanel();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.tb_key = new DocMaker.CustomTextBox();
             this.tb_color_r = new DocMaker.CustomTextBox();
             this.tb_color_b = new DocMaker.CustomTextBox();
             this.tb_color_g = new DocMaker.CustomTextBox();
-            this.grid_lang = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grid_content = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grid_old_value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label8 = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.textTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fontSize)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.pan_rotation.SuspendLayout();
+            this.pan_Flags.SuspendLayout();
             this.pan_FontStyle.SuspendLayout();
             this.pan_color.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.pan_Flags.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -140,6 +140,28 @@
             this.textTable.TabIndex = 2;
             this.textTable.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TextTable_CellDoubleClick);
             this.textTable.Enter += new System.EventHandler(this.TextTable_Enter);
+            // 
+            // grid_lang
+            // 
+            this.grid_lang.HeaderText = "Language";
+            this.grid_lang.Name = "grid_lang";
+            this.grid_lang.ReadOnly = true;
+            this.grid_lang.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // grid_content
+            // 
+            this.grid_content.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.grid_content.HeaderText = "Displayed text";
+            this.grid_content.Name = "grid_content";
+            this.grid_content.ReadOnly = true;
+            this.grid_content.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // grid_old_value
+            // 
+            this.grid_old_value.HeaderText = "Entry Original Value";
+            this.grid_old_value.Name = "grid_old_value";
+            this.grid_old_value.ReadOnly = true;
+            this.grid_old_value.Visible = false;
             // 
             // label2
             // 
@@ -584,18 +606,21 @@
             this.btn_rotate_r.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_rotate_r.BackColor = System.Drawing.Color.Silver;
+            this.btn_rotate_r.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(117)))), ((int)(((byte)(188)))));
             this.btn_rotate_r.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_rotate_r.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btn_rotate_r.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(117)))), ((int)(((byte)(188)))));
             this.btn_rotate_r.FlatAppearance.BorderSize = 0;
+            this.btn_rotate_r.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(97)))), ((int)(((byte)(153)))));
+            this.btn_rotate_r.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(140)))), ((int)(((byte)(222)))));
             this.btn_rotate_r.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_rotate_r.Image = global::DocMaker.Properties.Resources.ico_rotate_right;
             this.btn_rotate_r.Location = new System.Drawing.Point(120, 0);
             this.btn_rotate_r.Margin = new System.Windows.Forms.Padding(0);
             this.btn_rotate_r.Name = "btn_rotate_r";
+            this.btn_rotate_r.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
             this.btn_rotate_r.Size = new System.Drawing.Size(28, 24);
             this.btn_rotate_r.TabIndex = 5;
             this.btn_rotate_r.Tag = "R";
-            this.btn_rotate_r.Text = "R";
             this.btn_rotate_r.UseVisualStyleBackColor = false;
             this.btn_rotate_r.Click += new System.EventHandler(this.Btn_rotate_r_Click);
             // 
@@ -604,18 +629,21 @@
             this.btn_rotate_l.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_rotate_l.BackColor = System.Drawing.Color.Silver;
+            this.btn_rotate_l.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(117)))), ((int)(((byte)(188)))));
             this.btn_rotate_l.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_rotate_l.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btn_rotate_l.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(117)))), ((int)(((byte)(188)))));
             this.btn_rotate_l.FlatAppearance.BorderSize = 0;
+            this.btn_rotate_l.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(97)))), ((int)(((byte)(153)))));
+            this.btn_rotate_l.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(140)))), ((int)(((byte)(222)))));
             this.btn_rotate_l.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_rotate_l.Image = global::DocMaker.Properties.Resources.ico_rotate_left;
             this.btn_rotate_l.Location = new System.Drawing.Point(90, 0);
             this.btn_rotate_l.Margin = new System.Windows.Forms.Padding(0, 0, 2, 0);
             this.btn_rotate_l.Name = "btn_rotate_l";
+            this.btn_rotate_l.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
             this.btn_rotate_l.Size = new System.Drawing.Size(28, 24);
             this.btn_rotate_l.TabIndex = 4;
             this.btn_rotate_l.Tag = "L";
-            this.btn_rotate_l.Text = "L";
             this.btn_rotate_l.UseVisualStyleBackColor = false;
             this.btn_rotate_l.Click += new System.EventHandler(this.Btn_rotate_l_Click);
             // 
@@ -624,6 +652,8 @@
             this.lab_angle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.lab_angle.BackColor = System.Drawing.Color.White;
+            this.lab_angle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lab_angle.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lab_angle.ForeColor = System.Drawing.Color.Black;
             this.lab_angle.Location = new System.Drawing.Point(0, 0);
@@ -653,6 +683,31 @@
             this.label3.Text = "Object identification";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // pan_Flags
+            // 
+            this.pan_Flags.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pan_Flags.ColumnCount = 5;
+            this.pan_Flags.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.pan_Flags.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.pan_Flags.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.pan_Flags.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.pan_Flags.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.pan_Flags.Controls.Add(this.btn_F5, 4, 0);
+            this.pan_Flags.Controls.Add(this.btn_F3, 2, 0);
+            this.pan_Flags.Controls.Add(this.btn_F4, 3, 0);
+            this.pan_Flags.Controls.Add(this.btn_F2, 1, 0);
+            this.pan_Flags.Controls.Add(this.btn_F1, 0, 0);
+            this.pan_Flags.Location = new System.Drawing.Point(110, 276);
+            this.pan_Flags.Margin = new System.Windows.Forms.Padding(4);
+            this.pan_Flags.Name = "pan_Flags";
+            this.pan_Flags.RowCount = 1;
+            this.pan_Flags.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pan_Flags.Size = new System.Drawing.Size(148, 24);
+            this.pan_Flags.TabIndex = 7;
+            this.pan_Flags.Visible = false;
+            // 
             // pan_FontStyle
             // 
             this.pan_FontStyle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -676,6 +731,21 @@
             this.pan_FontStyle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.pan_FontStyle.Size = new System.Drawing.Size(148, 24);
             this.pan_FontStyle.TabIndex = 6;
+            // 
+            // tb_key
+            // 
+            this.tb_key.AllowSpace = false;
+            this.tb_key.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_key.Location = new System.Drawing.Point(110, 62);
+            this.tb_key.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.tb_key.MaxLength = 32;
+            this.tb_key.Name = "tb_key";
+            this.tb_key.Size = new System.Drawing.Size(148, 20);
+            this.tb_key.TabIndex = 12;
+            this.tb_key.UsedFilter = DocMaker.CustomTextBox.Filter.Special;
+            this.tb_key.Validated += new System.EventHandler(this.Tb_key_Validated);
             // 
             // pan_color
             // 
@@ -749,62 +819,6 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(148, 24);
             this.tableLayoutPanel2.TabIndex = 5;
             // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(0, 240);
-            this.label8.Margin = new System.Windows.Forms.Padding(0);
-            this.label8.Name = "label8";
-            this.label8.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.label8.Size = new System.Drawing.Size(106, 32);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Text rotation";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // pan_Flags
-            // 
-            this.pan_Flags.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pan_Flags.ColumnCount = 5;
-            this.pan_Flags.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.pan_Flags.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.pan_Flags.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.pan_Flags.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.pan_Flags.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.pan_Flags.Controls.Add(this.btn_F5, 4, 0);
-            this.pan_Flags.Controls.Add(this.btn_F3, 2, 0);
-            this.pan_Flags.Controls.Add(this.btn_F4, 3, 0);
-            this.pan_Flags.Controls.Add(this.btn_F2, 1, 0);
-            this.pan_Flags.Controls.Add(this.btn_F1, 0, 0);
-            this.pan_Flags.Location = new System.Drawing.Point(110, 276);
-            this.pan_Flags.Margin = new System.Windows.Forms.Padding(4);
-            this.pan_Flags.Name = "pan_Flags";
-            this.pan_Flags.RowCount = 1;
-            this.pan_Flags.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pan_Flags.Size = new System.Drawing.Size(148, 24);
-            this.pan_Flags.TabIndex = 7;
-            this.pan_Flags.Visible = false;
-            // 
-            // tb_key
-            // 
-            this.tb_key.AllowSpace = false;
-            this.tb_key.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_key.Location = new System.Drawing.Point(110, 62);
-            this.tb_key.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.tb_key.MaxLength = 32;
-            this.tb_key.Name = "tb_key";
-            this.tb_key.Size = new System.Drawing.Size(148, 20);
-            this.tb_key.TabIndex = 12;
-            this.tb_key.UsedFilter = DocMaker.CustomTextBox.Filter.Special;
-            this.tb_key.Validated += new System.EventHandler(this.Tb_key_Validated);
-            // 
             // tb_color_r
             // 
             this.tb_color_r.AllowSpace = false;
@@ -853,27 +867,21 @@
             this.tb_color_g.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
             this.tb_color_g.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatingColorInput);
             // 
-            // grid_lang
+            // label8
             // 
-            this.grid_lang.HeaderText = "Language";
-            this.grid_lang.Name = "grid_lang";
-            this.grid_lang.ReadOnly = true;
-            this.grid_lang.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // grid_content
-            // 
-            this.grid_content.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.grid_content.HeaderText = "Displayed text";
-            this.grid_content.Name = "grid_content";
-            this.grid_content.ReadOnly = true;
-            this.grid_content.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // grid_old_value
-            // 
-            this.grid_old_value.HeaderText = "Entry Original Value";
-            this.grid_old_value.Name = "grid_old_value";
-            this.grid_old_value.ReadOnly = true;
-            this.grid_old_value.Visible = false;
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(0, 240);
+            this.label8.Margin = new System.Windows.Forms.Padding(0);
+            this.label8.Name = "label8";
+            this.label8.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.label8.Size = new System.Drawing.Size(106, 32);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Text rotation";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LabelEditor
             // 
@@ -900,11 +908,11 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.pan_rotation.ResumeLayout(false);
+            this.pan_Flags.ResumeLayout(false);
             this.pan_FontStyle.ResumeLayout(false);
             this.pan_color.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.pan_Flags.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -163,6 +163,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Ressources\ico_rotate_right.png" />
+    <None Include="Ressources\ico_rotate_left.png" />
     <None Include="Ressources\ico_nvisible.png" />
     <None Include="Ressources\ico_visible.png" />
     <None Include="Ressources\ico_alignment_CM.png" />

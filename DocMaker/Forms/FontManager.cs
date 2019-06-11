@@ -24,9 +24,16 @@ namespace DocMaker
             //Clear old data
             fontsTable.Rows.Clear();
 
+            /*
             for (int i = 0; i < Fonts.fontList.Count(); i++)
             {
                 fontsTable.Rows.Add(i, Fonts.fontList[i].FontName);
+            }
+            */
+
+            foreach(var pair in Fonts.fontList)
+            {
+                fontsTable.Rows.Add(pair.Key, pair.Value.CustomName);
             }
 
         }
@@ -75,7 +82,7 @@ namespace DocMaker
 
             if (fontsTable.SelectedCells.Count > 0)
             {
-                int fontID = Funcs.ToInt(fontsTable[grid_id.Index, fontsTable.SelectedCells[0].RowIndex].Value);
+                string fontID = fontsTable[grid_id.Index, fontsTable.SelectedCells[0].RowIndex].Value.ToString();
                 lab_preview.Font = Fonts.GetFont(fontID, previewSize);
             }
         }
@@ -113,17 +120,14 @@ namespace DocMaker
         {
             if (fontsTable.SelectedCells.Count > 0)
             {
-                int fontID = Funcs.ToInt(fontsTable[grid_id.Index, fontsTable.SelectedCells[0].RowIndex].Value);
+                string fontID = fontsTable[grid_id.Index, fontsTable.SelectedCells[0].RowIndex].Value.ToString();
 
                 StringEditor stringEditor = new StringEditor();
-                stringEditor.textBox.Text = Fonts.fontList[fontID].FontName;
+                stringEditor.textBox.Text = Fonts.fontList[fontID].CustomName;
 
                 if (stringEditor.ShowDialog() == DialogResult.OK)
                 {
-                    Fonts.FontEntry edited = Fonts.fontList[fontID];
-                    edited.FontName = stringEditor.textBox.Text;
-
-                    Fonts.fontList[fontID] = edited;
+                    Fonts.fontList[fontID].CustomName = stringEditor.textBox.Text;
                     LoadFonts();
                 }
             }
@@ -134,18 +138,22 @@ namespace DocMaker
         {
             if (fontsTable.SelectedCells.Count > 0)
             {
-                if(Funcs.Question("Are you sure you want to delete this font ?") == DialogResult.Yes)
+                string fontID = fontsTable[grid_id.Index, fontsTable.SelectedCells[0].RowIndex].Value.ToString();
+
+                if (fontID == Config.DefaultFont)
                 {
-                    int fontID = Funcs.ToInt(fontsTable[grid_id.Index, fontsTable.SelectedCells[0].RowIndex].Value);
-
-                    if (fontID == 0)
+                    Funcs.Information("You can't delete the default font, it is used when a font is missing or corrupted.");
+                }
+                else
+                {
+                    if (Funcs.Question("Are you sure you want to delete this font ?") == DialogResult.Yes)
                     {
-                        Funcs.Information("You can't delete the default font, it is used when a font is missing or corrupt.");
-                        return;
-                    }
+                        Fonts.fontList.Remove(fontID);
+                        Objects.CheckFont(fontID);
 
-                    Fonts.fontList.Remove(Fonts.fontList[fontID]);
-                    LoadFonts();
+                        LoadFonts();
+                        Objects.RenderAll();
+                    }
                 }
             }
         }

@@ -78,11 +78,23 @@ namespace DocMaker
             }
         }
 
-        public static void ApplyZoom()
+        public static void CheckFont(string fontID)
+        {
+            foreach (DocumentObject docObject in objectList)
+            {
+                if (docObject is LabelObject)
+                {
+                    ((LabelObject)docObject).CheckFont(fontID);
+                }
+            }
+        }
+
+        public static void RenderAll()
         {
             foreach (DocumentObject obj in objectList)
             {
-                obj.ApplyZoom();
+                obj.RenderObject();
+                obj.Canvas.Update();
             }
         }
     }

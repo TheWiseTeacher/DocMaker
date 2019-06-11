@@ -11,7 +11,7 @@ namespace DocMaker
 {
     public class LabelObject : DocumentObject
     {
-        public byte FontID { get; set; }
+        public string FontID { get; set; }
 
         public byte FontSize { get; set; }
 
@@ -38,7 +38,7 @@ namespace DocMaker
         {
             Name = "Label " + labelCounter.ToString();
 
-            FontID = 0;
+            FontID = Config.DefaultFont;
             FontSize = 12;
             TextColor = Color.FromArgb(0, 0, 0);
 
@@ -65,6 +65,12 @@ namespace DocMaker
         {
             if (ContentTable.ContainsKey(languageCode))
                 ContentTable.Remove(languageCode);
+        }
+
+        public void CheckFont(string fontID)
+        {
+            if (FontID == fontID)
+                FontID = Config.DefaultFont;
         }
 
         public override void RenderObject()

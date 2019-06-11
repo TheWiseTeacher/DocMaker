@@ -22,6 +22,8 @@ namespace DocMaker
         public static PrivateFontCollection TTF_Jannah;
         public static PrivateFontCollection TTF_Roboto;
 
+        public static string DefaultFont = "Arial";
+
         public static Cursor OnHoveringObject = Cursors.Hand;
         public static Cursor OnMovingObject = Cursors.SizeAll;
 

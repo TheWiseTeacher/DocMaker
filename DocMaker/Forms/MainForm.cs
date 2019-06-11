@@ -114,7 +114,7 @@ namespace DocMaker
             Zoom.ApplyZoom(Zoom.avaibleZooms[comboZoom.SelectedIndex]);
 
             ResizePaper();
-            Objects.ApplyZoom();
+            Objects.RenderAll();
         }
 
         #endregion
@@ -472,7 +472,7 @@ namespace DocMaker
   
         private void Button2_Click(object sender, EventArgs e)
         {
-
+            label1.Font = new Font("Janna LT", 16);
         }
 
         private void Y_pos_Scroll(object sender, EventArgs e)

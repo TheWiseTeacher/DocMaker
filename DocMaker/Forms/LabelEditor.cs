@@ -37,8 +37,7 @@ namespace DocMaker
             fontSize.Value = Target.FontSize;
             fontSize.Tag = Target.FontSize;
 
-            LoadFontList();
-            fontList.SelectedIndex = Target.FontID;
+            LoadFontList();   
             fontList.Tag = Target.FontID;
 
             ShowFontStyle();
@@ -58,7 +57,7 @@ namespace DocMaker
             Target.TextColor = (Color)lab_color.Tag;
             Target.FontSize = (byte)fontSize.Tag;
 
-            Target.FontID = (byte)fontList.Tag;
+            Target.FontID = (string)fontList.Tag;
             Target.FontStyle = (byte)pan_FontStyle.Tag;
 
             for (int i = 0; i < textTable.Rows.Count; i++)
@@ -76,13 +75,33 @@ namespace DocMaker
                 textTable.Rows.Add(lang.Key, lang.Value, lang.Value);
         }
 
+        private class FontListEntry
+        {
+            public string FontID { get; set; }
+            public string FontCustomName { get; set; }
+            public FontListEntry(string fontID, string fontCustomName)
+            {
+                FontID = fontID;
+                FontCustomName = fontCustomName;
+            }
+        }
+
         private void LoadFontList()
         {
             fontList.Items.Clear();
+            fontList.DisplayMember = "FontCustomName";
 
-            foreach(Fonts.FontEntry f in Fonts.fontList)
+            foreach (var f in Fonts.fontList)
             {
-                fontList.Items.Add(f.FontName);
+                // Create a font list entry ;3
+                FontListEntry e = new FontListEntry(f.Key, f.Value.CustomName);
+
+                // Add the font object
+                fontList.Items.Add(e);
+
+                // Select the selected font
+                if (f.Key == Target.FontID)
+                    fontList.SelectedItem = e;
             }
         }
 
@@ -132,7 +151,7 @@ namespace DocMaker
 
         private void FontList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Target.FontID = (byte)fontList.SelectedIndex;
+            Target.FontID = ((FontListEntry)fontList.SelectedItem).FontID;
             LivePreview.Update();
         }
 

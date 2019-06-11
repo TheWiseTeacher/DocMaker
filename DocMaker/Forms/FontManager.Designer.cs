@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.fontsTable = new System.Windows.Forms.DataGridView();
-            this.grid_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grid_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_add_sys_font = new System.Windows.Forms.Button();
             this.btn_add_ext_font = new System.Windows.Forms.Button();
             this.btn_delete = new System.Windows.Forms.Button();
@@ -41,6 +39,8 @@
             this.lab_preview_size = new System.Windows.Forms.Label();
             this.lab_preview = new System.Windows.Forms.Label();
             this.btn_edit_name = new System.Windows.Forms.Button();
+            this.grid_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grid_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.fontsTable)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -73,19 +73,6 @@
             this.fontsTable.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.FontsTable_CellDoubleClick);
             this.fontsTable.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.FontsTable_RowEnter);
             this.fontsTable.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.FontsTable_RowsAdded);
-            // 
-            // grid_id
-            // 
-            this.grid_id.HeaderText = "ID";
-            this.grid_id.Name = "grid_id";
-            this.grid_id.ReadOnly = true;
-            // 
-            // grid_name
-            // 
-            this.grid_name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.grid_name.HeaderText = "Font name";
-            this.grid_name.Name = "grid_name";
-            this.grid_name.ReadOnly = true;
             // 
             // btn_add_sys_font
             // 
@@ -212,6 +199,20 @@
             this.btn_edit_name.UseVisualStyleBackColor = true;
             this.btn_edit_name.Click += new System.EventHandler(this.Btn_edit_name_Click);
             // 
+            // grid_id
+            // 
+            this.grid_id.HeaderText = "Font Family ID";
+            this.grid_id.Name = "grid_id";
+            this.grid_id.ReadOnly = true;
+            this.grid_id.Width = 120;
+            // 
+            // grid_name
+            // 
+            this.grid_name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.grid_name.HeaderText = "Custom name";
+            this.grid_name.Name = "grid_name";
+            this.grid_name.ReadOnly = true;
+            // 
             // FontManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -243,8 +244,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView fontsTable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn grid_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn grid_name;
         private System.Windows.Forms.Button btn_add_sys_font;
         private System.Windows.Forms.Button btn_add_ext_font;
         private System.Windows.Forms.Button btn_delete;
@@ -255,5 +254,7 @@
         private System.Windows.Forms.Button btn_size_up;
         private System.Windows.Forms.Label lab_preview_size;
         private System.Windows.Forms.Button btn_edit_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn grid_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn grid_name;
     }
 }
