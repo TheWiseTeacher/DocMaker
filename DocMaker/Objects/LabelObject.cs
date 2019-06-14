@@ -92,7 +92,6 @@ namespace DocMaker
             if (IsVertical)
                 s.Flip();
 
-            //s = new SizeF(300, 300);
             Bitmap b = new Bitmap((int)s.Width, (int)s.Height);
 
             g = Graphics.FromImage(b);
@@ -139,7 +138,6 @@ namespace DocMaker
 
                 g.DrawLine(Config.AnchorPen, anchor.X - Config.ANCHOR_SIZE, anchor.Y, anchor.X + Config.ANCHOR_SIZE, anchor.Y);
                 g.DrawLine(Config.AnchorPen, anchor.X, anchor.Y - Config.ANCHOR_SIZE, anchor.X, anchor.Y + Config.ANCHOR_SIZE);
-
             }
 
 

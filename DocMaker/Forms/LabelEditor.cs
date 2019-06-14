@@ -23,6 +23,8 @@ namespace DocMaker
 
         private void LoadParameters()
         {
+            LivePreview.SuspendUpdates();
+
             Target.SaveFlags();
 
             tb_name.Text = Target.Name;
@@ -45,6 +47,8 @@ namespace DocMaker
 
             ShowRotation();
             LoadTextTable();
+
+            LivePreview.ResumeUpdates();
         }
 
         private void DiscardChanges()

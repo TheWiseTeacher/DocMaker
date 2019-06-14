@@ -34,6 +34,8 @@ namespace DocMaker
 
         private void LoadParameters()
         {
+            LivePreview.SuspendUpdates();
+
             Target.SaveFlags();
 
             tb_name.Text = this.Target.Name;
@@ -53,6 +55,8 @@ namespace DocMaker
 
             ShowOrientation();
             ShowSizeMode();
+
+            LivePreview.ResumeUpdates();
         }
 
         private void DiscardChanges()
