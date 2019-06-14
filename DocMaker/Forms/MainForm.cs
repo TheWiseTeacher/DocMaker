@@ -27,6 +27,10 @@ namespace DocMaker
 
             PaperWrap.MouseWheel += PaperWrap_MouseWheel;
             ActiveControl = lab_paperSize;
+
+
+            cb_showAnchor.Checked = Config.ShowAnchorPoints;
+
         }
 
         #endregion
@@ -487,6 +491,12 @@ namespace DocMaker
             LivePreview.currentObject.Name = x_pos.Value.ToString();
             box_x.Text = x_pos.Value.ToString();
             LivePreview.Update();
+        }
+
+        private void Cb_showAnchor_CheckedChanged(object sender, EventArgs e)
+        {
+            Config.ShowAnchorPoints = cb_showAnchor.Checked;
+            Objects.RenderAll();
         }
     }
 }

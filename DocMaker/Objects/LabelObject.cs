@@ -115,32 +115,35 @@ namespace DocMaker
                 angle += 180;
             }
 
+            // Apply transformation when label is rotated
             g.TranslateTransform(trans.X, trans.Y);
             g.RotateTransform(angle);
 
+            // Draw the string
             g.DrawString(ContentTable[Project.UsedLanguages[0]], 
                          font, 
                          new SolidBrush(TextColor), 
                          Point.Empty);
 
+            // Remove the transformation for next drawing methods
             g.ResetTransform();
 
             // Draw the anchor point for this label
+            if(Config.ShowAnchorPoints)
+            {
+                if (IsCenter()) anchor.X = (int)(s.Width * 0.5F);
+                if (IsRight()) anchor.X = (int)s.Width - 1;
 
-            //if (IsLeft()) anchor.X = 0;
-            if (IsCenter()) anchor.X = (int)(s.Width * 0.5F);
-            if (IsRight()) anchor.X = (int)s.Width - 1;
+                if (IsMiddle()) anchor.Y = (int)(s.Height * 0.5F);
+                if (IsDown()) anchor.Y = (int)s.Height - 1;
 
-            //if (IsUp()) anchor.Y = 0;
-            if (IsMiddle()) anchor.Y = (int)(s.Height * 0.5F);
-            if (IsDown()) anchor.Y = (int)s.Height - 1;
+                g.DrawLine(Config.AnchorPen, anchor.X - Config.ANCHOR_SIZE, anchor.Y, anchor.X + Config.ANCHOR_SIZE, anchor.Y);
+                g.DrawLine(Config.AnchorPen, anchor.X, anchor.Y - Config.ANCHOR_SIZE, anchor.X, anchor.Y + Config.ANCHOR_SIZE);
 
-            g.DrawLine(Config.AnchorPen, anchor.X - Config.ANCHOR_SIZE, anchor.Y, anchor.X + Config.ANCHOR_SIZE, anchor.Y);
-            g.DrawLine(Config.AnchorPen, anchor.X, anchor.Y - Config.ANCHOR_SIZE, anchor.X, anchor.Y + Config.ANCHOR_SIZE);
+            }
 
-            //g.Restore(state);
-            // Set Canvas image
 
+            // Set Canvas Image
             Canvas.Image = b;
             Canvas.Size = Canvas.Image.Size;
 

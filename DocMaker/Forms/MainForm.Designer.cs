@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainFormMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,6 +52,7 @@
             this.pan_zoom = new System.Windows.Forms.TableLayoutPanel();
             this.comboZoom = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.StatusIcon = new System.Windows.Forms.PictureBox();
             this.lab_paperSize = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lab_x_pos = new System.Windows.Forms.Label();
@@ -63,7 +64,16 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.pan_AlignmentBtns = new System.Windows.Forms.TableLayoutPanel();
+            this.btn_LM = new System.Windows.Forms.Button();
+            this.btn_LU = new System.Windows.Forms.Button();
+            this.btn_CM = new System.Windows.Forms.Button();
+            this.btn_RM = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
+            this.btn_CU = new System.Windows.Forms.Button();
+            this.btn_LD = new System.Windows.Forms.Button();
+            this.btn_CD = new System.Windows.Forms.Button();
+            this.btn_RD = new System.Windows.Forms.Button();
+            this.btn_RU = new System.Windows.Forms.Button();
             this.layers = new System.Windows.Forms.DataGridView();
             this.layer_visible = new System.Windows.Forms.DataGridViewImageColumn();
             this.layer_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -87,21 +97,13 @@
             this.x_pos = new System.Windows.Forms.TrackBar();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.pan_MainSide = new System.Windows.Forms.TableLayoutPanel();
-            this.StatusIcon = new System.Windows.Forms.PictureBox();
-            this.btn_LM = new System.Windows.Forms.Button();
-            this.btn_LU = new System.Windows.Forms.Button();
-            this.btn_CM = new System.Windows.Forms.Button();
-            this.btn_RM = new System.Windows.Forms.Button();
-            this.btn_CU = new System.Windows.Forms.Button();
-            this.btn_LD = new System.Windows.Forms.Button();
-            this.btn_CD = new System.Windows.Forms.Button();
-            this.btn_RD = new System.Windows.Forms.Button();
-            this.btn_RU = new System.Windows.Forms.Button();
+            this.cb_showAnchor = new System.Windows.Forms.CheckBox();
             this.PaperWrap = new DocMaker.CustomPanel();
             this.Paper = new System.Windows.Forms.Panel();
             this.MainFormMenuStrip.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.pan_zoom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.StatusIcon)).BeginInit();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.pan_AlignmentBtns.SuspendLayout();
@@ -116,7 +118,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.x_pos)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.pan_MainSide.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.StatusIcon)).BeginInit();
             this.PaperWrap.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -314,6 +315,20 @@
             this.label5.Text = "Zoom";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // StatusIcon
+            // 
+            this.StatusIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.StatusIcon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.StatusIcon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.StatusIcon.Location = new System.Drawing.Point(7, 7);
+            this.StatusIcon.Margin = new System.Windows.Forms.Padding(5);
+            this.StatusIcon.Name = "StatusIcon";
+            this.StatusIcon.Size = new System.Drawing.Size(18, 18);
+            this.StatusIcon.TabIndex = 0;
+            this.StatusIcon.TabStop = false;
+            // 
             // lab_paperSize
             // 
             this.lab_paperSize.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -499,12 +514,13 @@
             this.pan_AlignmentBtns.Controls.Add(this.btn_LU, 1, 0);
             this.pan_AlignmentBtns.Controls.Add(this.btn_CM, 2, 1);
             this.pan_AlignmentBtns.Controls.Add(this.btn_RM, 3, 1);
+            this.pan_AlignmentBtns.Controls.Add(this.label13, 0, 0);
             this.pan_AlignmentBtns.Controls.Add(this.btn_CU, 2, 0);
             this.pan_AlignmentBtns.Controls.Add(this.btn_LD, 1, 2);
             this.pan_AlignmentBtns.Controls.Add(this.btn_CD, 2, 2);
             this.pan_AlignmentBtns.Controls.Add(this.btn_RD, 3, 2);
             this.pan_AlignmentBtns.Controls.Add(this.btn_RU, 3, 0);
-            this.pan_AlignmentBtns.Controls.Add(this.label13, 0, 0);
+            this.pan_AlignmentBtns.Controls.Add(this.cb_showAnchor, 0, 2);
             this.pan_AlignmentBtns.Location = new System.Drawing.Point(5, 30);
             this.pan_AlignmentBtns.Margin = new System.Windows.Forms.Padding(5);
             this.pan_AlignmentBtns.Name = "pan_AlignmentBtns";
@@ -512,8 +528,98 @@
             this.pan_AlignmentBtns.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.pan_AlignmentBtns.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.pan_AlignmentBtns.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.pan_AlignmentBtns.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.pan_AlignmentBtns.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.pan_AlignmentBtns.Size = new System.Drawing.Size(250, 74);
             this.pan_AlignmentBtns.TabIndex = 3;
+            // 
+            // btn_LM
+            // 
+            this.btn_LM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_LM.BackColor = System.Drawing.Color.Silver;
+            this.btn_LM.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_LM.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btn_LM.FlatAppearance.BorderSize = 0;
+            this.btn_LM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_LM.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_LM.Image = global::DocMaker.Properties.Resources.ico_alignment_LM;
+            this.btn_LM.Location = new System.Drawing.Point(176, 25);
+            this.btn_LM.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
+            this.btn_LM.Name = "btn_LM";
+            this.btn_LM.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
+            this.btn_LM.Size = new System.Drawing.Size(24, 24);
+            this.btn_LM.TabIndex = 3;
+            this.btn_LM.Tag = "LM";
+            this.toolTip.SetToolTip(this.btn_LM, "Align Top");
+            this.btn_LM.UseVisualStyleBackColor = false;
+            this.btn_LM.Click += new System.EventHandler(this.Alignment_OnClick);
+            // 
+            // btn_LU
+            // 
+            this.btn_LU.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_LU.BackColor = System.Drawing.Color.Silver;
+            this.btn_LU.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_LU.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btn_LU.FlatAppearance.BorderSize = 0;
+            this.btn_LU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_LU.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_LU.Image = global::DocMaker.Properties.Resources.ico_alignment_LU;
+            this.btn_LU.Location = new System.Drawing.Point(176, 0);
+            this.btn_LU.Margin = new System.Windows.Forms.Padding(0);
+            this.btn_LU.Name = "btn_LU";
+            this.btn_LU.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
+            this.btn_LU.Size = new System.Drawing.Size(24, 24);
+            this.btn_LU.TabIndex = 3;
+            this.btn_LU.Tag = "LU";
+            this.toolTip.SetToolTip(this.btn_LU, "Align Left");
+            this.btn_LU.UseVisualStyleBackColor = false;
+            this.btn_LU.Click += new System.EventHandler(this.Alignment_OnClick);
+            // 
+            // btn_CM
+            // 
+            this.btn_CM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_CM.BackColor = System.Drawing.Color.Silver;
+            this.btn_CM.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_CM.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btn_CM.FlatAppearance.BorderSize = 0;
+            this.btn_CM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_CM.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_CM.Image = global::DocMaker.Properties.Resources.ico_alignment_CM;
+            this.btn_CM.Location = new System.Drawing.Point(201, 25);
+            this.btn_CM.Margin = new System.Windows.Forms.Padding(1);
+            this.btn_CM.Name = "btn_CM";
+            this.btn_CM.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
+            this.btn_CM.Size = new System.Drawing.Size(24, 24);
+            this.btn_CM.TabIndex = 3;
+            this.btn_CM.Tag = "CM";
+            this.toolTip.SetToolTip(this.btn_CM, "Align Middle");
+            this.btn_CM.UseVisualStyleBackColor = false;
+            this.btn_CM.Click += new System.EventHandler(this.Alignment_OnClick);
+            // 
+            // btn_RM
+            // 
+            this.btn_RM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_RM.BackColor = System.Drawing.Color.Silver;
+            this.btn_RM.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_RM.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btn_RM.FlatAppearance.BorderSize = 0;
+            this.btn_RM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_RM.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_RM.Image = global::DocMaker.Properties.Resources.ico_alignment_RM;
+            this.btn_RM.Location = new System.Drawing.Point(226, 25);
+            this.btn_RM.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
+            this.btn_RM.Name = "btn_RM";
+            this.btn_RM.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
+            this.btn_RM.Size = new System.Drawing.Size(24, 24);
+            this.btn_RM.TabIndex = 3;
+            this.btn_RM.Tag = "RM";
+            this.toolTip.SetToolTip(this.btn_RM, "Align Bottom");
+            this.btn_RM.UseVisualStyleBackColor = false;
+            this.btn_RM.Click += new System.EventHandler(this.Alignment_OnClick);
             // 
             // label13
             // 
@@ -521,17 +627,123 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.BackColor = System.Drawing.Color.Gainsboro;
-            this.label13.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Black;
             this.label13.Location = new System.Drawing.Point(0, 0);
             this.label13.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.label13.Name = "label13";
-            this.label13.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.pan_AlignmentBtns.SetRowSpan(this.label13, 3);
-            this.label13.Size = new System.Drawing.Size(171, 74);
+            this.pan_AlignmentBtns.SetRowSpan(this.label13, 2);
+            this.label13.Size = new System.Drawing.Size(171, 50);
             this.label13.TabIndex = 2;
-            this.label13.Text = "The point where the \r\nobject is drawn from";
+            this.label13.Text = "Those points represents the real\r\nposition of an object";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btn_CU
+            // 
+            this.btn_CU.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_CU.BackColor = System.Drawing.Color.Silver;
+            this.btn_CU.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_CU.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btn_CU.FlatAppearance.BorderSize = 0;
+            this.btn_CU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_CU.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_CU.Image = global::DocMaker.Properties.Resources.ico_alignment_CU;
+            this.btn_CU.Location = new System.Drawing.Point(201, 0);
+            this.btn_CU.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.btn_CU.Name = "btn_CU";
+            this.btn_CU.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
+            this.btn_CU.Size = new System.Drawing.Size(24, 24);
+            this.btn_CU.TabIndex = 3;
+            this.btn_CU.Tag = "CU";
+            this.toolTip.SetToolTip(this.btn_CU, "Align Center");
+            this.btn_CU.UseVisualStyleBackColor = false;
+            this.btn_CU.Click += new System.EventHandler(this.Alignment_OnClick);
+            // 
+            // btn_LD
+            // 
+            this.btn_LD.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_LD.BackColor = System.Drawing.Color.Silver;
+            this.btn_LD.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_LD.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btn_LD.FlatAppearance.BorderSize = 0;
+            this.btn_LD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_LD.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_LD.Image = global::DocMaker.Properties.Resources.ico_alignment_LD;
+            this.btn_LD.Location = new System.Drawing.Point(176, 50);
+            this.btn_LD.Margin = new System.Windows.Forms.Padding(0);
+            this.btn_LD.Name = "btn_LD";
+            this.btn_LD.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
+            this.btn_LD.Size = new System.Drawing.Size(24, 24);
+            this.btn_LD.TabIndex = 3;
+            this.btn_LD.Tag = "LD";
+            this.btn_LD.UseVisualStyleBackColor = false;
+            this.btn_LD.Click += new System.EventHandler(this.Alignment_OnClick);
+            // 
+            // btn_CD
+            // 
+            this.btn_CD.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_CD.BackColor = System.Drawing.Color.Silver;
+            this.btn_CD.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_CD.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btn_CD.FlatAppearance.BorderSize = 0;
+            this.btn_CD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_CD.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_CD.Image = global::DocMaker.Properties.Resources.ico_alignment_CD;
+            this.btn_CD.Location = new System.Drawing.Point(201, 50);
+            this.btn_CD.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.btn_CD.Name = "btn_CD";
+            this.btn_CD.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
+            this.btn_CD.Size = new System.Drawing.Size(24, 24);
+            this.btn_CD.TabIndex = 3;
+            this.btn_CD.Tag = "CD";
+            this.btn_CD.UseVisualStyleBackColor = false;
+            this.btn_CD.Click += new System.EventHandler(this.Alignment_OnClick);
+            // 
+            // btn_RD
+            // 
+            this.btn_RD.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_RD.BackColor = System.Drawing.Color.Silver;
+            this.btn_RD.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_RD.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btn_RD.FlatAppearance.BorderSize = 0;
+            this.btn_RD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_RD.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_RD.Image = global::DocMaker.Properties.Resources.ico_alignment_RD;
+            this.btn_RD.Location = new System.Drawing.Point(226, 50);
+            this.btn_RD.Margin = new System.Windows.Forms.Padding(0);
+            this.btn_RD.Name = "btn_RD";
+            this.btn_RD.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
+            this.btn_RD.Size = new System.Drawing.Size(24, 24);
+            this.btn_RD.TabIndex = 3;
+            this.btn_RD.Tag = "RD";
+            this.btn_RD.UseVisualStyleBackColor = false;
+            this.btn_RD.Click += new System.EventHandler(this.Alignment_OnClick);
+            // 
+            // btn_RU
+            // 
+            this.btn_RU.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_RU.BackColor = System.Drawing.Color.Silver;
+            this.btn_RU.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_RU.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btn_RU.FlatAppearance.BorderSize = 0;
+            this.btn_RU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_RU.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_RU.Image = global::DocMaker.Properties.Resources.ico_alignment_RU;
+            this.btn_RU.Location = new System.Drawing.Point(226, 0);
+            this.btn_RU.Margin = new System.Windows.Forms.Padding(0);
+            this.btn_RU.Name = "btn_RU";
+            this.btn_RU.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
+            this.btn_RU.Size = new System.Drawing.Size(24, 24);
+            this.btn_RU.TabIndex = 3;
+            this.btn_RU.Tag = "RU";
+            this.toolTip.SetToolTip(this.btn_RU, "Align Right");
+            this.btn_RU.UseVisualStyleBackColor = false;
+            this.btn_RU.Click += new System.EventHandler(this.Alignment_OnClick);
             // 
             // layers
             // 
@@ -561,15 +773,15 @@
             this.layers.Margin = new System.Windows.Forms.Padding(0);
             this.layers.MultiSelect = false;
             this.layers.Name = "layers";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(4, 0, 0, 4);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.layers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle24.Padding = new System.Windows.Forms.Padding(4, 0, 0, 4);
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.layers.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
             this.layers.RowHeadersVisible = false;
             this.layers.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.layers.RowTemplate.Height = 30;
@@ -586,12 +798,12 @@
             // 
             // layer_visible
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle1.NullValue")));
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(4);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.layer_visible.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle22.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle22.NullValue")));
+            dataGridViewCellStyle22.Padding = new System.Windows.Forms.Padding(4);
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.layer_visible.DefaultCellStyle = dataGridViewCellStyle22;
             this.layer_visible.HeaderText = "visible";
             this.layer_visible.Name = "layer_visible";
             this.layer_visible.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -600,13 +812,13 @@
             // layer_name
             // 
             this.layer_name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.layer_name.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle23.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.Black;
+            this.layer_name.DefaultCellStyle = dataGridViewCellStyle23;
             this.layer_name.HeaderText = "name";
             this.layer_name.Name = "layer_name";
             this.layer_name.ReadOnly = true;
@@ -876,215 +1088,24 @@
             this.pan_MainSide.Size = new System.Drawing.Size(884, 758);
             this.pan_MainSide.TabIndex = 6;
             // 
-            // StatusIcon
+            // cb_showAnchor
             // 
-            this.StatusIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.cb_showAnchor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.StatusIcon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.StatusIcon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.StatusIcon.Location = new System.Drawing.Point(7, 7);
-            this.StatusIcon.Margin = new System.Windows.Forms.Padding(5);
-            this.StatusIcon.Name = "StatusIcon";
-            this.StatusIcon.Size = new System.Drawing.Size(18, 18);
-            this.StatusIcon.TabIndex = 0;
-            this.StatusIcon.TabStop = false;
-            // 
-            // btn_LM
-            // 
-            this.btn_LM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_LM.BackColor = System.Drawing.Color.Silver;
-            this.btn_LM.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_LM.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btn_LM.FlatAppearance.BorderSize = 0;
-            this.btn_LM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_LM.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_LM.Image = global::DocMaker.Properties.Resources.ico_alignment_LM;
-            this.btn_LM.Location = new System.Drawing.Point(176, 25);
-            this.btn_LM.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
-            this.btn_LM.Name = "btn_LM";
-            this.btn_LM.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
-            this.btn_LM.Size = new System.Drawing.Size(24, 24);
-            this.btn_LM.TabIndex = 3;
-            this.btn_LM.Tag = "LM";
-            this.toolTip.SetToolTip(this.btn_LM, "Align Top");
-            this.btn_LM.UseVisualStyleBackColor = false;
-            this.btn_LM.Click += new System.EventHandler(this.Alignment_OnClick);
-            // 
-            // btn_LU
-            // 
-            this.btn_LU.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_LU.BackColor = System.Drawing.Color.Silver;
-            this.btn_LU.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_LU.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btn_LU.FlatAppearance.BorderSize = 0;
-            this.btn_LU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_LU.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_LU.Image = global::DocMaker.Properties.Resources.ico_alignment_LU;
-            this.btn_LU.Location = new System.Drawing.Point(176, 0);
-            this.btn_LU.Margin = new System.Windows.Forms.Padding(0);
-            this.btn_LU.Name = "btn_LU";
-            this.btn_LU.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
-            this.btn_LU.Size = new System.Drawing.Size(24, 24);
-            this.btn_LU.TabIndex = 3;
-            this.btn_LU.Tag = "LU";
-            this.toolTip.SetToolTip(this.btn_LU, "Align Left");
-            this.btn_LU.UseVisualStyleBackColor = false;
-            this.btn_LU.Click += new System.EventHandler(this.Alignment_OnClick);
-            // 
-            // btn_CM
-            // 
-            this.btn_CM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_CM.BackColor = System.Drawing.Color.Silver;
-            this.btn_CM.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_CM.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btn_CM.FlatAppearance.BorderSize = 0;
-            this.btn_CM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_CM.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_CM.Image = global::DocMaker.Properties.Resources.ico_alignment_CM;
-            this.btn_CM.Location = new System.Drawing.Point(201, 25);
-            this.btn_CM.Margin = new System.Windows.Forms.Padding(1);
-            this.btn_CM.Name = "btn_CM";
-            this.btn_CM.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
-            this.btn_CM.Size = new System.Drawing.Size(24, 24);
-            this.btn_CM.TabIndex = 3;
-            this.btn_CM.Tag = "CM";
-            this.toolTip.SetToolTip(this.btn_CM, "Align Middle");
-            this.btn_CM.UseVisualStyleBackColor = false;
-            this.btn_CM.Click += new System.EventHandler(this.Alignment_OnClick);
-            // 
-            // btn_RM
-            // 
-            this.btn_RM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_RM.BackColor = System.Drawing.Color.Silver;
-            this.btn_RM.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_RM.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btn_RM.FlatAppearance.BorderSize = 0;
-            this.btn_RM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_RM.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_RM.Image = global::DocMaker.Properties.Resources.ico_alignment_RM;
-            this.btn_RM.Location = new System.Drawing.Point(226, 25);
-            this.btn_RM.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
-            this.btn_RM.Name = "btn_RM";
-            this.btn_RM.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
-            this.btn_RM.Size = new System.Drawing.Size(24, 24);
-            this.btn_RM.TabIndex = 3;
-            this.btn_RM.Tag = "RM";
-            this.toolTip.SetToolTip(this.btn_RM, "Align Bottom");
-            this.btn_RM.UseVisualStyleBackColor = false;
-            this.btn_RM.Click += new System.EventHandler(this.Alignment_OnClick);
-            // 
-            // btn_CU
-            // 
-            this.btn_CU.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_CU.BackColor = System.Drawing.Color.Silver;
-            this.btn_CU.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_CU.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btn_CU.FlatAppearance.BorderSize = 0;
-            this.btn_CU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_CU.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_CU.Image = global::DocMaker.Properties.Resources.ico_alignment_CU;
-            this.btn_CU.Location = new System.Drawing.Point(201, 0);
-            this.btn_CU.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.btn_CU.Name = "btn_CU";
-            this.btn_CU.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
-            this.btn_CU.Size = new System.Drawing.Size(24, 24);
-            this.btn_CU.TabIndex = 3;
-            this.btn_CU.Tag = "CU";
-            this.toolTip.SetToolTip(this.btn_CU, "Align Center");
-            this.btn_CU.UseVisualStyleBackColor = false;
-            this.btn_CU.Click += new System.EventHandler(this.Alignment_OnClick);
-            // 
-            // btn_LD
-            // 
-            this.btn_LD.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_LD.BackColor = System.Drawing.Color.Silver;
-            this.btn_LD.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_LD.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btn_LD.FlatAppearance.BorderSize = 0;
-            this.btn_LD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_LD.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_LD.Image = global::DocMaker.Properties.Resources.ico_alignment_LD;
-            this.btn_LD.Location = new System.Drawing.Point(176, 50);
-            this.btn_LD.Margin = new System.Windows.Forms.Padding(0);
-            this.btn_LD.Name = "btn_LD";
-            this.btn_LD.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
-            this.btn_LD.Size = new System.Drawing.Size(24, 24);
-            this.btn_LD.TabIndex = 3;
-            this.btn_LD.Tag = "LD";
-            this.btn_LD.UseVisualStyleBackColor = false;
-            this.btn_LD.Click += new System.EventHandler(this.Alignment_OnClick);
-            // 
-            // btn_CD
-            // 
-            this.btn_CD.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_CD.BackColor = System.Drawing.Color.Silver;
-            this.btn_CD.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_CD.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btn_CD.FlatAppearance.BorderSize = 0;
-            this.btn_CD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_CD.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_CD.Image = global::DocMaker.Properties.Resources.ico_alignment_CD;
-            this.btn_CD.Location = new System.Drawing.Point(201, 50);
-            this.btn_CD.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.btn_CD.Name = "btn_CD";
-            this.btn_CD.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
-            this.btn_CD.Size = new System.Drawing.Size(24, 24);
-            this.btn_CD.TabIndex = 3;
-            this.btn_CD.Tag = "CD";
-            this.btn_CD.UseVisualStyleBackColor = false;
-            this.btn_CD.Click += new System.EventHandler(this.Alignment_OnClick);
-            // 
-            // btn_RD
-            // 
-            this.btn_RD.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_RD.BackColor = System.Drawing.Color.Silver;
-            this.btn_RD.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_RD.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btn_RD.FlatAppearance.BorderSize = 0;
-            this.btn_RD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_RD.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_RD.Image = global::DocMaker.Properties.Resources.ico_alignment_RD;
-            this.btn_RD.Location = new System.Drawing.Point(226, 50);
-            this.btn_RD.Margin = new System.Windows.Forms.Padding(0);
-            this.btn_RD.Name = "btn_RD";
-            this.btn_RD.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
-            this.btn_RD.Size = new System.Drawing.Size(24, 24);
-            this.btn_RD.TabIndex = 3;
-            this.btn_RD.Tag = "RD";
-            this.btn_RD.UseVisualStyleBackColor = false;
-            this.btn_RD.Click += new System.EventHandler(this.Alignment_OnClick);
-            // 
-            // btn_RU
-            // 
-            this.btn_RU.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_RU.BackColor = System.Drawing.Color.Silver;
-            this.btn_RU.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_RU.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btn_RU.FlatAppearance.BorderSize = 0;
-            this.btn_RU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_RU.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_RU.Image = global::DocMaker.Properties.Resources.ico_alignment_RU;
-            this.btn_RU.Location = new System.Drawing.Point(226, 0);
-            this.btn_RU.Margin = new System.Windows.Forms.Padding(0);
-            this.btn_RU.Name = "btn_RU";
-            this.btn_RU.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
-            this.btn_RU.Size = new System.Drawing.Size(24, 24);
-            this.btn_RU.TabIndex = 3;
-            this.btn_RU.Tag = "RU";
-            this.toolTip.SetToolTip(this.btn_RU, "Align Right");
-            this.btn_RU.UseVisualStyleBackColor = false;
-            this.btn_RU.Click += new System.EventHandler(this.Alignment_OnClick);
+            this.cb_showAnchor.BackColor = System.Drawing.Color.Silver;
+            this.cb_showAnchor.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_showAnchor.ForeColor = System.Drawing.Color.Black;
+            this.cb_showAnchor.Location = new System.Drawing.Point(0, 50);
+            this.cb_showAnchor.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.cb_showAnchor.Name = "cb_showAnchor";
+            this.cb_showAnchor.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.cb_showAnchor.Size = new System.Drawing.Size(171, 24);
+            this.cb_showAnchor.TabIndex = 9;
+            this.cb_showAnchor.Text = "Show anchor points";
+            this.cb_showAnchor.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.cb_showAnchor.UseVisualStyleBackColor = false;
+            this.cb_showAnchor.CheckedChanged += new System.EventHandler(this.Cb_showAnchor_CheckedChanged);
             // 
             // PaperWrap
             // 
@@ -1142,6 +1163,7 @@
             this.StatusBar.PerformLayout();
             this.pan_zoom.ResumeLayout(false);
             this.pan_zoom.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.StatusIcon)).EndInit();
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.pan_AlignmentBtns.ResumeLayout(false);
@@ -1158,7 +1180,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.x_pos)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.pan_MainSide.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.StatusIcon)).EndInit();
             this.PaperWrap.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1233,6 +1254,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn layer_object;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox cb_showAnchor;
     }
 }
 

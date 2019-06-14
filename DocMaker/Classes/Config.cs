@@ -28,6 +28,7 @@ namespace DocMaker
         public static Cursor OnMovingObject = Cursors.SizeAll;
 
         public static Pen AnchorPen = new Pen(Color.FromArgb(255, 0, 0));
+        public static bool ShowAnchorPoints = true;
 
         public static int MaxLineSize = 10000;
 

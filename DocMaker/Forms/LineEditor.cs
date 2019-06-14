@@ -82,6 +82,8 @@ namespace DocMaker
                 radioHorizontal.Checked = false;
                 radioVertical.Checked = true;
             }
+
+            LivePreview.Update();
         }
 
 
