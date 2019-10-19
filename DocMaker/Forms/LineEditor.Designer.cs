@@ -91,6 +91,7 @@
             this.tb_name.Name = "tb_name";
             this.tb_name.Size = new System.Drawing.Size(148, 20);
             this.tb_name.TabIndex = 1;
+            this.tb_name.Validated += new System.EventHandler(this.Tb_name_Validated);
             // 
             // label2
             // 
@@ -447,11 +448,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tb_key.Location = new System.Drawing.Point(110, 62);
             this.tb_key.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.tb_key.MaximumValue = 10000;
             this.tb_key.MaxLength = 32;
+            this.tb_key.MinimumValue = 1;
             this.tb_key.Name = "tb_key";
             this.tb_key.Size = new System.Drawing.Size(148, 20);
             this.tb_key.TabIndex = 12;
+            this.tb_key.TabStop = false;
             this.tb_key.UsedFilter = DocMaker.CustomTextBox.Filter.Special;
+            this.tb_key.Value = 1;
+            this.tb_key.Wheel_StepValue = 4;
+            this.tb_key.Validated += new System.EventHandler(this.Tb_key_Validated);
             // 
             // tb_color_r
             // 
@@ -461,12 +468,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tb_color_r.Location = new System.Drawing.Point(0, 2);
             this.tb_color_r.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.tb_color_r.MaximumValue = 255;
             this.tb_color_r.MaxLength = 3;
+            this.tb_color_r.MinimumValue = 0;
             this.tb_color_r.Name = "tb_color_r";
             this.tb_color_r.Size = new System.Drawing.Size(47, 20);
             this.tb_color_r.TabIndex = 1;
+            this.tb_color_r.TabStop = false;
+            this.tb_color_r.Text = "0";
             this.tb_color_r.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tb_color_r.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.tb_color_r.Value = 0;
+            this.tb_color_r.Wheel_StepValue = 5;
             this.tb_color_r.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatingColorInput);
             // 
             // tb_color_b
@@ -477,12 +490,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tb_color_b.Location = new System.Drawing.Point(100, 2);
             this.tb_color_b.Margin = new System.Windows.Forms.Padding(3, 2, 0, 2);
+            this.tb_color_b.MaximumValue = 255;
             this.tb_color_b.MaxLength = 3;
+            this.tb_color_b.MinimumValue = 0;
             this.tb_color_b.Name = "tb_color_b";
             this.tb_color_b.Size = new System.Drawing.Size(48, 20);
             this.tb_color_b.TabIndex = 3;
+            this.tb_color_b.TabStop = false;
+            this.tb_color_b.Text = "0";
             this.tb_color_b.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tb_color_b.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.tb_color_b.Value = 0;
+            this.tb_color_b.Wheel_StepValue = 5;
             this.tb_color_b.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatingColorInput);
             // 
             // tb_color_g
@@ -493,12 +512,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tb_color_g.Location = new System.Drawing.Point(50, 2);
             this.tb_color_g.Margin = new System.Windows.Forms.Padding(3, 2, 0, 2);
+            this.tb_color_g.MaximumValue = 255;
             this.tb_color_g.MaxLength = 3;
+            this.tb_color_g.MinimumValue = 0;
             this.tb_color_g.Name = "tb_color_g";
             this.tb_color_g.Size = new System.Drawing.Size(47, 20);
             this.tb_color_g.TabIndex = 2;
+            this.tb_color_g.TabStop = false;
+            this.tb_color_g.Text = "0";
             this.tb_color_g.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tb_color_g.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.tb_color_g.Value = 0;
+            this.tb_color_g.Wheel_StepValue = 5;
             this.tb_color_g.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatingColorInput);
             // 
             // lineLength
@@ -509,11 +534,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lineLength.Location = new System.Drawing.Point(4, 6);
             this.lineLength.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.lineLength.MaximumValue = 10000;
             this.lineLength.MaxLength = 32;
+            this.lineLength.MinimumValue = 1;
             this.lineLength.Name = "lineLength";
             this.lineLength.Size = new System.Drawing.Size(98, 20);
             this.lineLength.TabIndex = 12;
+            this.lineLength.TabStop = false;
+            this.lineLength.Text = "50";
             this.lineLength.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.lineLength.Value = 50;
+            this.lineLength.Wheel_StepValue = 5;
             this.lineLength.TextChanged += new System.EventHandler(this.LineLength_TextChanged);
             this.lineLength.Validated += new System.EventHandler(this.LineLength_Validated);
             // 

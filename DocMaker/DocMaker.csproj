@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>DocMaker</RootNamespace>
     <AssemblyName>DocMaker</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -21,7 +21,8 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>3</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,6 +33,7 @@
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
@@ -54,21 +56,36 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\BinaryFileHandler.cs" />
     <Compile Include="Classes\DocumentObject.cs" />
     <Compile Include="Classes\DocumentObject.Flags.cs" />
     <Compile Include="Classes\Extensions.cs" />
     <Compile Include="Classes\Fonts.cs" />
     <Compile Include="Classes\LivePreview.cs" />
     <Compile Include="Classes\Objects.cs" />
+    <Compile Include="Classes\Paper.cs" />
     <Compile Include="Classes\Project.cs" />
+    <Compile Include="Classes\Snapper.cs" />
     <Compile Include="Classes\Structures.cs" />
     <Compile Include="Classes\Config.cs" />
     <Compile Include="Classes\Zoom.cs" />
+    <Compile Include="Forms\ImageEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ImageEditor.Designer.cs">
+      <DependentUpon>ImageEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\LineEditor.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\LineEditor.Designer.cs">
       <DependentUpon>LineEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ResourceManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ResourceManager.Designer.cs">
+      <DependentUpon>ResourceManager.cs</DependentUpon>
     </Compile>
     <Compile Include="Objects\ImageObject.cs" />
     <Compile Include="UserControls\CustomTextBox.cs">
@@ -119,8 +136,17 @@
     <Compile Include="Objects\LabelObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\resPreview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\resPreview.Designer.cs">
+      <DependentUpon>resPreview.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\FontManager.resx">
       <DependentUpon>FontManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ImageEditor.resx">
+      <DependentUpon>ImageEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LineEditor.resx">
       <DependentUpon>LineEditor.cs</DependentUpon>
@@ -130,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LanguageManager.resx">
       <DependentUpon>LanguageManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ResourceManager.resx">
+      <DependentUpon>ResourceManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PaperManager.resx">
       <DependentUpon>PaperManager.cs</DependentUpon>
@@ -144,6 +173,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\resPreview.resx">
+      <DependentUpon>resPreview.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
@@ -163,6 +195,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Ressources\none.png" />
     <None Include="Ressources\ico_rotate_right.png" />
     <None Include="Ressources\ico_rotate_left.png" />
     <None Include="Ressources\ico_nvisible.png" />

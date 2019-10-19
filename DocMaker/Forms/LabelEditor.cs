@@ -294,6 +294,14 @@ namespace DocMaker
             ActiveControl = label1;
         }
 
+        private void Tb_name_Validated(object sender, EventArgs e)
+        {
+            if (tb_name.Text.Equals(""))
+                tb_name.Text = "Label object";
+
+            Target.Name = tb_name.Text;
+        }
+
         private void Tb_key_Validated(object sender, EventArgs e)
         {
             Target.Key = tb_key.Text;
@@ -321,5 +329,6 @@ namespace DocMaker
             Target.Rotate(true);
             ShowRotation();
         }
+
     }
 }

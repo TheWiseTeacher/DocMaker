@@ -35,7 +35,7 @@ namespace DocMaker
 
             if (SizeInPercent)
                 realLength = (int)(((float)Length / 100.0F) * 
-                                    (float)(IsVertical ? Project.paperSize.Height : Project.paperSize.Width));
+                                    (float)(IsVertical ? Paper.paperSize.Height : Paper.paperSize.Width));
 
             if (IsVertical)
             {

@@ -18,11 +18,14 @@ namespace DocMaker
 
         public static string LastVisitedPath = AppDomain.CurrentDomain.BaseDirectory;
 
-
         public static PrivateFontCollection TTF_Jannah;
         public static PrivateFontCollection TTF_Roboto;
 
-        public static string DefaultFont = "Arial";
+        public static string DEFAULT_FONT_NAME = "(default)";
+        public static string DEFAULT_FONT = "Arial";
+
+        public static string CUSTOM_PAPER_NAME = "(Custom paper size)";
+        public static Size CUSTOM_PAPER_SIZE = new Size(600, 800);
 
         public static Cursor OnHoveringObject = Cursors.Hand;
         public static Cursor OnMovingObject = Cursors.SizeAll;

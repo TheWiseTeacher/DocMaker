@@ -17,6 +17,8 @@ namespace DocMaker
             if (mainForm == null || currentObject == null || suspendedUpdates)
                 return;
 
+            Console.WriteLine("Updating...");
+
             currentObject.RenderObject();
             currentObject.Canvas.Update();
         }

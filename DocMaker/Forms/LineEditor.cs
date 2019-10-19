@@ -22,15 +22,17 @@ namespace DocMaker
             LoadParameters();
 
             ActiveControl = label1;
-            lineLength.MouseWheel += LineLength_MouseWheel;
+            //lineLength.MouseWheel += LineLength_MouseWheel;
         }
 
+        /*
         private void LineLength_MouseWheel(object sender, MouseEventArgs e)
         {
             lineLength.Text =
                 Funcs.Clamp((Funcs.ToInt(lineLength.Text) + 4 * Funcs.Force(Funcs.ToInt(e.Delta))),
                             1, Config.MaxLineSize).ToString();
         }
+        */
 
         private void LoadParameters()
         {
@@ -73,6 +75,18 @@ namespace DocMaker
             Target.Thickness = (byte)lineThickness.Tag;
         }
 
+        private void Tb_name_Validated(object sender, EventArgs e)
+        {
+            if (tb_name.Text.Equals(""))
+                tb_name.Text = "Line object";
+
+            Target.Name = tb_name.Text;
+        }
+
+        private void Tb_key_Validated(object sender, EventArgs e)
+        {
+            Target.Key = tb_key.Text;
+        }
 
         private void ShowOrientation()
         {
@@ -192,5 +206,7 @@ namespace DocMaker
             Target.SizeInPercent = !sizeMode.SelectedItem.Equals("Px");
             LivePreview.Update();
         }
+
+
     }
 }

@@ -23,6 +23,7 @@ namespace DocMaker
 
         public Dictionary<string, string> ContentTable;
 
+        public AnchorStyles Anchors { get; set; }
         [Flags]
         public enum ItemFlags
         {
@@ -38,7 +39,7 @@ namespace DocMaker
         {
             Name = "Label " + labelCounter.ToString();
 
-            FontID = Config.DefaultFont;
+            FontID = Config.DEFAULT_FONT;
             FontSize = 12;
             TextColor = Color.FromArgb(0, 0, 0);
 
@@ -70,7 +71,7 @@ namespace DocMaker
         public void CheckFont(string fontID)
         {
             if (FontID == fontID)
-                FontID = Config.DefaultFont;
+                FontID = Config.DEFAULT_FONT;
         }
 
         public override void RenderObject()
@@ -140,6 +141,9 @@ namespace DocMaker
                 g.DrawLine(Config.AnchorPen, anchor.X, anchor.Y - Config.ANCHOR_SIZE, anchor.X, anchor.Y + Config.ANCHOR_SIZE);
             }
 
+            // Release previous rendered bitmap (A lil bit of memore'h :3)
+            if(Canvas.Image != null)
+                Canvas.Image.Dispose();
 
             // Set Canvas Image
             Canvas.Image = b;

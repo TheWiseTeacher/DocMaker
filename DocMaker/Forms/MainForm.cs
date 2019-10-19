@@ -20,17 +20,16 @@ namespace DocMaker
         public MainForm()
         {
             InitializeComponent();
-
             InitializeAlignmentButtons();
 
             LivePreview.mainForm = this;
 
-            PaperWrap.MouseWheel += PaperWrap_MouseWheel;
-            ActiveControl = lab_paperSize;
-
+            Project.Initialize();
 
             cb_showAnchor.Checked = Config.ShowAnchorPoints;
 
+            ActiveControl = lab_paperSize;
+            PaperWrap.MouseWheel += PaperWrap_MouseWheel;
         }
 
         #endregion
@@ -61,9 +60,9 @@ namespace DocMaker
         {
             double newX, newY;
 
-            if (PaperWrap.Width > Paper.Width)
+            if (PaperWrap.Width > thePaper.Width)
             {
-                newX = (PaperWrap.Width - Paper.Width -
+                newX = (PaperWrap.Width - thePaper.Width -
                         SystemInformation.VerticalScrollBarWidth) / 2;
             }
             else
@@ -71,9 +70,9 @@ namespace DocMaker
                 newX = 20d;
             }
 
-            if (PaperWrap.Height > Paper.Height)
+            if (PaperWrap.Height > thePaper.Height)
             {
-                newY = (PaperWrap.Height - Paper.Height -
+                newY = (PaperWrap.Height - thePaper.Height -
                         SystemInformation.HorizontalScrollBarHeight) / 2;
             }
             else
@@ -81,24 +80,28 @@ namespace DocMaker
                 newY = 20d;
             }
 
-            Paper.Location = new Point((int)newX - PaperWrap.HorizontalScroll.Value,
-                                       (int)newY - PaperWrap.VerticalScroll.Value);
+            thePaper.Location = new Point((int)newX - PaperWrap.HorizontalScroll.Value,
+                                          (int)newY - PaperWrap.VerticalScroll.Value);
         }
 
         private void ResizePaper()
         {
+
             //Set paper name
-            lab_paperSize.Text = "Paper size : " + Project.paperSize.PaperName;
+            if(Paper.usingCustomPaper)
+                lab_paperSize.Text = $"Paper size : {Paper.paperSize.Width} x {Paper.paperSize.Height}";
+            else
+                lab_paperSize.Text = $"Paper kind : {Paper.paperSize.PaperName}";
 
             // Optional : Setting a tooltip to know the Dimensions
-            if (!Project.isLandscape)
+            if (!Paper.isLandscape)
                 toolTip.SetToolTip(lab_paperSize,
-                    $"Dimension : {Project.paperSize.Width}x{Project.paperSize.Height} pixels");
+                    $"Dimension : {Paper.paperSize.Width}x{Paper.paperSize.Height} pixels");
             else
                 toolTip.SetToolTip(lab_paperSize, $"Dimension : " +
-                    $"{Project.paperSize.Height}x{Project.paperSize.Width} pixels");
+                    $"{Paper.paperSize.Height}x{Paper.paperSize.Width} pixels");
 
-            Paper.Size = Zoom.GetPaperSize();   //Get paper size relative to the zoom percent
+            thePaper.Size = Zoom.GetPaperSize();   //Get paper size relative to the zoom percent
             CenterPaper();                      //Center paper for better view
         }
 
@@ -218,6 +221,7 @@ namespace DocMaker
 
             ShowAlignment();
             LivePreview.Update();
+            UpdateObjectPosition(LivePreview.currentObject);
         }
 
         #endregion
@@ -343,10 +347,18 @@ namespace DocMaker
 
         #region ToolStrip Events
 
+        public void UpdateFormTitle()
+        {
+            this.Text = $"{Application.ProductName} {Application.ProductVersion} - {Project.projectTitle}";
+        }
+
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Initialize a new project
             Project.NewProject();
+            UpdateFormTitle();
+
+            // Set application title
 
             // Resize the paper
             ResizePaper();
@@ -377,6 +389,12 @@ namespace DocMaker
                 ResizePaper();
         }
 
+        private void ResManagertoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ResourceManager resManager = new ResourceManager();
+            resManager.ShowDialog();
+        }
+
         #endregion
 
         #region StatusBar update methods
@@ -400,6 +418,31 @@ namespace DocMaker
 
         #endregion
 
+
+        public void UpdateObjectPosition(DocumentObject obj)
+        {
+            Point r = Zoom.CalculateReal(LivePreview.currentObject.Canvas.Location);
+            Point p = new Point(thePaper.Width - LivePreview.currentObject.Canvas.Width,
+                                thePaper.Height - LivePreview.currentObject.Canvas.Height);
+
+            p = Zoom.CalculateReal(p);
+            /*
+            sl_xPosition.Minimum = 0;
+            sl_xPosition.Maximum = p.X;
+            sl_xPosition.Value = r.X;
+            */
+            /*
+            sl_yPosition.Minimum = 0;
+            sl_yPosition.Maximum = p.Y;
+            sl_yPosition.Value = r.Y;
+            */
+
+            tb_xPosition.Text = r.X.ToString();
+            tb_yPosition.Text = r.X.ToString();
+
+
+        }
+
         #region Adding objects and layers table populating methods
 
         public void SelectObject()
@@ -410,11 +453,14 @@ namespace DocMaker
             //foreach(DocumentObject o in layers.Columns[layer_object.Index].)
             for (int i = 0; i < layers.Rows.Count; i++)
             {
-                DocumentObject o = (DocumentObject)layers[layer_object.Index, i].Value;
-                if (o == LivePreview.currentObject)
+                DocumentObject obj = (DocumentObject)layers[layer_object.Index, i].Value;
+                if (obj == LivePreview.currentObject)
                 {
                     layers.ClearSelection();
                     layers.Rows[i].Selected = true;
+
+                    Console.WriteLine("Selected");
+                    UpdateObjectPosition(obj);
 
                     break;
                 }
@@ -433,7 +479,7 @@ namespace DocMaker
             foreach (DocumentObject o in Objects.objectList)
             {
                 layers.Rows.Add(
-                    o.Canvas.Visible ? Properties.Resources.ico_visible : Properties.Resources.ico_nvisible, 
+                    o.Visible ? Properties.Resources.ico_visible : Properties.Resources.ico_nvisible, 
                     o.Name, 
                     o);
             }
@@ -447,7 +493,7 @@ namespace DocMaker
             if (obj == null)
                 return;
 
-            Paper.Controls.Add(obj.Canvas);
+            thePaper.Controls.Add(obj.Canvas);
             LivePreview.currentObject = obj;
 
             // Populate object table after adding object
@@ -464,39 +510,76 @@ namespace DocMaker
             AddObjectToPaper(Objects.NewLine());
         }
 
-        #endregion
-
-
-        ImageObject obj = new ImageObject(0);
-        private void Button1_Click(object sender, EventArgs e)
+        private void Btn_add_image_Click(object sender, EventArgs e)
         {
-            obj.AutoSize = true;
+            AddObjectToPaper(Objects.NewImage());
         }
 
+        #endregion
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+
+
+        }
   
         private void Button2_Click(object sender, EventArgs e)
         {
-            label1.Font = new Font("Janna LT", 16);
-        }
-
-        private void Y_pos_Scroll(object sender, EventArgs e)
-        {
-            LivePreview.currentObject.Key = y_pos.Value.ToString();
-            box_y.Text = y_pos.Value.ToString();
-            LivePreview.Update();
+            //label1.Font = new Font("Janna LT", 16);
+            //Snapper.Initialize();
+            //Snapper.DrawRectangle();
         }
 
         private void X_pos_Scroll(object sender, EventArgs e)
         {
-            LivePreview.currentObject.Name = x_pos.Value.ToString();
-            box_x.Text = x_pos.Value.ToString();
-            LivePreview.Update();
+            /*
+            LivePreview.currentObject.RealLocation.X = sl_xPosition.Value;
+            tb_xPosition.Text = sl_xPosition.Value.ToString();
+            LivePreview.Update();*/
+        }
+
+        private void Y_pos_Scroll(object sender, EventArgs e)
+        {/*
+            LivePreview.currentObject.RealLocation.Y = sl_yPosition.Value;
+            tb_yPosition.Text = sl_yPosition.Value.ToString();
+            LivePreview.Update();*/
         }
 
         private void Cb_showAnchor_CheckedChanged(object sender, EventArgs e)
         {
             Config.ShowAnchorPoints = cb_showAnchor.Checked;
             Objects.RenderAll();
+        }
+
+        private void MainForm_Enter(object sender, EventArgs e)
+        {
+            Console.WriteLine("Enter");
+        }
+
+        private void MainForm_Activated(object sender, EventArgs e)
+        {
+            // Repopulate object list whenever the main form get foccus back
+            // Used to apply objects custom name
+            //
+            PopulateObjectList();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Project.OpenProject();
+            UpdateFormTitle();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Project.SaveProject();
+            UpdateFormTitle();
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Project.SaveProject(true);
+            UpdateFormTitle();
         }
     }
 }

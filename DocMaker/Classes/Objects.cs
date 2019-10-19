@@ -12,15 +12,24 @@ namespace DocMaker
         public static List<DocumentObject> objectList = new List<DocumentObject>();
 
         private static int labelObjCounter = 0;
+        private static int ImageObjCounter = 0;
         private static int lineObjCounter = 0;
-
         public static void Initialize()
         {
+            // Remove document objects
+            foreach(DocumentObject docObj in objectList)
+            {
+                if(docObj != null)
+                {
+                    docObj.Dispose();
+                }
+            }
 
-            //Clear object list
+            // Clear object list
             objectList.Clear();
 
             labelObjCounter = 0;
+            ImageObjCounter = 0;
             lineObjCounter = 0;
         }
 
@@ -54,7 +63,20 @@ namespace DocMaker
             return null;
         }
 
+        public static DocumentObject NewImage()
+        {
+            ImageObject docObject = new ImageObject(ImageObjCounter + 1);
 
+            if (docObject.EditObject())
+            {
+                objectList.Add(docObject);
+
+                ImageObjCounter++;
+                return docObject;
+            }
+
+            return null;
+        }
 
         public static void AddLanguage(string languageCode)
         {
@@ -78,13 +100,24 @@ namespace DocMaker
             }
         }
 
-        public static void CheckFont(string fontID)
+        public static void DeletedFont(string fontID)
         {
             foreach (DocumentObject docObject in objectList)
             {
                 if (docObject is LabelObject)
                 {
                     ((LabelObject)docObject).CheckFont(fontID);
+                }
+            }
+        }
+
+        public static void DeletedResource(string resID)
+        {
+            foreach (DocumentObject docObject in objectList)
+            {
+                if (docObject is ImageObject)
+                {
+                    ((ImageObject)docObject).CheckResource(resID);
                 }
             }
         }
@@ -97,5 +130,7 @@ namespace DocMaker
                 obj.Canvas.Update();
             }
         }
+
+
     }
 }

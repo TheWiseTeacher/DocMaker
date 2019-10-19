@@ -14,19 +14,22 @@ namespace DocMaker
         public static Size paperSize;
 
         public static readonly int[] avaibleZooms = {800, 700, 600, 500, 400, 300, 200, 150, 100, 50, 25};
+        public static int currentAppliedZoom = 0;
 
         public static void ApplyZoom(int percent)
         {
             zoomWidthRatio = (double)percent / 100D;
             zoomHeightRatio = (double)percent / 100D;
+
+            currentAppliedZoom = percent;
         }
 
         public static Size GetPaperSize()
         {
-            Size s = new Size((int)((double)Project.paperSize.Width * zoomWidthRatio),
-                              (int)((double)Project.paperSize.Height * zoomHeightRatio));
+            Size s = new Size((int)((double)Paper.paperSize.Width * zoomWidthRatio),
+                              (int)((double)Paper.paperSize.Height * zoomHeightRatio));
 
-            if (Project.isLandscape)
+            if (Paper.isLandscape)
                 s = new Size(s.Height, s.Width);
 
             // Method called whenever paper size is changed

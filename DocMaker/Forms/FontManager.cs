@@ -23,14 +23,7 @@ namespace DocMaker
         { 
             //Clear old data
             fontsTable.Rows.Clear();
-
-            /*
-            for (int i = 0; i < Fonts.fontList.Count(); i++)
-            {
-                fontsTable.Rows.Add(i, Fonts.fontList[i].FontName);
-            }
-            */
-
+    
             foreach(var pair in Fonts.fontList)
             {
                 fontsTable.Rows.Add(pair.Key, pair.Value.CustomName);
@@ -140,7 +133,7 @@ namespace DocMaker
             {
                 string fontID = fontsTable[grid_id.Index, fontsTable.SelectedCells[0].RowIndex].Value.ToString();
 
-                if (fontID == Config.DefaultFont)
+                if (fontID == Config.DEFAULT_FONT)
                 {
                     Funcs.Information("You can't delete the default font, it is used when a font is missing or corrupted.");
                 }
@@ -149,7 +142,7 @@ namespace DocMaker
                     if (Funcs.Question("Are you sure you want to delete this font ?") == DialogResult.Yes)
                     {
                         Fonts.fontList.Remove(fontID);
-                        Objects.CheckFont(fontID);
+                        Objects.DeletedFont(fontID);
 
                         LoadFonts();
                         Objects.RenderAll();

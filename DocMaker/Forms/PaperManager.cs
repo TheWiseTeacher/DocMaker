@@ -22,7 +22,7 @@ namespace DocMaker
             comboPaperSize.DisplayMember = "PaperName";
 
             //Save last selected paperkind in case of canceling
-            lastSelectedPaper = Project.paperSize.Kind;
+            lastSelectedPaper = Paper.paperSize.Kind;
 
             LoadPaperFormats();
             UpdateInformation();
@@ -30,12 +30,16 @@ namespace DocMaker
 
         private void LoadPaperFormats()
         {
-            foreach(PaperSize ps in Project.paperSizes)
+            //PaperSize cps = new PaperSize("User defined", 500, 700);
+            
+            //comboPaperSize.Items.Add();
+
+            foreach (PaperSize ps in Paper.paperSizes)
             {
                 comboPaperSize.Items.Add(ps);
 
                 //Select the selected paper size
-                if (ps.Kind == Project.paperSize.Kind)
+                if (ps.Kind == Paper.paperSize.Kind)
                     comboPaperSize.SelectedItem = ps;
             }
 
@@ -56,20 +60,47 @@ namespace DocMaker
         private void UpdateInformation()
         {
             //Select the selected paper :3
-            Project.paperSize = (PaperSize)comboPaperSize.SelectedItem;
+            Paper.paperSize = (PaperSize)comboPaperSize.SelectedItem;
 
             //Show selected paper info
-            lab_name.Text = Project.paperSize.PaperName;
+            lab_name.Text = Paper.paperSize.PaperName;
 
-            if (!Project.isLandscape)
+            if(Paper.paperSize.Kind.ToString().Equals("Custom"))
+            {
+                radioPortrait.Enabled = false;
+                radioLandscape.Enabled = false;
+
+                tb_width.ReadOnly = false;
+                tb_height.ReadOnly = false;
+
+                Paper.usingCustomPaper = true;
+                Paper.isLandscape = false;
+
+                tb_width.Text = Paper.paperSize.Width.ToString();
+                tb_height.Text = Paper.paperSize.Height.ToString();
+
+                return;
+            }
+            else
+            {
+                Paper.usingCustomPaper = false;
+                radioPortrait.Enabled = true;
+                radioLandscape.Enabled = true;
+
+                tb_width.ReadOnly = true;
+                tb_height.ReadOnly = true;
+            }
+
+
+            if (!Paper.isLandscape)
             {
                 //Portrait mode (Default)
 
                 radioPortrait.Checked = true;
                 radioLandscape.Checked = false;
 
-                lab_width.Text = Project.paperSize.Width.ToString() + " pixels";
-                lab_height.Text = Project.paperSize.Height.ToString() + " pixels";
+                tb_width.Text = Paper.paperSize.Width.ToString();
+                tb_height.Text = Paper.paperSize.Height.ToString();
             }
             else
             {
@@ -79,8 +110,8 @@ namespace DocMaker
                 radioLandscape.Checked = true;
 
                 //Flip width and height sizes
-                lab_height.Text = Project.paperSize.Width.ToString() + " pixels";
-                lab_width.Text = Project.paperSize.Height.ToString() + " pixels";
+                tb_height.Text = Paper.paperSize.Width.ToString();
+                tb_width.Text = Paper.paperSize.Height.ToString();
             }
         }
 
@@ -89,7 +120,7 @@ namespace DocMaker
             if (!radioPortrait.Checked)
                 return;
 
-            Project.isLandscape = false;
+            Paper.isLandscape = false;
             UpdateInformation();
         }
 
@@ -98,7 +129,7 @@ namespace DocMaker
             if (!radioLandscape.Checked)
                 return;
 
-            Project.isLandscape = true;
+            Paper.isLandscape = true;
             UpdateInformation();
         }
 
@@ -123,14 +154,30 @@ namespace DocMaker
         {
             if(DialogResult != DialogResult.OK)
             {
-                if(Project.paperSize.Kind != lastSelectedPaper)
+                if(Paper.paperSize.Kind != lastSelectedPaper)
                 {
                     // Discard paper size change
-                    Project.paperSize = Project.paperSizes.First<PaperSize>(size => size.Kind == lastSelectedPaper);
+                    Paper.paperSize = Paper.paperSizes.First<PaperSize>(size => size.Kind == lastSelectedPaper);
                 }
             }
         }
 
+        private void tb_width_TextChanged(object sender, EventArgs e)
+        {
+            if (!Paper.usingCustomPaper)
+                return;
 
+            Paper.paperSizes[0].Width = tb_width.Value;
+            //UpdateInformation();
+        }
+
+        private void tb_height_TextChanged(object sender, EventArgs e)
+        {
+            if (!Paper.usingCustomPaper)
+                return;
+
+            Paper.paperSizes[0].Height = tb_height.Value;
+            //UpdateInformation();
+        }
     }
 }

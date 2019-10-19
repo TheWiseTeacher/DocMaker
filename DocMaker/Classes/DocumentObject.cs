@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace DocMaker
 {
-    public partial class DocumentObject : ICloneable
+    public partial class DocumentObject : ICloneable, IDisposable
     {
         public string Name { get; set; }        // The object name to use in the object list
         public string Key { get; set; }         // The Key name to edit object in real time in the user's project
@@ -45,12 +45,30 @@ namespace DocMaker
             Canvas.MouseEnter += Canvas_MouseEnter;
             Canvas.MouseLeave += Canvas_MouseLeave;
             Canvas.MouseWheel += Canvas_MouseWheel;
+
+            // Set visibility to true
+            ShowObject();
         }
 
         public bool ToggleVisibility()
         {
-            Canvas.Visible = !Canvas.Visible;
-            return Canvas.Visible;
+            //Toggle visiblity flag
+            this.Visible = !this.Visible;
+
+            Canvas.Visible = this.Visible;
+            return this.Visible;
+        }
+
+        public void ShowObject()
+        {
+            this.Visible = true;
+            Canvas.Visible = true;
+        }
+
+        public void HideObject()
+        {
+            this.Visible = false;
+            Canvas.Visible = false;
         }
 
 
@@ -96,6 +114,9 @@ namespace DocMaker
         }
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
+            //Point s = new Point(200, 200);
+            Point s, ss;
+
             if (isMouseDown)
             {
                 //X = X - mouseLastLocation.X + e.X;
@@ -105,12 +126,39 @@ namespace DocMaker
                 Point p = new Point(Canvas.Location.X - mouseLastLocation.X + e.X,
                                     Canvas.Location.Y - mouseLastLocation.Y + e.Y);
 
-                // Clamp Position to inside the document
-                p.X = Funcs.Clamp(p.X, 0, Zoom.paperSize.Width - Canvas.Width);
-                p.Y = Funcs.Clamp(p.Y, 0, Zoom.paperSize.Height - Canvas.Height);
+
+
+                // Ignore snapping and alignment if control is pressed
+                if(Control.ModifierKeys != Keys.Control && e.Button != MouseButtons.Right)
+                {
+                    // A Basic snapping Algorithm
+                    foreach (DocumentObject obj in Objects.objectList)
+                    {
+                        if (obj == this || !obj.Visible)
+                            continue;
+
+                        s = obj.Canvas.Location;
+
+                        if (p.X >= s.X - 10 && p.X < s.X + 10)
+                        {
+                            p.X = s.X;
+                        }
+
+                        if (p.Y >= s.Y - 10 && p.Y < s.Y + 10)
+                        {
+                            p.Y = s.Y;
+                        }
+                    }
+
+                    // Clamp Position to inside the document
+                    p.X = Funcs.Clamp(p.X, 0, Zoom.paperSize.Width - Canvas.Width);
+                    p.Y = Funcs.Clamp(p.Y, 0, Zoom.paperSize.Height - Canvas.Height);
+                }
 
                 Canvas.Location = p;
                 Canvas.Update();
+
+                LivePreview.mainForm.UpdateObjectPosition(this);
             }
         }
 
@@ -183,5 +231,12 @@ namespace DocMaker
             IsVertical = !IsVertical;
         }
 
+        public void Dispose()
+        {
+            // TODO : Add disposing methodes for each documentObject type
+
+            Canvas.Image.Dispose();
+            Canvas.Dispose();
+        }
     }
 }

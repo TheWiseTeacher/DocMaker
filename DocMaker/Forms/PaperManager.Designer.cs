@@ -41,10 +41,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lab_name = new System.Windows.Forms.Label();
-            this.lab_width = new System.Windows.Forms.Label();
-            this.lab_height = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.btn_confirm = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
+            this.tb_width = new DocMaker.CustomTextBox();
+            this.tb_height = new DocMaker.CustomTextBox();
             this.pan_paperMode.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -160,22 +162,26 @@
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.lab_name, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lab_width, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lab_height, 1, 2);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 19);
+            this.tableLayoutPanel1.Controls.Add(this.tb_width, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tb_height, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label6, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label7, 2, 2);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(23, 19);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(328, 99);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(294, 99);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label3
@@ -188,10 +194,10 @@
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.label3.Size = new System.Drawing.Size(164, 33);
+            this.label3.Size = new System.Drawing.Size(122, 33);
             this.label3.TabIndex = 1;
             this.label3.Text = "Paper name :";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label4
             // 
@@ -203,7 +209,7 @@
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
             this.label4.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.label4.Size = new System.Drawing.Size(164, 33);
+            this.label4.Size = new System.Drawing.Size(122, 33);
             this.label4.TabIndex = 1;
             this.label4.Text = "Width :";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -218,54 +224,54 @@
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
             this.label5.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.label5.Size = new System.Drawing.Size(164, 33);
+            this.label5.Size = new System.Drawing.Size(122, 33);
             this.label5.TabIndex = 1;
             this.label5.Text = "Height :";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lab_name
             // 
             this.lab_name.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.lab_name, 2);
             this.lab_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_name.Location = new System.Drawing.Point(164, 0);
+            this.lab_name.Location = new System.Drawing.Point(122, 0);
             this.lab_name.Margin = new System.Windows.Forms.Padding(0);
             this.lab_name.Name = "lab_name";
             this.lab_name.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.lab_name.Size = new System.Drawing.Size(164, 33);
+            this.lab_name.Size = new System.Drawing.Size(172, 33);
             this.lab_name.TabIndex = 1;
             this.lab_name.Text = "-";
-            this.lab_name.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.lab_name.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lab_width
+            // label6
             // 
-            this.lab_width.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lab_width.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_width.Location = new System.Drawing.Point(164, 33);
-            this.lab_width.Margin = new System.Windows.Forms.Padding(0);
-            this.lab_width.Name = "lab_width";
-            this.lab_width.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.lab_width.Size = new System.Drawing.Size(164, 33);
-            this.lab_width.TabIndex = 1;
-            this.lab_width.Text = "-";
-            this.lab_width.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(244, 33);
+            this.label6.Margin = new System.Windows.Forms.Padding(0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(50, 33);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Pixels";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lab_height
+            // label7
             // 
-            this.lab_height.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lab_height.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_height.Location = new System.Drawing.Point(164, 66);
-            this.lab_height.Margin = new System.Windows.Forms.Padding(0);
-            this.lab_height.Name = "lab_height";
-            this.lab_height.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.lab_height.Size = new System.Drawing.Size(164, 33);
-            this.lab_height.TabIndex = 1;
-            this.lab_height.Text = "-";
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(244, 66);
+            this.label7.Margin = new System.Windows.Forms.Padding(0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(50, 33);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Pixels";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btn_confirm
             // 
@@ -289,6 +295,42 @@
             this.btn_cancel.Text = "Cancel";
             this.btn_cancel.UseVisualStyleBackColor = true;
             // 
+            // tb_width
+            // 
+            this.tb_width.AllowSpace = true;
+            this.tb_width.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_width.Location = new System.Drawing.Point(128, 40);
+            this.tb_width.Margin = new System.Windows.Forms.Padding(6, 7, 6, 6);
+            this.tb_width.MaximumValue = 10000;
+            this.tb_width.MinimumValue = 0;
+            this.tb_width.Name = "tb_width";
+            this.tb_width.Size = new System.Drawing.Size(110, 20);
+            this.tb_width.TabIndex = 2;
+            this.tb_width.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.tb_width.Value = 0;
+            this.tb_width.Wheel_StepValue = 5;
+            this.tb_width.TextChanged += new System.EventHandler(this.tb_width_TextChanged);
+            // 
+            // tb_height
+            // 
+            this.tb_height.AllowSpace = true;
+            this.tb_height.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_height.Location = new System.Drawing.Point(128, 73);
+            this.tb_height.Margin = new System.Windows.Forms.Padding(6, 7, 6, 6);
+            this.tb_height.MaximumValue = 10000;
+            this.tb_height.MinimumValue = 0;
+            this.tb_height.Name = "tb_height";
+            this.tb_height.Size = new System.Drawing.Size(110, 20);
+            this.tb_height.TabIndex = 2;
+            this.tb_height.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.tb_height.Value = 0;
+            this.tb_height.Wheel_StepValue = 5;
+            this.tb_height.TextChanged += new System.EventHandler(this.tb_height_TextChanged);
+            // 
             // PaperManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -311,6 +353,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -330,9 +373,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lab_name;
-        private System.Windows.Forms.Label lab_width;
-        private System.Windows.Forms.Label lab_height;
         private System.Windows.Forms.Button btn_confirm;
         private System.Windows.Forms.Button btn_cancel;
+        private CustomTextBox tb_width;
+        private CustomTextBox tb_height;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }

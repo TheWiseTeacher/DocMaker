@@ -27,7 +27,7 @@ namespace DocMaker
             IsTurned180         = 0x20,
             FlipHorizontally    = 0x20,
             FlipVertically      = 0x40,
-            AutoSize            = 0x80,
+            LinkedSize          = 0x80,
 
             //
             //  The fourth byte :
@@ -103,10 +103,10 @@ namespace DocMaker
             set => SetFlag(Flags.FlipVertically, value);
         }
 
-        public bool AutoSize
+        public bool LinkedSize
         {
-            get => GetFlag(Flags.AutoSize);
-            set => SetFlag(Flags.AutoSize, value);
+            get => GetFlag(Flags.LinkedSize);
+            set => SetFlag(Flags.LinkedSize, value);
         }
 
         public void SetAlignment(Flags alignment) => SetAlignment((uint)alignment);
@@ -126,21 +126,14 @@ namespace DocMaker
             get => flags & 0xEE000000;
             set
             {
-                Console.WriteLine();
-                value.PrintBinary();
-                flags.PrintBinary();
-
                 if (Has(value, Flags.HorizontalABits)) // Clear old horizontal alignment if a new value is requested
                     SetFlag(Flags.HorizontalABits, false);
-                flags.PrintBinary();
 
                 if (Has(value, Flags.VerticalABits)) // Clear old vertical alignment if a new value is requested
                     SetFlag(Flags.VerticalABits, false);
-                flags.PrintBinary();
 
                 // Set the requested alignement flags to 1
                 SetFlag(value, true);
-                flags.PrintBinary();
             }
 
         }

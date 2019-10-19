@@ -25,6 +25,15 @@ namespace DocMaker
             }
         }
 
+        public static int IntValue(this TextBox tb)
+        {
+            return ToInt(tb.Text);
+        }
+
+        public static int IntValue(this TextBox tb, int min, int max)
+        {
+            return Clamp(ToInt(tb.Text), min, max);
+        }
 
 
         public static int Clamp(int value, int min, int max)
@@ -37,9 +46,39 @@ namespace DocMaker
             return Clamp(ToInt(value), min, max);
         }
 
+        /*
+        public static bool LimitTextBox(this TextBox tb, int targetReference, int min, int max)
+        {
+            int v = ToInt(tb.Text);
+
+            if(v > max)
+            {          
+                Console.WriteLine("Invalidate");
+                tb.Invalidate();
+
+                tb.Text = max.ToString();
+                return true;
+            }else if(v < min)
+            {
+                Console.WriteLine("Invalidate");
+                tb.Invalidate();
+                tb.Text = min.ToString();
+                return true;
+            }
+
+            
+            return false;
+        }
+        */
+
         public static DialogResult Question(string message)
         {
             return MessageBox.Show(message, "Please confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        }
+
+        public static DialogResult Question_YNC(string message)
+        {
+            return MessageBox.Show(message, "Please confirm", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
         }
 
         public static DialogResult Information(string message)

@@ -11,18 +11,20 @@ namespace DocMaker
 {
     static class Fonts
     {
+        /*
         public class FontEntry
         {
             public bool IsExternal { get; set; }
             public string FontName { get; set; }
             public string FontData { get; set; }
         }
-
+        */
         //public static List<FontEntry> fontList = new List<FontEntry>();
 
         //private static List<byte[]> ExternalFontRaw = new List<byte[]>();
         //private static List<PrivateFontCollection> ExternalFont = new List<PrivateFontCollection>();
 
+        const string LOAD_FROM_BYTES_FLAG = "__LOADING_FROM_PROJECT_FILE__";
 
         public class FontData
         {
@@ -31,7 +33,7 @@ namespace DocMaker
             public string CustomName { get; set; }
 
             public byte[] fontRawBytes { get; set; }
-
+            
             public PrivateFontCollection pfc { get; set; }
 
             public FontData()
@@ -54,17 +56,12 @@ namespace DocMaker
 
         public static Dictionary<string, FontData> fontList = new Dictionary<string, FontData>();
 
+        
 
-        public static void Initialize()
+
+
+        public static void Initialize(bool skipDefault = false)
         {
-            //Clear all lists
-            //fontList.Clear();    
-            //ExternalFontRaw.Clear();
-
-            //Free some memory
-            //foreach (var pfc in ExternalFont) pfc.Dispose();
-            //ExternalFont.Clear();
-
             // Free some memory
             foreach (var p in fontList.Values)
             {
@@ -77,11 +74,11 @@ namespace DocMaker
 
             fontList.Clear();
 
-            // Add a default font
-            AddFont(false, $"{Config.DefaultFont} (default)", Config.DefaultFont);
+            if(!skipDefault) // Add the default font here if not asked to skip this
+                AddFont(false, $"{Config.DEFAULT_FONT} {Config.DEFAULT_FONT_NAME}", Config.DEFAULT_FONT);
         }
 
-        public static void AddFont(bool isExternal, string customName, string fontNameOrFile)
+        public static void AddFont(bool isExternal, string customName, string fontNameOrFile, byte[] byteArray = null)
         {
             FontData data = new FontData();     // Here lies the soult of the font data :3
 
@@ -93,7 +90,10 @@ namespace DocMaker
             if (isExternal)
             {
                 // Load font and add its raw data to ExternalFontsRaw list
-                data.fontRawBytes = File.ReadAllBytes(fontNameOrFile);
+                if (!fontNameOrFile.Equals(LOAD_FROM_BYTES_FLAG))
+                    data.fontRawBytes = File.ReadAllBytes(fontNameOrFile);
+                else
+                    data.fontRawBytes = byteArray;
 
                 // ASSIGN MEMORY AND COPY  BYTE[] ON THAT MEMORY ADDRESS
                 IntPtr ptrData = Marshal.AllocCoTaskMem(data.fontRawBytes.Length);
@@ -129,23 +129,46 @@ namespace DocMaker
             }
 
             return new Font("arial", emSize);
-
-
-            /*
-            if (id < 0 || id >= fontList.Count)
-                return new Font("arial", emSize);
-
-            if(fontList[id].IsExternal)
-            {
-                int externalFontID = Funcs.ToInt(fontList[id].FontData);
-                return new Font(ExternalFont[externalFontID].Families[0], emSize, fontStyle, GraphicsUnit.Pixel);
-            }
-            else
-            {
-                return new Font(fontList[id].FontData, emSize, fontStyle, GraphicsUnit.Pixel);
-            }
-            */
         }
 
+        public static void SaveFonts(BinaryFileHandler fileHandler)
+        {
+            fileHandler.Write(fontList.Count);
+            foreach (var p in fontList)
+            {
+                fileHandler.Write(p.Value.IsExternal);
+                fileHandler.Write(p.Value.CustomName);
+
+                if(!p.Value.IsExternal)
+                    fileHandler.Write(p.Key);
+                else
+                    fileHandler.Write(p.Value.fontRawBytes);
+            }
+        }
+
+        public static void LoadFonts(BinaryFileHandler fileHandler)
+        {        
+            Initialize(true);   // Initialise and skip adding the default font because it will be loaded from file
+
+            int fontNum = fileHandler.ReadInteger();    // The number of fonts saved in the project file
+
+            for (int i = 0; i < fontNum; i++)
+            {
+                if(fileHandler.ReadBoolean())
+                {
+                    AddFont(true,
+                            fileHandler.ReadString(),
+                            LOAD_FROM_BYTES_FLAG,
+                            fileHandler.ReadBytes());
+                }
+                else
+                {
+                    AddFont(false,
+                            fileHandler.ReadString(),
+                            fileHandler.ReadString());
+                }
+               
+            }
+        }
     }
 }
