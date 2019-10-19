@@ -1,6 +1,6 @@
 # DocMaker
 
-This program allows you to create a multilingual document layout easily using all known paper formats and dimentions, it also supports custom paper dimentions.
+This program allows you to create a multilingual document layout easily using all known paper formats and dimentions, it also supports custom paper dimentions. The document you made are then exported to be loaded for viewing or printing in your own projects using a (coming soon) loader library.
 
 Current document objects you can add to your documents :
 
