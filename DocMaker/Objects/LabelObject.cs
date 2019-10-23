@@ -23,7 +23,6 @@ namespace DocMaker
 
         public Dictionary<string, string> ContentTable;
 
-        public AnchorStyles Anchors { get; set; }
         [Flags]
         public enum ItemFlags
         {

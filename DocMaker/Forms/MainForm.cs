@@ -400,10 +400,11 @@ namespace DocMaker
         #region StatusBar update methods
         private void UpdateStatusBar()
         {
-            UpdateLocationInformation();
+            //UpdateLocationInformation();
 
         }
 
+        /*
         public void UpdateLocationInformation()
         {
             if (LivePreview.currentObject == null)
@@ -415,17 +416,22 @@ namespace DocMaker
             lab_x_pos.Update();
             lab_y_pos.Update();
         }
+        */
 
         #endregion
 
 
         public void UpdateObjectPosition(DocumentObject obj)
         {
-            Point r = Zoom.CalculateReal(LivePreview.currentObject.Canvas.Location);
+            Point r = Zoom.CalculateReal(LivePreview.currentObject.RealLocation);
+
+            /*
             Point p = new Point(thePaper.Width - LivePreview.currentObject.Canvas.Width,
                                 thePaper.Height - LivePreview.currentObject.Canvas.Height);
 
             p = Zoom.CalculateReal(p);
+            */
+
             /*
             sl_xPosition.Minimum = 0;
             sl_xPosition.Maximum = p.X;
@@ -438,9 +444,9 @@ namespace DocMaker
             */
 
             tb_xPosition.Text = r.X.ToString();
-            tb_yPosition.Text = r.X.ToString();
-
-
+            tb_yPosition.Text = r.Y.ToString();
+            tb_xPosition.Update();
+            tb_yPosition.Update();
         }
 
         #region Adding objects and layers table populating methods

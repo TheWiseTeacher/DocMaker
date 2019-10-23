@@ -121,12 +121,60 @@ namespace DocMaker
             {
                 //X = X - mouseLastLocation.X + e.X;
                 //Y = Y - mouseLastLocation.Y + e.Y;
+                /*
+                // Calcualte the Canvas's new location
+                Point newLocation = new Point(RealLocation.X - mouseLastLocation.X + e.X,
+                                              RealLocation.Y - mouseLastLocation.Y + e.Y);
 
+                Size halfCanvas = new Size((int)((float)Canvas.Width / 2.0f),
+                                           (int)((float)Canvas.Height / 2.0f));
+
+                Point canvasLocation = Point.Empty;
+
+                if(IsLeft())
+                {
+                    newLocation.X = Funcs.Clamp(newLocation.X, 0, Zoom.paperSize.Width - Canvas.Width);
+                    canvasLocation.X = newLocation.X;
+                }
+                else if(IsCenter())
+                {
+                    newLocation.X = Funcs.Clamp(newLocation.X, halfCanvas.Width, Zoom.paperSize.Width - halfCanvas.Width);
+                    canvasLocation.X = newLocation.X - halfCanvas.Width;
+                }
+                else if(IsRight())
+                {
+                    newLocation.X = Funcs.Clamp(newLocation.X, Canvas.Width, Zoom.paperSize.Width);
+                    canvasLocation.X = newLocation.X - Canvas.Width;
+                }
+
+                if (IsUp())
+                {
+                    newLocation.Y = Funcs.Clamp(newLocation.Y, 0, Zoom.paperSize.Height - Canvas.Height);
+                    canvasLocation.Y = newLocation.Y;
+                }
+                else if (IsMiddle())
+                {
+                    newLocation.Y = Funcs.Clamp(newLocation.Y, halfCanvas.Height, Zoom.paperSize.Height - halfCanvas.Height);
+                    canvasLocation.Y = newLocation.Y - halfCanvas.Height;
+                }
+                else if (IsDown())
+                {
+                    newLocation.Y = Funcs.Clamp(newLocation.Y, Canvas.Height, Zoom.paperSize.Height);
+                    canvasLocation.Y = newLocation.Y - Canvas.Height;
+                }
+
+
+                RealLocation = newLocation;
+
+                Canvas.Location = Zoom.Calculate(canvasLocation);
+                Canvas.Update();
+
+                */
+
+             
                 // Calcualte the Canvas's new location
                 Point p = new Point(Canvas.Location.X - mouseLastLocation.X + e.X,
                                     Canvas.Location.Y - mouseLastLocation.Y + e.Y);
-
-
 
                 // Ignore snapping and alignment if control is pressed
                 if(Control.ModifierKeys != Keys.Control && e.Button != MouseButtons.Right)
@@ -154,10 +202,25 @@ namespace DocMaker
                     p.X = Funcs.Clamp(p.X, 0, Zoom.paperSize.Width - Canvas.Width);
                     p.Y = Funcs.Clamp(p.Y, 0, Zoom.paperSize.Height - Canvas.Height);
                 }
+                
 
                 Canvas.Location = p;
                 Canvas.Update();
 
+                //
+                // Recalculate the real position
+                //
+                if (IsCenter()) p.X += (int)((float)Canvas.Width * 0.5);
+                if (IsRight()) p.X += (int)((float)Canvas.Width);
+                //
+                if (IsMiddle()) p.Y += (int)((float)Canvas.Height * 0.5);
+                if (IsDown()) p.Y += (int)((float)Canvas.Height);
+                //
+                // Calculate the Real position without zoom
+                RealLocation = Zoom.CalculateReal(p);
+                //
+
+                // Update position labels on the main form
                 LivePreview.mainForm.UpdateObjectPosition(this);
             }
         }
@@ -167,6 +230,8 @@ namespace DocMaker
             if (isMouseDown)
             {
                 // Mouse Released
+
+                /*
                 Point p = Canvas.Location;
 
                 if (IsCenter()) p.X += (int)((float)Canvas.Width * 0.5);
@@ -177,6 +242,7 @@ namespace DocMaker
 
                 // Calculate the Real position without zoom
                 RealLocation = Zoom.CalculateReal(p);
+                */
             }
 
             isMouseDown = false;

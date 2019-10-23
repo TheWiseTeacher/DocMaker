@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainFormMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,9 +56,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.StatusIcon = new System.Windows.Forms.PictureBox();
             this.lab_paperSize = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lab_x_pos = new System.Windows.Forms.Label();
-            this.lab_y_pos = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_add_line = new System.Windows.Forms.Button();
             this.btn_add_label = new System.Windows.Forms.Button();
@@ -280,9 +277,6 @@
             this.StatusBar.Controls.Add(this.pan_zoom, 8, 0);
             this.StatusBar.Controls.Add(this.StatusIcon, 0, 0);
             this.StatusBar.Controls.Add(this.lab_paperSize, 1, 0);
-            this.StatusBar.Controls.Add(this.label2, 3, 0);
-            this.StatusBar.Controls.Add(this.lab_x_pos, 4, 0);
-            this.StatusBar.Controls.Add(this.lab_y_pos, 5, 0);
             this.StatusBar.Location = new System.Drawing.Point(0, 726);
             this.StatusBar.Margin = new System.Windows.Forms.Padding(0);
             this.StatusBar.Name = "StatusBar";
@@ -369,57 +363,6 @@
             this.lab_paperSize.TabIndex = 2;
             this.lab_paperSize.Text = "Paper size :";
             this.lab_paperSize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(304, 2);
-            this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.label2.Size = new System.Drawing.Size(60, 28);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Location :";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lab_x_pos
-            // 
-            this.lab_x_pos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lab_x_pos.AutoSize = true;
-            this.lab_x_pos.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_x_pos.ForeColor = System.Drawing.Color.Black;
-            this.lab_x_pos.Location = new System.Drawing.Point(366, 2);
-            this.lab_x_pos.Margin = new System.Windows.Forms.Padding(0);
-            this.lab_x_pos.Name = "lab_x_pos";
-            this.lab_x_pos.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.lab_x_pos.Size = new System.Drawing.Size(50, 28);
-            this.lab_x_pos.TabIndex = 2;
-            this.lab_x_pos.Text = "x_pos";
-            this.lab_x_pos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lab_y_pos
-            // 
-            this.lab_y_pos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lab_y_pos.AutoSize = true;
-            this.lab_y_pos.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_y_pos.ForeColor = System.Drawing.Color.Black;
-            this.lab_y_pos.Location = new System.Drawing.Point(418, 2);
-            this.lab_y_pos.Margin = new System.Windows.Forms.Padding(0);
-            this.lab_y_pos.Name = "lab_y_pos";
-            this.lab_y_pos.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.lab_y_pos.Size = new System.Drawing.Size(50, 28);
-            this.lab_y_pos.TabIndex = 2;
-            this.lab_y_pos.Text = "y_pos";
-            this.lab_y_pos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel1
             // 
@@ -813,15 +756,15 @@
             this.layers.Margin = new System.Windows.Forms.Padding(0);
             this.layers.MultiSelect = false;
             this.layers.Name = "layers";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(4, 0, 0, 4);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.layers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(4, 0, 0, 4);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.layers.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.layers.RowHeadersVisible = false;
             this.layers.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.layers.RowTemplate.Height = 30;
@@ -838,12 +781,12 @@
             // 
             // layer_visible
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle1.NullValue")));
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(4);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.layer_visible.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle4.NullValue")));
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(4);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.layer_visible.DefaultCellStyle = dataGridViewCellStyle4;
             this.layer_visible.HeaderText = "visible";
             this.layer_visible.Name = "layer_visible";
             this.layer_visible.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -852,13 +795,13 @@
             // layer_name
             // 
             this.layer_name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.layer_name.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            this.layer_name.DefaultCellStyle = dataGridViewCellStyle5;
             this.layer_name.HeaderText = "name";
             this.layer_name.Name = "layer_name";
             this.layer_name.ReadOnly = true;
@@ -1267,9 +1210,6 @@
         private System.Windows.Forms.TableLayoutPanel pan_MainSide;
         private System.Windows.Forms.TableLayoutPanel pan_zoom;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lab_x_pos;
-        private System.Windows.Forms.Label lab_y_pos;
         private System.Windows.Forms.DataGridViewImageColumn layer_visible;
         private System.Windows.Forms.DataGridViewTextBoxColumn layer_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn layer_object;
