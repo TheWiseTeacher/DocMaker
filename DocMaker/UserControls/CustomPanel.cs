@@ -9,6 +9,7 @@ namespace DocMaker
     public class CustomPanel : Panel
     {
         public int WheelDelta = 0;
+        public bool IgnoreWheel { set; get; } = false;
 
         protected override System.Drawing.Point ScrollToControl(System.Windows.Forms.Control activeControl)
         {
@@ -32,7 +33,8 @@ namespace DocMaker
 
             if (Control.ModifierKeys == Keys.Control ||
                 Control.ModifierKeys == Keys.Shift ||
-                Control.ModifierKeys == Keys.Alt)
+                Control.ModifierKeys == Keys.Alt ||
+                IgnoreWheel)
             {
                 e = new MouseEventArgs(e.Button, e.Clicks, e.X, e.Y, 0);
             }

@@ -207,22 +207,29 @@ namespace DocMaker
                 Canvas.Location = p;
                 Canvas.Update();
 
-                //
-                // Recalculate the real position
-                //
-                if (IsCenter()) p.X += (int)((float)Canvas.Width * 0.5);
-                if (IsRight()) p.X += (int)((float)Canvas.Width);
-                //
-                if (IsMiddle()) p.Y += (int)((float)Canvas.Height * 0.5);
-                if (IsDown()) p.Y += (int)((float)Canvas.Height);
-                //
-                // Calculate the Real position without zoom
-                RealLocation = Zoom.CalculateReal(p);
-                //
+                RecalculateRealPosition();
 
                 // Update position labels on the main form
                 LivePreview.mainForm.UpdateObjectPosition(this);
             }
+        }
+
+        private void RecalculateRealPosition()
+        {
+            Point p = Canvas.Location;
+
+            //
+            // Recalculate the real position
+            //
+            if (IsCenter()) p.X += (int)((float)Canvas.Width * 0.5);
+            if (IsRight()) p.X += (int)((float)Canvas.Width);
+            //
+            if (IsMiddle()) p.Y += (int)((float)Canvas.Height * 0.5);
+            if (IsDown()) p.Y += (int)((float)Canvas.Height);
+            //
+            // Calculate the Real position without zoom
+            RealLocation = Zoom.CalculateReal(p);
+            //
         }
 
         private void Canvas_MouseUp(object sender, MouseEventArgs e)
@@ -276,6 +283,7 @@ namespace DocMaker
 
             // Finally set theposition clamped and with zoom applied
             Canvas.Location = p;
+            RecalculateRealPosition();
         }
 
         public virtual bool EditObject()

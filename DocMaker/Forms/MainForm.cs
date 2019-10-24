@@ -26,10 +26,12 @@ namespace DocMaker
 
             Project.Initialize();
 
-            cb_showAnchor.Checked = Config.ShowAnchorPoints;
+            cb_showAnchors.Checked = Config.ShowAnchorPoints;
 
             ActiveControl = lab_paperSize;
             PaperWrap.MouseWheel += PaperWrap_MouseWheel;
+            pan_VSplit.SplitterDistance = pan_VSplit.Width - pan_VSplit.Panel2MinSize;
+
         }
 
         #endregion
@@ -39,7 +41,6 @@ namespace DocMaker
         private void MainForm_Load(object sender, EventArgs e)
         {
             newToolStripMenuItem.PerformClick();
-
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -423,7 +424,7 @@ namespace DocMaker
 
         public void UpdateObjectPosition(DocumentObject obj)
         {
-            Point r = Zoom.CalculateReal(LivePreview.currentObject.RealLocation);
+            Point r = LivePreview.currentObject.RealLocation;
 
             /*
             Point p = new Point(thePaper.Width - LivePreview.currentObject.Canvas.Width,
@@ -553,7 +554,7 @@ namespace DocMaker
 
         private void Cb_showAnchor_CheckedChanged(object sender, EventArgs e)
         {
-            Config.ShowAnchorPoints = cb_showAnchor.Checked;
+            Config.ShowAnchorPoints = cb_showAnchors.Checked;
             Objects.RenderAll();
         }
 
@@ -586,6 +587,31 @@ namespace DocMaker
         {
             Project.SaveProject(true);
             UpdateFormTitle();
+        }
+
+        private void pan_VSplit_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            CenterPaper();
+        }
+
+        private void pan_VSplit_MouseUp(object sender, MouseEventArgs e)
+        {
+            ActiveControl = thePaper;
+        }
+
+        private void SuspendPaperScrollEvent(object sender, EventArgs e)
+        {
+            PaperWrap.IgnoreWheel = true;
+        } 
+        
+        private void ResumePaperScrollEvent(object sender, EventArgs e)
+        {
+            PaperWrap.IgnoreWheel = false;
+        }
+
+        private void lab_showAnchors_Click(object sender, EventArgs e)
+        {
+            cb_showAnchors.Checked = !cb_showAnchors.Checked;
         }
     }
 }

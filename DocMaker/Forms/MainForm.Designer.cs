@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainFormMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,7 +50,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.addNewLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addNewImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.StatusBar = new System.Windows.Forms.TableLayoutPanel();
+            this.pan_StatusBar = new System.Windows.Forms.TableLayoutPanel();
             this.pan_zoom = new System.Windows.Forms.TableLayoutPanel();
             this.comboZoom = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -61,7 +61,6 @@
             this.btn_add_label = new System.Windows.Forms.Button();
             this.btn_add_image = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.pan_AlignmentBtns = new System.Windows.Forms.TableLayoutPanel();
             this.btn_LM = new System.Windows.Forms.Button();
             this.btn_LU = new System.Windows.Forms.Button();
@@ -73,51 +72,62 @@
             this.btn_CD = new System.Windows.Forms.Button();
             this.btn_RD = new System.Windows.Forms.Button();
             this.btn_RU = new System.Windows.Forms.Button();
-            this.cb_showAnchor = new System.Windows.Forms.CheckBox();
+            this.cb_showAnchors = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tb_xPosition = new DocMaker.CustomTextBox();
             this.layers = new System.Windows.Forms.DataGridView();
             this.layer_visible = new System.Windows.Forms.DataGridViewImageColumn();
             this.layer_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.layer_object = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.span_SidePanel = new System.Windows.Forms.SplitContainer();
+            this.pan_HSplit = new System.Windows.Forms.SplitContainer();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.y_center = new System.Windows.Forms.CheckBox();
-            this.tb_yPosition = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.sl_yPosition = new System.Windows.Forms.TrackBar();
             this.panel6 = new System.Windows.Forms.Panel();
             this.x_center = new System.Windows.Forms.CheckBox();
-            this.tb_xPosition = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.sl_xPosition = new System.Windows.Forms.TrackBar();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.pan_MainSide = new System.Windows.Forms.TableLayoutPanel();
+            this.pan_MainPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.pan_VSplit = new System.Windows.Forms.SplitContainer();
             this.PaperWrap = new DocMaker.CustomPanel();
             this.thePaper = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.tb_yPosition = new DocMaker.CustomTextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lab_showAnchors = new System.Windows.Forms.Label();
             this.MainFormMenuStrip.SuspendLayout();
-            this.StatusBar.SuspendLayout();
+            this.pan_StatusBar.SuspendLayout();
             this.pan_zoom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StatusIcon)).BeginInit();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.pan_AlignmentBtns.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.span_SidePanel)).BeginInit();
-            this.span_SidePanel.Panel1.SuspendLayout();
-            this.span_SidePanel.Panel2.SuspendLayout();
-            this.span_SidePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pan_HSplit)).BeginInit();
+            this.pan_HSplit.Panel1.SuspendLayout();
+            this.pan_HSplit.Panel2.SuspendLayout();
+            this.pan_HSplit.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sl_yPosition)).BeginInit();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sl_xPosition)).BeginInit();
-            this.tableLayoutPanel3.SuspendLayout();
-            this.pan_MainSide.SuspendLayout();
+            this.pan_MainPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pan_VSplit)).BeginInit();
+            this.pan_VSplit.Panel1.SuspendLayout();
+            this.pan_VSplit.Panel2.SuspendLayout();
+            this.pan_VSplit.SuspendLayout();
             this.PaperWrap.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -257,33 +267,33 @@
             this.addNewImageToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.addNewImageToolStripMenuItem.Text = "Add new image";
             // 
-            // StatusBar
+            // pan_StatusBar
             // 
-            this.StatusBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.pan_StatusBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.StatusBar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.StatusBar.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Outset;
-            this.StatusBar.ColumnCount = 9;
-            this.pan_MainSide.SetColumnSpan(this.StatusBar, 3);
-            this.StatusBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.StatusBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.StatusBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.StatusBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.StatusBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.StatusBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.StatusBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.StatusBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
-            this.StatusBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.StatusBar.Controls.Add(this.pan_zoom, 8, 0);
-            this.StatusBar.Controls.Add(this.StatusIcon, 0, 0);
-            this.StatusBar.Controls.Add(this.lab_paperSize, 1, 0);
-            this.StatusBar.Location = new System.Drawing.Point(0, 726);
-            this.StatusBar.Margin = new System.Windows.Forms.Padding(0);
-            this.StatusBar.Name = "StatusBar";
-            this.StatusBar.RowCount = 1;
-            this.StatusBar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.StatusBar.Size = new System.Drawing.Size(884, 32);
-            this.StatusBar.TabIndex = 2;
+            this.pan_StatusBar.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pan_StatusBar.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Outset;
+            this.pan_StatusBar.ColumnCount = 9;
+            this.pan_MainPanel.SetColumnSpan(this.pan_StatusBar, 2);
+            this.pan_StatusBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.pan_StatusBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.pan_StatusBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.pan_StatusBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.pan_StatusBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.pan_StatusBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.pan_StatusBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pan_StatusBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+            this.pan_StatusBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.pan_StatusBar.Controls.Add(this.pan_zoom, 8, 0);
+            this.pan_StatusBar.Controls.Add(this.StatusIcon, 0, 0);
+            this.pan_StatusBar.Controls.Add(this.lab_paperSize, 1, 0);
+            this.pan_StatusBar.Location = new System.Drawing.Point(0, 726);
+            this.pan_StatusBar.Margin = new System.Windows.Forms.Padding(0);
+            this.pan_StatusBar.Name = "pan_StatusBar";
+            this.pan_StatusBar.RowCount = 1;
+            this.pan_StatusBar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pan_StatusBar.Size = new System.Drawing.Size(884, 32);
+            this.pan_StatusBar.TabIndex = 2;
             // 
             // pan_zoom
             // 
@@ -436,67 +446,63 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.pan_AlignmentBtns, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label13, 0, 6);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowCount = 7;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(260, 109);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(259, 392);
             this.tableLayoutPanel1.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label1.Size = new System.Drawing.Size(260, 25);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Object alignment";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pan_AlignmentBtns
             // 
             this.pan_AlignmentBtns.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pan_AlignmentBtns.ColumnCount = 4;
+            this.pan_AlignmentBtns.ColumnCount = 6;
+            this.pan_AlignmentBtns.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.pan_AlignmentBtns.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
             this.pan_AlignmentBtns.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.pan_AlignmentBtns.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.pan_AlignmentBtns.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.pan_AlignmentBtns.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.pan_AlignmentBtns.Controls.Add(this.btn_LM, 1, 1);
-            this.pan_AlignmentBtns.Controls.Add(this.btn_LU, 1, 0);
-            this.pan_AlignmentBtns.Controls.Add(this.btn_CM, 2, 1);
-            this.pan_AlignmentBtns.Controls.Add(this.btn_RM, 3, 1);
-            this.pan_AlignmentBtns.Controls.Add(this.label13, 0, 0);
-            this.pan_AlignmentBtns.Controls.Add(this.btn_CU, 2, 0);
-            this.pan_AlignmentBtns.Controls.Add(this.btn_LD, 1, 2);
-            this.pan_AlignmentBtns.Controls.Add(this.btn_CD, 2, 2);
-            this.pan_AlignmentBtns.Controls.Add(this.btn_RD, 3, 2);
-            this.pan_AlignmentBtns.Controls.Add(this.btn_RU, 3, 0);
-            this.pan_AlignmentBtns.Controls.Add(this.cb_showAnchor, 0, 2);
-            this.pan_AlignmentBtns.Location = new System.Drawing.Point(5, 30);
+            this.pan_AlignmentBtns.Controls.Add(this.btn_LM, 3, 1);
+            this.pan_AlignmentBtns.Controls.Add(this.lab_showAnchors, 1, 2);
+            this.pan_AlignmentBtns.Controls.Add(this.label8, 0, 1);
+            this.pan_AlignmentBtns.Controls.Add(this.label3, 0, 0);
+            this.pan_AlignmentBtns.Controls.Add(this.btn_LU, 3, 0);
+            this.pan_AlignmentBtns.Controls.Add(this.btn_CM, 4, 1);
+            this.pan_AlignmentBtns.Controls.Add(this.btn_RM, 5, 1);
+            this.pan_AlignmentBtns.Controls.Add(this.btn_CU, 4, 0);
+            this.pan_AlignmentBtns.Controls.Add(this.btn_LD, 3, 2);
+            this.pan_AlignmentBtns.Controls.Add(this.btn_CD, 4, 2);
+            this.pan_AlignmentBtns.Controls.Add(this.btn_RD, 5, 2);
+            this.pan_AlignmentBtns.Controls.Add(this.btn_RU, 5, 0);
+            this.pan_AlignmentBtns.Controls.Add(this.tb_xPosition, 1, 0);
+            this.pan_AlignmentBtns.Controls.Add(this.tb_yPosition, 1, 1);
+            this.pan_AlignmentBtns.Controls.Add(this.cb_showAnchors, 0, 2);
+            this.pan_AlignmentBtns.Location = new System.Drawing.Point(5, 27);
             this.pan_AlignmentBtns.Margin = new System.Windows.Forms.Padding(5);
             this.pan_AlignmentBtns.Name = "pan_AlignmentBtns";
             this.pan_AlignmentBtns.RowCount = 3;
             this.pan_AlignmentBtns.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.pan_AlignmentBtns.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.pan_AlignmentBtns.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.pan_AlignmentBtns.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pan_AlignmentBtns.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pan_AlignmentBtns.Size = new System.Drawing.Size(250, 74);
+            this.pan_AlignmentBtns.Size = new System.Drawing.Size(249, 74);
             this.pan_AlignmentBtns.TabIndex = 3;
             // 
             // btn_LM
@@ -510,7 +516,7 @@
             this.btn_LM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_LM.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_LM.Image = global::DocMaker.Properties.Resources.ico_alignment_LM;
-            this.btn_LM.Location = new System.Drawing.Point(176, 25);
+            this.btn_LM.Location = new System.Drawing.Point(175, 25);
             this.btn_LM.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.btn_LM.Name = "btn_LM";
             this.btn_LM.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -532,7 +538,7 @@
             this.btn_LU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_LU.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_LU.Image = global::DocMaker.Properties.Resources.ico_alignment_LU;
-            this.btn_LU.Location = new System.Drawing.Point(176, 0);
+            this.btn_LU.Location = new System.Drawing.Point(175, 0);
             this.btn_LU.Margin = new System.Windows.Forms.Padding(0);
             this.btn_LU.Name = "btn_LU";
             this.btn_LU.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -554,7 +560,7 @@
             this.btn_CM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_CM.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_CM.Image = global::DocMaker.Properties.Resources.ico_alignment_CM;
-            this.btn_CM.Location = new System.Drawing.Point(201, 25);
+            this.btn_CM.Location = new System.Drawing.Point(200, 25);
             this.btn_CM.Margin = new System.Windows.Forms.Padding(1);
             this.btn_CM.Name = "btn_CM";
             this.btn_CM.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -576,7 +582,7 @@
             this.btn_RM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_RM.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_RM.Image = global::DocMaker.Properties.Resources.ico_alignment_RM;
-            this.btn_RM.Location = new System.Drawing.Point(226, 25);
+            this.btn_RM.Location = new System.Drawing.Point(225, 25);
             this.btn_RM.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.btn_RM.Name = "btn_RM";
             this.btn_RM.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -593,14 +599,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.BackColor = System.Drawing.Color.Gainsboro;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(0, 0);
+            this.label13.Location = new System.Drawing.Point(0, 242);
             this.label13.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.label13.Name = "label13";
-            this.pan_AlignmentBtns.SetRowSpan(this.label13, 2);
-            this.label13.Size = new System.Drawing.Size(171, 50);
+            this.label13.Size = new System.Drawing.Size(254, 150);
             this.label13.TabIndex = 2;
-            this.label13.Text = "Those points represents the real\r\nposition of an object";
+            this.label13.Text = "Those points represents the\r\nreal position of an object";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btn_CU
@@ -614,7 +620,7 @@
             this.btn_CU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_CU.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_CU.Image = global::DocMaker.Properties.Resources.ico_alignment_CU;
-            this.btn_CU.Location = new System.Drawing.Point(201, 0);
+            this.btn_CU.Location = new System.Drawing.Point(200, 0);
             this.btn_CU.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.btn_CU.Name = "btn_CU";
             this.btn_CU.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -637,7 +643,7 @@
             this.btn_LD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_LD.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_LD.Image = global::DocMaker.Properties.Resources.ico_alignment_LD;
-            this.btn_LD.Location = new System.Drawing.Point(176, 50);
+            this.btn_LD.Location = new System.Drawing.Point(175, 50);
             this.btn_LD.Margin = new System.Windows.Forms.Padding(0);
             this.btn_LD.Name = "btn_LD";
             this.btn_LD.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -658,7 +664,7 @@
             this.btn_CD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_CD.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_CD.Image = global::DocMaker.Properties.Resources.ico_alignment_CD;
-            this.btn_CD.Location = new System.Drawing.Point(201, 50);
+            this.btn_CD.Location = new System.Drawing.Point(200, 50);
             this.btn_CD.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.btn_CD.Name = "btn_CD";
             this.btn_CD.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -679,7 +685,7 @@
             this.btn_RD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_RD.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_RD.Image = global::DocMaker.Properties.Resources.ico_alignment_RD;
-            this.btn_RD.Location = new System.Drawing.Point(226, 50);
+            this.btn_RD.Location = new System.Drawing.Point(225, 50);
             this.btn_RD.Margin = new System.Windows.Forms.Padding(0);
             this.btn_RD.Name = "btn_RD";
             this.btn_RD.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -700,7 +706,7 @@
             this.btn_RU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_RU.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_RU.Image = global::DocMaker.Properties.Resources.ico_alignment_RU;
-            this.btn_RU.Location = new System.Drawing.Point(226, 0);
+            this.btn_RU.Location = new System.Drawing.Point(225, 0);
             this.btn_RU.Margin = new System.Windows.Forms.Padding(0);
             this.btn_RU.Name = "btn_RU";
             this.btn_RU.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -711,24 +717,77 @@
             this.btn_RU.UseVisualStyleBackColor = false;
             this.btn_RU.Click += new System.EventHandler(this.Alignment_OnClick);
             // 
-            // cb_showAnchor
+            // cb_showAnchors
             // 
-            this.cb_showAnchor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.cb_showAnchors.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cb_showAnchor.BackColor = System.Drawing.Color.Silver;
-            this.cb_showAnchor.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_showAnchor.ForeColor = System.Drawing.Color.Black;
-            this.cb_showAnchor.Location = new System.Drawing.Point(0, 50);
-            this.cb_showAnchor.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.cb_showAnchor.Name = "cb_showAnchor";
-            this.cb_showAnchor.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.cb_showAnchor.Size = new System.Drawing.Size(171, 24);
-            this.cb_showAnchor.TabIndex = 9;
-            this.cb_showAnchor.Text = "Show anchor points";
-            this.cb_showAnchor.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.cb_showAnchor.UseVisualStyleBackColor = false;
-            this.cb_showAnchor.CheckedChanged += new System.EventHandler(this.Cb_showAnchor_CheckedChanged);
+            this.cb_showAnchors.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cb_showAnchors.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cb_showAnchors.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_showAnchors.ForeColor = System.Drawing.Color.Black;
+            this.cb_showAnchors.Location = new System.Drawing.Point(0, 51);
+            this.cb_showAnchors.Margin = new System.Windows.Forms.Padding(0, 1, 0, 0);
+            this.cb_showAnchors.Name = "cb_showAnchors";
+            this.cb_showAnchors.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this.cb_showAnchors.Size = new System.Drawing.Size(24, 23);
+            this.cb_showAnchors.TabIndex = 9;
+            this.cb_showAnchors.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.cb_showAnchors.UseCompatibleTextRendering = true;
+            this.cb_showAnchors.UseVisualStyleBackColor = false;
+            this.cb_showAnchors.CheckedChanged += new System.EventHandler(this.Cb_showAnchor_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.label1.Size = new System.Drawing.Size(259, 22);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Location & Alignment";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.UseMnemonic = false;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(0, 106);
+            this.label2.Margin = new System.Windows.Forms.Padding(0);
+            this.label2.Name = "label2";
+            this.label2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.label2.Size = new System.Drawing.Size(259, 22);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Location";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tb_xPosition
+            // 
+            this.tb_xPosition.AllowSpace = true;
+            this.tb_xPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_xPosition.Location = new System.Drawing.Point(26, 2);
+            this.tb_xPosition.Margin = new System.Windows.Forms.Padding(2);
+            this.tb_xPosition.MaximumValue = 10000;
+            this.tb_xPosition.MinimumValue = 0;
+            this.tb_xPosition.Name = "tb_xPosition";
+            this.tb_xPosition.Size = new System.Drawing.Size(60, 20);
+            this.tb_xPosition.TabIndex = 4;
+            this.tb_xPosition.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.tb_xPosition.Value = 1;
+            this.tb_xPosition.Wheel_StepValue = 5;
+            this.tb_xPosition.Enter += new System.EventHandler(this.SuspendPaperScrollEvent);
+            this.tb_xPosition.Leave += new System.EventHandler(this.ResumePaperScrollEvent);
             // 
             // layers
             // 
@@ -756,15 +815,15 @@
             this.layers.Margin = new System.Windows.Forms.Padding(0);
             this.layers.MultiSelect = false;
             this.layers.Name = "layers";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(4, 0, 0, 4);
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.layers.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.Padding = new System.Windows.Forms.Padding(4, 0, 0, 4);
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.layers.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.layers.RowHeadersVisible = false;
             this.layers.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.layers.RowTemplate.Height = 30;
@@ -772,7 +831,7 @@
             this.layers.ShowCellErrors = false;
             this.layers.ShowEditingIcon = false;
             this.layers.ShowRowErrors = false;
-            this.layers.Size = new System.Drawing.Size(260, 299);
+            this.layers.Size = new System.Drawing.Size(259, 299);
             this.layers.TabIndex = 5;
             this.layers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Layers_CellContentClick);
             this.layers.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Layers_CellContentClick);
@@ -781,12 +840,12 @@
             // 
             // layer_visible
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle4.NullValue")));
-            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(4);
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.layer_visible.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle13.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle13.NullValue")));
+            dataGridViewCellStyle13.Padding = new System.Windows.Forms.Padding(4);
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.layer_visible.DefaultCellStyle = dataGridViewCellStyle13;
             this.layer_visible.HeaderText = "visible";
             this.layer_visible.Name = "layer_visible";
             this.layer_visible.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -795,13 +854,13 @@
             // layer_name
             // 
             this.layer_name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            this.layer_name.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
+            this.layer_name.DefaultCellStyle = dataGridViewCellStyle14;
             this.layer_name.HeaderText = "name";
             this.layer_name.Name = "layer_name";
             this.layer_name.ReadOnly = true;
@@ -821,43 +880,56 @@
             this.label4.Location = new System.Drawing.Point(0, 0);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
-            this.label4.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.label4.Size = new System.Drawing.Size(260, 25);
+            this.label4.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.label4.Size = new System.Drawing.Size(259, 25);
             this.label4.TabIndex = 2;
-            this.label4.Text = "Object list";
+            this.label4.Text = "Layers";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // span_SidePanel
+            // pan_HSplit
             // 
-            this.span_SidePanel.BackColor = System.Drawing.Color.DarkGray;
-            this.span_SidePanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.span_SidePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.span_SidePanel.Location = new System.Drawing.Point(620, 0);
-            this.span_SidePanel.Margin = new System.Windows.Forms.Padding(0);
-            this.span_SidePanel.Name = "span_SidePanel";
-            this.span_SidePanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.pan_HSplit.BackColor = System.Drawing.Color.DarkGray;
+            this.pan_HSplit.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pan_HSplit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pan_HSplit.Location = new System.Drawing.Point(0, 0);
+            this.pan_HSplit.Margin = new System.Windows.Forms.Padding(0);
+            this.pan_HSplit.Name = "pan_HSplit";
+            this.pan_HSplit.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // span_SidePanel.Panel1
+            // pan_HSplit.Panel1
             // 
-            this.span_SidePanel.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.span_SidePanel.Panel1.Controls.Add(this.button2);
-            this.span_SidePanel.Panel1.Controls.Add(this.button1);
-            this.span_SidePanel.Panel1.Controls.Add(this.tableLayoutPanel2);
-            this.span_SidePanel.Panel1.Controls.Add(this.tableLayoutPanel1);
+            this.pan_HSplit.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.pan_HSplit.Panel1.Controls.Add(this.tableLayoutPanel1);
             // 
-            // span_SidePanel.Panel2
+            // pan_HSplit.Panel2
             // 
-            this.span_SidePanel.Panel2.BackColor = System.Drawing.Color.DimGray;
-            this.span_SidePanel.Panel2.Controls.Add(this.tableLayoutPanel3);
-            this.span_SidePanel.Size = new System.Drawing.Size(264, 726);
-            this.span_SidePanel.SplitterDistance = 396;
-            this.span_SidePanel.SplitterIncrement = 10;
-            this.span_SidePanel.SplitterWidth = 2;
-            this.span_SidePanel.TabIndex = 0;
+            this.pan_HSplit.Panel2.BackColor = System.Drawing.Color.DimGray;
+            this.pan_HSplit.Panel2.Controls.Add(this.tableLayoutPanel3);
+            this.pan_HSplit.Size = new System.Drawing.Size(263, 726);
+            this.pan_HSplit.SplitterDistance = 396;
+            this.pan_HSplit.SplitterIncrement = 10;
+            this.pan_HSplit.SplitterWidth = 2;
+            this.pan_HSplit.TabIndex = 0;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.layers, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.label4, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(259, 324);
+            this.tableLayoutPanel3.TabIndex = 6;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(122, 280);
+            this.button2.Location = new System.Drawing.Point(380, 323);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 7;
@@ -867,7 +939,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(44, 280);
+            this.button1.Location = new System.Drawing.Point(302, 323);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 6;
@@ -884,14 +956,14 @@
             this.tableLayoutPanel2.Controls.Add(this.label9, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel7, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.panel6, 0, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 109);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(71, 159);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(260, 144);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(403, 148);
             this.tableLayoutPanel2.TabIndex = 5;
             // 
             // label9
@@ -904,7 +976,7 @@
             this.label9.Margin = new System.Windows.Forms.Padding(0);
             this.label9.Name = "label9";
             this.label9.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label9.Size = new System.Drawing.Size(260, 24);
+            this.label9.Size = new System.Drawing.Size(403, 24);
             this.label9.TabIndex = 2;
             this.label9.Text = "Object position";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -913,10 +985,9 @@
             // 
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel7.Controls.Add(this.y_center);
-            this.panel7.Controls.Add(this.tb_yPosition);
             this.panel7.Controls.Add(this.label6);
             this.panel7.Controls.Add(this.sl_yPosition);
-            this.panel7.Location = new System.Drawing.Point(5, 89);
+            this.panel7.Location = new System.Drawing.Point(5, 91);
             this.panel7.Margin = new System.Windows.Forms.Padding(5, 5, 5, 0);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(247, 50);
@@ -933,15 +1004,6 @@
             this.y_center.TabIndex = 9;
             this.y_center.Text = "center";
             this.y_center.UseVisualStyleBackColor = false;
-            // 
-            // tb_yPosition
-            // 
-            this.tb_yPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_yPosition.Location = new System.Drawing.Point(143, 6);
-            this.tb_yPosition.Margin = new System.Windows.Forms.Padding(0, 3, 5, 0);
-            this.tb_yPosition.Name = "tb_yPosition";
-            this.tb_yPosition.Size = new System.Drawing.Size(95, 20);
-            this.tb_yPosition.TabIndex = 8;
             // 
             // label6
             // 
@@ -975,7 +1037,6 @@
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel6.Controls.Add(this.x_center);
-            this.panel6.Controls.Add(this.tb_xPosition);
             this.panel6.Controls.Add(this.label7);
             this.panel6.Controls.Add(this.sl_xPosition);
             this.panel6.Location = new System.Drawing.Point(5, 29);
@@ -995,15 +1056,6 @@
             this.x_center.TabIndex = 9;
             this.x_center.Text = "center";
             this.x_center.UseVisualStyleBackColor = false;
-            // 
-            // tb_xPosition
-            // 
-            this.tb_xPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_xPosition.Location = new System.Drawing.Point(143, 6);
-            this.tb_xPosition.Margin = new System.Windows.Forms.Padding(0, 3, 5, 0);
-            this.tb_xPosition.Name = "tb_xPosition";
-            this.tb_xPosition.Size = new System.Drawing.Size(95, 20);
-            this.tb_xPosition.TabIndex = 8;
             // 
             // label7
             // 
@@ -1033,57 +1085,68 @@
             this.sl_xPosition.TickStyle = System.Windows.Forms.TickStyle.None;
             this.sl_xPosition.Scroll += new System.EventHandler(this.X_pos_Scroll);
             // 
-            // tableLayoutPanel3
+            // pan_MainPanel
             // 
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.label4, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.layers, 0, 1);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(260, 324);
-            this.tableLayoutPanel3.TabIndex = 6;
+            this.pan_MainPanel.ColumnCount = 2;
+            this.pan_MainPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.pan_MainPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pan_MainPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.pan_MainPanel.Controls.Add(this.pan_VSplit, 1, 0);
+            this.pan_MainPanel.Controls.Add(this.pan_StatusBar, 0, 1);
+            this.pan_MainPanel.Controls.Add(this.panel1, 0, 0);
+            this.pan_MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pan_MainPanel.Location = new System.Drawing.Point(0, 24);
+            this.pan_MainPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.pan_MainPanel.Name = "pan_MainPanel";
+            this.pan_MainPanel.RowCount = 2;
+            this.pan_MainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pan_MainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.pan_MainPanel.Size = new System.Drawing.Size(884, 758);
+            this.pan_MainPanel.TabIndex = 6;
             // 
-            // pan_MainSide
+            // pan_VSplit
             // 
-            this.pan_MainSide.ColumnCount = 3;
-            this.pan_MainSide.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.pan_MainSide.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pan_MainSide.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 264F));
-            this.pan_MainSide.Controls.Add(this.PaperWrap, 1, 0);
-            this.pan_MainSide.Controls.Add(this.StatusBar, 0, 1);
-            this.pan_MainSide.Controls.Add(this.panel1, 0, 0);
-            this.pan_MainSide.Controls.Add(this.span_SidePanel, 2, 0);
-            this.pan_MainSide.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pan_MainSide.Location = new System.Drawing.Point(0, 24);
-            this.pan_MainSide.Margin = new System.Windows.Forms.Padding(0);
-            this.pan_MainSide.Name = "pan_MainSide";
-            this.pan_MainSide.RowCount = 2;
-            this.pan_MainSide.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pan_MainSide.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.pan_MainSide.Size = new System.Drawing.Size(884, 758);
-            this.pan_MainSide.TabIndex = 6;
+            this.pan_VSplit.BackColor = System.Drawing.Color.LightGray;
+            this.pan_VSplit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pan_VSplit.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.pan_VSplit.Location = new System.Drawing.Point(40, 0);
+            this.pan_VSplit.Margin = new System.Windows.Forms.Padding(0);
+            this.pan_VSplit.Name = "pan_VSplit";
+            // 
+            // pan_VSplit.Panel1
+            // 
+            this.pan_VSplit.Panel1.Controls.Add(this.PaperWrap);
+            // 
+            // pan_VSplit.Panel2
+            // 
+            this.pan_VSplit.Panel2.Controls.Add(this.pan_HSplit);
+            this.pan_VSplit.Panel2MinSize = 260;
+            this.pan_VSplit.Size = new System.Drawing.Size(844, 726);
+            this.pan_VSplit.SplitterDistance = 579;
+            this.pan_VSplit.SplitterIncrement = 2;
+            this.pan_VSplit.SplitterWidth = 2;
+            this.pan_VSplit.TabIndex = 4;
+            this.pan_VSplit.TabStop = false;
+            this.pan_VSplit.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.pan_VSplit_SplitterMoved);
+            this.pan_VSplit.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pan_VSplit_MouseUp);
             // 
             // PaperWrap
             // 
-            this.PaperWrap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.PaperWrap.AutoScroll = true;
             this.PaperWrap.AutoScrollMargin = new System.Drawing.Size(20, 20);
             this.PaperWrap.AutoScrollMinSize = new System.Drawing.Size(20, 20);
             this.PaperWrap.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.PaperWrap.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PaperWrap.Controls.Add(this.button2);
             this.PaperWrap.Controls.Add(this.thePaper);
-            this.PaperWrap.Location = new System.Drawing.Point(40, 0);
+            this.PaperWrap.Controls.Add(this.button1);
+            this.PaperWrap.Controls.Add(this.tableLayoutPanel2);
+            this.PaperWrap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PaperWrap.IgnoreWheel = false;
+            this.PaperWrap.Location = new System.Drawing.Point(0, 0);
             this.PaperWrap.Margin = new System.Windows.Forms.Padding(0);
             this.PaperWrap.Name = "PaperWrap";
-            this.PaperWrap.Size = new System.Drawing.Size(580, 726);
+            this.PaperWrap.Size = new System.Drawing.Size(579, 726);
             this.PaperWrap.TabIndex = 1;
             this.PaperWrap.Click += new System.EventHandler(this.PaperWrap_OnClick);
             // 
@@ -1097,13 +1160,102 @@
             this.thePaper.TabIndex = 0;
             this.thePaper.Click += new System.EventHandler(this.PaperWrap_OnClick);
             // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel4.AutoSize = true;
+            this.tableLayoutPanel4.ColumnCount = 4;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(5, 133);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(5);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(249, 64);
+            this.tableLayoutPanel4.TabIndex = 5;
+            // 
+            // tb_yPosition
+            // 
+            this.tb_yPosition.AllowSpace = true;
+            this.tb_yPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_yPosition.Location = new System.Drawing.Point(26, 27);
+            this.tb_yPosition.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tb_yPosition.MaximumValue = 10000;
+            this.tb_yPosition.MinimumValue = 0;
+            this.tb_yPosition.Name = "tb_yPosition";
+            this.tb_yPosition.Size = new System.Drawing.Size(60, 20);
+            this.tb_yPosition.TabIndex = 4;
+            this.tb_yPosition.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.tb_yPosition.Value = 1;
+            this.tb_yPosition.Wheel_StepValue = 5;
+            this.tb_yPosition.Enter += new System.EventHandler(this.SuspendPaperScrollEvent);
+            this.tb_yPosition.Leave += new System.EventHandler(this.ResumePaperScrollEvent);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(0, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(24, 24);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "X";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(0, 24);
+            this.label8.Margin = new System.Windows.Forms.Padding(0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(24, 26);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Y";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lab_showAnchors
+            // 
+            this.lab_showAnchors.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pan_AlignmentBtns.SetColumnSpan(this.lab_showAnchors, 2);
+            this.lab_showAnchors.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lab_showAnchors.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_showAnchors.ForeColor = System.Drawing.Color.Black;
+            this.lab_showAnchors.Location = new System.Drawing.Point(24, 50);
+            this.lab_showAnchors.Margin = new System.Windows.Forms.Padding(0);
+            this.lab_showAnchors.Name = "lab_showAnchors";
+            this.lab_showAnchors.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this.lab_showAnchors.Size = new System.Drawing.Size(151, 24);
+            this.lab_showAnchors.TabIndex = 2;
+            this.lab_showAnchors.Text = "Show alignment points";
+            this.lab_showAnchors.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lab_showAnchors.UseMnemonic = false;
+            this.lab_showAnchors.Click += new System.EventHandler(this.lab_showAnchors_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(884, 782);
-            this.Controls.Add(this.pan_MainSide);
+            this.Controls.Add(this.pan_MainPanel);
             this.Controls.Add(this.MainFormMenuStrip);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
@@ -1122,28 +1274,32 @@
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.MainFormMenuStrip.ResumeLayout(false);
             this.MainFormMenuStrip.PerformLayout();
-            this.StatusBar.ResumeLayout(false);
-            this.StatusBar.PerformLayout();
+            this.pan_StatusBar.ResumeLayout(false);
+            this.pan_StatusBar.PerformLayout();
             this.pan_zoom.ResumeLayout(false);
             this.pan_zoom.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StatusIcon)).EndInit();
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.pan_AlignmentBtns.ResumeLayout(false);
+            this.pan_AlignmentBtns.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layers)).EndInit();
-            this.span_SidePanel.Panel1.ResumeLayout(false);
-            this.span_SidePanel.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.span_SidePanel)).EndInit();
-            this.span_SidePanel.ResumeLayout(false);
+            this.pan_HSplit.Panel1.ResumeLayout(false);
+            this.pan_HSplit.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pan_HSplit)).EndInit();
+            this.pan_HSplit.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sl_yPosition)).EndInit();
             this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sl_xPosition)).EndInit();
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.pan_MainSide.ResumeLayout(false);
+            this.pan_MainPanel.ResumeLayout(false);
+            this.pan_VSplit.Panel1.ResumeLayout(false);
+            this.pan_VSplit.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pan_VSplit)).EndInit();
+            this.pan_VSplit.ResumeLayout(false);
             this.PaperWrap.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1166,18 +1322,16 @@
         private System.Windows.Forms.ToolStripMenuItem addNewImageToolStripMenuItem;
         private CustomPanel PaperWrap;
         private System.Windows.Forms.Panel thePaper;
-        private System.Windows.Forms.TableLayoutPanel StatusBar;
+        private System.Windows.Forms.TableLayoutPanel pan_StatusBar;
         private System.Windows.Forms.PictureBox StatusIcon;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView layers;
         private System.Windows.Forms.Button btn_add_label;
-        private System.Windows.Forms.TextBox tb_xPosition;
         private System.Windows.Forms.TrackBar sl_xPosition;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.TextBox tb_yPosition;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TrackBar sl_yPosition;
         private System.Windows.Forms.CheckBox x_center;
@@ -1205,9 +1359,9 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button btn_LM;
         private System.Windows.Forms.Button btn_CD;
-        private System.Windows.Forms.SplitContainer span_SidePanel;
+        private System.Windows.Forms.SplitContainer pan_HSplit;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.TableLayoutPanel pan_MainSide;
+        private System.Windows.Forms.TableLayoutPanel pan_MainPanel;
         private System.Windows.Forms.TableLayoutPanel pan_zoom;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.DataGridViewImageColumn layer_visible;
@@ -1215,9 +1369,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn layer_object;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckBox cb_showAnchor;
+        private System.Windows.Forms.CheckBox cb_showAnchors;
         private System.Windows.Forms.ToolStripMenuItem resManagertoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.SplitContainer pan_VSplit;
+        private System.Windows.Forms.Label label2;
+        private CustomTextBox tb_xPosition;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private CustomTextBox tb_yPosition;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lab_showAnchors;
     }
 }
 
