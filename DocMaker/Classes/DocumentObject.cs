@@ -9,11 +9,12 @@ namespace DocMaker
 {
     public partial class DocumentObject : ICloneable, IDisposable
     {
+        public char OBJ_IDENTIFIER = 'O';
+
         public string Name { get; set; }        // The object name to use in the object list
         public string Key { get; set; }         // The Key name to edit object in real time in the user's project
 
-
-        public PictureBox Canvas;               // The drawing board of the object
+        public ObjectHolder Holder;             // The control holding the rendred object image
 
         public Point RealLocation;              // Contains the real object position despite zooming
 
@@ -21,7 +22,6 @@ namespace DocMaker
         private Point mouseLastLocation;
 
         public Color BackColor { get; set; }
-
 
         public DocumentObject()
         {
@@ -35,16 +35,16 @@ namespace DocMaker
             BackColor = Color.Transparent;
             RealLocation = Point.Empty;
 
-            Canvas = new PictureBox();
-            Canvas.Cursor = Config.OnHoveringObject;
+            Holder = new ObjectHolder();
+            Holder.Cursor = Config.OnHoveringObject;
 
-            Canvas.DoubleClick += Canvas_DoubleClick;
-            Canvas.MouseDown += Canvas_MouseDown;
-            Canvas.MouseMove += Canvas_MouseMove;
-            Canvas.MouseUp += Canvas_MouseUp;
-            Canvas.MouseEnter += Canvas_MouseEnter;
-            Canvas.MouseLeave += Canvas_MouseLeave;
-            Canvas.MouseWheel += Canvas_MouseWheel;
+            Holder.DoubleClick += Canvas_DoubleClick;
+            Holder.MouseDown += Canvas_MouseDown;
+            Holder.MouseMove += Canvas_MouseMove;
+            Holder.MouseUp += Canvas_MouseUp;
+            Holder.MouseEnter += Canvas_MouseEnter;
+            Holder.MouseLeave += Canvas_MouseLeave;
+            Holder.MouseWheel += Canvas_MouseWheel;
 
             // Set visibility to true
             ShowObject();
@@ -55,20 +55,20 @@ namespace DocMaker
             //Toggle visiblity flag
             this.Visible = !this.Visible;
 
-            Canvas.Visible = this.Visible;
+            Holder.Visible = this.Visible;
             return this.Visible;
         }
 
         public void ShowObject()
         {
             this.Visible = true;
-            Canvas.Visible = true;
+            Holder.Visible = true;
         }
 
         public void HideObject()
         {
             this.Visible = false;
-            Canvas.Visible = false;
+            Holder.Visible = false;
         }
 
 
@@ -80,11 +80,11 @@ namespace DocMaker
 
             if(e.Delta > 0)
             {
-                Canvas.SendToBack();
+                Holder.SendToBack();
             }
             else
             {
-                Canvas.BringToFront();
+                Holder.BringToFront();
 
             }
         }
@@ -94,14 +94,14 @@ namespace DocMaker
             // To capture wheel input 
             // Note : I'm setting AvtiveControl and not LivePreview.currentObject !
             //
-            LivePreview.mainForm.ActiveControl = Canvas;
+            LivePreview.mainForm.ActiveControl = Holder;
 
-            Canvas.BackColor = Color.FromArgb(184, 150, 207);
+            Holder.BackColor = Color.FromArgb(184, 150, 207);
         }
 
         private void Canvas_MouseLeave(object sender, EventArgs e)
         {
-            Canvas.BackColor = BackColor;
+            Holder.BackColor = BackColor;
         }
 
         private void Canvas_DoubleClick(object sender, EventArgs e)
@@ -173,8 +173,8 @@ namespace DocMaker
 
              
                 // Calcualte the Canvas's new location
-                Point p = new Point(Canvas.Location.X - mouseLastLocation.X + e.X,
-                                    Canvas.Location.Y - mouseLastLocation.Y + e.Y);
+                Point p = new Point(Holder.Location.X - mouseLastLocation.X + e.X,
+                                    Holder.Location.Y - mouseLastLocation.Y + e.Y);
 
                 // Ignore snapping and alignment if control is pressed
                 if(Control.ModifierKeys != Keys.Control && e.Button != MouseButtons.Right)
@@ -185,7 +185,7 @@ namespace DocMaker
                         if (obj == this || !obj.Visible)
                             continue;
 
-                        s = obj.Canvas.Location;
+                        s = obj.Holder.Location;
 
                         if (p.X >= s.X - 10 && p.X < s.X + 10)
                         {
@@ -199,13 +199,13 @@ namespace DocMaker
                     }
 
                     // Clamp Position to inside the document
-                    p.X = Funcs.Clamp(p.X, 0, Zoom.paperSize.Width - Canvas.Width);
-                    p.Y = Funcs.Clamp(p.Y, 0, Zoom.paperSize.Height - Canvas.Height);
+                    p.X = Funcs.Clamp(p.X, 0, Zoom.paperSize.Width - Holder.Width);
+                    p.Y = Funcs.Clamp(p.Y, 0, Zoom.paperSize.Height - Holder.Height);
                 }
                 
 
-                Canvas.Location = p;
-                Canvas.Update();
+                Holder.Location = p;
+                Holder.Update();
 
                 RecalculateRealPosition();
 
@@ -214,18 +214,26 @@ namespace DocMaker
             }
         }
 
+        public void MoveTo(int x, int y)
+        {
+            Holder.Location = new Point(Funcs.Clamp(x, 0, Zoom.paperSize.Width - Holder.Width),
+                                        Funcs.Clamp(y, 0, Zoom.paperSize.Height - Holder.Height));
+
+            RecalculateRealPosition();
+        }
+
         private void RecalculateRealPosition()
         {
-            Point p = Canvas.Location;
+            Point p = Holder.Location;
 
             //
             // Recalculate the real position
             //
-            if (IsCenter()) p.X += (int)((float)Canvas.Width * 0.5);
-            if (IsRight()) p.X += (int)((float)Canvas.Width);
+            if (IsCenter()) p.X += (int)((float)Holder.Width * 0.5);
+            if (IsRight()) p.X += (int)((float)Holder.Width);
             //
-            if (IsMiddle()) p.Y += (int)((float)Canvas.Height * 0.5);
-            if (IsDown()) p.Y += (int)((float)Canvas.Height);
+            if (IsMiddle()) p.Y += (int)((float)Holder.Height * 0.5);
+            if (IsDown()) p.Y += (int)((float)Holder.Height);
             //
             // Calculate the Real position without zoom
             RealLocation = Zoom.CalculateReal(p);
@@ -253,7 +261,7 @@ namespace DocMaker
             }
 
             isMouseDown = false;
-            Canvas.Cursor = Config.OnHoveringObject;
+            Holder.Cursor = Config.OnHoveringObject;
         }
 
         private void Canvas_MouseDown(object sender, MouseEventArgs e)
@@ -264,25 +272,25 @@ namespace DocMaker
             LivePreview.mainForm.SelectObject();
 
             mouseLastLocation = e.Location;
-            Canvas.Cursor = Config.OnMovingObject;
+            Holder.Cursor = Config.OnMovingObject;
         }
 
         public virtual void RenderObject()
         {
             Point p = Zoom.Calculate(RealLocation);
 
-            if (IsCenter()) p.X -= (int)((float)Canvas.Width * 0.5);
-            if (IsRight()) p.X -= (int)((float)Canvas.Width);
+            if (IsCenter()) p.X -= (int)((float)Holder.Width * 0.5);
+            if (IsRight()) p.X -= (int)((float)Holder.Width);
 
-            if (IsMiddle()) p.Y -= (int)((float)Canvas.Height * 0.5);
-            if (IsDown()) p.Y -= (int)((float)Canvas.Height);
+            if (IsMiddle()) p.Y -= (int)((float)Holder.Height * 0.5);
+            if (IsDown()) p.Y -= (int)((float)Holder.Height);
 
             // Clamp Position to inside the document
-            p.X = Funcs.Clamp(p.X, 0, Zoom.paperSize.Width - Canvas.Width);
-            p.Y = Funcs.Clamp(p.Y, 0, Zoom.paperSize.Height - Canvas.Height);
+            p.X = Funcs.Clamp(p.X, 0, Zoom.paperSize.Width - Holder.Width);
+            p.Y = Funcs.Clamp(p.Y, 0, Zoom.paperSize.Height - Holder.Height);
 
             // Finally set theposition clamped and with zoom applied
-            Canvas.Location = p;
+            Holder.Location = p;
             RecalculateRealPosition();
         }
 
@@ -291,11 +299,35 @@ namespace DocMaker
             return false;
         }
 
+        public virtual void SaveObject()
+        {
+            Project.fileHandler.Write(OBJ_IDENTIFIER);
+            Project.fileHandler.Write(flags);
+            
+            Project.fileHandler.Write(Name);
+            Project.fileHandler.Write(Key);
+
+            Project.fileHandler.Write(RealLocation.X);
+            Project.fileHandler.Write(RealLocation.Y);
+        }
+
+        public virtual void LoadObject()
+        {
+            // Skipping OBJ_IDENTIFIER for only being used to identify the object type
+
+            flags = Project.fileHandler.ReadUInteger();
+
+            Name = Project.fileHandler.ReadString();
+            Key = Project.fileHandler.ReadString();
+
+            RealLocation.X = Project.fileHandler.ReadInteger();
+            RealLocation.Y = Project.fileHandler.ReadInteger();
+        }
+
         public object Clone()
         {
             return this.MemberwiseClone();
         }
-
 
         public void Rotate(bool rotateLeft = false)
         {
@@ -309,8 +341,11 @@ namespace DocMaker
         {
             // TODO : Add disposing methodes for each documentObject type
 
-            Canvas.Image.Dispose();
-            Canvas.Dispose();
+            if(Holder.Image != null)
+                Holder.Image.Dispose();
+
+            if(Holder != null)
+                Holder.Dispose();
         }
     }
 }

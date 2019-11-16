@@ -23,6 +23,7 @@ namespace DocMaker
             InitializeAlignmentButtons();
 
             LivePreview.mainForm = this;
+            LivePreview.paperReference = thePaper;
 
             Project.Initialize();
 
@@ -85,7 +86,7 @@ namespace DocMaker
                                           (int)newY - PaperWrap.VerticalScroll.Value);
         }
 
-        private void ResizePaper()
+        public void ResizePaper()
         {
 
             //Set paper name
@@ -338,7 +339,7 @@ namespace DocMaker
                 int index = layers.SelectedCells[0].RowIndex;
                 LivePreview.currentObject = (DocumentObject)layers[layer_object.Index, index].Value;
 
-                ActiveControl = LivePreview.currentObject.Canvas;
+                ActiveControl = LivePreview.currentObject.Holder;
             }
 
             ShowAlignment();
@@ -500,7 +501,7 @@ namespace DocMaker
             if (obj == null)
                 return;
 
-            thePaper.Controls.Add(obj.Canvas);
+            thePaper.Controls.Add(obj.Holder);
             LivePreview.currentObject = obj;
 
             // Populate object table after adding object
@@ -524,43 +525,10 @@ namespace DocMaker
 
         #endregion
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
-
-
-        }
-  
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            //label1.Font = new Font("Janna LT", 16);
-            //Snapper.Initialize();
-            //Snapper.DrawRectangle();
-        }
-
-        private void X_pos_Scroll(object sender, EventArgs e)
-        {
-            /*
-            LivePreview.currentObject.RealLocation.X = sl_xPosition.Value;
-            tb_xPosition.Text = sl_xPosition.Value.ToString();
-            LivePreview.Update();*/
-        }
-
-        private void Y_pos_Scroll(object sender, EventArgs e)
-        {/*
-            LivePreview.currentObject.RealLocation.Y = sl_yPosition.Value;
-            tb_yPosition.Text = sl_yPosition.Value.ToString();
-            LivePreview.Update();*/
-        }
-
         private void Cb_showAnchor_CheckedChanged(object sender, EventArgs e)
         {
             Config.ShowAnchorPoints = cb_showAnchors.Checked;
             Objects.RenderAll();
-        }
-
-        private void MainForm_Enter(object sender, EventArgs e)
-        {
-            Console.WriteLine("Enter");
         }
 
         private void MainForm_Activated(object sender, EventArgs e)
@@ -574,7 +542,15 @@ namespace DocMaker
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Project.OpenProject();
+
             UpdateFormTitle();
+            
+
+            // Add all the controls to the paper panel
+            foreach (DocumentObject docObj in Objects.objectList)
+                thePaper.Controls.Add(docObj.Holder);
+
+            PopulateObjectList();
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -612,6 +588,20 @@ namespace DocMaker
         private void lab_showAnchors_Click(object sender, EventArgs e)
         {
             cb_showAnchors.Checked = !cb_showAnchors.Checked;
+        }
+
+        private void tb_Position_OnValidation(object sender, EventArgs e)
+        {
+            if(LivePreview.currentObject != null)
+                LivePreview.currentObject.MoveTo(tb_xPosition.Value, tb_yPosition.Value);
+        }
+
+        private void tb_Position_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+
+                SendKeys.Send("{TAB}");
+
         }
     }
 }

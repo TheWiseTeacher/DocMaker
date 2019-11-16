@@ -43,6 +43,7 @@ namespace DocMaker
             }
         }
 
+        
         public void Write(string stringData)
         {
             bw.Write(stringData);
@@ -52,16 +53,26 @@ namespace DocMaker
         {
             bw.Write(integerData);
         }
+        public void Write(uint uintegerData)
+        {
+            bw.Write(uintegerData);
+        }
         
         public void Write(bool booleanData)
         {
             bw.Write(booleanData);
         }
 
+        public void Write(char theChar)
+        {
+            bw.Write(theChar);
+        }
+        
         public void Write(byte theByte)
         {
             bw.Write(theByte);
         }
+        
 
         public void Write(byte[] theBytes)
         {
@@ -113,11 +124,21 @@ namespace DocMaker
             return br.ReadInt32();
         }
 
+        public uint ReadUInteger()
+        {
+            return br.ReadUInt32();
+        }
+
         public bool ReadBoolean()
         {
             return br.ReadBoolean();
         }
 
+        public char ReadChar()
+        {
+            return br.ReadChar();
+        }
+        
         public byte ReadByte()
         {
             return br.ReadByte();

@@ -61,6 +61,7 @@
     <Compile Include="Classes\DocumentObject.Flags.cs" />
     <Compile Include="Classes\Extensions.cs" />
     <Compile Include="Classes\Fonts.cs" />
+    <Compile Include="Classes\Languages.cs" />
     <Compile Include="Classes\LivePreview.cs" />
     <Compile Include="Classes\Objects.cs" />
     <Compile Include="Classes\Paper.cs" />
@@ -136,6 +137,9 @@
     <Compile Include="Objects\LabelObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\ObjectHandler.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UserControls\resPreview.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -40,7 +40,8 @@ namespace DocMaker
 
         private bool IsValidKeyChar(char c)
         {
-            if (c == (char)Keys.Delete || c == (char)Keys.Back)
+            if (c == (char)Keys.Delete || c == (char)Keys.Back ||
+                c == (char)Keys.Enter  || c == (char)Keys.Tab)
                 return true;
 
             if (c == (char)Keys.Space)

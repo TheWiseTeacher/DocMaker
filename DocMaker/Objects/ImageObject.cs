@@ -29,7 +29,7 @@ namespace DocMaker
             ResourceID = Project.resourceList[0];
 
             // For this version only stretch image :/
-            Canvas.SizeMode = PictureBoxSizeMode.StretchImage;
+            Holder.SizeMode = PictureBoxSizeMode.StretchImage;
 
             IsVertical = false;
             objectSize = new Size(100, 100);
@@ -45,7 +45,7 @@ namespace DocMaker
             if (ResourceID.Equals(resID))
             {
                 ResourceID = Project.resourceList[0];
-                Canvas.BackgroundImage = Project.resourceBitmap[0];
+                Holder.BackgroundImage = Project.resourceBitmap[0];
             }
         }
 
@@ -121,14 +121,14 @@ namespace DocMaker
             }
 
             // Release previous rendered bitmap (A lil bit of memore'h :3)
-            if (Canvas.Image != null)
-                Canvas.Image.Dispose();
+            if (Holder.Image != null)
+                Holder.Image.Dispose();
 
 
             //Canvas.BackColor = BackColor;
 
-            Canvas.Image = b;
-            Canvas.Size = Zoom.Calculate(objectSize);
+            Holder.Image = b;
+            Holder.Size = Zoom.Calculate(objectSize);
 
             base.RenderObject();
         }

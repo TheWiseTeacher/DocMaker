@@ -55,34 +55,38 @@ namespace DocMaker
             isLandscape = false;
         }
 
-        public static void SavePaper(BinaryFileHandler fileHandler)
+        public static void SavePaper()
         {
-            fileHandler.Write(usingCustomPaper);
-            fileHandler.Write(isLandscape);
+            Project.fileHandler.Write(usingCustomPaper);
+            Project.fileHandler.Write(isLandscape);
 
             // Save the custom paper size before the kind so it can be loaded once for all
-            fileHandler.Write(paperSizes[0].Width);
-            fileHandler.Write(paperSizes[0].Height);
+            Project.fileHandler.Write(paperSizes[0].Width);
+            Project.fileHandler.Write(paperSizes[0].Height);
 
-            fileHandler.Write(paperSize.Kind.ToString());
+            Project.fileHandler.Write(paperSize.Kind.ToString());
         }
         
-        public static void LoadPaper(BinaryFileHandler fileHandler)
+        public static void LoadPaper()
         {
             Initialize(); // Reset values
 
-            usingCustomPaper = fileHandler.ReadBoolean();
-            isLandscape = fileHandler.ReadBoolean();
+            usingCustomPaper = Project.fileHandler.ReadBoolean();
+            isLandscape = Project.fileHandler.ReadBoolean();
 
             // Read the custom paper size before selecting the paper kind
-            paperSizes[0].Width = fileHandler.ReadInteger();
-            paperSizes[0].Height = fileHandler.ReadInteger();
+            paperSizes[0].Width = Project.fileHandler.ReadInteger();
+            paperSizes[0].Height = Project.fileHandler.ReadInteger();
 
             // Read paper kind and select it
-            string targetKind = fileHandler.ReadString();
+            string targetKind = Project.fileHandler.ReadString();
+            //if(targetKind.Equals(""))
             foreach (PaperSize ps in paperSizes)
-                if (ps.Kind.Equals(targetKind))
+                if (ps.Kind.ToString().Equals(targetKind))
+                {
                     paperSize = ps;
+                    break; // Break if found ?!!
+                }
         }
     }
 }

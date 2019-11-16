@@ -131,41 +131,41 @@ namespace DocMaker
             return new Font("arial", emSize);
         }
 
-        public static void SaveFonts(BinaryFileHandler fileHandler)
+        public static void SaveFonts()
         {
-            fileHandler.Write(fontList.Count);
+            Project.fileHandler.Write(fontList.Count);
             foreach (var p in fontList)
             {
-                fileHandler.Write(p.Value.IsExternal);
-                fileHandler.Write(p.Value.CustomName);
+                Project.fileHandler.Write(p.Value.IsExternal);
+                Project.fileHandler.Write(p.Value.CustomName);
 
                 if(!p.Value.IsExternal)
-                    fileHandler.Write(p.Key);
+                    Project.fileHandler.Write(p.Key);
                 else
-                    fileHandler.Write(p.Value.fontRawBytes);
+                    Project.fileHandler.Write(p.Value.fontRawBytes);
             }
         }
 
-        public static void LoadFonts(BinaryFileHandler fileHandler)
+        public static void LoadFonts()
         {        
             Initialize(true);   // Initialise and skip adding the default font because it will be loaded from file
 
-            int fontNum = fileHandler.ReadInteger();    // The number of fonts saved in the project file
+            int fontNum = Project.fileHandler.ReadInteger();    // The number of fonts saved in the project file
 
             for (int i = 0; i < fontNum; i++)
             {
-                if(fileHandler.ReadBoolean())
+                if(Project.fileHandler.ReadBoolean())
                 {
                     AddFont(true,
-                            fileHandler.ReadString(),
+                            Project.fileHandler.ReadString(),
                             LOAD_FROM_BYTES_FLAG,
-                            fileHandler.ReadBytes());
+                            Project.fileHandler.ReadBytes());
                 }
                 else
                 {
                     AddFont(false,
-                            fileHandler.ReadString(),
-                            fileHandler.ReadString());
+                            Project.fileHandler.ReadString(),
+                            Project.fileHandler.ReadString());
                 }
                
             }

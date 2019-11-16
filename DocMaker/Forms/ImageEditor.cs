@@ -175,8 +175,8 @@ namespace DocMaker
 
                 if (File.Exists(fileDialog.FileName))
                 {
-                    Target.Canvas.Image = Image.FromFile(fileDialog.FileName);
-                    Target.Canvas.Size = Target.Canvas.Image.Size;
+                    Target.Holder.Image = Image.FromFile(fileDialog.FileName);
+                    Target.Holder.Size = Target.Holder.Image.Size;
                 }
             }
         }

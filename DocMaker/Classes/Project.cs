@@ -19,12 +19,13 @@ namespace DocMaker
 
         public static ColorDialog colorDialog;
 
+        // TODO : add a changes list so we can go back in time with Ctrl+Z 'Whoaoaoa :O'
+        public static List<string> changeList = new List<string>(); 
 
 
         // Temporary cache file
         private static string projectTempDir = Path.GetTempPath() + "\\DocMakerTempDir\\";
 
-        public static List<string> UsedLanguages = new List<string>();
 
         public static List<string> resourceList = new List<string>();
         public static List<Bitmap> resourceBitmap = new List<Bitmap>();
@@ -35,15 +36,23 @@ namespace DocMaker
             //Paper.Initialize();
         }
 
-        public static bool NewProject()
+        public static void NewProject()
         {
-            // Empty the temp folder for the new project files
-            EmptyTempFolder();
-
             // Reset project file to be none
             projectLoadedFromFile = false;
             projectTitle = "New project";
             projectFile = string.Empty;
+
+            InitializeComponents();
+        }
+
+        public static void InitializeComponents()
+        {
+            // Empty the temp folder for the new project files
+            EmptyTempFolder();
+
+            // Clear paper from the controls
+            LivePreview.paperReference.Controls.Clear();
 
             if (colorDialog != null)
                 colorDialog.Dispose();
@@ -51,20 +60,11 @@ namespace DocMaker
             colorDialog = new ColorDialog();
             colorDialog.FullOpen = true;
 
-
-            // tempFile = File.OpenWrite(projectTempDir);
-
-            //Clear languages list
-            UsedLanguages.Clear();
-
-            //Add default language
-            UsedLanguages.Add("default");
-
             Paper.Initialize();
             Fonts.Initialize();
-            Objects.Initialize();
 
-            return true;
+            Languages.Initialize();
+            Objects.Initialize();
         }
 
         public static void SaveProject(bool SaveAs = false)
@@ -104,12 +104,15 @@ namespace DocMaker
             {
                 //Saving routings
 
-                BinaryFileHandler f = new BinaryFileHandler(projectFile, BinaryFileHandler.FileMode.WRITE);
+                fileHandler = new BinaryFileHandler(projectFile, BinaryFileHandler.FileMode.WRITE);
 
-                Paper.SavePaper(f);
-                Fonts.SaveFonts(f);
+                Paper.SavePaper();
+                Fonts.SaveFonts();
 
-                f.Close();
+                Languages.SaveLanguages();
+                Objects.SaveObjects();
+
+                fileHandler.Close();
             }
         }
 
@@ -135,13 +138,16 @@ namespace DocMaker
                     return;
                 }
 
-                DialogResult dr = Funcs.Question_YNC("Do you want to save changes before opening the file ?");
+                if(changeList.Count > 0)
+                {
+                    DialogResult dr = Funcs.Question_YNC("Do you want to save changes before opening the file ?");
 
-                if(dr == DialogResult.Cancel)
-                    return;
+                    if (dr == DialogResult.Cancel)
+                        return;
 
-                if(dr == DialogResult.Yes)
-                    SaveProject();
+                    if (dr == DialogResult.Yes)
+                        SaveProject();
+                }
 
                 // Save the file
                 projectLoadedFromFile = true;
@@ -151,15 +157,27 @@ namespace DocMaker
 
             try
             {
+                InitializeComponents();
+
                 fileHandler = new BinaryFileHandler(projectFile, BinaryFileHandler.FileMode.READ);
-                Paper.LoadPaper(fileHandler);
-                Fonts.LoadFonts(fileHandler);
+
+                Paper.LoadPaper();
+                Fonts.LoadFonts();
+
+                // Resize the paper before putting the documentObjects
+                LivePreview.mainForm.ResizePaper(); 
+
+                Languages.LoadLanguages();
+                Objects.LoadObjects();
+
                 fileHandler.Close();
             }
             catch (Exception ex)
             {
                 Funcs.Error("Error while loading the project file.\n" + ex.Message);
                 fileHandler.Close(); // Force closing file
+
+                NewProject();
             }
         }
 
@@ -193,8 +211,6 @@ namespace DocMaker
             resourceBitmap.Clear();
             resourceBitmap.Add(DocMaker.Properties.Resources.none);
         }
-
-
 
         public static void AddResourceFile(string filePath)
         {

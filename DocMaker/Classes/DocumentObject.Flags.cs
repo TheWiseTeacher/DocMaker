@@ -7,7 +7,7 @@ namespace DocMaker
 {
     public partial class DocumentObject
     {
-        private uint flags;         // All object parameters are here 
+        protected uint flags;         // All object parameters are here 
                                     // (for quick save load methods and memory optimisation)
 
         private uint Savedflags;    // Save the value of flags here in case of discarding changes

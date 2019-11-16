@@ -14,9 +14,9 @@ namespace DocMaker
         private void LoadLanguages()
         {
             languagesTable.Rows.Clear();
-            for (int i = 0; i < Project.UsedLanguages.Count; i++)
+            for (int i = 0; i < Languages.UsedLanguages.Count; i++)
             {
-                languagesTable.Rows.Add(i, Project.UsedLanguages[i]);
+                languagesTable.Rows.Add(i, Languages.UsedLanguages[i]);
             }
         }
 
@@ -43,7 +43,7 @@ namespace DocMaker
 
             if(stringEditor.ShowDialog() == DialogResult.OK)
             {
-                foreach(string l in Project.UsedLanguages)
+                foreach(string l in Languages.UsedLanguages)
                 {
                     if(l == stringEditor.textBox.Text)
                     {
@@ -53,7 +53,7 @@ namespace DocMaker
                 }
             }
 
-            Project.UsedLanguages.Add(stringEditor.textBox.Text);
+            Languages.UsedLanguages.Add(stringEditor.textBox.Text);
             Objects.AddLanguage(stringEditor.textBox.Text);
             LoadLanguages();
         }
@@ -72,8 +72,8 @@ namespace DocMaker
 
                 if (Funcs.Question("Are you sure you want to delete this language code ?\nNote that all label objects will lose this language code text value !  ") == DialogResult.Yes)
                 {
-                    Objects.RemoveLanguage(Project.UsedLanguages[langID]);
-                    Project.UsedLanguages.Remove(Project.UsedLanguages[langID]);
+                    Objects.RemoveLanguage(Languages.UsedLanguages[langID]);
+                    Languages.UsedLanguages.Remove(Languages.UsedLanguages[langID]);
                     LoadLanguages();
                 }
             }

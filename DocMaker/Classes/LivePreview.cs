@@ -9,6 +9,8 @@ namespace DocMaker
     static class LivePreview
     {
         public static MainForm mainForm = null;
+        public static Panel paperReference = null;
+
         public static DocumentObject currentObject = null;
         private static bool suspendedUpdates = false;
 
@@ -20,7 +22,7 @@ namespace DocMaker
             Console.WriteLine("Updating...");
 
             currentObject.RenderObject();
-            currentObject.Canvas.Update();
+            currentObject.Holder.Update();
         }
 
         public static void SuspendUpdates() => suspendedUpdates = true;

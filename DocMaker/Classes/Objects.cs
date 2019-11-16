@@ -14,6 +14,8 @@ namespace DocMaker
         private static int labelObjCounter = 0;
         private static int ImageObjCounter = 0;
         private static int lineObjCounter = 0;
+        private static bool isLoadingObjects = false;
+
         public static void Initialize()
         {
             // Remove document objects
@@ -35,9 +37,9 @@ namespace DocMaker
 
         public static DocumentObject NewLabel()
         {
-            LabelObject docObject = new LabelObject(labelObjCounter + 1);
+            LabelObject docObject = new LabelObject(labelObjCounter + 1, isLoadingObjects);
 
-            if (docObject.EditObject())
+            if (isLoadingObjects || docObject.EditObject())
             {
                 objectList.Add(docObject);
 
@@ -52,7 +54,7 @@ namespace DocMaker
         {
             LineObject docObject = new LineObject(lineObjCounter + 1);
 
-            if(docObject.EditObject())
+            if(isLoadingObjects || docObject.EditObject())
             {
                 objectList.Add(docObject);
 
@@ -127,10 +129,61 @@ namespace DocMaker
             foreach (DocumentObject obj in objectList)
             {
                 obj.RenderObject();
-                obj.Canvas.Update();
+                obj.Holder.Update();
             }
         }
 
+        public static void SaveObjects()
+        {
+            Project.fileHandler.Write(objectList.Count);
+
+            foreach(DocumentObject docObject in objectList)
+            {
+                docObject.SaveObject();
+            }
+        }
+
+        public static void LoadObjects()
+        {
+            // prevent editor on creating new objects
+            isLoadingObjects = true;
+            
+            int objCounter = Project.fileHandler.ReadInteger();
+            
+            for(int i = 0; i < objCounter; i++)
+            {
+                // Read the Identifier
+                char OBJ_IDENTIFIER = Project.fileHandler.ReadChar();
+                DocumentObject buffer;
+
+                switch(OBJ_IDENTIFIER)
+                {
+                    case 'L':
+                        /*
+                        LabelObject docObject = new LabelObject(labelObjCounter + 1);
+                        labelObjCounter++;
+
+                        objectList.Add(docObject);*/
+
+                        buffer = NewLabel();
+                        buffer.LoadObject();
+
+                        break;
+
+                    case 'O':
+                    default:
+                        buffer = new DocumentObject();
+                        buffer.LoadObject();
+                        break;
+                }
+            }
+
+            // Open editor on creating new objects
+            isLoadingObjects = false;
+
+            // Render all objects
+            RenderAll();
+        }
 
     }
 }

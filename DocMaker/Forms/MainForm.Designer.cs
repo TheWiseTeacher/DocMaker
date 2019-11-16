@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainFormMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,19 +63,23 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pan_AlignmentBtns = new System.Windows.Forms.TableLayoutPanel();
             this.btn_LM = new System.Windows.Forms.Button();
+            this.lab_showAnchors = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.btn_LU = new System.Windows.Forms.Button();
             this.btn_CM = new System.Windows.Forms.Button();
             this.btn_RM = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
             this.btn_CU = new System.Windows.Forms.Button();
             this.btn_LD = new System.Windows.Forms.Button();
             this.btn_CD = new System.Windows.Forms.Button();
             this.btn_RD = new System.Windows.Forms.Button();
             this.btn_RU = new System.Windows.Forms.Button();
+            this.tb_xPosition = new DocMaker.CustomTextBox();
+            this.tb_yPosition = new DocMaker.CustomTextBox();
             this.cb_showAnchors = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.tb_xPosition = new DocMaker.CustomTextBox();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.layers = new System.Windows.Forms.DataGridView();
             this.layer_visible = new System.Windows.Forms.DataGridViewImageColumn();
             this.layer_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,27 +88,10 @@
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.pan_HSplit = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.y_center = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.sl_yPosition = new System.Windows.Forms.TrackBar();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.x_center = new System.Windows.Forms.CheckBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.sl_xPosition = new System.Windows.Forms.TrackBar();
             this.pan_MainPanel = new System.Windows.Forms.TableLayoutPanel();
             this.pan_VSplit = new System.Windows.Forms.SplitContainer();
             this.PaperWrap = new DocMaker.CustomPanel();
             this.thePaper = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.tb_yPosition = new DocMaker.CustomTextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lab_showAnchors = new System.Windows.Forms.Label();
             this.MainFormMenuStrip.SuspendLayout();
             this.pan_StatusBar.SuspendLayout();
             this.pan_zoom.SuspendLayout();
@@ -118,11 +105,6 @@
             this.pan_HSplit.Panel2.SuspendLayout();
             this.pan_HSplit.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sl_yPosition)).BeginInit();
-            this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sl_xPosition)).BeginInit();
             this.pan_MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pan_VSplit)).BeginInit();
             this.pan_VSplit.Panel1.SuspendLayout();
@@ -452,7 +434,6 @@
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label13, 0, 6);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -465,7 +446,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(259, 392);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(265, 392);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // pan_AlignmentBtns
@@ -502,7 +483,7 @@
             this.pan_AlignmentBtns.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.pan_AlignmentBtns.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.pan_AlignmentBtns.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.pan_AlignmentBtns.Size = new System.Drawing.Size(249, 74);
+            this.pan_AlignmentBtns.Size = new System.Drawing.Size(255, 74);
             this.pan_AlignmentBtns.TabIndex = 3;
             // 
             // btn_LM
@@ -516,7 +497,7 @@
             this.btn_LM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_LM.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_LM.Image = global::DocMaker.Properties.Resources.ico_alignment_LM;
-            this.btn_LM.Location = new System.Drawing.Point(175, 25);
+            this.btn_LM.Location = new System.Drawing.Point(181, 25);
             this.btn_LM.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.btn_LM.Name = "btn_LM";
             this.btn_LM.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -526,6 +507,56 @@
             this.toolTip.SetToolTip(this.btn_LM, "Align Top");
             this.btn_LM.UseVisualStyleBackColor = false;
             this.btn_LM.Click += new System.EventHandler(this.Alignment_OnClick);
+            // 
+            // lab_showAnchors
+            // 
+            this.lab_showAnchors.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pan_AlignmentBtns.SetColumnSpan(this.lab_showAnchors, 2);
+            this.lab_showAnchors.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lab_showAnchors.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_showAnchors.ForeColor = System.Drawing.Color.Black;
+            this.lab_showAnchors.Location = new System.Drawing.Point(24, 50);
+            this.lab_showAnchors.Margin = new System.Windows.Forms.Padding(0);
+            this.lab_showAnchors.Name = "lab_showAnchors";
+            this.lab_showAnchors.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this.lab_showAnchors.Size = new System.Drawing.Size(157, 24);
+            this.lab_showAnchors.TabIndex = 2;
+            this.lab_showAnchors.Text = "Show alignment points";
+            this.lab_showAnchors.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lab_showAnchors.UseMnemonic = false;
+            this.lab_showAnchors.Click += new System.EventHandler(this.lab_showAnchors_Click);
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(0, 24);
+            this.label8.Margin = new System.Windows.Forms.Padding(0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(24, 26);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Y";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(0, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(24, 24);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "X";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btn_LU
             // 
@@ -538,7 +569,7 @@
             this.btn_LU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_LU.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_LU.Image = global::DocMaker.Properties.Resources.ico_alignment_LU;
-            this.btn_LU.Location = new System.Drawing.Point(175, 0);
+            this.btn_LU.Location = new System.Drawing.Point(181, 0);
             this.btn_LU.Margin = new System.Windows.Forms.Padding(0);
             this.btn_LU.Name = "btn_LU";
             this.btn_LU.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -560,7 +591,7 @@
             this.btn_CM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_CM.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_CM.Image = global::DocMaker.Properties.Resources.ico_alignment_CM;
-            this.btn_CM.Location = new System.Drawing.Point(200, 25);
+            this.btn_CM.Location = new System.Drawing.Point(206, 25);
             this.btn_CM.Margin = new System.Windows.Forms.Padding(1);
             this.btn_CM.Name = "btn_CM";
             this.btn_CM.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -582,7 +613,7 @@
             this.btn_RM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_RM.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_RM.Image = global::DocMaker.Properties.Resources.ico_alignment_RM;
-            this.btn_RM.Location = new System.Drawing.Point(225, 25);
+            this.btn_RM.Location = new System.Drawing.Point(231, 25);
             this.btn_RM.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.btn_RM.Name = "btn_RM";
             this.btn_RM.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -592,22 +623,6 @@
             this.toolTip.SetToolTip(this.btn_RM, "Align Bottom");
             this.btn_RM.UseVisualStyleBackColor = false;
             this.btn_RM.Click += new System.EventHandler(this.Alignment_OnClick);
-            // 
-            // label13
-            // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label13.BackColor = System.Drawing.Color.Gainsboro;
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(0, 242);
-            this.label13.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(254, 150);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "Those points represents the\r\nreal position of an object";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btn_CU
             // 
@@ -620,7 +635,7 @@
             this.btn_CU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_CU.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_CU.Image = global::DocMaker.Properties.Resources.ico_alignment_CU;
-            this.btn_CU.Location = new System.Drawing.Point(200, 0);
+            this.btn_CU.Location = new System.Drawing.Point(206, 0);
             this.btn_CU.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.btn_CU.Name = "btn_CU";
             this.btn_CU.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -643,7 +658,7 @@
             this.btn_LD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_LD.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_LD.Image = global::DocMaker.Properties.Resources.ico_alignment_LD;
-            this.btn_LD.Location = new System.Drawing.Point(175, 50);
+            this.btn_LD.Location = new System.Drawing.Point(181, 50);
             this.btn_LD.Margin = new System.Windows.Forms.Padding(0);
             this.btn_LD.Name = "btn_LD";
             this.btn_LD.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -664,7 +679,7 @@
             this.btn_CD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_CD.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_CD.Image = global::DocMaker.Properties.Resources.ico_alignment_CD;
-            this.btn_CD.Location = new System.Drawing.Point(200, 50);
+            this.btn_CD.Location = new System.Drawing.Point(206, 50);
             this.btn_CD.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.btn_CD.Name = "btn_CD";
             this.btn_CD.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -685,7 +700,7 @@
             this.btn_RD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_RD.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_RD.Image = global::DocMaker.Properties.Resources.ico_alignment_RD;
-            this.btn_RD.Location = new System.Drawing.Point(225, 50);
+            this.btn_RD.Location = new System.Drawing.Point(231, 50);
             this.btn_RD.Margin = new System.Windows.Forms.Padding(0);
             this.btn_RD.Name = "btn_RD";
             this.btn_RD.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -706,7 +721,7 @@
             this.btn_RU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_RU.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_RU.Image = global::DocMaker.Properties.Resources.ico_alignment_RU;
-            this.btn_RU.Location = new System.Drawing.Point(225, 0);
+            this.btn_RU.Location = new System.Drawing.Point(231, 0);
             this.btn_RU.Margin = new System.Windows.Forms.Padding(0);
             this.btn_RU.Name = "btn_RU";
             this.btn_RU.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -716,59 +731,6 @@
             this.toolTip.SetToolTip(this.btn_RU, "Align Right");
             this.btn_RU.UseVisualStyleBackColor = false;
             this.btn_RU.Click += new System.EventHandler(this.Alignment_OnClick);
-            // 
-            // cb_showAnchors
-            // 
-            this.cb_showAnchors.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cb_showAnchors.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cb_showAnchors.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cb_showAnchors.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_showAnchors.ForeColor = System.Drawing.Color.Black;
-            this.cb_showAnchors.Location = new System.Drawing.Point(0, 51);
-            this.cb_showAnchors.Margin = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.cb_showAnchors.Name = "cb_showAnchors";
-            this.cb_showAnchors.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
-            this.cb_showAnchors.Size = new System.Drawing.Size(24, 23);
-            this.cb_showAnchors.TabIndex = 9;
-            this.cb_showAnchors.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.cb_showAnchors.UseCompatibleTextRendering = true;
-            this.cb_showAnchors.UseVisualStyleBackColor = false;
-            this.cb_showAnchors.CheckedChanged += new System.EventHandler(this.Cb_showAnchor_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.label1.Size = new System.Drawing.Size(259, 22);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Location & Alignment";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.UseMnemonic = false;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(0, 106);
-            this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.label2.Size = new System.Drawing.Size(259, 22);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Location";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tb_xPosition
             // 
@@ -787,7 +749,103 @@
             this.tb_xPosition.Value = 1;
             this.tb_xPosition.Wheel_StepValue = 5;
             this.tb_xPosition.Enter += new System.EventHandler(this.SuspendPaperScrollEvent);
+            this.tb_xPosition.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_Position_KeyDown);
             this.tb_xPosition.Leave += new System.EventHandler(this.ResumePaperScrollEvent);
+            this.tb_xPosition.Validated += new System.EventHandler(this.tb_Position_OnValidation);
+            // 
+            // tb_yPosition
+            // 
+            this.tb_yPosition.AllowSpace = true;
+            this.tb_yPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_yPosition.Location = new System.Drawing.Point(26, 27);
+            this.tb_yPosition.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tb_yPosition.MaximumValue = 10000;
+            this.tb_yPosition.MinimumValue = 0;
+            this.tb_yPosition.Name = "tb_yPosition";
+            this.tb_yPosition.Size = new System.Drawing.Size(60, 20);
+            this.tb_yPosition.TabIndex = 4;
+            this.tb_yPosition.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.tb_yPosition.Value = 1;
+            this.tb_yPosition.Wheel_StepValue = 5;
+            this.tb_yPosition.Enter += new System.EventHandler(this.SuspendPaperScrollEvent);
+            this.tb_yPosition.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_Position_KeyDown);
+            this.tb_yPosition.Leave += new System.EventHandler(this.ResumePaperScrollEvent);
+            this.tb_yPosition.Validated += new System.EventHandler(this.tb_Position_OnValidation);
+            // 
+            // cb_showAnchors
+            // 
+            this.cb_showAnchors.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cb_showAnchors.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cb_showAnchors.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cb_showAnchors.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_showAnchors.ForeColor = System.Drawing.Color.Black;
+            this.cb_showAnchors.Location = new System.Drawing.Point(0, 51);
+            this.cb_showAnchors.Margin = new System.Windows.Forms.Padding(0, 1, 0, 0);
+            this.cb_showAnchors.Name = "cb_showAnchors";
+            this.cb_showAnchors.Padding = new System.Windows.Forms.Padding(2, 3, 0, 0);
+            this.cb_showAnchors.Size = new System.Drawing.Size(24, 23);
+            this.cb_showAnchors.TabIndex = 9;
+            this.cb_showAnchors.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.cb_showAnchors.UseCompatibleTextRendering = true;
+            this.cb_showAnchors.UseVisualStyleBackColor = false;
+            this.cb_showAnchors.CheckedChanged += new System.EventHandler(this.Cb_showAnchor_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.label1.Size = new System.Drawing.Size(265, 22);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Location & Alignment";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.UseMnemonic = false;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(0, 106);
+            this.label2.Margin = new System.Windows.Forms.Padding(0);
+            this.label2.Name = "label2";
+            this.label2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.label2.Size = new System.Drawing.Size(265, 22);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "-";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel4.AutoSize = true;
+            this.tableLayoutPanel4.ColumnCount = 4;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(5, 133);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(5);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(255, 64);
+            this.tableLayoutPanel4.TabIndex = 5;
             // 
             // layers
             // 
@@ -815,15 +873,15 @@
             this.layers.Margin = new System.Windows.Forms.Padding(0);
             this.layers.MultiSelect = false;
             this.layers.Name = "layers";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.Padding = new System.Windows.Forms.Padding(4, 0, 0, 4);
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.layers.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(4, 0, 0, 4);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.layers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.layers.RowHeadersVisible = false;
             this.layers.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.layers.RowTemplate.Height = 30;
@@ -831,7 +889,7 @@
             this.layers.ShowCellErrors = false;
             this.layers.ShowEditingIcon = false;
             this.layers.ShowRowErrors = false;
-            this.layers.Size = new System.Drawing.Size(259, 299);
+            this.layers.Size = new System.Drawing.Size(265, 299);
             this.layers.TabIndex = 5;
             this.layers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Layers_CellContentClick);
             this.layers.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Layers_CellContentClick);
@@ -840,12 +898,12 @@
             // 
             // layer_visible
             // 
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle13.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle13.NullValue")));
-            dataGridViewCellStyle13.Padding = new System.Windows.Forms.Padding(4);
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.layer_visible.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle1.NullValue")));
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(4);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.layer_visible.DefaultCellStyle = dataGridViewCellStyle1;
             this.layer_visible.HeaderText = "visible";
             this.layer_visible.Name = "layer_visible";
             this.layer_visible.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -854,13 +912,13 @@
             // layer_name
             // 
             this.layer_name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle14.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
-            this.layer_name.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.layer_name.DefaultCellStyle = dataGridViewCellStyle2;
             this.layer_name.HeaderText = "name";
             this.layer_name.Name = "layer_name";
             this.layer_name.ReadOnly = true;
@@ -881,7 +939,7 @@
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
             this.label4.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.label4.Size = new System.Drawing.Size(259, 25);
+            this.label4.Size = new System.Drawing.Size(265, 25);
             this.label4.TabIndex = 2;
             this.label4.Text = "Layers";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -905,7 +963,7 @@
             // 
             this.pan_HSplit.Panel2.BackColor = System.Drawing.Color.DimGray;
             this.pan_HSplit.Panel2.Controls.Add(this.tableLayoutPanel3);
-            this.pan_HSplit.Size = new System.Drawing.Size(263, 726);
+            this.pan_HSplit.Size = new System.Drawing.Size(269, 726);
             this.pan_HSplit.SplitterDistance = 396;
             this.pan_HSplit.SplitterIncrement = 10;
             this.pan_HSplit.SplitterWidth = 2;
@@ -924,166 +982,8 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(259, 324);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(265, 324);
             this.tableLayoutPanel3.TabIndex = 6;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(380, 323);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(302, 323);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.label9, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.panel7, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.panel6, 0, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(71, 159);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(403, 148);
-            this.tableLayoutPanel2.TabIndex = 5;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.label9.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(0, 0);
-            this.label9.Margin = new System.Windows.Forms.Padding(0);
-            this.label9.Name = "label9";
-            this.label9.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label9.Size = new System.Drawing.Size(403, 24);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "Object position";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel7.Controls.Add(this.y_center);
-            this.panel7.Controls.Add(this.label6);
-            this.panel7.Controls.Add(this.sl_yPosition);
-            this.panel7.Location = new System.Drawing.Point(5, 91);
-            this.panel7.Margin = new System.Windows.Forms.Padding(5, 5, 5, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(247, 50);
-            this.panel7.TabIndex = 9;
-            // 
-            // y_center
-            // 
-            this.y_center.BackColor = System.Drawing.Color.Silver;
-            this.y_center.ForeColor = System.Drawing.Color.Black;
-            this.y_center.Location = new System.Drawing.Point(79, 8);
-            this.y_center.Margin = new System.Windows.Forms.Padding(0);
-            this.y_center.Name = "y_center";
-            this.y_center.Size = new System.Drawing.Size(62, 17);
-            this.y_center.TabIndex = 9;
-            this.y_center.Text = "center";
-            this.y_center.UseVisualStyleBackColor = false;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.BackColor = System.Drawing.Color.Silver;
-            this.label6.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(5, 6);
-            this.label6.Margin = new System.Windows.Forms.Padding(5, 3, 0, 3);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(136, 20);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Position Y";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // sl_yPosition
-            // 
-            this.sl_yPosition.AutoSize = false;
-            this.sl_yPosition.Location = new System.Drawing.Point(5, 31);
-            this.sl_yPosition.Margin = new System.Windows.Forms.Padding(5, 2, 5, 0);
-            this.sl_yPosition.Maximum = 180;
-            this.sl_yPosition.Minimum = -180;
-            this.sl_yPosition.Name = "sl_yPosition";
-            this.sl_yPosition.Size = new System.Drawing.Size(233, 14);
-            this.sl_yPosition.TabIndex = 7;
-            this.sl_yPosition.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.sl_yPosition.Scroll += new System.EventHandler(this.Y_pos_Scroll);
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel6.Controls.Add(this.x_center);
-            this.panel6.Controls.Add(this.label7);
-            this.panel6.Controls.Add(this.sl_xPosition);
-            this.panel6.Location = new System.Drawing.Point(5, 29);
-            this.panel6.Margin = new System.Windows.Forms.Padding(5, 5, 5, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(247, 50);
-            this.panel6.TabIndex = 9;
-            // 
-            // x_center
-            // 
-            this.x_center.BackColor = System.Drawing.Color.Silver;
-            this.x_center.ForeColor = System.Drawing.Color.Black;
-            this.x_center.Location = new System.Drawing.Point(79, 8);
-            this.x_center.Margin = new System.Windows.Forms.Padding(0);
-            this.x_center.Name = "x_center";
-            this.x_center.Size = new System.Drawing.Size(62, 17);
-            this.x_center.TabIndex = 9;
-            this.x_center.Text = "center";
-            this.x_center.UseVisualStyleBackColor = false;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.BackColor = System.Drawing.Color.Silver;
-            this.label7.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(5, 6);
-            this.label7.Margin = new System.Windows.Forms.Padding(5, 3, 0, 3);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(136, 20);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Position X";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // sl_xPosition
-            // 
-            this.sl_xPosition.AutoSize = false;
-            this.sl_xPosition.Location = new System.Drawing.Point(5, 31);
-            this.sl_xPosition.Margin = new System.Windows.Forms.Padding(5, 2, 5, 0);
-            this.sl_xPosition.Maximum = 180;
-            this.sl_xPosition.Minimum = -180;
-            this.sl_xPosition.Name = "sl_xPosition";
-            this.sl_xPosition.Size = new System.Drawing.Size(233, 14);
-            this.sl_xPosition.TabIndex = 7;
-            this.sl_xPosition.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.sl_xPosition.Scroll += new System.EventHandler(this.X_pos_Scroll);
             // 
             // pan_MainPanel
             // 
@@ -1122,7 +1022,7 @@
             this.pan_VSplit.Panel2.Controls.Add(this.pan_HSplit);
             this.pan_VSplit.Panel2MinSize = 260;
             this.pan_VSplit.Size = new System.Drawing.Size(844, 726);
-            this.pan_VSplit.SplitterDistance = 579;
+            this.pan_VSplit.SplitterDistance = 573;
             this.pan_VSplit.SplitterIncrement = 2;
             this.pan_VSplit.SplitterWidth = 2;
             this.pan_VSplit.TabIndex = 4;
@@ -1137,16 +1037,13 @@
             this.PaperWrap.AutoScrollMinSize = new System.Drawing.Size(20, 20);
             this.PaperWrap.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.PaperWrap.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.PaperWrap.Controls.Add(this.button2);
             this.PaperWrap.Controls.Add(this.thePaper);
-            this.PaperWrap.Controls.Add(this.button1);
-            this.PaperWrap.Controls.Add(this.tableLayoutPanel2);
             this.PaperWrap.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PaperWrap.IgnoreWheel = false;
             this.PaperWrap.Location = new System.Drawing.Point(0, 0);
             this.PaperWrap.Margin = new System.Windows.Forms.Padding(0);
             this.PaperWrap.Name = "PaperWrap";
-            this.PaperWrap.Size = new System.Drawing.Size(579, 726);
+            this.PaperWrap.Size = new System.Drawing.Size(573, 726);
             this.PaperWrap.TabIndex = 1;
             this.PaperWrap.Click += new System.EventHandler(this.PaperWrap_OnClick);
             // 
@@ -1159,95 +1056,6 @@
             this.thePaper.Size = new System.Drawing.Size(43, 55);
             this.thePaper.TabIndex = 0;
             this.thePaper.Click += new System.EventHandler(this.PaperWrap_OnClick);
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel4.AutoSize = true;
-            this.tableLayoutPanel4.ColumnCount = 4;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(5, 133);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(5);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(249, 64);
-            this.tableLayoutPanel4.TabIndex = 5;
-            // 
-            // tb_yPosition
-            // 
-            this.tb_yPosition.AllowSpace = true;
-            this.tb_yPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_yPosition.Location = new System.Drawing.Point(26, 27);
-            this.tb_yPosition.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tb_yPosition.MaximumValue = 10000;
-            this.tb_yPosition.MinimumValue = 0;
-            this.tb_yPosition.Name = "tb_yPosition";
-            this.tb_yPosition.Size = new System.Drawing.Size(60, 20);
-            this.tb_yPosition.TabIndex = 4;
-            this.tb_yPosition.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.tb_yPosition.Value = 1;
-            this.tb_yPosition.Wheel_StepValue = 5;
-            this.tb_yPosition.Enter += new System.EventHandler(this.SuspendPaperScrollEvent);
-            this.tb_yPosition.Leave += new System.EventHandler(this.ResumePaperScrollEvent);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(0, 0);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(24, 24);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "X";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(0, 24);
-            this.label8.Margin = new System.Windows.Forms.Padding(0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(24, 26);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Y";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lab_showAnchors
-            // 
-            this.lab_showAnchors.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pan_AlignmentBtns.SetColumnSpan(this.lab_showAnchors, 2);
-            this.lab_showAnchors.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lab_showAnchors.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_showAnchors.ForeColor = System.Drawing.Color.Black;
-            this.lab_showAnchors.Location = new System.Drawing.Point(24, 50);
-            this.lab_showAnchors.Margin = new System.Windows.Forms.Padding(0);
-            this.lab_showAnchors.Name = "lab_showAnchors";
-            this.lab_showAnchors.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-            this.lab_showAnchors.Size = new System.Drawing.Size(151, 24);
-            this.lab_showAnchors.TabIndex = 2;
-            this.lab_showAnchors.Text = "Show alignment points";
-            this.lab_showAnchors.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lab_showAnchors.UseMnemonic = false;
-            this.lab_showAnchors.Click += new System.EventHandler(this.lab_showAnchors_Click);
             // 
             // MainForm
             // 
@@ -1290,11 +1098,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pan_HSplit)).EndInit();
             this.pan_HSplit.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.sl_yPosition)).EndInit();
-            this.panel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.sl_xPosition)).EndInit();
             this.pan_MainPanel.ResumeLayout(false);
             this.pan_VSplit.Panel1.ResumeLayout(false);
             this.pan_VSplit.Panel2.ResumeLayout(false);
@@ -1328,15 +1131,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView layers;
         private System.Windows.Forms.Button btn_add_label;
-        private System.Windows.Forms.TrackBar sl_xPosition;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TrackBar sl_yPosition;
-        private System.Windows.Forms.CheckBox x_center;
         private System.Windows.Forms.Button btn_add_line;
-        private System.Windows.Forms.CheckBox y_center;
         private System.Windows.Forms.Button btn_add_image;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.ToolStripMenuItem languageManagerToolStripMenuItem;
@@ -1355,20 +1150,15 @@
         private System.Windows.Forms.Button btn_CU;
         private System.Windows.Forms.Button btn_LD;
         private System.Windows.Forms.Button btn_RD;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button btn_LM;
         private System.Windows.Forms.Button btn_CD;
         private System.Windows.Forms.SplitContainer pan_HSplit;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel pan_MainPanel;
         private System.Windows.Forms.TableLayoutPanel pan_zoom;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.DataGridViewImageColumn layer_visible;
         private System.Windows.Forms.DataGridViewTextBoxColumn layer_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn layer_object;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox cb_showAnchors;
         private System.Windows.Forms.ToolStripMenuItem resManagertoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;

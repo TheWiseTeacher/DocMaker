@@ -34,8 +34,10 @@ namespace DocMaker
             F5 = 16
         }
 
-        public LabelObject(int labelCounter)
+        public LabelObject(int labelCounter, bool skipLanguages = false)
         {
+            OBJ_IDENTIFIER = 'L';
+
             Name = "Label " + labelCounter.ToString();
 
             FontID = Config.DEFAULT_FONT;
@@ -46,13 +48,18 @@ namespace DocMaker
 
             FontStyle = 0;
             LabelFlags = 0;
-
-            //Create a text value for each language
+  
+            // Init the dictionary
             ContentTable = new Dictionary<string, string>();
-            foreach (string lang in Project.UsedLanguages)
-                ContentTable.Add(lang, "");
 
-            ContentTable[Project.UsedLanguages[0]] = $"New Label {labelCounter}";
+            if (!skipLanguages)
+            {
+                //Create a text value for each language
+                foreach (string lang in Languages.UsedLanguages)
+                    ContentTable.Add(lang, "");
+
+                ContentTable[Languages.UsedLanguages[0]] = $"New Label {labelCounter}";
+            }
         }
 
         public void AddLanguage(string languageCode)
@@ -83,7 +90,7 @@ namespace DocMaker
             g.ApplyGraphicsQuality();
 
             // Measure label size
-            SizeF s = g.MeasureString(ContentTable[Project.UsedLanguages[0]], font);
+            SizeF s = g.MeasureString(ContentTable[Languages.UsedLanguages[0]], font);
             s = new SizeF((float)Math.Ceiling(s.Width), (float)Math.Ceiling(s.Height));
 
             g.Dispose();
@@ -119,7 +126,7 @@ namespace DocMaker
             g.RotateTransform(angle);
 
             // Draw the string
-            g.DrawString(ContentTable[Project.UsedLanguages[0]], 
+            g.DrawString(ContentTable[Languages.UsedLanguages[0]], 
                          font, 
                          new SolidBrush(TextColor), 
                          Point.Empty);
@@ -141,12 +148,12 @@ namespace DocMaker
             }
 
             // Release previous rendered bitmap (A lil bit of memore'h :3)
-            if(Canvas.Image != null)
-                Canvas.Image.Dispose();
+            if(Holder.Image != null)
+                Holder.Image.Dispose();
 
             // Set Canvas Image
-            Canvas.Image = b;
-            Canvas.Size = Canvas.Image.Size;
+            Holder.Image = b;
+            Holder.Size = Holder.Image.Size;
 
             base.RenderObject();
         }
@@ -163,5 +170,43 @@ namespace DocMaker
             return false;
         }
 
+        public override void SaveObject()
+        {
+            // Save the things that are used in all objects
+            base.SaveObject();
+
+            Project.fileHandler.Write(FontID);
+            Project.fileHandler.Write(FontSize);
+            Project.fileHandler.Write(FontStyle);
+            Project.fileHandler.Write(LabelFlags);
+
+            Project.fileHandler.Write(TextColor.R);
+            Project.fileHandler.Write(TextColor.G);
+            Project.fileHandler.Write(TextColor.B);
+
+            //Project.fileHandler.Write(ContentTable.Count);
+
+            for(int i=0; i < Languages.UsedLanguages.Count; i++)
+                Project.fileHandler.Write(ContentTable[Languages.UsedLanguages[i]]);
+        }
+
+        public override void LoadObject()
+        {
+            // Load the things that are used in all objects
+            base.LoadObject();
+
+            FontID = Project.fileHandler.ReadString();
+            FontSize = Project.fileHandler.ReadByte();
+            FontStyle = Project.fileHandler.ReadByte();
+            LabelFlags = Project.fileHandler.ReadByte();
+
+            TextColor = Color.FromArgb(Project.fileHandler.ReadByte(),
+                                       Project.fileHandler.ReadByte(),
+                                       Project.fileHandler.ReadByte());
+
+
+            for (int i = 0; i < Languages.UsedLanguages.Count; i++)
+                ContentTable.Add(Languages.UsedLanguages[i], Project.fileHandler.ReadString());
+        }
     }
 }

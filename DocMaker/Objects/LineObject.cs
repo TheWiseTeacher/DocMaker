@@ -30,7 +30,7 @@ namespace DocMaker
 
         public override void RenderObject()
         {
-            Canvas.BackColor = BackColor;
+            Holder.BackColor = BackColor;
             int realLength = Length;
 
             if (SizeInPercent)
@@ -39,11 +39,11 @@ namespace DocMaker
 
             if (IsVertical)
             {
-                Canvas.Size = Zoom.Calculate(new Size(Thickness, realLength));
+                Holder.Size = Zoom.Calculate(new Size(Thickness, realLength));
             }
             else
             {
-                Canvas.Size = Zoom.Calculate(new Size(realLength, Thickness));
+                Holder.Size = Zoom.Calculate(new Size(realLength, Thickness));
             }
 
             base.RenderObject();
