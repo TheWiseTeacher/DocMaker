@@ -164,9 +164,6 @@ namespace DocMaker
                 Paper.LoadPaper();
                 Fonts.LoadFonts();
 
-                // Resize the paper before putting the documentObjects
-                LivePreview.mainForm.ResizePaper(); 
-
                 Languages.LoadLanguages();
                 Objects.LoadObjects();
 

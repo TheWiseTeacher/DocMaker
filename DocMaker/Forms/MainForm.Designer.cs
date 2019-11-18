@@ -446,7 +446,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(265, 392);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(263, 392);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // pan_AlignmentBtns
@@ -483,7 +483,7 @@
             this.pan_AlignmentBtns.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.pan_AlignmentBtns.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.pan_AlignmentBtns.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.pan_AlignmentBtns.Size = new System.Drawing.Size(255, 74);
+            this.pan_AlignmentBtns.Size = new System.Drawing.Size(253, 74);
             this.pan_AlignmentBtns.TabIndex = 3;
             // 
             // btn_LM
@@ -497,7 +497,7 @@
             this.btn_LM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_LM.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_LM.Image = global::DocMaker.Properties.Resources.ico_alignment_LM;
-            this.btn_LM.Location = new System.Drawing.Point(181, 25);
+            this.btn_LM.Location = new System.Drawing.Point(179, 25);
             this.btn_LM.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.btn_LM.Name = "btn_LM";
             this.btn_LM.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -521,7 +521,7 @@
             this.lab_showAnchors.Margin = new System.Windows.Forms.Padding(0);
             this.lab_showAnchors.Name = "lab_showAnchors";
             this.lab_showAnchors.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-            this.lab_showAnchors.Size = new System.Drawing.Size(157, 24);
+            this.lab_showAnchors.Size = new System.Drawing.Size(155, 24);
             this.lab_showAnchors.TabIndex = 2;
             this.lab_showAnchors.Text = "Show alignment points";
             this.lab_showAnchors.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -569,7 +569,7 @@
             this.btn_LU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_LU.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_LU.Image = global::DocMaker.Properties.Resources.ico_alignment_LU;
-            this.btn_LU.Location = new System.Drawing.Point(181, 0);
+            this.btn_LU.Location = new System.Drawing.Point(179, 0);
             this.btn_LU.Margin = new System.Windows.Forms.Padding(0);
             this.btn_LU.Name = "btn_LU";
             this.btn_LU.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -591,7 +591,7 @@
             this.btn_CM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_CM.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_CM.Image = global::DocMaker.Properties.Resources.ico_alignment_CM;
-            this.btn_CM.Location = new System.Drawing.Point(206, 25);
+            this.btn_CM.Location = new System.Drawing.Point(204, 25);
             this.btn_CM.Margin = new System.Windows.Forms.Padding(1);
             this.btn_CM.Name = "btn_CM";
             this.btn_CM.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -613,7 +613,7 @@
             this.btn_RM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_RM.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_RM.Image = global::DocMaker.Properties.Resources.ico_alignment_RM;
-            this.btn_RM.Location = new System.Drawing.Point(231, 25);
+            this.btn_RM.Location = new System.Drawing.Point(229, 25);
             this.btn_RM.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.btn_RM.Name = "btn_RM";
             this.btn_RM.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -635,7 +635,7 @@
             this.btn_CU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_CU.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_CU.Image = global::DocMaker.Properties.Resources.ico_alignment_CU;
-            this.btn_CU.Location = new System.Drawing.Point(206, 0);
+            this.btn_CU.Location = new System.Drawing.Point(204, 0);
             this.btn_CU.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.btn_CU.Name = "btn_CU";
             this.btn_CU.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -658,7 +658,7 @@
             this.btn_LD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_LD.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_LD.Image = global::DocMaker.Properties.Resources.ico_alignment_LD;
-            this.btn_LD.Location = new System.Drawing.Point(181, 50);
+            this.btn_LD.Location = new System.Drawing.Point(179, 50);
             this.btn_LD.Margin = new System.Windows.Forms.Padding(0);
             this.btn_LD.Name = "btn_LD";
             this.btn_LD.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -679,7 +679,7 @@
             this.btn_CD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_CD.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_CD.Image = global::DocMaker.Properties.Resources.ico_alignment_CD;
-            this.btn_CD.Location = new System.Drawing.Point(206, 50);
+            this.btn_CD.Location = new System.Drawing.Point(204, 50);
             this.btn_CD.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.btn_CD.Name = "btn_CD";
             this.btn_CD.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -700,7 +700,7 @@
             this.btn_RD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_RD.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_RD.Image = global::DocMaker.Properties.Resources.ico_alignment_RD;
-            this.btn_RD.Location = new System.Drawing.Point(231, 50);
+            this.btn_RD.Location = new System.Drawing.Point(229, 50);
             this.btn_RD.Margin = new System.Windows.Forms.Padding(0);
             this.btn_RD.Name = "btn_RD";
             this.btn_RD.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -721,7 +721,7 @@
             this.btn_RU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_RU.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_RU.Image = global::DocMaker.Properties.Resources.ico_alignment_RU;
-            this.btn_RU.Location = new System.Drawing.Point(231, 0);
+            this.btn_RU.Location = new System.Drawing.Point(229, 0);
             this.btn_RU.Margin = new System.Windows.Forms.Padding(0);
             this.btn_RU.Name = "btn_RU";
             this.btn_RU.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -805,7 +805,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.label1.Size = new System.Drawing.Size(265, 22);
+            this.label1.Size = new System.Drawing.Size(263, 22);
             this.label1.TabIndex = 2;
             this.label1.Text = "Location & Alignment";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -822,7 +822,7 @@
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.label2.Size = new System.Drawing.Size(265, 22);
+            this.label2.Size = new System.Drawing.Size(263, 22);
             this.label2.TabIndex = 2;
             this.label2.Text = "-";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -844,7 +844,7 @@
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(255, 64);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(253, 64);
             this.tableLayoutPanel4.TabIndex = 5;
             // 
             // layers
@@ -889,7 +889,7 @@
             this.layers.ShowCellErrors = false;
             this.layers.ShowEditingIcon = false;
             this.layers.ShowRowErrors = false;
-            this.layers.Size = new System.Drawing.Size(265, 299);
+            this.layers.Size = new System.Drawing.Size(263, 299);
             this.layers.TabIndex = 5;
             this.layers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Layers_CellContentClick);
             this.layers.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Layers_CellContentClick);
@@ -939,7 +939,7 @@
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
             this.label4.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.label4.Size = new System.Drawing.Size(265, 25);
+            this.label4.Size = new System.Drawing.Size(263, 25);
             this.label4.TabIndex = 2;
             this.label4.Text = "Layers";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -963,7 +963,7 @@
             // 
             this.pan_HSplit.Panel2.BackColor = System.Drawing.Color.DimGray;
             this.pan_HSplit.Panel2.Controls.Add(this.tableLayoutPanel3);
-            this.pan_HSplit.Size = new System.Drawing.Size(269, 726);
+            this.pan_HSplit.Size = new System.Drawing.Size(267, 726);
             this.pan_HSplit.SplitterDistance = 396;
             this.pan_HSplit.SplitterIncrement = 10;
             this.pan_HSplit.SplitterWidth = 2;
@@ -982,7 +982,7 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(265, 324);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(263, 324);
             this.tableLayoutPanel3.TabIndex = 6;
             // 
             // pan_MainPanel
@@ -1022,7 +1022,7 @@
             this.pan_VSplit.Panel2.Controls.Add(this.pan_HSplit);
             this.pan_VSplit.Panel2MinSize = 260;
             this.pan_VSplit.Size = new System.Drawing.Size(844, 726);
-            this.pan_VSplit.SplitterDistance = 573;
+            this.pan_VSplit.SplitterDistance = 575;
             this.pan_VSplit.SplitterIncrement = 2;
             this.pan_VSplit.SplitterWidth = 2;
             this.pan_VSplit.TabIndex = 4;
@@ -1043,7 +1043,7 @@
             this.PaperWrap.Location = new System.Drawing.Point(0, 0);
             this.PaperWrap.Margin = new System.Windows.Forms.Padding(0);
             this.PaperWrap.Name = "PaperWrap";
-            this.PaperWrap.Size = new System.Drawing.Size(573, 726);
+            this.PaperWrap.Size = new System.Drawing.Size(575, 726);
             this.PaperWrap.TabIndex = 1;
             this.PaperWrap.Click += new System.EventHandler(this.PaperWrap_OnClick);
             // 

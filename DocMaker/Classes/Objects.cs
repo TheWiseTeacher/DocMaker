@@ -7,6 +7,8 @@ using System.Windows.Forms;
 
 namespace DocMaker
 {
+
+
     static class Objects
     {
         public static List<DocumentObject> objectList = new List<DocumentObject>();
@@ -145,45 +147,56 @@ namespace DocMaker
 
         public static void LoadObjects()
         {
-            // prevent editor on creating new objects
+            // Loading objects
             isLoadingObjects = true;
             
+            // Get the number of objects
             int objCounter = Project.fileHandler.ReadInteger();
-            
-            for(int i = 0; i < objCounter; i++)
+
+            // A variable to hold the object type
+            ObjectType objectType;
+
+            for (int i = 0; i < objCounter; i++)
             {
-                // Read the Identifier
-                char OBJ_IDENTIFIER = Project.fileHandler.ReadChar();
-                DocumentObject buffer;
+                // Prepare the object holder 
+                DocumentObject objectBuffer = null;
 
-                switch(OBJ_IDENTIFIER)
+                // Get the type of the object  
+                objectType = (ObjectType)Project.fileHandler.ReadByte();
+
+                switch (objectType)
                 {
-                    case 'L':
-                        /*
-                        LabelObject docObject = new LabelObject(labelObjCounter + 1);
-                        labelObjCounter++;
-
-                        objectList.Add(docObject);*/
-
-                        buffer = NewLabel();
-                        buffer.LoadObject();
-
+                    case ObjectType.Label:
+                        objectBuffer = NewLabel();
                         break;
 
-                    case 'O':
+                    case ObjectType.Line:
+                        break;
+
+                    case ObjectType.Image:
+                        break;
+
+                    case ObjectType.Table:
+                        break;
+
+                    // Unknown object just load it as a document object
+                    case ObjectType.Object:
                     default:
-                        buffer = new DocumentObject();
-                        buffer.LoadObject();
+                        objectBuffer = new DocumentObject();
+                        objectBuffer.LoadObject();
                         break;
                 }
+
+                // Load the document object
+                if(objectBuffer != null)
+                    objectBuffer.LoadObject();
             }
 
-            // Open editor on creating new objects
+            // We finished loading objects
             isLoadingObjects = false;
 
             // Render all objects
             RenderAll();
         }
-
     }
 }

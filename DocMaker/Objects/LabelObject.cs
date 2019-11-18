@@ -36,7 +36,8 @@ namespace DocMaker
 
         public LabelObject(int labelCounter, bool skipLanguages = false)
         {
-            OBJ_IDENTIFIER = 'L';
+            // I'm a label object I guess ?! :D
+            Type = ObjectType.Label;
 
             Name = "Label " + labelCounter.ToString();
 

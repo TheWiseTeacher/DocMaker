@@ -7,9 +7,18 @@ using System.Windows.Forms;
 
 namespace DocMaker
 {
+    public enum ObjectType : byte
+    {
+        Object = 0,
+        Label = 1,
+        Line = 2,
+        Image = 3,
+        Table = 4,
+    }
+
     public partial class DocumentObject : ICloneable, IDisposable
     {
-        public char OBJ_IDENTIFIER = 'O';
+        public ObjectType Type { get; set; }
 
         public string Name { get; set; }        // The object name to use in the object list
         public string Key { get; set; }         // The Key name to edit object in real time in the user's project
@@ -25,6 +34,8 @@ namespace DocMaker
 
         public DocumentObject()
         {
+            Type = ObjectType.Object;
+
             Name = "Object";
             Key = "";
 
@@ -301,7 +312,7 @@ namespace DocMaker
 
         public virtual void SaveObject()
         {
-            Project.fileHandler.Write(OBJ_IDENTIFIER);
+            Project.fileHandler.Write((byte)Type);
             Project.fileHandler.Write(flags);
             
             Project.fileHandler.Write(Name);
@@ -313,8 +324,7 @@ namespace DocMaker
 
         public virtual void LoadObject()
         {
-            // Skipping OBJ_IDENTIFIER for only being used to identify the object type
-
+            // The ObjectType is read before initializing the object
             flags = Project.fileHandler.ReadUInteger();
 
             Name = Project.fileHandler.ReadString();

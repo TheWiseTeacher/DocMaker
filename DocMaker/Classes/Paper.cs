@@ -87,6 +87,9 @@ namespace DocMaker
                     paperSize = ps;
                     break; // Break if found ?!!
                 }
+
+            // Resize the paper before putting the documentObjects
+            LivePreview.mainForm.ResizePaper();
         }
     }
 }
