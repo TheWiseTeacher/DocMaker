@@ -51,8 +51,9 @@ namespace DocMaker
         }
         public static Size Calculate(Size p)
         {
-            return new Size((int)((double)p.Width * zoomWidthRatio),
-                            (int)((double)p.Height * zoomHeightRatio));
+            // For sizes we can't accept a size of 0 so let's take 1 as minimum
+            return new Size(Funcs.Max(1, (int)((double)p.Width * zoomWidthRatio)),
+                            Funcs.Max(1, (int)((double)p.Height * zoomHeightRatio)));
         }
 
         public static Point CalculateReal(Point p)

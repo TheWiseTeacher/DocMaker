@@ -20,6 +20,10 @@ namespace DocMaker
 
         [Browsable(true)]
         [Category("Value and bounds")]    
+        public bool IgnoreClampig { get; set; } = false;
+        
+        [Browsable(true)]
+        [Category("Value and bounds")]    
         public int MinimumValue { get; set; } = 1;
 
         [Browsable(true)]
@@ -33,6 +37,7 @@ namespace DocMaker
         public enum Filter
         {
             DigitsOnly,
+            DigitList,
             LettersOnly,
             LettersAndDigits,
             Special,
@@ -50,7 +55,10 @@ namespace DocMaker
             switch (UsedFilter)
             {
                 case Filter.DigitsOnly:
-                    return (c >= 48 && c <= 57);
+                    return ((c >= 48 && c <= 57) || c == '-');
+
+                case Filter.DigitList:
+                    return ((c >= 48 && c <= 57) || c == ' ' || c == '.');
 
                 case Filter.LettersOnly:
                     return ((c >= 65 && c <= 90) || (c >= 97 && c <= 122));
@@ -83,28 +91,41 @@ namespace DocMaker
             base.OnKeyPress(e);
         }
 
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            /*
+            if (e.KeyCode == Keys.Enter)
+                e.Handled = true;
+                */
+
+            base.OnKeyDown(e);
+        }
+
         protected override void OnTextChanged(EventArgs e)
         {
             if (UsedFilter == Filter.DigitsOnly)
             {
                 Value = GetIntValue();
 
-                if (Value < MinimumValue)
+                if(!IgnoreClampig)
                 {
-                    Value = MinimumValue;
-                    System.Media.SystemSounds.Beep.Play();
+                    if (Value < MinimumValue)
+                    {
+                        Value = MinimumValue;
+                        System.Media.SystemSounds.Beep.Play();
 
-                    this.Text = Value.ToString();
-                    this.Select(this.Text.Length, 0);
-                }
+                        this.Text = Value.ToString();
+                        this.Select(this.Text.Length, 0);
+                    }
 
-                if (Value > MaximumValue)
-                {
-                    Value = MaximumValue;
-                    System.Media.SystemSounds.Beep.Play();
+                    if (Value > MaximumValue && !IgnoreClampig)
+                    {
+                        Value = MaximumValue;
+                        System.Media.SystemSounds.Beep.Play();
 
-                    this.Text = Value.ToString();
-                    this.Select(this.Text.Length, 0);
+                        this.Text = Value.ToString();
+                        this.Select(this.Text.Length, 0);
+                    }
                 }
             }
 
@@ -121,6 +142,7 @@ namespace DocMaker
                 if (IsValidKeyChar(c))
                     validString += c;
             }
+
             if (!this.Text.Equals(validString))
             {
                 System.Media.SystemSounds.Beep.Play();
@@ -134,8 +156,10 @@ namespace DocMaker
         {
             if (UsedFilter == Filter.DigitsOnly)
             {
-                this.Text = Funcs.Clamp(Funcs.ToInt(this.Text) + (Wheel_StepValue * Funcs.Force(Funcs.ToInt(e.Delta))),
-                                        MinimumValue, MaximumValue).ToString();
+                int newValue = Funcs.ToInt(this.Text) + (Wheel_StepValue * Funcs.Force(Funcs.ToInt(e.Delta)));
+
+                if(!IgnoreClampig)
+                    this.Text = Funcs.Clamp(newValue, MinimumValue, MaximumValue).ToString();
 
                 this.Select(this.Text.Length, 0);
             }

@@ -209,11 +209,11 @@ namespace DocMaker
                         }
                     }
 
-                    // Clamp Position to inside the document
-                    p.X = Funcs.Clamp(p.X, 0, Zoom.paperSize.Width - Holder.Width);
-                    p.Y = Funcs.Clamp(p.Y, 0, Zoom.paperSize.Height - Holder.Height);
                 }
-                
+
+                // Always clamp Position to inside the document
+                p.X = Funcs.Clamp(p.X, 0, Zoom.paperSize.Width - Holder.Width);
+                p.Y = Funcs.Clamp(p.Y, 0, Zoom.paperSize.Height - Holder.Height);
 
                 Holder.Location = p;
                 Holder.Update();
@@ -221,7 +221,7 @@ namespace DocMaker
                 RecalculateRealPosition();
 
                 // Update position labels on the main form
-                LivePreview.mainForm.UpdateObjectPosition(this);
+                LivePreview.mainForm.UpdateObjectPosition();
             }
         }
 
@@ -253,24 +253,6 @@ namespace DocMaker
 
         private void Canvas_MouseUp(object sender, MouseEventArgs e)
         {
-            if (isMouseDown)
-            {
-                // Mouse Released
-
-                /*
-                Point p = Canvas.Location;
-
-                if (IsCenter()) p.X += (int)((float)Canvas.Width * 0.5);
-                if (IsRight()) p.X += (int)((float)Canvas.Width);
-
-                if (IsMiddle()) p.Y += (int)((float)Canvas.Height * 0.5);
-                if (IsDown()) p.Y += (int)((float)Canvas.Height);
-
-                // Calculate the Real position without zoom
-                RealLocation = Zoom.CalculateReal(p);
-                */
-            }
-
             isMouseDown = false;
             Holder.Cursor = Config.OnHoveringObject;
         }
@@ -279,8 +261,11 @@ namespace DocMaker
         {
             isMouseDown = true;
 
-            LivePreview.currentObject = this;
-            LivePreview.mainForm.SelectObject();
+            if(LivePreview.currentObject != this)
+            {
+                LivePreview.currentObject = this;
+                LivePreview.mainForm.SelectObject();
+            }
 
             mouseLastLocation = e.Location;
             Holder.Cursor = Config.OnMovingObject;
@@ -303,6 +288,9 @@ namespace DocMaker
             // Finally set theposition clamped and with zoom applied
             Holder.Location = p;
             RecalculateRealPosition();
+
+            // Set the BackColor
+            Holder.BackColor = BackColor;
         }
 
         public virtual bool EditObject()
@@ -320,6 +308,18 @@ namespace DocMaker
 
             Project.fileHandler.Write(RealLocation.X);
             Project.fileHandler.Write(RealLocation.Y);
+
+            // Get if background is transparent
+            bool isTransparent = BackColor == Color.Transparent;
+            Project.fileHandler.Write(isTransparent);
+
+            // Write the color if it isn't transparent
+            if (!isTransparent)
+            {
+                Project.fileHandler.Write(BackColor.R);
+                Project.fileHandler.Write(BackColor.G);
+                Project.fileHandler.Write(BackColor.B);
+            }
         }
 
         public virtual void LoadObject()
@@ -332,6 +332,16 @@ namespace DocMaker
 
             RealLocation.X = Project.fileHandler.ReadInteger();
             RealLocation.Y = Project.fileHandler.ReadInteger();
+
+            // Check if backfround is transparent
+            if(Project.fileHandler.ReadBoolean())
+                BackColor = Color.Transparent;
+            else
+            { 
+                BackColor = Color.FromArgb(Project.fileHandler.ReadByte(),
+                                           Project.fileHandler.ReadByte(),
+                                           Project.fileHandler.ReadByte());
+            }
         }
 
         public object Clone()

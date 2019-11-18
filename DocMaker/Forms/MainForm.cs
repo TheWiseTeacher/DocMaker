@@ -223,7 +223,7 @@ namespace DocMaker
 
             ShowAlignment();
             LivePreview.Update();
-            UpdateObjectPosition(LivePreview.currentObject);
+            UpdateObjectPosition();
         }
 
         #endregion
@@ -293,12 +293,82 @@ namespace DocMaker
 
         #endregion
 
+        #region Document Objects Selection Methodes
+        private void UpdateSelectedObjectProperties()
+        {
+            if (LivePreview.currentObject != null)
+                Console.WriteLine("Selected : " + LivePreview.currentObject.Name);
+            else
+                Console.WriteLine("Updating using NULL");
+
+            UpdateObjectPosition();
+            ShowAlignment();
+
+            UpdateObjectBackColor();
+            UpdateStatusBar();
+        }
+
+        /// <summary>
+        /// Triggered when object is selected via direct click
+        /// </summary>
+        public void SelectObject()
+        {
+            if (LivePreview.currentObject == null)
+                return;
+
+            //foreach(DocumentObject o in layers.Columns[layer_object.Index].)
+            for (int i = 0; i < layers.Rows.Count; i++)
+            {
+                DocumentObject obj = (DocumentObject)layers[layer_object.Index, i].Value;
+                if (obj == LivePreview.currentObject)
+                {
+                    layers.ClearSelection();
+                    layers.Rows[i].Selected = true;
+
+                    Console.WriteLine("From Click");
+
+                    UpdateSelectedObjectProperties();
+                    break;
+                }
+            }
+
+            ActiveControl = layers;
+        }
+
+        private void Layers_SelectionChanged(object sender, EventArgs e)
+        {
+            if (isPopulating)
+                return;
+
+            if (layers.SelectedCells.Count <= 0)
+            {
+                LivePreview.currentObject = null;
+            }
+            else
+            {
+                int index = layers.SelectedCells[0].RowIndex;
+
+                if (LivePreview.currentObject == (DocumentObject)layers[layer_object.Index, index].Value)
+                    return;
+
+                LivePreview.currentObject = (DocumentObject)layers[layer_object.Index, index].Value;
+                Console.WriteLine("From table");
+
+                ActiveControl = LivePreview.currentObject.Holder;
+                UpdateSelectedObjectProperties();
+            }
+        }
+
+        #endregion
+
+
         #region layers table events
+
 
         private void Layers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //!\\ Also triggered by CellContentDoubleClick to allow fast clicking
-            
+
             if (e.RowIndex >= 0 && e.RowIndex < layers.Rows.Count)
             {
                 if (e.ColumnIndex == layer_visible.Index)
@@ -325,26 +395,6 @@ namespace DocMaker
             LivePreview.currentObject.EditObject();
         }
 
-        private void Layers_SelectionChanged(object sender, EventArgs e)
-        {
-            if (isPopulating)
-                return;
-
-            if (layers.SelectedCells.Count <= 0)
-            {
-                LivePreview.currentObject = null;
-            }
-            else
-            {
-                int index = layers.SelectedCells[0].RowIndex;
-                LivePreview.currentObject = (DocumentObject)layers[layer_object.Index, index].Value;
-
-                ActiveControl = LivePreview.currentObject.Holder;
-            }
-
-            ShowAlignment();
-            UpdateStatusBar();
-        }
         #endregion
 
         #region ToolStrip Events
@@ -370,6 +420,9 @@ namespace DocMaker
 
             // Reset zooms
             LoadZoomList();
+
+            // Update even if not object is selected to reset properties
+            UpdateSelectedObjectProperties();
         }
 
         private void AddFontToolStripMenuItem_Click(object sender, EventArgs e)
@@ -423,27 +476,16 @@ namespace DocMaker
         #endregion
 
 
-        public void UpdateObjectPosition(DocumentObject obj)
+        public void UpdateObjectPosition()
         {
+            if(LivePreview.currentObject == null)
+            {
+                tb_xPosition.Clear();
+                tb_yPosition.Clear();
+                return;
+            }
+
             Point r = LivePreview.currentObject.RealLocation;
-
-            /*
-            Point p = new Point(thePaper.Width - LivePreview.currentObject.Canvas.Width,
-                                thePaper.Height - LivePreview.currentObject.Canvas.Height);
-
-            p = Zoom.CalculateReal(p);
-            */
-
-            /*
-            sl_xPosition.Minimum = 0;
-            sl_xPosition.Maximum = p.X;
-            sl_xPosition.Value = r.X;
-            */
-            /*
-            sl_yPosition.Minimum = 0;
-            sl_yPosition.Maximum = p.Y;
-            sl_yPosition.Value = r.Y;
-            */
 
             tb_xPosition.Text = r.X.ToString();
             tb_yPosition.Text = r.Y.ToString();
@@ -452,30 +494,6 @@ namespace DocMaker
         }
 
         #region Adding objects and layers table populating methods
-
-        public void SelectObject()
-        {
-            if (LivePreview.currentObject == null)
-                return;
-
-            //foreach(DocumentObject o in layers.Columns[layer_object.Index].)
-            for (int i = 0; i < layers.Rows.Count; i++)
-            {
-                DocumentObject obj = (DocumentObject)layers[layer_object.Index, i].Value;
-                if (obj == LivePreview.currentObject)
-                {
-                    layers.ClearSelection();
-                    layers.Rows[i].Selected = true;
-
-                    Console.WriteLine("Selected");
-                    UpdateObjectPosition(obj);
-
-                    break;
-                }
-            }
-
-            ActiveControl = layers;
-        }
 
         private void PopulateObjectList()
         {
@@ -544,13 +562,13 @@ namespace DocMaker
             Project.OpenProject();
 
             UpdateFormTitle();
-            
+            PopulateObjectList();
+
+            UpdateSelectedObjectProperties();
 
             // Add all the controls to the paper panel
             foreach (DocumentObject docObj in Objects.objectList)
                 thePaper.Controls.Add(docObj.Holder);
-
-            PopulateObjectList();
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -602,6 +620,56 @@ namespace DocMaker
 
                 SendKeys.Send("{TAB}");
 
+        }
+
+        private void btn_empty_Click(object sender, EventArgs e)
+        {
+            ActiveControl = thePaper;
+        }
+
+        private void UpdateObjectBackColor()
+        {
+            Color buffer = Color.Transparent;
+
+            if(LivePreview.currentObject != null)
+                buffer = LivePreview.currentObject.BackColor;
+
+            tb_color_r.Text = buffer.R.ToString();
+            tb_color_g.Text = buffer.G.ToString();
+            tb_color_b.Text = buffer.B.ToString();
+
+            lab_BackColor.BackColor = buffer;
+
+            if (buffer == Color.Transparent)
+                lab_BackColor.ForeColor = Color.Black;
+            else
+                lab_BackColor.ForeColor = lab_BackColor.BackColor;
+
+            LivePreview.Update();
+        }
+
+        private void lab_BackColor_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (LivePreview.currentObject == null)
+                return;
+            
+            if(e.Button == MouseButtons.Right)
+            {
+                LivePreview.currentObject.BackColor = Color.Transparent;
+                UpdateObjectBackColor();
+            }
+            else
+            {
+                Project.colorDialog.Color = LivePreview.currentObject.BackColor;
+
+                if (Project.colorDialog.ShowDialog() == DialogResult.OK)
+                {
+                    LivePreview.currentObject.BackColor = Project.colorDialog.Color;
+                    LivePreview.currentObject.RenderObject();
+
+                    UpdateObjectBackColor();
+                }
+            }
         }
     }
 }

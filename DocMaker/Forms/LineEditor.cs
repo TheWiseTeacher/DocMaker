@@ -47,13 +47,16 @@ namespace DocMaker
             tb_key.Tag = this.Target.Key;
 
             LoadColor();
-            lab_color.Tag = Target.BackColor;
+            lab_color.Tag = Target.LineColor;
 
             lineLength.Text = Target.Length.ToString();
             lineLength.Tag = Target.Length;
 
             lineThickness.Value = Target.Thickness;
             lineThickness.Tag = Target.Thickness;
+
+            tbDashPattern.Text = Target.DashPattern;
+            tbDashPattern.Tag = Target.DashPattern;
 
             ShowOrientation();
             ShowSizeMode();
@@ -68,11 +71,13 @@ namespace DocMaker
             this.Target.Name = (string)tb_name.Tag;
             this.Target.Key = (string)tb_key.Tag;
 
-            Target.BackColor = (Color)lab_color.Tag;
+            Target.LineColor = (Color)lab_color.Tag;
 
             Target.Length = (int)lineLength.Tag;
 
             Target.Thickness = (byte)lineThickness.Tag;
+
+            Target.DashPattern = (string)tbDashPattern.Tag;
         }
 
         private void Tb_name_Validated(object sender, EventArgs e)
@@ -117,21 +122,21 @@ namespace DocMaker
 
         private void LoadColor()
         {
-            tb_color_r.Text = Target.BackColor.R.ToString();
-            tb_color_g.Text = Target.BackColor.G.ToString();
-            tb_color_b.Text = Target.BackColor.B.ToString();
+            tb_color_r.Text = Target.LineColor.R.ToString();
+            tb_color_g.Text = Target.LineColor.G.ToString();
+            tb_color_b.Text = Target.LineColor.B.ToString();
 
-            lab_color.BackColor = Target.BackColor;
+            lab_color.BackColor = Target.LineColor;
             LivePreview.Update();
         }
 
         private void Lab_color_Click(object sender, EventArgs e)
         {
-            Project.colorDialog.Color = Target.BackColor;
+            Project.colorDialog.Color = Target.LineColor;
 
             if (Project.colorDialog.ShowDialog() == DialogResult.OK)
             {
-                Target.BackColor = Project.colorDialog.Color;
+                Target.LineColor = Project.colorDialog.Color;
                 LoadColor();
             }
         }
@@ -145,9 +150,7 @@ namespace DocMaker
                 e.Cancel = true;
 
             // To prevent any exception I'm using a special Clamp method :3
-            Target.BackColor = Color.FromArgb(Funcs.Clamp(tb_color_r.Text, 0, 255),
-                                              Funcs.Clamp(tb_color_g.Text, 0, 255),
-                                              Funcs.Clamp(tb_color_b.Text, 0, 255));
+            Target.LineColor = Color.FromArgb(tb_color_r.Value, tb_color_g.Value, tb_color_b.Value);
 
             // Reload all inputs and display the color
             LoadColor();
@@ -207,6 +210,10 @@ namespace DocMaker
             LivePreview.Update();
         }
 
-
+        private void tbdashPattern_Validated(object sender, EventArgs e)
+        {
+            Target.DashPattern = tbDashPattern.Text;
+            LivePreview.Update();
+        }
     }
 }

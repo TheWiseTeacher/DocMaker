@@ -71,7 +71,7 @@ namespace DocMaker
         {
             ImageObject docObject = new ImageObject(ImageObjCounter + 1);
 
-            if (docObject.EditObject())
+            if (isLoadingObjects || docObject.EditObject())
             {
                 objectList.Add(docObject);
 
@@ -171,6 +171,7 @@ namespace DocMaker
                         break;
 
                     case ObjectType.Line:
+                        objectBuffer = NewLine();
                         break;
 
                     case ObjectType.Image:

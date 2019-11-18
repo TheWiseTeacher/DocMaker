@@ -24,6 +24,18 @@ namespace DocMaker
                 return 0;
             }
         }
+        
+        public static float ToFloat(this string s)
+        {
+            try
+            {
+                return float.Parse(s);
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
 
         public static int IntValue(this TextBox tb)
         {
@@ -35,6 +47,20 @@ namespace DocMaker
             return Clamp(ToInt(tb.Text), min, max);
         }
 
+        public static float[] GetFloatList(this string str, char separator)
+        {
+            return Array.ConvertAll(str.Split(separator), s => s.ToFloat());
+        }
+
+        public static void Flip(this Point p)
+        {
+            p = new Point(p.Y, p.X);
+        }
+
+        public static void Flip(this Size s)
+        {
+            s = new Size(s.Height, s.Width);
+        }
 
         public static int Clamp(int value, int min, int max)
         {

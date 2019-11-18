@@ -36,16 +36,6 @@ namespace DocMaker
             //Paper.Initialize();
         }
 
-        public static void NewProject()
-        {
-            // Reset project file to be none
-            projectLoadedFromFile = false;
-            projectTitle = "New project";
-            projectFile = string.Empty;
-
-            InitializeComponents();
-        }
-
         public static void InitializeComponents()
         {
             // Empty the temp folder for the new project files
@@ -65,6 +55,18 @@ namespace DocMaker
 
             Languages.Initialize();
             Objects.Initialize();
+
+            LivePreview.currentObject = null;
+        }
+
+        public static void NewProject()
+        {
+            // Reset project file to be none
+            projectLoadedFromFile = false;
+            projectTitle = "New project";
+            projectFile = string.Empty;
+
+            InitializeComponents();
         }
 
         public static void SaveProject(bool SaveAs = false)
