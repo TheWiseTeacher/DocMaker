@@ -11,7 +11,7 @@ namespace DocMaker
         public static MainForm mainForm = null;
         public static Panel paperReference = null;
 
-        public static DocumentObject currentObject = null;
+        public static DocumentObject currentObject { get; private set; } = null;
         private static bool suspendedUpdates = false;
 
         public static void Update()
@@ -23,6 +23,30 @@ namespace DocMaker
 
             currentObject.RenderObject();
             currentObject.Holder.Update();
+        }
+
+        public delegate void SelectionChanged(DocumentObject documentObject);
+        public static event SelectionChanged OnSelectionChange;
+
+        public static void Select(DocumentObject documentObject)
+        {
+            if (currentObject == documentObject)
+                return;
+
+            currentObject = documentObject;
+            OnSelectionChange?.Invoke(documentObject);
+
+            // For Debug
+            if(documentObject != null)
+                Console.WriteLine("Selected object : " + currentObject.Name);
+            else
+                Console.WriteLine("UnSelecting object");
+
+        }
+
+        public static void UnSelect()
+        {
+            Select(null);
         }
 
         public static void SuspendUpdates() => suspendedUpdates = true;

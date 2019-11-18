@@ -33,6 +33,8 @@ namespace DocMaker
             PaperWrap.MouseWheel += PaperWrap_MouseWheel;
             pan_VSplit.SplitterDistance = pan_VSplit.Width - pan_VSplit.Panel2MinSize;
 
+            // Add a listener for the object selection Event
+            LivePreview.OnSelectionChange += LivePreview_OnSelectionChange;
         }
 
         #endregion
@@ -294,100 +296,98 @@ namespace DocMaker
         #endregion
 
         #region Document Objects Selection Methodes
-        private void UpdateSelectedObjectProperties()
+
+        private void LivePreview_OnSelectionChange(DocumentObject documentObject)
         {
-            if (LivePreview.currentObject != null)
-                Console.WriteLine("Selected : " + LivePreview.currentObject.Name);
-            else
-                Console.WriteLine("Updating using NULL");
+            SelectObjectInTable();
 
             UpdateObjectPosition();
             ShowAlignment();
 
             UpdateObjectBackColor();
             UpdateStatusBar();
+
+            if(documentObject != null)
+                ActiveControl = documentObject.Holder;
         }
 
-        /// <summary>
-        /// Triggered when object is selected via direct click
-        /// </summary>
-        public void SelectObject()
+        private bool ignoreSelectionChange = false;
+
+        public void SelectObjectInTable()
         {
             if (LivePreview.currentObject == null)
                 return;
 
-            //foreach(DocumentObject o in layers.Columns[layer_object.Index].)
-            for (int i = 0; i < layers.Rows.Count; i++)
+            for (int i = 0; i < layersTable.Rows.Count; i++)
             {
-                DocumentObject obj = (DocumentObject)layers[layer_object.Index, i].Value;
-                if (obj == LivePreview.currentObject)
+                if (LivePreview.currentObject == (DocumentObject)layersTable[layer_object.Index, i].Value)
                 {
-                    layers.ClearSelection();
-                    layers.Rows[i].Selected = true;
+                    ignoreSelectionChange = true;
 
-                    Console.WriteLine("From Click");
+                    layersTable.ClearSelection();
+                    layersTable.Rows[i].Selected = true;
 
-                    UpdateSelectedObjectProperties();
                     break;
                 }
             }
 
-            ActiveControl = layers;
+            ActiveControl = layersTable;
+            ignoreSelectionChange = false;
         }
 
-        private void Layers_SelectionChanged(object sender, EventArgs e)
-        {
-            if (isPopulating)
+        private void LayersTable_SelectionChanged(object sender, EventArgs e)
+        {         
+            if (isPopulating || ignoreSelectionChange)
                 return;
-
-            if (layers.SelectedCells.Count <= 0)
+            
+            if (layersTable.SelectedCells.Count <= 0)
             {
-                LivePreview.currentObject = null;
+                LivePreview.UnSelect();
             }
             else
             {
-                int index = layers.SelectedCells[0].RowIndex;
-
-                if (LivePreview.currentObject == (DocumentObject)layers[layer_object.Index, index].Value)
-                    return;
-
-                LivePreview.currentObject = (DocumentObject)layers[layer_object.Index, index].Value;
-                Console.WriteLine("From table");
-
-                ActiveControl = LivePreview.currentObject.Holder;
-                UpdateSelectedObjectProperties();
+                int index = layersTable.SelectedCells[0].RowIndex;
+                LivePreview.Select((DocumentObject)layersTable[layer_object.Index, index].Value);  
             }
+            
         }
 
         #endregion
 
 
-        #region layers table events
+        #region layerTable Events
 
+        private void layersTable_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = true;
+            e.SuppressKeyPress = true;
+        }
 
-        private void Layers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void LayersTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //!\\ Also triggered by CellContentDoubleClick to allow fast clicking
 
-            if (e.RowIndex >= 0 && e.RowIndex < layers.Rows.Count)
+            if (e.RowIndex >= 0 && e.RowIndex < layersTable.Rows.Count)
             {
+                DocumentObject selectedObject = (DocumentObject)layersTable[layer_object.Index, e.RowIndex].Value;
+
                 if (e.ColumnIndex == layer_visible.Index)
                 {
-                    if (((DocumentObject)layers[layer_object.Index, e.RowIndex].Value).ToggleVisibility())
+                    if (selectedObject.ToggleVisibility())
                     {
-                        layers[layer_visible.Index, e.RowIndex].Value =
+                        layersTable[layer_visible.Index, e.RowIndex].Value =
                             Properties.Resources.ico_visible;
                     }
                     else
                     {
-                        layers[layer_visible.Index, e.RowIndex].Value =
+                        layersTable[layer_visible.Index, e.RowIndex].Value =
                             Properties.Resources.ico_nvisible;
-                    }
+                    }                
                 }
             }
         }
 
-        private void Layers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void LayersTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (LivePreview.currentObject == null || e.ColumnIndex == layer_visible.Index)
                 return;
@@ -422,7 +422,7 @@ namespace DocMaker
             LoadZoomList();
 
             // Update even if not object is selected to reset properties
-            UpdateSelectedObjectProperties();
+            LivePreview.UnSelect();
         }
 
         private void AddFontToolStripMenuItem_Click(object sender, EventArgs e)
@@ -500,18 +500,18 @@ namespace DocMaker
             // To prevent triggering SelectionChanged Event and loose selected object
             isPopulating = true;
 
-            layers.Rows.Clear();
+            layersTable.Rows.Clear();
 
             foreach (DocumentObject o in Objects.objectList)
             {
-                layers.Rows.Add(
+                layersTable.Rows.Add(
                     o.Visible ? Properties.Resources.ico_visible : Properties.Resources.ico_nvisible, 
                     o.Name, 
                     o);
             }
 
             isPopulating = false;
-            SelectObject();
+            SelectObjectInTable();
         }
 
         public void AddObjectToPaper(DocumentObject obj)
@@ -520,7 +520,8 @@ namespace DocMaker
                 return;
 
             thePaper.Controls.Add(obj.Holder);
-            LivePreview.currentObject = obj;
+            //LivePreview.currentObject = obj;
+            LivePreview.Select(obj);
 
             // Populate object table after adding object
             PopulateObjectList();
@@ -564,7 +565,7 @@ namespace DocMaker
             UpdateFormTitle();
             PopulateObjectList();
 
-            UpdateSelectedObjectProperties();
+            LivePreview.UnSelect();
 
             // Add all the controls to the paper panel
             foreach (DocumentObject docObj in Objects.objectList)
@@ -671,5 +672,6 @@ namespace DocMaker
                 }
             }
         }
+
     }
 }

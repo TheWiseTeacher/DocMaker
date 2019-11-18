@@ -56,7 +56,7 @@ namespace DocMaker
             Languages.Initialize();
             Objects.Initialize();
 
-            LivePreview.currentObject = null;
+            LivePreview.UnSelect();
         }
 
         public static void NewProject()

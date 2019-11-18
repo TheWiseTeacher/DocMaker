@@ -75,15 +75,20 @@
             this.btn_CD = new System.Windows.Forms.Button();
             this.btn_RD = new System.Windows.Forms.Button();
             this.btn_RU = new System.Windows.Forms.Button();
+            this.tb_xPosition = new DocMaker.CustomTextBox();
+            this.tb_yPosition = new DocMaker.CustomTextBox();
             this.cb_showAnchors = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tb_color_b = new DocMaker.CustomTextBox();
+            this.tb_color_r = new DocMaker.CustomTextBox();
+            this.tb_color_g = new DocMaker.CustomTextBox();
             this.pan_color = new System.Windows.Forms.TableLayoutPanel();
             this.lab_BackColor = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.layers = new System.Windows.Forms.DataGridView();
+            this.layersTable = new System.Windows.Forms.DataGridView();
             this.layer_visible = new System.Windows.Forms.DataGridViewImageColumn();
             this.layer_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.layer_object = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -95,11 +100,6 @@
             this.pan_VSplit = new System.Windows.Forms.SplitContainer();
             this.PaperWrap = new DocMaker.CustomPanel();
             this.thePaper = new System.Windows.Forms.Panel();
-            this.tb_xPosition = new DocMaker.CustomTextBox();
-            this.tb_yPosition = new DocMaker.CustomTextBox();
-            this.tb_color_b = new DocMaker.CustomTextBox();
-            this.tb_color_r = new DocMaker.CustomTextBox();
-            this.tb_color_g = new DocMaker.CustomTextBox();
             this.MainFormMenuStrip.SuspendLayout();
             this.pan_StatusBar.SuspendLayout();
             this.pan_zoom.SuspendLayout();
@@ -109,7 +109,7 @@
             this.pan_AlignmentBtns.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.pan_color.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layersTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pan_HSplit)).BeginInit();
             this.pan_HSplit.Panel1.SuspendLayout();
             this.pan_HSplit.Panel2.SuspendLayout();
@@ -153,7 +153,7 @@
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -161,7 +161,7 @@
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -169,7 +169,7 @@
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -178,20 +178,20 @@
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
             this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
             | System.Windows.Forms.Keys.S)));
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(174, 6);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             this.closeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.closeToolStripMenuItem.Text = "Exit";
             // 
             // editToolStripMenuItem
@@ -477,7 +477,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(261, 392);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(257, 392);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // pan_AlignmentBtns
@@ -514,7 +514,7 @@
             this.pan_AlignmentBtns.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.pan_AlignmentBtns.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.pan_AlignmentBtns.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.pan_AlignmentBtns.Size = new System.Drawing.Size(251, 74);
+            this.pan_AlignmentBtns.Size = new System.Drawing.Size(247, 74);
             this.pan_AlignmentBtns.TabIndex = 3;
             // 
             // btn_LM
@@ -528,7 +528,7 @@
             this.btn_LM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_LM.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_LM.Image = global::DocMaker.Properties.Resources.ico_alignment_LM;
-            this.btn_LM.Location = new System.Drawing.Point(177, 25);
+            this.btn_LM.Location = new System.Drawing.Point(173, 25);
             this.btn_LM.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.btn_LM.Name = "btn_LM";
             this.btn_LM.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -552,7 +552,7 @@
             this.lab_showAnchors.Margin = new System.Windows.Forms.Padding(0);
             this.lab_showAnchors.Name = "lab_showAnchors";
             this.lab_showAnchors.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-            this.lab_showAnchors.Size = new System.Drawing.Size(153, 24);
+            this.lab_showAnchors.Size = new System.Drawing.Size(149, 24);
             this.lab_showAnchors.TabIndex = 2;
             this.lab_showAnchors.Text = "Show alignment points";
             this.lab_showAnchors.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -600,7 +600,7 @@
             this.btn_LU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_LU.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_LU.Image = global::DocMaker.Properties.Resources.ico_alignment_LU;
-            this.btn_LU.Location = new System.Drawing.Point(177, 0);
+            this.btn_LU.Location = new System.Drawing.Point(173, 0);
             this.btn_LU.Margin = new System.Windows.Forms.Padding(0);
             this.btn_LU.Name = "btn_LU";
             this.btn_LU.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -622,7 +622,7 @@
             this.btn_CM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_CM.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_CM.Image = global::DocMaker.Properties.Resources.ico_alignment_CM;
-            this.btn_CM.Location = new System.Drawing.Point(202, 25);
+            this.btn_CM.Location = new System.Drawing.Point(198, 25);
             this.btn_CM.Margin = new System.Windows.Forms.Padding(1);
             this.btn_CM.Name = "btn_CM";
             this.btn_CM.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -644,7 +644,7 @@
             this.btn_RM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_RM.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_RM.Image = global::DocMaker.Properties.Resources.ico_alignment_RM;
-            this.btn_RM.Location = new System.Drawing.Point(227, 25);
+            this.btn_RM.Location = new System.Drawing.Point(223, 25);
             this.btn_RM.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.btn_RM.Name = "btn_RM";
             this.btn_RM.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -666,7 +666,7 @@
             this.btn_CU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_CU.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_CU.Image = global::DocMaker.Properties.Resources.ico_alignment_CU;
-            this.btn_CU.Location = new System.Drawing.Point(202, 0);
+            this.btn_CU.Location = new System.Drawing.Point(198, 0);
             this.btn_CU.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.btn_CU.Name = "btn_CU";
             this.btn_CU.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -689,7 +689,7 @@
             this.btn_LD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_LD.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_LD.Image = global::DocMaker.Properties.Resources.ico_alignment_LD;
-            this.btn_LD.Location = new System.Drawing.Point(177, 50);
+            this.btn_LD.Location = new System.Drawing.Point(173, 50);
             this.btn_LD.Margin = new System.Windows.Forms.Padding(0);
             this.btn_LD.Name = "btn_LD";
             this.btn_LD.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -710,7 +710,7 @@
             this.btn_CD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_CD.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_CD.Image = global::DocMaker.Properties.Resources.ico_alignment_CD;
-            this.btn_CD.Location = new System.Drawing.Point(202, 50);
+            this.btn_CD.Location = new System.Drawing.Point(198, 50);
             this.btn_CD.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.btn_CD.Name = "btn_CD";
             this.btn_CD.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -731,7 +731,7 @@
             this.btn_RD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_RD.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_RD.Image = global::DocMaker.Properties.Resources.ico_alignment_RD;
-            this.btn_RD.Location = new System.Drawing.Point(227, 50);
+            this.btn_RD.Location = new System.Drawing.Point(223, 50);
             this.btn_RD.Margin = new System.Windows.Forms.Padding(0);
             this.btn_RD.Name = "btn_RD";
             this.btn_RD.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -752,7 +752,7 @@
             this.btn_RU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_RU.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_RU.Image = global::DocMaker.Properties.Resources.ico_alignment_RU;
-            this.btn_RU.Location = new System.Drawing.Point(227, 0);
+            this.btn_RU.Location = new System.Drawing.Point(223, 0);
             this.btn_RU.Margin = new System.Windows.Forms.Padding(0);
             this.btn_RU.Name = "btn_RU";
             this.btn_RU.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
@@ -762,6 +762,50 @@
             this.toolTip.SetToolTip(this.btn_RU, "Align Right");
             this.btn_RU.UseVisualStyleBackColor = false;
             this.btn_RU.Click += new System.EventHandler(this.Alignment_OnClick);
+            // 
+            // tb_xPosition
+            // 
+            this.tb_xPosition.AllowSpace = true;
+            this.tb_xPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_xPosition.IgnoreClampig = false;
+            this.tb_xPosition.Location = new System.Drawing.Point(26, 2);
+            this.tb_xPosition.Margin = new System.Windows.Forms.Padding(2);
+            this.tb_xPosition.MaximumValue = 10000;
+            this.tb_xPosition.MinimumValue = 0;
+            this.tb_xPosition.Name = "tb_xPosition";
+            this.tb_xPosition.Size = new System.Drawing.Size(60, 20);
+            this.tb_xPosition.TabIndex = 4;
+            this.tb_xPosition.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.tb_xPosition.Value = 1;
+            this.tb_xPosition.Wheel_StepValue = 5;
+            this.tb_xPosition.Enter += new System.EventHandler(this.SuspendPaperScrollEvent);
+            this.tb_xPosition.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_Position_KeyDown);
+            this.tb_xPosition.Leave += new System.EventHandler(this.ResumePaperScrollEvent);
+            this.tb_xPosition.Validated += new System.EventHandler(this.tb_Position_OnValidation);
+            // 
+            // tb_yPosition
+            // 
+            this.tb_yPosition.AllowSpace = true;
+            this.tb_yPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_yPosition.IgnoreClampig = false;
+            this.tb_yPosition.Location = new System.Drawing.Point(26, 27);
+            this.tb_yPosition.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tb_yPosition.MaximumValue = 10000;
+            this.tb_yPosition.MinimumValue = 0;
+            this.tb_yPosition.Name = "tb_yPosition";
+            this.tb_yPosition.Size = new System.Drawing.Size(60, 20);
+            this.tb_yPosition.TabIndex = 4;
+            this.tb_yPosition.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.tb_yPosition.Value = 1;
+            this.tb_yPosition.Wheel_StepValue = 5;
+            this.tb_yPosition.Enter += new System.EventHandler(this.SuspendPaperScrollEvent);
+            this.tb_yPosition.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_Position_KeyDown);
+            this.tb_yPosition.Leave += new System.EventHandler(this.ResumePaperScrollEvent);
+            this.tb_yPosition.Validated += new System.EventHandler(this.tb_Position_OnValidation);
             // 
             // cb_showAnchors
             // 
@@ -797,7 +841,7 @@
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(261, 20);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(257, 20);
             this.tableLayoutPanel5.TabIndex = 15;
             // 
             // label1
@@ -811,7 +855,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.label1.Size = new System.Drawing.Size(261, 22);
+            this.label1.Size = new System.Drawing.Size(257, 22);
             this.label1.TabIndex = 2;
             this.label1.Text = "Location & Alignment";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -828,7 +872,7 @@
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.label2.Size = new System.Drawing.Size(261, 22);
+            this.label2.Size = new System.Drawing.Size(257, 22);
             this.label2.TabIndex = 2;
             this.label2.Text = "Common properties";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -854,8 +898,74 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(251, 24);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(247, 24);
             this.tableLayoutPanel2.TabIndex = 5;
+            // 
+            // tb_color_b
+            // 
+            this.tb_color_b.AllowSpace = false;
+            this.tb_color_b.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_color_b.IgnoreClampig = false;
+            this.tb_color_b.Location = new System.Drawing.Point(198, 2);
+            this.tb_color_b.Margin = new System.Windows.Forms.Padding(3, 2, 0, 2);
+            this.tb_color_b.MaximumValue = 255;
+            this.tb_color_b.MaxLength = 3;
+            this.tb_color_b.MinimumValue = 0;
+            this.tb_color_b.Name = "tb_color_b";
+            this.tb_color_b.Size = new System.Drawing.Size(49, 20);
+            this.tb_color_b.TabIndex = 3;
+            this.tb_color_b.TabStop = false;
+            this.tb_color_b.Text = "0";
+            this.tb_color_b.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_color_b.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.tb_color_b.Value = 0;
+            this.tb_color_b.Wheel_StepValue = 5;
+            // 
+            // tb_color_r
+            // 
+            this.tb_color_r.AllowSpace = false;
+            this.tb_color_r.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_color_r.IgnoreClampig = false;
+            this.tb_color_r.Location = new System.Drawing.Point(95, 2);
+            this.tb_color_r.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.tb_color_r.MaximumValue = 255;
+            this.tb_color_r.MaxLength = 3;
+            this.tb_color_r.MinimumValue = 0;
+            this.tb_color_r.Name = "tb_color_r";
+            this.tb_color_r.Size = new System.Drawing.Size(50, 20);
+            this.tb_color_r.TabIndex = 1;
+            this.tb_color_r.TabStop = false;
+            this.tb_color_r.Text = "0";
+            this.tb_color_r.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_color_r.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.tb_color_r.Value = 0;
+            this.tb_color_r.Wheel_StepValue = 5;
+            // 
+            // tb_color_g
+            // 
+            this.tb_color_g.AllowSpace = false;
+            this.tb_color_g.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_color_g.IgnoreClampig = false;
+            this.tb_color_g.Location = new System.Drawing.Point(148, 2);
+            this.tb_color_g.Margin = new System.Windows.Forms.Padding(3, 2, 0, 2);
+            this.tb_color_g.MaximumValue = 255;
+            this.tb_color_g.MaxLength = 3;
+            this.tb_color_g.MinimumValue = 0;
+            this.tb_color_g.Name = "tb_color_g";
+            this.tb_color_g.Size = new System.Drawing.Size(47, 20);
+            this.tb_color_g.TabIndex = 2;
+            this.tb_color_g.TabStop = false;
+            this.tb_color_g.Text = "0";
+            this.tb_color_g.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_color_g.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.tb_color_g.Value = 0;
+            this.tb_color_g.Wheel_StepValue = 5;
             // 
             // pan_color
             // 
@@ -910,32 +1020,33 @@
             this.label6.Text = "BackColor";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // layers
+            // layersTable
             // 
-            this.layers.AllowUserToAddRows = false;
-            this.layers.AllowUserToDeleteRows = false;
-            this.layers.AllowUserToResizeColumns = false;
-            this.layers.AllowUserToResizeRows = false;
-            this.layers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.layers.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.layers.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.layers.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            this.layers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.layers.ColumnHeadersHeight = 30;
-            this.layers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.layers.ColumnHeadersVisible = false;
-            this.layers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.layersTable.AllowUserToAddRows = false;
+            this.layersTable.AllowUserToDeleteRows = false;
+            this.layersTable.AllowUserToResizeColumns = false;
+            this.layersTable.AllowUserToResizeRows = false;
+            this.layersTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.layersTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.layersTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.layersTable.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.layersTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.layersTable.ColumnHeadersHeight = 30;
+            this.layersTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.layersTable.ColumnHeadersVisible = false;
+            this.layersTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.layer_visible,
             this.layer_name,
             this.layer_object});
-            this.layers.Cursor = System.Windows.Forms.Cursors.Default;
-            this.layers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.layers.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.layers.Location = new System.Drawing.Point(0, 25);
-            this.layers.Margin = new System.Windows.Forms.Padding(0);
-            this.layers.MultiSelect = false;
-            this.layers.Name = "layers";
+            this.layersTable.Cursor = System.Windows.Forms.Cursors.Default;
+            this.layersTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layersTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.layersTable.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.layersTable.Location = new System.Drawing.Point(0, 25);
+            this.layersTable.Margin = new System.Windows.Forms.Padding(0);
+            this.layersTable.MultiSelect = false;
+            this.layersTable.Name = "layersTable";
+            this.layersTable.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -944,20 +1055,21 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.layers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.layers.RowHeadersVisible = false;
-            this.layers.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.layers.RowTemplate.Height = 30;
-            this.layers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.layers.ShowCellErrors = false;
-            this.layers.ShowEditingIcon = false;
-            this.layers.ShowRowErrors = false;
-            this.layers.Size = new System.Drawing.Size(261, 299);
-            this.layers.TabIndex = 5;
-            this.layers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Layers_CellContentClick);
-            this.layers.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Layers_CellContentClick);
-            this.layers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Layers_CellDoubleClick);
-            this.layers.SelectionChanged += new System.EventHandler(this.Layers_SelectionChanged);
+            this.layersTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.layersTable.RowHeadersVisible = false;
+            this.layersTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.layersTable.RowTemplate.Height = 30;
+            this.layersTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.layersTable.ShowCellErrors = false;
+            this.layersTable.ShowEditingIcon = false;
+            this.layersTable.ShowRowErrors = false;
+            this.layersTable.Size = new System.Drawing.Size(257, 299);
+            this.layersTable.TabIndex = 5;
+            this.layersTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LayersTable_CellContentClick);
+            this.layersTable.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LayersTable_CellContentClick);
+            this.layersTable.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LayersTable_CellDoubleClick);
+            this.layersTable.SelectionChanged += new System.EventHandler(this.LayersTable_SelectionChanged);
+            this.layersTable.KeyDown += new System.Windows.Forms.KeyEventHandler(this.layersTable_KeyDown);
             // 
             // layer_visible
             // 
@@ -969,6 +1081,7 @@
             this.layer_visible.DefaultCellStyle = dataGridViewCellStyle1;
             this.layer_visible.HeaderText = "visible";
             this.layer_visible.Name = "layer_visible";
+            this.layer_visible.ReadOnly = true;
             this.layer_visible.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.layer_visible.Width = 30;
             // 
@@ -990,6 +1103,7 @@
             // 
             this.layer_object.HeaderText = "Object";
             this.layer_object.Name = "layer_object";
+            this.layer_object.ReadOnly = true;
             this.layer_object.Visible = false;
             // 
             // label4
@@ -1002,7 +1116,7 @@
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
             this.label4.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.label4.Size = new System.Drawing.Size(261, 25);
+            this.label4.Size = new System.Drawing.Size(257, 25);
             this.label4.TabIndex = 2;
             this.label4.Text = "Layers";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1026,7 +1140,7 @@
             // 
             this.pan_HSplit.Panel2.BackColor = System.Drawing.Color.DimGray;
             this.pan_HSplit.Panel2.Controls.Add(this.tableLayoutPanel3);
-            this.pan_HSplit.Size = new System.Drawing.Size(265, 726);
+            this.pan_HSplit.Size = new System.Drawing.Size(261, 726);
             this.pan_HSplit.SplitterDistance = 396;
             this.pan_HSplit.SplitterIncrement = 10;
             this.pan_HSplit.SplitterWidth = 2;
@@ -1036,7 +1150,7 @@
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.layers, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.layersTable, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.label4, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
@@ -1045,7 +1159,7 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(261, 324);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(257, 324);
             this.tableLayoutPanel3.TabIndex = 6;
             // 
             // pan_MainPanel
@@ -1085,7 +1199,7 @@
             this.pan_VSplit.Panel2.Controls.Add(this.pan_HSplit);
             this.pan_VSplit.Panel2MinSize = 260;
             this.pan_VSplit.Size = new System.Drawing.Size(844, 726);
-            this.pan_VSplit.SplitterDistance = 577;
+            this.pan_VSplit.SplitterDistance = 581;
             this.pan_VSplit.SplitterIncrement = 2;
             this.pan_VSplit.SplitterWidth = 2;
             this.pan_VSplit.TabIndex = 4;
@@ -1106,7 +1220,7 @@
             this.PaperWrap.Location = new System.Drawing.Point(0, 0);
             this.PaperWrap.Margin = new System.Windows.Forms.Padding(0);
             this.PaperWrap.Name = "PaperWrap";
-            this.PaperWrap.Size = new System.Drawing.Size(577, 726);
+            this.PaperWrap.Size = new System.Drawing.Size(581, 726);
             this.PaperWrap.TabIndex = 1;
             this.PaperWrap.Click += new System.EventHandler(this.PaperWrap_OnClick);
             // 
@@ -1119,116 +1233,6 @@
             this.thePaper.Size = new System.Drawing.Size(43, 55);
             this.thePaper.TabIndex = 0;
             this.thePaper.Click += new System.EventHandler(this.PaperWrap_OnClick);
-            // 
-            // tb_xPosition
-            // 
-            this.tb_xPosition.AllowSpace = true;
-            this.tb_xPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_xPosition.IgnoreClampig = false;
-            this.tb_xPosition.Location = new System.Drawing.Point(26, 2);
-            this.tb_xPosition.Margin = new System.Windows.Forms.Padding(2);
-            this.tb_xPosition.MaximumValue = 10000;
-            this.tb_xPosition.MinimumValue = 0;
-            this.tb_xPosition.Name = "tb_xPosition";
-            this.tb_xPosition.Size = new System.Drawing.Size(60, 20);
-            this.tb_xPosition.TabIndex = 4;
-            this.tb_xPosition.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.tb_xPosition.Value = 1;
-            this.tb_xPosition.Wheel_StepValue = 5;
-            this.tb_xPosition.Enter += new System.EventHandler(this.SuspendPaperScrollEvent);
-            this.tb_xPosition.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_Position_KeyDown);
-            this.tb_xPosition.Leave += new System.EventHandler(this.ResumePaperScrollEvent);
-            this.tb_xPosition.Validated += new System.EventHandler(this.tb_Position_OnValidation);
-            // 
-            // tb_yPosition
-            // 
-            this.tb_yPosition.AllowSpace = true;
-            this.tb_yPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_yPosition.IgnoreClampig = false;
-            this.tb_yPosition.Location = new System.Drawing.Point(26, 27);
-            this.tb_yPosition.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tb_yPosition.MaximumValue = 10000;
-            this.tb_yPosition.MinimumValue = 0;
-            this.tb_yPosition.Name = "tb_yPosition";
-            this.tb_yPosition.Size = new System.Drawing.Size(60, 20);
-            this.tb_yPosition.TabIndex = 4;
-            this.tb_yPosition.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.tb_yPosition.Value = 1;
-            this.tb_yPosition.Wheel_StepValue = 5;
-            this.tb_yPosition.Enter += new System.EventHandler(this.SuspendPaperScrollEvent);
-            this.tb_yPosition.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_Position_KeyDown);
-            this.tb_yPosition.Leave += new System.EventHandler(this.ResumePaperScrollEvent);
-            this.tb_yPosition.Validated += new System.EventHandler(this.tb_Position_OnValidation);
-            // 
-            // tb_color_b
-            // 
-            this.tb_color_b.AllowSpace = false;
-            this.tb_color_b.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_color_b.IgnoreClampig = false;
-            this.tb_color_b.Location = new System.Drawing.Point(202, 2);
-            this.tb_color_b.Margin = new System.Windows.Forms.Padding(3, 2, 0, 2);
-            this.tb_color_b.MaximumValue = 255;
-            this.tb_color_b.MaxLength = 3;
-            this.tb_color_b.MinimumValue = 0;
-            this.tb_color_b.Name = "tb_color_b";
-            this.tb_color_b.Size = new System.Drawing.Size(49, 20);
-            this.tb_color_b.TabIndex = 3;
-            this.tb_color_b.TabStop = false;
-            this.tb_color_b.Text = "0";
-            this.tb_color_b.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tb_color_b.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.tb_color_b.Value = 0;
-            this.tb_color_b.Wheel_StepValue = 5;
-            // 
-            // tb_color_r
-            // 
-            this.tb_color_r.AllowSpace = false;
-            this.tb_color_r.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_color_r.IgnoreClampig = false;
-            this.tb_color_r.Location = new System.Drawing.Point(95, 2);
-            this.tb_color_r.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.tb_color_r.MaximumValue = 255;
-            this.tb_color_r.MaxLength = 3;
-            this.tb_color_r.MinimumValue = 0;
-            this.tb_color_r.Name = "tb_color_r";
-            this.tb_color_r.Size = new System.Drawing.Size(52, 20);
-            this.tb_color_r.TabIndex = 1;
-            this.tb_color_r.TabStop = false;
-            this.tb_color_r.Text = "0";
-            this.tb_color_r.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tb_color_r.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.tb_color_r.Value = 0;
-            this.tb_color_r.Wheel_StepValue = 5;
-            // 
-            // tb_color_g
-            // 
-            this.tb_color_g.AllowSpace = false;
-            this.tb_color_g.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_color_g.IgnoreClampig = false;
-            this.tb_color_g.Location = new System.Drawing.Point(150, 2);
-            this.tb_color_g.Margin = new System.Windows.Forms.Padding(3, 2, 0, 2);
-            this.tb_color_g.MaximumValue = 255;
-            this.tb_color_g.MaxLength = 3;
-            this.tb_color_g.MinimumValue = 0;
-            this.tb_color_g.Name = "tb_color_g";
-            this.tb_color_g.Size = new System.Drawing.Size(49, 20);
-            this.tb_color_g.TabIndex = 2;
-            this.tb_color_g.TabStop = false;
-            this.tb_color_g.Text = "0";
-            this.tb_color_g.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tb_color_g.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.tb_color_g.Value = 0;
-            this.tb_color_g.Wheel_StepValue = 5;
             // 
             // MainForm
             // 
@@ -1269,7 +1273,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.pan_color.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.layers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layersTable)).EndInit();
             this.pan_HSplit.Panel1.ResumeLayout(false);
             this.pan_HSplit.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pan_HSplit)).EndInit();
@@ -1306,7 +1310,7 @@
         private System.Windows.Forms.PictureBox StatusIcon;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridView layers;
+        private System.Windows.Forms.DataGridView layersTable;
         private System.Windows.Forms.Button btn_add_label;
         private System.Windows.Forms.Button btn_add_line;
         private System.Windows.Forms.Button btn_add_image;

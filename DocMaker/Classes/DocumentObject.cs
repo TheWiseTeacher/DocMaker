@@ -117,7 +117,7 @@ namespace DocMaker
 
         private void Canvas_DoubleClick(object sender, EventArgs e)
         {
-            LivePreview.currentObject = this;
+            LivePreview.Select(this);
             EditObject();
 
             //LivePreview.currentObject = null;
@@ -126,7 +126,7 @@ namespace DocMaker
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
             //Point s = new Point(200, 200);
-            Point s, ss;
+            Point s;
 
             if (isMouseDown)
             {
@@ -260,12 +260,7 @@ namespace DocMaker
         private void Canvas_MouseDown(object sender, MouseEventArgs e)
         {
             isMouseDown = true;
-
-            if(LivePreview.currentObject != this)
-            {
-                LivePreview.currentObject = this;
-                LivePreview.mainForm.SelectObject();
-            }
+            LivePreview.Select(this);
 
             mouseLastLocation = e.Location;
             Holder.Cursor = Config.OnMovingObject;
