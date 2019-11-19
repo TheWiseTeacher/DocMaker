@@ -66,6 +66,7 @@
     <Compile Include="Classes\Objects.cs" />
     <Compile Include="Classes\Paper.cs" />
     <Compile Include="Classes\Project.cs" />
+    <Compile Include="Classes\Resources.cs" />
     <Compile Include="Classes\Snapper.cs" />
     <Compile Include="Classes\Structures.cs" />
     <Compile Include="Classes\Config.cs" />

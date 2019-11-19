@@ -73,16 +73,17 @@ namespace DocMaker
             bw.Write(theByte);
         }
         
-
         public void Write(byte[] theBytes)
         {
-            //byte[] buffer = new byte[theBytes.Length];
-            //for (int i = 0; i < buffer.Length; i++) buffer[i] = (byte)(theBytes[i] ^ 0xFF);
-
             byte[] buffer = Compress(theBytes);
 
             bw.Write(buffer.Length);
             bw.Write(buffer);
+        }
+
+        public void WriteFile(string filePath)
+        {
+            Write(File.ReadAllBytes(filePath));
         }
 
         public static byte[] Compress(byte[] data)
@@ -105,14 +106,6 @@ namespace DocMaker
             }
             return output.ToArray();
         }
-
-        /*
-        public void WriteClassObject(object objectData)
-        {
-            BinaryFormatter formatter = new BinaryFormatter();
-            formatter.Serialize(fileStream, objectData);
-        }
-        */
 
         public string ReadString()
         {
@@ -150,6 +143,11 @@ namespace DocMaker
             byte[] buffer = br.ReadBytes(s);
 
             return Decompress(buffer);
+        }
+
+        public void ReadFile(string filePath)
+        {
+            File.WriteAllBytes(filePath, ReadBytes());
         }
 
         public void Close()

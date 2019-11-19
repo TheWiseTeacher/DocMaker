@@ -183,6 +183,7 @@ namespace DocMaker
                         break;
 
                     case ObjectType.Image:
+                        objectBuffer = NewImage();
                         break;
 
                     case ObjectType.Table:

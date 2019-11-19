@@ -23,12 +23,6 @@ namespace DocMaker
         public static List<string> changeList = new List<string>(); 
 
 
-        // Temporary cache file
-        private static string projectTempDir = Path.GetTempPath() + "\\DocMakerTempDir\\";
-
-
-        public static List<string> resourceList = new List<string>();
-        public static List<Bitmap> resourceBitmap = new List<Bitmap>();
         // static int resourceCounter = 0;
 
         public static void Initialize()
@@ -39,7 +33,7 @@ namespace DocMaker
         public static void InitializeComponents()
         {
             // Empty the temp folder for the new project files
-            EmptyTempFolder();
+            Resources.EmptyTempFolder();
 
             // Clear paper from the controls
             LivePreview.paperReference.Controls.Clear();
@@ -110,8 +104,9 @@ namespace DocMaker
 
                 Paper.SavePaper();
                 Fonts.SaveFonts();
-
                 Languages.SaveLanguages();
+
+                Resources.SaveResources();
                 Objects.SaveObjects();
 
                 fileHandler.Close();
@@ -165,8 +160,9 @@ namespace DocMaker
 
                 Paper.LoadPaper();
                 Fonts.LoadFonts();
-
                 Languages.LoadLanguages();
+
+                Resources.LoadResources();
                 Objects.LoadObjects();
 
                 fileHandler.Close();
@@ -179,91 +175,5 @@ namespace DocMaker
                 NewProject();
             }
         }
-
-
-        public static string GetResourceFilePath(string resID)
-        {
-            return projectTempDir + resID;
-        }
-
-        private static void EmptyTempFolder()
-        {
-            if(!Directory.Exists(projectTempDir))
-            {
-                Directory.CreateDirectory(projectTempDir);
-            }
-
-            string[] files = Directory.GetFiles(projectTempDir);
-            foreach(string file in files)
-            {
-                File.Delete(file);
-            }
-
-            //resourceCounter = 0;
-            resourceList.Clear();
-            resourceList.Add("(none)");
-
-            // Release preloaded bitmaps
-            foreach(Bitmap b in resourceBitmap)
-                b.Dispose();
-
-            resourceBitmap.Clear();
-            resourceBitmap.Add(DocMaker.Properties.Resources.none);
-        }
-
-        public static void AddResourceFile(string filePath)
-        {
-            string resID = Path.GetFileName(filePath);
-            int resListIndex = resourceList.IndexOf(resID);
-
-            if (resListIndex != -1)
-            {
-                if (Funcs.Question("A resource file with the same name is already in the resource list!\n" +
-                    $"Do you want to overwrite '{resID}' ?") != DialogResult.Yes)
-                {
-                    return;
-                }
-            }
-
-            string destFile = string.Format("{0}{1}", projectTempDir, Path.GetFileName(filePath));
-            File.Copy(filePath, destFile, true);
-
-            if(resListIndex == -1)
-            {
-                // Add a new resource file
-                resourceList.Add(resID);
-
-                using (Bitmap tempBitmap = new Bitmap(destFile))
-                { resourceBitmap.Add(new Bitmap(tempBitmap)); }
-            }
-            else
-            {
-                // Update the resource file in case of overwrite
-                resourceBitmap[resListIndex].Dispose();
-
-                using (Bitmap tempBitmap = new Bitmap(destFile))
-                {resourceBitmap[resListIndex] = new Bitmap(tempBitmap);}
-            }
-        }
-
-        public static void RemoveResourceFile(string resID)
-        {
-            for (int i = resourceList.Count-1; i > 0; i--)
-            {
-                if (resourceList[i].Equals(resID))
-                {
-                    resourceList.RemoveAt(i);
-                    File.Delete(GetResourceFilePath(resID));
-
-                    resourceBitmap[i].Dispose();
-                    resourceBitmap.RemoveAt(i);
-                }
-            }
-        }
-
-
-
-
-
     }
 }

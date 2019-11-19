@@ -11,28 +11,38 @@ namespace DocMaker
 {
     public class ImageObject : DocumentObject
     {
-        public Size objectSize;
 
         public string ResourceID { get; set; }
 
-        public enum DrawingTypes { Stretch = 0, Tiles = 1, Center = 2, Zoom = 3 };
+        public Size ObjectSize { get; set; }
+
+        public enum DrawingTypes : byte
+        { 
+            Stretch = 0, 
+            Tiles = 1, 
+            Center = 2, 
+            Zoom = 3 
+        };
+
         public DrawingTypes drawingType;
 
         public ImageObject(int imageCounter)
         {
+            Type = ObjectType.Image;
+
             Name = "Image " + imageCounter.ToString();
             BackColor = Color.Transparent;
 
             SetAlignment(Flags.Left | Flags.Up);
 
             // Set the resource file to default (none)
-            ResourceID = Project.resourceList[0];
+            ResourceID = Resources.resourceList[0];
 
             // For this version only stretch image :/
             Holder.SizeMode = PictureBoxSizeMode.StretchImage;
 
             IsVertical = false;
-            objectSize = new Size(100, 100);
+            ObjectSize = new Size(100, 100);
 
             IsVertical = false;
             SizeInPercent = false;
@@ -40,19 +50,25 @@ namespace DocMaker
             drawingType = DrawingTypes.Center;
         }
 
+        /// <summary>
+        /// Checks if the object is using the same resource id,
+        /// if true set it to no ressource selected.
+        /// This is used to update ImageObjects when deleting a resource file.
+        /// </summary>
+        /// <param name="resID">The resource id to check for.</param>
         public void CheckResource(string resID)
         {
             if (ResourceID.Equals(resID))
             {
-                ResourceID = Project.resourceList[0];
-                Holder.BackgroundImage = Project.resourceBitmap[0];
+                ResourceID = Resources.resourceList[0];
+                RenderObject();
             }
         }
 
         public override void RenderObject()
         {
-            Bitmap b = new Bitmap(objectSize.Width, objectSize.Height);
-            Bitmap r = Project.resourceBitmap[Project.resourceList.IndexOf(ResourceID)];
+            Bitmap b = new Bitmap(ObjectSize.Width, ObjectSize.Height);
+            Bitmap r = Resources.Get(ResourceID);
 
             Graphics g = Graphics.FromImage(b);
             Point anchor = new Point(0, 0);
@@ -74,13 +90,13 @@ namespace DocMaker
                 case DrawingTypes.Tiles:
                     using (TextureBrush brush = new TextureBrush(r, WrapMode.Tile))
                     {
-                        g.FillRectangle(brush, 0, 0, objectSize.Width, objectSize.Height);
+                        g.FillRectangle(brush, 0, 0, ObjectSize.Width, ObjectSize.Height);
                     }
                     break;
 
                 case DrawingTypes.Stretch:
                     
-                    g.DrawImage(r, 0, 0, objectSize.Width, objectSize.Height);
+                    g.DrawImage(r, 0, 0, ObjectSize.Width, ObjectSize.Height);
                     break;
 
                 case DrawingTypes.Center:
@@ -94,6 +110,7 @@ namespace DocMaker
 
                 case DrawingTypes.Zoom:
 
+                    // TODO Zoom
 
                     break;
 
@@ -128,7 +145,7 @@ namespace DocMaker
             //Canvas.BackColor = BackColor;
 
             Holder.Image = b;
-            Holder.Size = Zoom.Calculate(objectSize);
+            Holder.Size = Zoom.Calculate(ObjectSize);
 
             base.RenderObject();
         }
@@ -143,6 +160,30 @@ namespace DocMaker
             }
 
             return false;
+        }
+
+        public override void SaveObject()
+        {
+            base.SaveObject();
+
+            Project.fileHandler.Write(ResourceID);
+
+            Project.fileHandler.Write(ObjectSize.Width);
+            Project.fileHandler.Write(ObjectSize.Height);
+
+            Project.fileHandler.Write((byte)drawingType); 
+        }
+
+        public override void LoadObject()
+        {
+            base.LoadObject();
+
+            ResourceID = Project.fileHandler.ReadString();
+
+            ObjectSize = new Size(Project.fileHandler.ReadInteger(),
+                                  Project.fileHandler.ReadInteger());
+
+            drawingType = (DrawingTypes)Project.fileHandler.ReadByte();
         }
     }
 

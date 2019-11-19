@@ -17,18 +17,15 @@ namespace DocMaker
         public ResourceManager()
         {
             InitializeComponent();
-
             RepopulateResourceList();
 
-
-            //resourceList.Controls.Add( );
         }
 
         private void RepopulateResourceList()
         {
             //resourceList.Items.Clear();
             resourceList.DataSource = null;
-            resourceList.DataSource = Project.resourceList;    
+            resourceList.DataSource = Resources.resourceList;    
         }
 
         private void btn_addResource_Click(object sender, EventArgs e)
@@ -51,7 +48,7 @@ namespace DocMaker
                 {
                     if (File.Exists(file))
                     {
-                        Project.AddResourceFile(file);   
+                        Resources.AddResourceFile(file);   
                     }
                 }
             }
@@ -72,7 +69,7 @@ namespace DocMaker
                     // free the image file from the preview panel so it can be deleted
                     imageFrame.BackgroundImage = null;
 
-                    Project.RemoveResourceFile(resID);
+                    Resources.RemoveResourceFile(resID);
                     RepopulateResourceList();
 
                     Objects.DeletedResource(resID);
@@ -97,7 +94,7 @@ namespace DocMaker
 
             if(resID != 0)
             {
-                Bitmap img = Project.resourceBitmap[resID];
+                Bitmap img = Resources.resourceBitmap[resID];
 
                 if (img.Width > imageFrame.Width || img.Height > imageFrame.Height)
                     imageFrame.BackgroundImageLayout = ImageLayout.Zoom;

@@ -37,17 +37,17 @@ namespace DocMaker
             tb_key.Text = Target.Key;
             tb_key.Tag = Target.Key;
 
-            tb_width.Text = Target.objectSize.Width.ToString();
-            tb_width.Tag = Target.objectSize.Width;
+            tb_width.Text = Target.ObjectSize.Width.ToString();
+            tb_width.Tag = Target.ObjectSize.Width;
 
-            tb_height.Text = Target.objectSize.Height.ToString();
-            tb_height.Tag = Target.objectSize.Height;
+            tb_height.Text = Target.ObjectSize.Height.ToString();
+            tb_height.Tag = Target.ObjectSize.Height;
 
             cb_link.Checked = Target.LinkedSize;
 
             resourceComboList.Tag = Target.ResourceID;
-            resourceComboList.DataSource = Project.resourceList;
-            resourceComboList.SelectedIndex = Project.resourceList.IndexOf(Target.ResourceID);
+            resourceComboList.DataSource = Resources.resourceList;
+            resourceComboList.SelectedIndex = Resources.resourceList.IndexOf(Target.ResourceID);
 
             sizeModeCombo.DataSource = Enum.GetNames(typeof(ImageObject.DrawingTypes));
             sizeModeCombo.SelectedIndex = (int)Target.drawingType;
@@ -71,8 +71,7 @@ namespace DocMaker
 
             Target.ResourceID = (string)resourceComboList.Tag;
 
-            Target.objectSize.Width = (int)tb_width.Tag;
-            Target.objectSize.Height = (int)tb_height.Tag;
+            Target.ObjectSize = new Size((int)tb_width.Tag, (int)tb_height.Tag);
 
             Target.drawingType = (ImageObject.DrawingTypes)sizeModeCombo.Tag;
 
@@ -199,7 +198,7 @@ namespace DocMaker
 
             if (resID != 0)
             {
-                Bitmap img = Project.resourceBitmap[resID];
+                Bitmap img = Resources.resourceBitmap[resID];
 
                 if (img.Width > imageFrame.Width || img.Height > imageFrame.Height)
                     imageFrame.BackgroundImageLayout = ImageLayout.Zoom;
@@ -275,18 +274,20 @@ namespace DocMaker
 
         private void Tb_width_TextChanged(object sender, EventArgs e)
         {
-            if (Target.objectSize.Width == tb_width.Value)
+            if (Target.ObjectSize.Width == tb_width.Value)
                 return;
 
-            Target.objectSize.Width = tb_width.Value;
-            tb_width.Text = Target.objectSize.Width.ToString();
+            // Set the new width
+            Target.ObjectSize = new Size(tb_width.Value, Target.ObjectSize.Height);
+
+            tb_width.Text = Target.ObjectSize.Width.ToString();
 
             if (cb_link.Checked && !IsLinkUpdate)
             {
                 Console.WriteLine("Updating height");
 
                 IsLinkUpdate = true;
-                tb_height.Text = Funcs.Max(((int)(((float)Target.objectSize.Width) / aspectRatio)), 1).ToString();
+                tb_height.Text = Funcs.Max(((int)(((float)Target.ObjectSize.Width) / aspectRatio)), 1).ToString();
             }
             else
             {
@@ -298,18 +299,20 @@ namespace DocMaker
 
         private void Tb_height_TextChanged(object sender, EventArgs e)
         {
-            if (Target.objectSize.Height == tb_height.Value)
+            if (Target.ObjectSize.Height == tb_height.Value)
                 return;
 
-            Target.objectSize.Height = tb_height.Value;
-            tb_height.Text = Target.objectSize.Height.ToString();
+            // Set the new height
+            Target.ObjectSize = new Size(Target.ObjectSize.Width, tb_height.Value);
+
+            tb_height.Text = Target.ObjectSize.Height.ToString();
 
             if (cb_link.Checked && !IsLinkUpdate)
             {
                 Console.WriteLine("Updating width");
 
                 IsLinkUpdate = true;
-                tb_width.Text = Funcs.Max(((int)(((float)Target.objectSize.Height) * aspectRatio)), 1).ToString();
+                tb_width.Text = Funcs.Max(((int)(((float)Target.ObjectSize.Height) * aspectRatio)), 1).ToString();
 
             }
             else

@@ -29,7 +29,8 @@ namespace DocMaker
 
             cb_showAnchors.Checked = Config.ShowAnchorPoints;
 
-            ActiveControl = lab_paperSize;
+            ActiveControl = PaperWrap;
+
             PaperWrap.MouseWheel += PaperWrap_MouseWheel;
             pan_VSplit.SplitterDistance = pan_VSplit.Width - pan_VSplit.Panel2MinSize;
 
@@ -324,8 +325,10 @@ namespace DocMaker
             UpdateObjectBackColor();
             UpdateStatusBar();
 
+            /*
             if(documentObject != null)
                 ActiveControl = documentObject.Holder;
+            */
         }
 
         private bool ignoreSelectionChange = false;
@@ -348,7 +351,6 @@ namespace DocMaker
                 }
             }
 
-            ActiveControl = layersTable;
             ignoreSelectionChange = false;
         }
 
@@ -611,7 +613,7 @@ namespace DocMaker
 
         private void pan_VSplit_MouseUp(object sender, MouseEventArgs e)
         {
-            ActiveControl = thePaper;
+            ActiveControl = PaperWrap;
         }
 
         private void SuspendPaperScrollEvent(object sender, EventArgs e)
@@ -645,7 +647,7 @@ namespace DocMaker
 
         private void btn_empty_Click(object sender, EventArgs e)
         {
-            ActiveControl = thePaper;
+            ActiveControl = PaperWrap;
         }
 
         private void UpdateObjectBackColor()
@@ -675,7 +677,6 @@ namespace DocMaker
             if(e.Button == MouseButtons.Right)
             {
                 LivePreview.currentObject.BackColor = Color.Transparent;
-                UpdateObjectBackColor();
             }
             else
             {
@@ -684,11 +685,11 @@ namespace DocMaker
                 if (Project.colorDialog.ShowDialog() == DialogResult.OK)
                 {
                     LivePreview.currentObject.BackColor = Project.colorDialog.Color;
-                    LivePreview.currentObject.RenderObject();
-
-                    UpdateObjectBackColor();
                 }
             }
+
+            LivePreview.currentObject.RenderObject();
+            UpdateObjectBackColor();
         }
 
     }
