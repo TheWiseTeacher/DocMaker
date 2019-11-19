@@ -286,6 +286,8 @@ namespace DocMaker
 
             // Set the BackColor
             Holder.BackColor = BackColor;
+
+            Console.WriteLine("Rendering : " + Name);
         }
 
         public virtual bool EditObject()

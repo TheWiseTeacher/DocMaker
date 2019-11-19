@@ -28,13 +28,15 @@ namespace DocMaker
         public delegate void SelectionChanged(DocumentObject documentObject);
         public static event SelectionChanged OnSelectionChange;
 
-        public static void Select(DocumentObject documentObject)
+        public static void Select(DocumentObject documentObject, bool silently = false)
         {
             if (currentObject == documentObject)
                 return;
 
             currentObject = documentObject;
-            OnSelectionChange?.Invoke(documentObject);
+
+            if(!silently)
+                OnSelectionChange?.Invoke(documentObject);
 
             // For Debug
             if(documentObject != null)
@@ -44,9 +46,9 @@ namespace DocMaker
 
         }
 
-        public static void UnSelect()
+        public static void UnSelect(bool silently = false)
         {
-            Select(null);
+            Select(null, silently);
         }
 
         public static void SuspendUpdates() => suspendedUpdates = true;

@@ -82,6 +82,14 @@ namespace DocMaker
             return null;
         }
 
+
+        public static void DeleteObject(DocumentObject docObject)
+        {
+            objectList.Remove(docObject);
+            docObject.Dispose();
+        }
+
+
         public static void AddLanguage(string languageCode)
         {
             foreach(DocumentObject docObject in objectList)

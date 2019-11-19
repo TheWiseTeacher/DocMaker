@@ -283,6 +283,11 @@ namespace DocMaker
                     e.Handled = true;
                 }
             }
+
+            if(e.KeyCode == Keys.Delete)
+            {
+                DeleteObject();
+            }
         }
 
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
@@ -294,6 +299,18 @@ namespace DocMaker
         }
 
         #endregion
+
+        public void DeleteObject()
+        {
+            if (LivePreview.currentObject == null)
+                return;
+
+            thePaper.Controls.Remove(LivePreview.currentObject.Holder);
+            Objects.DeleteObject(LivePreview.currentObject);
+
+            LivePreview.UnSelect();
+            PopulateObjectList();
+        }
 
         #region Document Objects Selection Methodes
 
@@ -336,7 +353,7 @@ namespace DocMaker
         }
 
         private void LayersTable_SelectionChanged(object sender, EventArgs e)
-        {         
+        {
             if (isPopulating || ignoreSelectionChange)
                 return;
             
@@ -510,7 +527,10 @@ namespace DocMaker
                     o);
             }
 
+            layersTable.ClearSelection();
             isPopulating = false;
+
+            // Select the selected object
             SelectObjectInTable();
         }
 
@@ -645,8 +665,6 @@ namespace DocMaker
                 lab_BackColor.ForeColor = Color.Black;
             else
                 lab_BackColor.ForeColor = lab_BackColor.BackColor;
-
-            LivePreview.Update();
         }
 
         private void lab_BackColor_MouseClick(object sender, MouseEventArgs e)
