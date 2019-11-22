@@ -40,7 +40,7 @@ namespace DocMaker
 
             if (SizeInPercent)
                 realLength = (int)(((float)Length / 100.0F) * 
-                             (float)(IsVertical ? Paper.paperSize.Height : Paper.paperSize.Width));
+                             (float)(IsVertical ? Paper.Height : Paper.Width));
 
             Size lineDimentions = Zoom.Calculate(new Size(realLength, Thickness));
             //if (IsVertical) lineDimentions.Flip();

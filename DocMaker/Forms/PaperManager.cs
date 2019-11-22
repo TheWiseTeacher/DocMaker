@@ -12,7 +12,7 @@ namespace DocMaker
 {
     public partial class PaperManager : Form
     {
-        PaperKind lastSelectedPaper = 0;
+        PaperSize originalPaperSize;
 
         public PaperManager()
         {
@@ -21,8 +21,8 @@ namespace DocMaker
             //Make combobox display paper name
             comboPaperSize.DisplayMember = "PaperName";
 
-            //Save last selected paperkind in case of canceling
-            lastSelectedPaper = Paper.paperSize.Kind;
+            //Save the selected paperSize in case of canceling
+            originalPaperSize = Paper.SelectedPaper;
 
             LoadPaperFormats();
             UpdateInformation();
@@ -30,42 +30,25 @@ namespace DocMaker
 
         private void LoadPaperFormats()
         {
-            //PaperSize cps = new PaperSize("User defined", 500, 700);
-            
-            //comboPaperSize.Items.Add();
-
             foreach (PaperSize ps in Paper.paperSizes)
             {
                 comboPaperSize.Items.Add(ps);
 
                 //Select the selected paper size
-                if (ps.Kind == Paper.paperSize.Kind)
+                if (ps.Kind == Paper.SelectedPaper.Kind)
                     comboPaperSize.SelectedItem = ps;
             }
-
-            /*
-            PaperSize pkSize;
-            for (int i = 0; i < Project.printerSettings.PaperSizes.Count; i++)
-            {
-                pkSize = Project.printerSettings.PaperSizes[i];
-                comboPaperSize.Items.Add(pkSize);
-
-                //Select the selected paper size
-                if (pkSize.Kind == Project.paperSize.Kind)
-                    comboPaperSize.SelectedItem = pkSize;
-            }
-            */
         }
 
         private void UpdateInformation()
         {
             //Select the selected paper :3
-            Paper.paperSize = (PaperSize)comboPaperSize.SelectedItem;
+            Paper.Set((PaperSize)comboPaperSize.SelectedItem);
 
             //Show selected paper info
-            lab_name.Text = Paper.paperSize.PaperName;
+            lab_name.Text = Paper.SelectedPaper.PaperName;
 
-            if(Paper.paperSize.Kind.ToString().Equals("Custom"))
+            if(Paper.SelectedPaper.Kind.ToString().Equals("Custom"))
             {
                 radioPortrait.Enabled = false;
                 radioLandscape.Enabled = false;
@@ -73,17 +56,17 @@ namespace DocMaker
                 tb_width.ReadOnly = false;
                 tb_height.ReadOnly = false;
 
-                Paper.usingCustomPaper = true;
-                Paper.isLandscape = false;
+                Paper.UsingCustomPaper = true;
+                Paper.IsLandScape = false;
 
-                tb_width.Text = Paper.paperSize.Width.ToString();
-                tb_height.Text = Paper.paperSize.Height.ToString();
+                tb_width.Text = Paper.Width.ToString();
+                tb_height.Text = Paper.Height.ToString();
 
                 return;
             }
             else
             {
-                Paper.usingCustomPaper = false;
+                Paper.UsingCustomPaper = false;
                 radioPortrait.Enabled = true;
                 radioLandscape.Enabled = true;
 
@@ -92,27 +75,21 @@ namespace DocMaker
             }
 
 
-            if (!Paper.isLandscape)
+            if (!Paper.IsLandScape)
             {
-                //Portrait mode (Default)
-
+                // Portrait mode (Default)
                 radioPortrait.Checked = true;
                 radioLandscape.Checked = false;
-
-                tb_width.Text = Paper.paperSize.Width.ToString();
-                tb_height.Text = Paper.paperSize.Height.ToString();
             }
             else
             {
-                //Landscape mode
-
+                // Landscape mode
                 radioPortrait.Checked = false;
                 radioLandscape.Checked = true;
-
-                //Flip width and height sizes
-                tb_height.Text = Paper.paperSize.Width.ToString();
-                tb_width.Text = Paper.paperSize.Height.ToString();
             }
+
+            tb_width.Text = Paper.Width.ToString();
+            tb_height.Text = Paper.Height.ToString();
         }
 
         private void RadioPortrait_CheckedChanged(object sender, EventArgs e)
@@ -120,7 +97,7 @@ namespace DocMaker
             if (!radioPortrait.Checked)
                 return;
 
-            Paper.isLandscape = false;
+            Paper.IsLandScape = false;
             UpdateInformation();
         }
 
@@ -129,7 +106,7 @@ namespace DocMaker
             if (!radioLandscape.Checked)
                 return;
 
-            Paper.isLandscape = true;
+            Paper.IsLandScape = true;
             UpdateInformation();
         }
 
@@ -154,17 +131,14 @@ namespace DocMaker
         {
             if(DialogResult != DialogResult.OK)
             {
-                if(Paper.paperSize.Kind != lastSelectedPaper)
-                {
-                    // Discard paper size change
-                    Paper.paperSize = Paper.paperSizes.First<PaperSize>(size => size.Kind == lastSelectedPaper);
-                }
+                // Discard paper size change
+                Paper.Set(originalPaperSize);
             }
         }
 
         private void tb_width_TextChanged(object sender, EventArgs e)
         {
-            if (!Paper.usingCustomPaper)
+            if (!Paper.UsingCustomPaper)
                 return;
 
             Paper.paperSizes[0].Width = tb_width.Value;
@@ -173,7 +147,7 @@ namespace DocMaker
 
         private void tb_height_TextChanged(object sender, EventArgs e)
         {
-            if (!Paper.usingCustomPaper)
+            if (!Paper.UsingCustomPaper)
                 return;
 
             Paper.paperSizes[0].Height = tb_height.Value;

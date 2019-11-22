@@ -8,8 +8,7 @@ namespace DocMaker
 {
     static class Zoom
     {
-        public static double zoomWidthRatio = 1;
-        public static double zoomHeightRatio = 1;
+        public static double zoomRatio = 1;
 
         public static Size paperSize;
 
@@ -18,19 +17,19 @@ namespace DocMaker
 
         public static void ApplyZoom(int percent)
         {
-            zoomWidthRatio = (double)percent / 100D;
-            zoomHeightRatio = (double)percent / 100D;
-
+            zoomRatio = (double)percent / 100D;
             currentAppliedZoom = percent;
         }
 
         public static Size GetPaperSize()
         {
-            Size s = new Size((int)((double)Paper.paperSize.Width * zoomWidthRatio),
-                              (int)((double)Paper.paperSize.Height * zoomHeightRatio));
+            Size s = new Size((int)((double)Paper.Width * zoomRatio),
+                              (int)((double)Paper.Height * zoomRatio));
 
+            /*
             if (Paper.isLandscape)
                 s = new Size(s.Height, s.Width);
+            */
 
             // Method called whenever paper size is changed
             Zoom.paperSize = s;
@@ -40,33 +39,33 @@ namespace DocMaker
 
         public static int GetFontSize(int fs)
         {
-            return (int)((double)fs * zoomHeightRatio);
+            return (int)((double)fs * zoomRatio);
         }
 
         public static Point Calculate(Point p)
         {
-            return new Point((int)((double)p.X * zoomWidthRatio),
-                             (int)((double)p.Y * zoomHeightRatio));
+            return new Point((int)((double)p.X * zoomRatio),
+                             (int)((double)p.Y * zoomRatio));
 
         }
         public static Size Calculate(Size p)
         {
             // For sizes we can't accept a size of 0 so let's take 1 as minimum
-            return new Size(Funcs.Max(1, (int)((double)p.Width * zoomWidthRatio)),
-                            Funcs.Max(1, (int)((double)p.Height * zoomHeightRatio)));
+            return new Size(Funcs.Max(1, (int)((double)p.Width * zoomRatio)),
+                            Funcs.Max(1, (int)((double)p.Height * zoomRatio)));
         }
 
         public static Point CalculateReal(Point p)
         {
-            return new Point((int)((double)p.X / zoomWidthRatio),
-                             (int)((double)p.Y / zoomHeightRatio));
+            return new Point((int)((double)p.X / zoomRatio),
+                             (int)((double)p.Y / zoomRatio));
 
         }
 
         public static Size CalculateReal(Size p)
         {
-            return new Size((int)((double)p.Width / zoomWidthRatio),
-                            (int)((double)p.Height / zoomHeightRatio));
+            return new Size((int)((double)p.Width / zoomRatio),
+                            (int)((double)p.Height / zoomRatio));
         }
 
     }

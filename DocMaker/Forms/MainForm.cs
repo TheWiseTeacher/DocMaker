@@ -93,21 +93,16 @@ namespace DocMaker
         {
 
             //Set paper name
-            if(Paper.usingCustomPaper)
-                lab_paperSize.Text = $"Paper size : {Paper.paperSize.Width} x {Paper.paperSize.Height}";
+            if(Paper.UsingCustomPaper)
+                lab_paperSize.Text = $"Paper size : {Paper.Width} x {Paper.Height}";
             else
-                lab_paperSize.Text = $"Paper kind : {Paper.paperSize.PaperName}";
+                lab_paperSize.Text = $"Paper kind : {Paper.SelectedPaper.PaperName} {(Paper.IsLandScape ? "(Landscape)" : "")}";
 
             // Optional : Setting a tooltip to know the Dimensions
-            if (!Paper.isLandscape)
-                toolTip.SetToolTip(lab_paperSize,
-                    $"Dimension : {Paper.paperSize.Width}x{Paper.paperSize.Height} pixels");
-            else
-                toolTip.SetToolTip(lab_paperSize, $"Dimension : " +
-                    $"{Paper.paperSize.Height}x{Paper.paperSize.Width} pixels");
+            toolTip.SetToolTip(lab_paperSize,$"Dimension : {Paper.Width}x{Paper.Height} pixels");
 
             thePaper.Size = Zoom.GetPaperSize();   //Get paper size relative to the zoom percent
-            CenterPaper();                      //Center paper for better view
+            CenterPaper();                         //Center paper for better view
         }
 
         private void LoadZoomList()
@@ -459,8 +454,10 @@ namespace DocMaker
         private void PaperSizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PaperManager paperManager = new PaperManager();
-            if (paperManager.ShowDialog() == DialogResult.OK)
-                ResizePaper();
+            paperManager.ShowDialog();
+
+            ResizePaper();
+            Objects.RenderAll();
         }
 
         private void ResManagertoolStripMenuItem_Click(object sender, EventArgs e)

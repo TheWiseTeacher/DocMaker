@@ -67,36 +67,36 @@ namespace DocMaker
 
         public override void RenderObject()
         {
-            Bitmap b = new Bitmap(ObjectSize.Width, ObjectSize.Height);
-            Bitmap r = Resources.Get(ResourceID);
+            Size realObjectSize = ObjectSize;
+
+            if (SizeInPercent)
+                realObjectSize = new Size((int)((float)Paper.Width * ObjectSize.Width / 100.0f),
+                                          (int)((float)Paper.Height * ObjectSize.Height / 100.0f));
+
+
+            Bitmap b = new Bitmap(realObjectSize.Width, realObjectSize.Height);
+            Bitmap r = new Bitmap(Resources.Get(ResourceID));
 
             Graphics g = Graphics.FromImage(b);
-            Point anchor = new Point(0, 0);
-
-            int angle = 0;
 
             if (IsVertical)
-                angle += 90;
+                r.RotateFlip(RotateFlipType.Rotate90FlipNone);
 
-            if (IsTurned180)
-                angle += 180;
-
-            g.TranslateTransform((float)b.Width / 2.0f, (float)b.Height / 2.0f);
-            g.RotateTransform(angle);
-            g.TranslateTransform((float)b.Width / -2.0f, (float)b.Height / -2.0f);
+            if(IsTurned180)
+                r.RotateFlip(RotateFlipType.Rotate180FlipNone);
 
             switch (drawingType)
             {
                 case DrawingTypes.Tiles:
                     using (TextureBrush brush = new TextureBrush(r, WrapMode.Tile))
                     {
-                        g.FillRectangle(brush, 0, 0, ObjectSize.Width, ObjectSize.Height);
+                        g.FillRectangle(brush, 0, 0, realObjectSize.Width, realObjectSize.Height);
                     }
                     break;
 
                 case DrawingTypes.Stretch:
                     
-                    g.DrawImage(r, 0, 0, ObjectSize.Width, ObjectSize.Height);
+                    g.DrawImage(r, 0, 0, realObjectSize.Width, realObjectSize.Height);
                     break;
 
                 case DrawingTypes.Center:
@@ -110,7 +110,7 @@ namespace DocMaker
 
                 case DrawingTypes.Zoom:
 
-                    // TODO Zoom
+                    
 
                     break;
 
@@ -122,6 +122,8 @@ namespace DocMaker
             // After thinking I left the anchors to be shown even if zoomed but they become blurry (whatever) :/ 
             // Draw the anchor point for this label
             //
+            Point anchor = new Point(0, 0);
+
             if (Config.ShowAnchorPoints /*&& Zoom.currentAppliedZoom == 100*/)
             {
                 // Reset rotation for anchors (only if show [Optimisation :3])
@@ -142,10 +144,12 @@ namespace DocMaker
                 Holder.Image.Dispose();
 
 
-            //Canvas.BackColor = BackColor;
+
+            // Dispose of the copy
+            r.Dispose();
 
             Holder.Image = b;
-            Holder.Size = Zoom.Calculate(ObjectSize);
+            Holder.Size = Zoom.Calculate(realObjectSize);
 
             base.RenderObject();
         }

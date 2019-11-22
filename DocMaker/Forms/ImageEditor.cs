@@ -182,7 +182,8 @@ namespace DocMaker
 
         private void SizeMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Target.SizeInPercent = !sizeMode.SelectedItem.Equals("Px");
+            LivePreview.Update();
         }
 
 
