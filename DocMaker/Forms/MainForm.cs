@@ -631,7 +631,7 @@ namespace DocMaker
         private void tb_Position_OnValidation(object sender, EventArgs e)
         {
             if(LivePreview.currentObject != null)
-                LivePreview.currentObject.MoveTo(tb_xPosition.Value, tb_yPosition.Value);
+                LivePreview.currentObject.MoveTo(tb_xPosition.IntValue(), tb_yPosition.IntValue());
         }
 
         private void tb_Position_KeyDown(object sender, KeyEventArgs e)
@@ -689,5 +689,9 @@ namespace DocMaker
             UpdateObjectBackColor();
         }
 
+        private void magicalTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("Text Changed");
+        }
     }
 }

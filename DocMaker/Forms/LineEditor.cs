@@ -49,6 +49,10 @@ namespace DocMaker
             LoadColor();
             lab_color.Tag = Target.LineColor;
 
+            radioHorizontal.Checked = !Target.IsVertical;
+            radioVertical.Checked = Target.IsVertical;
+
+            SetLineRanges();
             lineLength.Text = Target.Length.ToString();
             lineLength.Tag = Target.Length;
 
@@ -58,7 +62,6 @@ namespace DocMaker
             tbDashPattern.Text = Target.DashPattern;
             tbDashPattern.Tag = Target.DashPattern;
 
-            ShowOrientation();
             ShowSizeMode();
 
             LivePreview.ResumeUpdates();
@@ -73,7 +76,7 @@ namespace DocMaker
 
             Target.LineColor = (Color)lab_color.Tag;
 
-            Target.Length = (int)lineLength.Tag;
+            Target.Length = (float)lineLength.Tag;
 
             Target.Thickness = (byte)lineThickness.Tag;
 
@@ -92,23 +95,6 @@ namespace DocMaker
         {
             Target.Key = tb_key.Text;
         }
-
-        private void ShowOrientation()
-        {
-            if (!Target.IsVertical)
-            {
-                radioHorizontal.Checked = true;
-                radioVertical.Checked = false;
-            }
-            else
-            {
-                radioHorizontal.Checked = false;
-                radioVertical.Checked = true;
-            }
-
-            LivePreview.Update();
-        }
-
 
         public void ShowSizeMode()
         {
@@ -150,7 +136,7 @@ namespace DocMaker
                 e.Cancel = true;
 
             // To prevent any exception I'm using a special Clamp method :3
-            Target.LineColor = Color.FromArgb(tb_color_r.Value, tb_color_g.Value, tb_color_b.Value);
+            Target.LineColor = Color.FromArgb(tb_color_r.IntValue(), tb_color_g.IntValue(), tb_color_b.IntValue());
 
             // Reload all inputs and display the color
             LoadColor();
@@ -173,46 +159,77 @@ namespace DocMaker
             LivePreview.Update();
         }
 
-        private void LineLength_TextChanged(object sender, EventArgs e)
+
+        private void Orientation_CheckedChanged(object sender, EventArgs e)
         {
-            Target.Length = Funcs.Clamp(lineLength.Text, 1, Config.MaxLineSize);
+            // Filter only one change and discard this other
+            if (((RadioButton)sender).Checked)
+                return;
+
+            Target.IsVertical = radioVertical.Checked;
             LivePreview.Update();
         }
 
-        private void LineLength_Validated(object sender, EventArgs e)
+        private void SetLineRanges()
         {
-            Target.Length = Funcs.Clamp(lineLength.Text, 1, Config.MaxLineSize);
-            lineLength.Text = Target.Length.ToString();
-            LivePreview.Update();
-        }
-
-        private void RadioHorizontal_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!radioHorizontal.Checked)
-                return;
-
-            Target.IsVertical = false;
-            ShowOrientation();
-        }
-
-        private void RadioVertical_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!radioVertical.Checked)
-                return;
-
-            Target.IsVertical = true;
-            ShowOrientation();
+            if (Target.SizeInPercent)
+            {
+                lineLength.AllowDecimal = true;
+                lineLength.Maximum = 100.0f;
+                lineLength.Minimum = 0.001f;
+            }
+            else
+            {
+                lineLength.AllowDecimal = false;
+                lineLength.Maximum = Config.MaxLineSize;
+                lineLength.Minimum = 1;
+            }
         }
 
         private void SizeMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Target.SizeInPercent = !sizeMode.SelectedItem.Equals("Px");
+            // Check if value changed !
+            if (Target.SizeInPercent == sizeMode.SelectedItem.Equals("%"))
+                return;
+
+            // Set the option
+            Target.SizeInPercent = sizeMode.SelectedItem.Equals("%");
+            SetLineRanges();
+
+            // Mode Changed so we will calculate size from object size 
+            if (Target.SizeInPercent)
+            {
+                // Previously the size was in pixels
+                if (Target.IsVertical)
+                    lineLength.Text = ((Target.Length / Paper.Height) * 100f).ToString();
+                else
+                    lineLength.Text = ((Target.Length / Paper.Width) * 100f).ToString();
+            }
+            else
+            {
+                // Previously the size was in percentage
+                if (Target.IsVertical)
+                    lineLength.Text = ((int)(Paper.Height * Target.Length / 100f)).ToString();
+                else
+                    lineLength.Text = ((int)(Paper.Width * Target.Length / 100f)).ToString();
+            }
+
             LivePreview.Update();
         }
 
-        private void tbdashPattern_Validated(object sender, EventArgs e)
+        private void lineLength_OnSafeTextChange(object sender, string safeValue)
         {
-            Target.DashPattern = tbDashPattern.Text;
+            if (Target.SizeInPercent)
+                Target.Length = lineLength.GetFloatValue();
+            else
+                Target.Length = lineLength.GetFloatValue();
+
+            LivePreview.Update();
+        }
+
+        private void tbDashPattern_OnSafeTextChange(object sender, string safeValue)
+        {
+            Target.DashPattern = safeValue;
             LivePreview.Update();
         }
     }

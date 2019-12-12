@@ -10,13 +10,29 @@ namespace DocMaker
 {
     public class ObjectHolder : PictureBox
     {
+        /*
+        private delegate void SafeCallDelegate(object o);
 
+        public void SetSize(object o)
+        {
+            if (this.InvokeRequired)
+            {
+                var d = new SafeCallDelegate(SetSize);
+                this.Invoke(d, new object[] { o });
+            }
+            else
+            {
+                this.Size = (Size)o;
+            }
+        }
+
+        */
+
+        /*
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
-
-
         }
-
+        */
     }
 }

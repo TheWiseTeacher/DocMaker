@@ -141,7 +141,7 @@ namespace DocMaker
             if (!Paper.UsingCustomPaper)
                 return;
 
-            Paper.paperSizes[0].Width = tb_width.Value;
+            Paper.paperSizes[0].Width = tb_width.IntValue();
             //UpdateInformation();
         }
 
@@ -150,7 +150,7 @@ namespace DocMaker
             if (!Paper.UsingCustomPaper)
                 return;
 
-            Paper.paperSizes[0].Height = tb_height.Value;
+            Paper.paperSizes[0].Height = tb_height.IntValue();
             //UpdateInformation();
         }
     }

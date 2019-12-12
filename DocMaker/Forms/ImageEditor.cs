@@ -49,9 +49,9 @@ namespace DocMaker
             resourceComboList.DataSource = Resources.resourceList;
             resourceComboList.SelectedIndex = Resources.resourceList.IndexOf(Target.ResourceID);
 
-            sizeModeCombo.DataSource = Enum.GetNames(typeof(ImageObject.DrawingTypes));
-            sizeModeCombo.SelectedIndex = (int)Target.drawingType;
-            sizeModeCombo.Tag = Target.drawingType;
+            drawingModeCombo.DataSource = Enum.GetNames(typeof(ImageObject.DrawingTypes));
+            drawingModeCombo.SelectedIndex = (int)Target.drawingType;
+            drawingModeCombo.Tag = Target.drawingType;
 
             //EmployeeType empType = (EmployeeType)Enum.Parse(typeof(EmployeeType), ddl.SelectedValue);
 
@@ -73,7 +73,7 @@ namespace DocMaker
 
             Target.ObjectSize = new Size((int)tb_width.Tag, (int)tb_height.Tag);
 
-            Target.drawingType = (ImageObject.DrawingTypes)sizeModeCombo.Tag;
+            Target.drawingType = (ImageObject.DrawingTypes)drawingModeCombo.Tag;
 
             UpdateCanvasImage();
         }
@@ -180,12 +180,6 @@ namespace DocMaker
             }
         }
 
-        private void SizeMode_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Target.SizeInPercent = !sizeMode.SelectedItem.Equals("Px");
-            LivePreview.Update();
-        }
-
 
         private void ResourceComboList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -226,60 +220,41 @@ namespace DocMaker
 
             LivePreview.Update();
         }
-
         private void Btn_confirm_Click(object sender, EventArgs e)
         {
             Target.ResourceID = (string)resourceComboList.SelectedItem;
             UpdateCanvasImage();
         }
 
-        private void SizeTextBoxes_ChangeValidated(object sender, EventArgs e)
-        {
-            //Target.objectSize.Width = tb_width.IntValue();
-            //Target.objectSize.Height = tb_height.IntValue();
-            //
-            //LivePreview.Update();
-
-            /*
-            if (sender == tb_width)
-            {
-                Target.objectSize.Width = tb_width.IntValue(1, Config.MaxLineSize);
-                tb_width.Text = Target.objectSize.Width.ToString();
-
-                if (cb_link.Checked)
-                    tb_height.Text = (Target.objectSize.Width / aspectRatio).ToString();
-            }
-            else
-            {
-                Target.objectSize.Height = tb_height.IntValue(1, Config.MaxLineSize);
-                tb_height.Text = Target.objectSize.Height.ToString();
-
-                if (cb_link.Checked)
-                    tb_width.Text = (aspectRatio / Target.objectSize.Height).ToString();
-            }
-
-
-
-
-            if (cb_link.Checked)
-            {
-
-            }
-            */
-
-
-        }
 
         private bool IsLinkUpdate = false;
         private float aspectRatio;
 
+        private void SizeMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Target.SizeInPercent = !sizeMode.SelectedItem.Equals("Px");
+
+            if (Target.SizeInPercent)
+            {
+                tb_width.AllowDecimal = true;
+                tb_height.AllowDecimal = true;
+            }
+
+            LivePreview.Update();
+        }
+
         private void Tb_width_TextChanged(object sender, EventArgs e)
         {
-            if (Target.ObjectSize.Width == tb_width.Value)
+            if (Target.ObjectSize.Width == tb_width.IntValue())
                 return;
 
             // Set the new width
-            Target.ObjectSize = new Size(tb_width.Value, Target.ObjectSize.Height);
+            Target.ObjectSize = new Size(tb_width.IntValue(), Target.ObjectSize.Height);
+
+            if(Target.SizeInPercent)
+            {
+
+            }
 
             tb_width.Text = Target.ObjectSize.Width.ToString();
 
@@ -300,11 +275,11 @@ namespace DocMaker
 
         private void Tb_height_TextChanged(object sender, EventArgs e)
         {
-            if (Target.ObjectSize.Height == tb_height.Value)
+            if (Target.ObjectSize.Height == tb_height.IntValue())
                 return;
 
             // Set the new height
-            Target.ObjectSize = new Size(Target.ObjectSize.Width, tb_height.Value);
+            Target.ObjectSize = new Size(Target.ObjectSize.Width, tb_height.IntValue());
 
             tb_height.Text = Target.ObjectSize.Height.ToString();
 
@@ -352,17 +327,12 @@ namespace DocMaker
             LivePreview.Update();
         }
 
-        private void SizeTextBoxes_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SizeModeCombo_SelectedIndexChanged(object sender, EventArgs e)
+        private void DrawingModeCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!editorReady)
                 return;
 
-            Target.drawingType = (ImageObject.DrawingTypes)sizeModeCombo.SelectedIndex;
+            Target.drawingType = (ImageObject.DrawingTypes)drawingModeCombo.SelectedIndex;
 
             LivePreview.Update();
         }

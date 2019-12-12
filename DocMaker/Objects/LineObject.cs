@@ -11,7 +11,7 @@ namespace DocMaker
 {
     public class LineObject : DocumentObject
     {
-        public int Length { get; set; }
+        public float Length { get; set; }
         public byte Thickness { get; set; }
         public Color LineColor { get; set; }
         public string DashPattern { get; set; }
@@ -26,7 +26,7 @@ namespace DocMaker
 
             IsVertical = false;
             Thickness = 2;
-            Length = 50;
+            Length = 100;
 
             IsVertical = false;
             SizeInPercent = false;
@@ -36,14 +36,15 @@ namespace DocMaker
 
         public override void RenderObject()
         {
-            int realLength = Length;
+            int realLength;
 
-            if (SizeInPercent)
-                realLength = (int)(((float)Length / 100.0F) * 
+            if (!SizeInPercent)
+                realLength = (int)Length;
+            else
+                realLength = (int)(((float)Length / 100.0F) *
                              (float)(IsVertical ? Paper.Height : Paper.Width));
 
             Size lineDimentions = Zoom.Calculate(new Size(realLength, Thickness));
-            //if (IsVertical) lineDimentions.Flip();
 
             // Initialize the bitmap
             Bitmap b = new Bitmap(lineDimentions.Width, lineDimentions.Height);

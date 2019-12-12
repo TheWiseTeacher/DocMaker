@@ -49,10 +49,16 @@ namespace DocMaker
             bw.Write(stringData);
         }
 
+        public void Write(float floatData)
+        {
+            bw.Write(floatData);
+        }
+
         public void Write(int integerData)
         {
             bw.Write(integerData);
         }
+
         public void Write(uint uintegerData)
         {
             bw.Write(uintegerData);
@@ -112,6 +118,11 @@ namespace DocMaker
             return br.ReadString();
         }
 
+        public float ReadFloat()
+        {
+            return br.ReadSingle();
+        }
+        
         public int ReadInteger()
         {
             return br.ReadInt32();

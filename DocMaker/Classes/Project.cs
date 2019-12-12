@@ -150,29 +150,29 @@ namespace DocMaker
                 projectLoadedFromFile = true;
                 projectFile = fileDialog.FileName;
                 projectTitle = Path.GetFileName(projectFile);
-            }
 
-            try
-            {
-                InitializeComponents();
+                try
+                {
+                    InitializeComponents();
 
-                fileHandler = new BinaryFileHandler(projectFile, BinaryFileHandler.FileMode.READ);
+                    fileHandler = new BinaryFileHandler(projectFile, BinaryFileHandler.FileMode.READ);
 
-                Paper.LoadPaper();
-                Fonts.LoadFonts();
-                Languages.LoadLanguages();
+                    Paper.LoadPaper();
+                    Fonts.LoadFonts();
+                    Languages.LoadLanguages();
 
-                Resources.LoadResources();
-                Objects.LoadObjects();
+                    Resources.LoadResources();
+                    Objects.LoadObjects();
 
-                fileHandler.Close();
-            }
-            catch (Exception ex)
-            {
-                Funcs.Error("Error while loading the project file.\n" + ex.Message);
-                fileHandler.Close(); // Force closing file
+                    fileHandler.Close();
+                }
+                catch (Exception ex)
+                {
+                    Funcs.Error("Error while loading the project file.\n" + ex.Message);
+                    fileHandler.Close(); // Force closing file
 
-                NewProject();
+                    NewProject();
+                }
             }
         }
     }

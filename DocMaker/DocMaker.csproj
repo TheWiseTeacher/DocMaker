@@ -138,6 +138,9 @@
     <Compile Include="Objects\LabelObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\MagicalTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UserControls\ObjectHandler.cs">
       <SubType>Component</SubType>
     </Compile>

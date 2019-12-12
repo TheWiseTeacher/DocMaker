@@ -14,13 +14,20 @@ namespace DocMaker
         [Category("Input Filter")]
         public Filter UsedFilter { get; set; } = Filter.LettersAndDigits;
 
+        /*
         [Browsable(true)]
         [Category("Value and bounds")]    
         public int Value { get; set; } = 1;
+        */
+        private float Value { get; set; }
 
         [Browsable(true)]
         [Category("Value and bounds")]    
         public bool IgnoreClampig { get; set; } = false;
+        
+        [Browsable(true)]
+        [Category("Value and bounds")]    
+        public bool AllowDecimal { get; set; } = false;
         
         [Browsable(true)]
         [Category("Value and bounds")]    
@@ -43,22 +50,26 @@ namespace DocMaker
             Special,
         }
 
+        private Keys keyCapture;
+
         private bool IsValidKeyChar(char c)
         {
-            if (c == (char)Keys.Delete || c == (char)Keys.Back ||
-                c == (char)Keys.Enter  || c == (char)Keys.Tab)
+            /*
+            if (keyCapture == Keys.Delete || keyCapture == Keys.Back ||
+                keyCapture == Keys.Enter  || keyCapture == Keys.Tab)
                 return true;
 
-            if (c == (char)Keys.Space)
+            if (keyCapture == Keys.Space)
                 return AllowSpace ? true : false;
+            */
 
             switch (UsedFilter)
             {
                 case Filter.DigitsOnly:
-                    return ((c >= 48 && c <= 57) || c == '-');
+                    return ((c >= 48 && c <= 57) || c == '-' || (c == '.' && AllowDecimal));
 
                 case Filter.DigitList:
-                    return ((c >= 48 && c <= 57) || c == ' ' || c == '.');
+                    return ((c >= 48 && c <= 57) || c == ' ' || (c == '.' && AllowDecimal));
 
                 case Filter.LettersOnly:
                     return ((c >= 65 && c <= 90) || (c >= 97 && c <= 122));
@@ -73,11 +84,31 @@ namespace DocMaker
 
             return false;
         }
-
-        private int GetIntValue()
+ 
+        private void ParseValue()
         {
-            try {return Convert.ToInt32(this.Text);}
-            catch (Exception){return 0;}
+            float buffer;
+
+            if (Text.Equals("-"))
+            {
+                Value = 0;
+                return;
+            }
+
+            try {buffer = (float)Convert.ToDouble(this.Text);}
+            catch (Exception){
+                this.Text = previousRightText;
+                return;
+            }
+
+            Value = buffer;
+        }
+
+        /*
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            keyCapture = e.KeyCode;
+            base.OnKeyDown(e);
         }
 
         protected override void OnKeyPress(KeyPressEventArgs e)
@@ -90,22 +121,16 @@ namespace DocMaker
 
             base.OnKeyPress(e);
         }
+        */
 
-        protected override void OnKeyDown(KeyEventArgs e)
-        {
-            /*
-            if (e.KeyCode == Keys.Enter)
-                e.Handled = true;
-                */
-
-            base.OnKeyDown(e);
-        }
+        private string lastSafeText;
 
         protected override void OnTextChanged(EventArgs e)
         {
+            /*
             if (UsedFilter == Filter.DigitsOnly)
             {
-                Value = GetIntValue();
+                ParseValue();
 
                 if(!IgnoreClampig)
                 {
@@ -118,7 +143,7 @@ namespace DocMaker
                         this.Select(this.Text.Length, 0);
                     }
 
-                    if (Value > MaximumValue && !IgnoreClampig)
+                    if (Value > MaximumValue)
                     {
                         Value = MaximumValue;
                         System.Media.SystemSounds.Beep.Play();
@@ -128,14 +153,29 @@ namespace DocMaker
                     }
                 }
             }
+            */
 
+            foreach(char c in Text)
+            {           
+                if(!IsValidKeyChar(c))
+                {
+                    Text = lastSafeText;
+                    System.Media.SystemSounds.Beep.Play();
+                    break;
+                }
+            }
+
+            lastSafeText = Text;
             base.OnTextChanged(e);
         }
 
+        private string previousRightText;
 
         protected override void OnValidated(EventArgs e)
         {
+            /*
             string validString = "";
+            keyCapture = Keys.None;
 
             foreach (char c in this.Text)
             {
@@ -146,9 +186,12 @@ namespace DocMaker
             if (!this.Text.Equals(validString))
             {
                 System.Media.SystemSounds.Beep.Play();
-                this.Text = validString;
+                this.Text = previousRightText;
             }
+            
 
+            previousRightText = this.Text;
+            */
             base.OnValidated(e);
         }
 
@@ -166,6 +209,17 @@ namespace DocMaker
 
             base.OnMouseWheel(e);
         }
+
+        public int IntValue()
+        {
+            return (int)Value;
+        }
+
+        public float FloatValue()
+        {
+            return Value;
+        }
+
 
         /*
         protected override void OnMouseHover(EventArgs e)

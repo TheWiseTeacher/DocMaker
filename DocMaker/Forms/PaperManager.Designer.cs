@@ -309,7 +309,6 @@
             this.tb_width.Size = new System.Drawing.Size(110, 20);
             this.tb_width.TabIndex = 2;
             this.tb_width.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.tb_width.Value = 0;
             this.tb_width.Wheel_StepValue = 5;
             this.tb_width.TextChanged += new System.EventHandler(this.tb_width_TextChanged);
             // 
@@ -327,7 +326,6 @@
             this.tb_height.Size = new System.Drawing.Size(110, 20);
             this.tb_height.TabIndex = 2;
             this.tb_height.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.tb_height.Value = 0;
             this.tb_height.Wheel_StepValue = 5;
             this.tb_height.TextChanged += new System.EventHandler(this.tb_height_TextChanged);
             // 

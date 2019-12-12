@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace DocMaker
@@ -65,30 +66,41 @@ namespace DocMaker
             }
         }
 
+        /*
+        public override void RenderObject()
+        {
+            Thread thread = new Thread(new ThreadStart(ExRenderObject));
+            thread.Start();
+
+        }
+        */
+
         public override void RenderObject()
         {
             Size realObjectSize = ObjectSize;
+            double xOffset, yOffset;
 
+            /*
             if (SizeInPercent)
                 realObjectSize = new Size((int)((float)Paper.Width * ObjectSize.Width / 100.0f),
                                           (int)((float)Paper.Height * ObjectSize.Height / 100.0f));
+            */
 
+            Bitmap c = new Bitmap(realObjectSize.Width, realObjectSize.Height);
+            Bitmap i = new Bitmap(Resources.Get(ResourceID));
 
-            Bitmap b = new Bitmap(realObjectSize.Width, realObjectSize.Height);
-            Bitmap r = new Bitmap(Resources.Get(ResourceID));
-
-            Graphics g = Graphics.FromImage(b);
+            Graphics g = Graphics.FromImage(c);
 
             if (IsVertical)
-                r.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                i.RotateFlip(RotateFlipType.Rotate90FlipNone);
 
             if(IsTurned180)
-                r.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                i.RotateFlip(RotateFlipType.Rotate180FlipNone);
 
             switch (drawingType)
             {
                 case DrawingTypes.Tiles:
-                    using (TextureBrush brush = new TextureBrush(r, WrapMode.Tile))
+                    using (TextureBrush brush = new TextureBrush(i, WrapMode.Tile))
                     {
                         g.FillRectangle(brush, 0, 0, realObjectSize.Width, realObjectSize.Height);
                     }
@@ -96,21 +108,34 @@ namespace DocMaker
 
                 case DrawingTypes.Stretch:
                     
-                    g.DrawImage(r, 0, 0, realObjectSize.Width, realObjectSize.Height);
+                    g.DrawImage(i, 0, 0, realObjectSize.Width, realObjectSize.Height);
                     break;
 
                 case DrawingTypes.Center:
 
-                    double xOffset = (double)(b.Width - r.Width)/2.0d;
-                    double yOffset = (double)(b.Height - r.Height)/2.0d;
+                    xOffset = (double)(c.Width - i.Width)/2.0d;
+                    yOffset = (double)(c.Height - i.Height)/2.0d;
 
-                    g.DrawImage(r, (int)xOffset, (int)yOffset, r.Width, r.Height);
+                    g.DrawImage(i, (int)xOffset, (int)yOffset, i.Width, i.Height);
 
                     break;
 
                 case DrawingTypes.Zoom:
 
-                    
+                    Size newSize;
+
+                    double cRatio = (double)c.Width / c.Height;
+                    double iRatio = (double)i.Width / i.Height;
+
+                    if(cRatio > iRatio)
+                        newSize = new Size((int)(i.Width * ((double)c.Height / i.Height)), c.Height);
+                    else
+                        newSize = new Size(c.Width, (int)(i.Height * ((double)c.Width / i.Width)));
+
+                    xOffset = (double)(c.Width - newSize.Width) / 2.0d;
+                    yOffset = (double)(c.Height - newSize.Height) / 2.0d;
+
+                    g.DrawImage(i, (int)xOffset, (int)yOffset, newSize.Width, newSize.Height);
 
                     break;
 
@@ -129,11 +154,11 @@ namespace DocMaker
                 // Reset rotation for anchors (only if show [Optimisation :3])
                 g.ResetTransform();
 
-                if (IsCenter()) anchor.X = (int)(b.Width * 0.5F);
-                if (IsRight()) anchor.X = (int)b.Width - 1;
+                if (IsCenter()) anchor.X = (int)(c.Width * 0.5F);
+                if (IsRight()) anchor.X = (int)c.Width - 1;
 
-                if (IsMiddle()) anchor.Y = (int)(b.Height * 0.5F);
-                if (IsDown()) anchor.Y = (int)b.Height - 1;
+                if (IsMiddle()) anchor.Y = (int)(c.Height * 0.5F);
+                if (IsDown()) anchor.Y = (int)c.Height - 1;
 
                 g.DrawLine(Config.AnchorPen, anchor.X - Config.ANCHOR_SIZE, anchor.Y, anchor.X + Config.ANCHOR_SIZE, anchor.Y);
                 g.DrawLine(Config.AnchorPen, anchor.X, anchor.Y - Config.ANCHOR_SIZE, anchor.X, anchor.Y + Config.ANCHOR_SIZE);
@@ -146,9 +171,9 @@ namespace DocMaker
 
 
             // Dispose of the copy
-            r.Dispose();
+            i.Dispose();
 
-            Holder.Image = b;
+            Holder.Image = c;
             Holder.Size = Zoom.Calculate(realObjectSize);
 
             base.RenderObject();

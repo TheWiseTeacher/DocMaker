@@ -19,8 +19,6 @@ namespace DocMaker
             if (mainForm == null || currentObject == null || suspendedUpdates)
                 return;
 
-            Console.WriteLine("Updating...");
-
             currentObject.RenderObject();
             currentObject.Holder.Update();
         }
@@ -38,12 +36,13 @@ namespace DocMaker
             if(!silently)
                 OnSelectionChange?.Invoke(documentObject);
 
+#if DEBUG
             // For Debug
-            if(documentObject != null)
+            if (documentObject != null)
                 Console.WriteLine("Selected object : " + currentObject.Name);
             else
                 Console.WriteLine("UnSelecting object");
-
+#endif
         }
 
         public static void UnSelect(bool silently = false)

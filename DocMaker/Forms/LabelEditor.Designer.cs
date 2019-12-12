@@ -836,7 +836,6 @@
             this.tb_key.Size = new System.Drawing.Size(148, 20);
             this.tb_key.TabIndex = 12;
             this.tb_key.UsedFilter = DocMaker.CustomTextBox.Filter.Special;
-            this.tb_key.Value = 1;
             this.tb_key.Wheel_StepValue = 4;
             this.tb_key.Validated += new System.EventHandler(this.Tb_key_Validated);
             // 
@@ -857,7 +856,6 @@
             this.tb_color_r.Text = "0";
             this.tb_color_r.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tb_color_r.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.tb_color_r.Value = 0;
             this.tb_color_r.Wheel_StepValue = 5;
             this.tb_color_r.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatingColorInput);
             // 
@@ -878,7 +876,6 @@
             this.tb_color_b.Text = "0";
             this.tb_color_b.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tb_color_b.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.tb_color_b.Value = 0;
             this.tb_color_b.Wheel_StepValue = 5;
             this.tb_color_b.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatingColorInput);
             // 
@@ -899,7 +896,6 @@
             this.tb_color_g.Text = "0";
             this.tb_color_g.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tb_color_g.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.tb_color_g.Value = 0;
             this.tb_color_g.Wheel_StepValue = 5;
             this.tb_color_g.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatingColorInput);
             // 
