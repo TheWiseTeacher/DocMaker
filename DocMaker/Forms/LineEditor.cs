@@ -219,11 +219,7 @@ namespace DocMaker
 
         private void lineLength_OnSafeTextChange(object sender, string safeValue)
         {
-            if (Target.SizeInPercent)
-                Target.Length = lineLength.GetFloatValue();
-            else
-                Target.Length = lineLength.GetFloatValue();
-
+            Target.Length = lineLength.GetFloatValue();
             LivePreview.Update();
         }
 

@@ -175,5 +175,37 @@ namespace DocMaker
                 }
             }
         }
+
+        public static void ExportProject()
+        {
+            if (!projectLoadedFromFile)
+            {
+                SaveFileDialog fileDialog = new SaveFileDialog();
+                fileDialog.InitialDirectory = Config.LastVisitedPath;
+
+                fileDialog.Title = "Exporting project";
+
+                fileDialog.Filter = "FilesMaker Document (*.fmd)|*.fmd";
+                fileDialog.DefaultExt = "fmd";
+
+                if (fileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Save last opened directory
+                    Config.LastVisitedPath = Path.GetDirectoryName(fileDialog.FileName);
+
+                    // Start a file handler
+                    fileHandler = new BinaryFileHandler(fileDialog.FileName, BinaryFileHandler.FileMode.WRITE);
+
+                    Paper.ExportPaper();
+                    //Fonts.SaveFonts();
+                    //Languages.SaveLanguages();
+
+                    //Resources.SaveResources();
+                    //Objects.SaveObjects();
+
+                    fileHandler.Close();
+                }
+            }
+        }
     }
 }

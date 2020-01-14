@@ -45,8 +45,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.btn_confirm = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
-            this.tb_width = new DocMaker.CustomTextBox();
-            this.tb_height = new DocMaker.CustomTextBox();
+            this.tb_width = new DocMaker.MagicalTextBox();
+            this.tb_height = new DocMaker.MagicalTextBox();
             this.pan_paperMode.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -170,10 +170,10 @@
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.lab_name, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tb_width, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tb_height, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label6, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.label7, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tb_width, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tb_height, 1, 2);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(23, 19);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -297,37 +297,45 @@
             // 
             // tb_width
             // 
-            this.tb_width.AllowSpace = true;
+            this.tb_width.AllowDecimal = false;
+            this.tb_width.AllowNegative = false;
+            this.tb_width.AllowSpaces = false;
+            this.tb_width.AllowWheel = true;
             this.tb_width.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_width.IgnoreClamping = false;
             this.tb_width.Location = new System.Drawing.Point(128, 40);
             this.tb_width.Margin = new System.Windows.Forms.Padding(6, 7, 6, 6);
-            this.tb_width.MaximumValue = 10000;
-            this.tb_width.MinimumValue = 0;
+            this.tb_width.Maximum = 3.402823E+38F;
+            this.tb_width.Minimum = 1F;
             this.tb_width.Name = "tb_width";
             this.tb_width.Size = new System.Drawing.Size(110, 20);
-            this.tb_width.TabIndex = 2;
-            this.tb_width.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.tb_width.Wheel_StepValue = 5;
-            this.tb_width.TextChanged += new System.EventHandler(this.tb_width_TextChanged);
+            this.tb_width.TabIndex = 3;
+            this.tb_width.UsedFilter = DocMaker.MagicalTextBox.Filter.Digits;
+            this.tb_width.WheelStepValue = 1F;
+            this.tb_width.OnSafeTextChange += new DocMaker.MagicalTextBox.SafeTextChange(this.tb_width_OnSafeTextChange);
             // 
             // tb_height
             // 
-            this.tb_height.AllowSpace = true;
+            this.tb_height.AllowDecimal = false;
+            this.tb_height.AllowNegative = false;
+            this.tb_height.AllowSpaces = false;
+            this.tb_height.AllowWheel = true;
             this.tb_height.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_height.IgnoreClamping = false;
             this.tb_height.Location = new System.Drawing.Point(128, 73);
             this.tb_height.Margin = new System.Windows.Forms.Padding(6, 7, 6, 6);
-            this.tb_height.MaximumValue = 10000;
-            this.tb_height.MinimumValue = 0;
+            this.tb_height.Maximum = 3.402823E+38F;
+            this.tb_height.Minimum = 1F;
             this.tb_height.Name = "tb_height";
             this.tb_height.Size = new System.Drawing.Size(110, 20);
-            this.tb_height.TabIndex = 2;
-            this.tb_height.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.tb_height.Wheel_StepValue = 5;
-            this.tb_height.TextChanged += new System.EventHandler(this.tb_height_TextChanged);
+            this.tb_height.TabIndex = 3;
+            this.tb_height.UsedFilter = DocMaker.MagicalTextBox.Filter.Digits;
+            this.tb_height.WheelStepValue = 1F;
+            this.tb_height.OnSafeTextChange += new DocMaker.MagicalTextBox.SafeTextChange(this.tb_height_OnSafeTextChange);
             // 
             // PaperManager
             // 
@@ -373,9 +381,9 @@
         private System.Windows.Forms.Label lab_name;
         private System.Windows.Forms.Button btn_confirm;
         private System.Windows.Forms.Button btn_cancel;
-        private CustomTextBox tb_width;
-        private CustomTextBox tb_height;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private MagicalTextBox tb_width;
+        private MagicalTextBox tb_height;
     }
 }

@@ -15,6 +15,9 @@ namespace DocMaker
         private ImageObject Target;
         private bool editorReady = false;
 
+        private bool IsLinkUpdate = false;
+        private float aspectRatio;
+
         public ImageEditor(ImageObject target)
         {
             InitializeComponent();
@@ -37,11 +40,13 @@ namespace DocMaker
             tb_key.Text = Target.Key;
             tb_key.Tag = Target.Key;
 
-            tb_width.Text = Target.ObjectSize.Width.ToString();
-            tb_width.Tag = Target.ObjectSize.Width;
+            SetSizeRanges();
 
-            tb_height.Text = Target.ObjectSize.Height.ToString();
-            tb_height.Tag = Target.ObjectSize.Height;
+            tb_width.Text = Target.Width.ToString();
+            tb_width.Tag = Target.Width;
+
+            tb_height.Text = Target.Height.ToString();
+            tb_height.Tag = Target.Height;
 
             cb_link.Checked = Target.LinkedSize;
 
@@ -71,7 +76,8 @@ namespace DocMaker
 
             Target.ResourceID = (string)resourceComboList.Tag;
 
-            Target.ObjectSize = new Size((int)tb_width.Tag, (int)tb_height.Tag);
+            Target.Width = (float)tb_width.Tag;
+            Target.Height = (float)tb_height.Tag;
 
             Target.drawingType = (ImageObject.DrawingTypes)drawingModeCombo.Tag;
 
@@ -84,11 +90,6 @@ namespace DocMaker
                 sizeMode.SelectedItem = "Px";
             else
                 sizeMode.SelectedItem = "%";
-        }
-
-        private void TextTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void LabelEditor_FormClosing(object sender, FormClosingEventArgs e)
@@ -226,23 +227,106 @@ namespace DocMaker
             UpdateCanvasImage();
         }
 
-
-        private bool IsLinkUpdate = false;
-        private float aspectRatio;
+        private void SetSizeRanges()
+        {
+            if (Target.SizeInPercent)
+            {
+                tb_width.AllowDecimal = tb_height.AllowDecimal = true;
+                tb_width.Maximum = tb_height.Maximum = 100.0f;
+                tb_width.Minimum = tb_height.Minimum = 0.001f;
+            }
+            else
+            {
+                tb_width.AllowDecimal = tb_height.AllowDecimal = false;
+                tb_width.Maximum = tb_height.Maximum = Config.MaxLineSize;
+                tb_width.Minimum = tb_height.Minimum = 1;
+            }
+        }
 
         private void SizeMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Target.SizeInPercent = !sizeMode.SelectedItem.Equals("Px");
+            // Check if value changed !
+            if (Target.SizeInPercent == sizeMode.SelectedItem.Equals("%"))
+                return;
 
+            // Set the option
+            Target.SizeInPercent = sizeMode.SelectedItem.Equals("%");
+            SetSizeRanges();
+
+            // Mode Changed so we will calculate size from object size 
             if (Target.SizeInPercent)
             {
-                tb_width.AllowDecimal = true;
-                tb_height.AllowDecimal = true;
+                // Set the width and skip height if size in linked since it will be auto generated
+                tb_width.Text = (Target.Width * 100f / Paper.Width).ToString();
+
+                if(!Target.LinkedSize) 
+                    tb_height.Text = (Target.Height * 100f / Paper.Height).ToString();
+            }
+            else
+            {
+                // Previously the size was in percentage
+                tb_width.Text = ((int)(Paper.Width * Target.Width / 100f)).ToString();
+
+                if (!Target.LinkedSize)
+                    tb_height.Text = ((int)(Paper.Height * Target.Height / 100f)).ToString();
+
             }
 
             LivePreview.Update();
         }
 
+        private void tb_width_OnSafeTextChange(object sender, string safeValue)
+        {
+            if (!editorReady || IsLinkUpdate)
+            {
+                IsLinkUpdate = false;
+                return;
+            }
+
+            Target.Width = tb_width.GetFloatValue();
+
+            if(Target.LinkedSize)
+            {
+                Target.Height = tb_width.GetFloatValue() / aspectRatio;
+                    tb_height.Text = Target.SizeInPercent ? Target.Height.ToString() : ((int)Target.Height).ToString();
+
+                if(!tb_height.Text.Equals(Target.Height))
+                {
+                    //IsLinkUpdate = true;
+                }
+            }
+ 
+            LivePreview.Update();
+        }
+
+        private void tb_height_OnSafeTextChange(object sender, string safeValue)
+        {
+            if (!editorReady || IsLinkUpdate)
+            {
+                IsLinkUpdate = false;
+                return;
+            }
+
+            Target.Height = tb_height.GetFloatValue();
+
+            if (Target.LinkedSize)
+            {
+                Target.Width = tb_height.GetFloatValue() * aspectRatio;
+                    tb_width.Text = Target.SizeInPercent ? Target.Width.ToString() : ((int)Target.Width).ToString();
+
+                if (!tb_width.Text.Equals(Target.Width))
+                {
+                    //IsLinkUpdate = true;
+                }
+
+                
+            }
+            
+            LivePreview.Update();
+        }
+
+
+        /*
         private void Tb_width_TextChanged(object sender, EventArgs e)
         {
             if (Target.ObjectSize.Width == tb_width.IntValue())
@@ -297,6 +381,9 @@ namespace DocMaker
                 IsLinkUpdate = false;
             }
         }
+
+    */
+        
         private void cb_link_CheckedChanged(object sender, EventArgs e)
         {
             Target.LinkedSize = cb_link.Checked;
@@ -336,5 +423,7 @@ namespace DocMaker
 
             LivePreview.Update();
         }
+
+
     }
 }

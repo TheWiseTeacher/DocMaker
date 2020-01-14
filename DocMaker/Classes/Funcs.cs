@@ -71,32 +71,7 @@ namespace DocMaker
         {
             return Clamp(ToInt(value), min, max);
         }
-
-        /*
-        public static bool LimitTextBox(this TextBox tb, int targetReference, int min, int max)
-        {
-            int v = ToInt(tb.Text);
-
-            if(v > max)
-            {          
-                Console.WriteLine("Invalidate");
-                tb.Invalidate();
-
-                tb.Text = max.ToString();
-                return true;
-            }else if(v < min)
-            {
-                Console.WriteLine("Invalidate");
-                tb.Invalidate();
-                tb.Text = min.ToString();
-                return true;
-            }
-
-            
-            return false;
-        }
-        */
-
+        
         public static DialogResult Question(string message)
         {
             return MessageBox.Show(message, "Please confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -223,6 +198,11 @@ namespace DocMaker
         public static int Max(object v, int m)
         {
             return Max(ToInt(v), m);
+        }
+
+        public static Size Max(this Size s, int max)
+        {
+            return new Size(Max(s.Width, max), Max(s.Height, max));
         }
 
         public static int Force(int i)

@@ -35,7 +35,7 @@ namespace DocMaker
 
         [Browsable(true)]
         [Category("Magical TextBox Parameters")]
-        public bool IgnoreClamping { get; set; } = true;
+        public bool IgnoreClamping { get; set; } = false;
 
         [Browsable(true)]
         [Category("Magical TextBox Parameters")]
@@ -180,6 +180,9 @@ namespace DocMaker
             {
                 if(UsedFilter == Filter.Digits)
                 {
+                    if (Text == string.Empty)
+                        return;
+
                     float f = ParseFloatValue(Text);
 
                     if (f < Minimum)
@@ -196,12 +199,9 @@ namespace DocMaker
                     for (int i = 0; i < fl.Length; i++)
                     {
                         if (fl[i] == string.Empty)
-                        {
                             // Return and ignore everything if a string is empty since it will value 0 
                             // and it will be corrected by minimum if it's bigger than 0 Sooo...
-                            //
                             return;
-                        }
 
                         float f = ParseFloatValue(fl[i]);
 
@@ -225,9 +225,17 @@ namespace DocMaker
 
             // If text is good remember it :D
             lastGoodText = Text;
-            base.OnTextChanged(e);
-
             OnSafeTextChange?.Invoke(this, lastGoodText);
+
+            base.OnTextChanged(e);
+        }
+
+        protected override void OnValidated(EventArgs e)
+        {
+            ignoreNextCheck = true;
+            Text = lastGoodText;
+
+            base.OnValidated(e);
         }
 
         protected override void OnMouseWheel(MouseEventArgs e)

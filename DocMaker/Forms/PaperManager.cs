@@ -136,22 +136,22 @@ namespace DocMaker
             }
         }
 
-        private void tb_width_TextChanged(object sender, EventArgs e)
+        private void tb_width_OnSafeTextChange(object sender, string safeValue)
         {
             if (!Paper.UsingCustomPaper)
                 return;
 
             Paper.paperSizes[0].Width = tb_width.IntValue();
-            //UpdateInformation();
+            UpdateInformation();
         }
 
-        private void tb_height_TextChanged(object sender, EventArgs e)
+        private void tb_height_OnSafeTextChange(object sender, string safeValue)
         {
             if (!Paper.UsingCustomPaper)
                 return;
 
             Paper.paperSizes[0].Height = tb_height.IntValue();
-            //UpdateInformation();
+            UpdateInformation();
         }
     }
 }

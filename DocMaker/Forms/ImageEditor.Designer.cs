@@ -40,6 +40,8 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.customTextBox2 = new DocMaker.CustomTextBox();
+            this.customTextBox1 = new DocMaker.CustomTextBox();
             this.tb_name = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.resourceComboList = new System.Windows.Forms.ComboBox();
@@ -54,13 +56,11 @@
             this.label10 = new System.Windows.Forms.Label();
             this.pan_LineSize = new System.Windows.Forms.TableLayoutPanel();
             this.sizeMode = new System.Windows.Forms.ComboBox();
+            this.tb_width = new DocMaker.MagicalTextBox();
+            this.tb_height = new DocMaker.MagicalTextBox();
             this.drawingModeCombo = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.tb_width = new DocMaker.MagicalTextBox();
-            this.customTextBox1 = new DocMaker.CustomTextBox();
-            this.tb_height = new DocMaker.MagicalTextBox();
-            this.customTextBox2 = new DocMaker.CustomTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.imageFrame)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -254,6 +254,44 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(262, 304);
             this.tableLayoutPanel1.TabIndex = 17;
+            // 
+            // customTextBox2
+            // 
+            this.customTextBox2.AllowDecimal = false;
+            this.customTextBox2.AllowSpace = false;
+            this.customTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.customTextBox2.IgnoreClampig = false;
+            this.customTextBox2.Location = new System.Drawing.Point(4, 278);
+            this.customTextBox2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.customTextBox2.MaximumValue = 10000;
+            this.customTextBox2.MaxLength = 32;
+            this.customTextBox2.MinimumValue = 1;
+            this.customTextBox2.Name = "customTextBox2";
+            this.customTextBox2.Size = new System.Drawing.Size(98, 20);
+            this.customTextBox2.TabIndex = 19;
+            this.customTextBox2.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.customTextBox2.Wheel_StepValue = 5;
+            // 
+            // customTextBox1
+            // 
+            this.customTextBox1.AllowDecimal = false;
+            this.customTextBox1.AllowSpace = false;
+            this.customTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.customTextBox1.IgnoreClampig = false;
+            this.customTextBox1.Location = new System.Drawing.Point(110, 278);
+            this.customTextBox1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.customTextBox1.MaximumValue = 10000;
+            this.customTextBox1.MaxLength = 32;
+            this.customTextBox1.MinimumValue = 1;
+            this.customTextBox1.Name = "customTextBox1";
+            this.customTextBox1.Size = new System.Drawing.Size(148, 20);
+            this.customTextBox1.TabIndex = 18;
+            this.customTextBox1.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
+            this.customTextBox1.Wheel_StepValue = 5;
             // 
             // tb_name
             // 
@@ -514,7 +552,43 @@
             this.sizeMode.TabIndex = 8;
             this.sizeMode.SelectedIndexChanged += new System.EventHandler(this.SizeMode_SelectedIndexChanged);
             // 
-            // sizeModeCombo
+            // tb_width
+            // 
+            this.tb_width.AllowDecimal = false;
+            this.tb_width.AllowNegative = false;
+            this.tb_width.AllowSpaces = false;
+            this.tb_width.AllowWheel = true;
+            this.tb_width.IgnoreClamping = false;
+            this.tb_width.Location = new System.Drawing.Point(4, 6);
+            this.tb_width.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.tb_width.Maximum = 10000F;
+            this.tb_width.Minimum = 1F;
+            this.tb_width.Name = "tb_width";
+            this.tb_width.Size = new System.Drawing.Size(98, 20);
+            this.tb_width.TabIndex = 11;
+            this.tb_width.UsedFilter = DocMaker.MagicalTextBox.Filter.Digits;
+            this.tb_width.WheelStepValue = 1F;
+            this.tb_width.OnSafeTextChange += new DocMaker.MagicalTextBox.SafeTextChange(this.tb_width_OnSafeTextChange);
+            // 
+            // tb_height
+            // 
+            this.tb_height.AllowDecimal = false;
+            this.tb_height.AllowNegative = false;
+            this.tb_height.AllowSpaces = false;
+            this.tb_height.AllowWheel = true;
+            this.tb_height.IgnoreClamping = false;
+            this.tb_height.Location = new System.Drawing.Point(4, 38);
+            this.tb_height.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.tb_height.Maximum = 10000F;
+            this.tb_height.Minimum = 1F;
+            this.tb_height.Name = "tb_height";
+            this.tb_height.Size = new System.Drawing.Size(98, 20);
+            this.tb_height.TabIndex = 11;
+            this.tb_height.UsedFilter = DocMaker.MagicalTextBox.Filter.Digits;
+            this.tb_height.WheelStepValue = 1F;
+            this.tb_height.OnSafeTextChange += new DocMaker.MagicalTextBox.SafeTextChange(this.tb_height_OnSafeTextChange);
+            // 
+            // drawingModeCombo
             // 
             this.drawingModeCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -526,7 +600,7 @@
             "%"});
             this.drawingModeCombo.Location = new System.Drawing.Point(110, 182);
             this.drawingModeCombo.Margin = new System.Windows.Forms.Padding(4, 6, 4, 5);
-            this.drawingModeCombo.Name = "sizeModeCombo";
+            this.drawingModeCombo.Name = "drawingModeCombo";
             this.drawingModeCombo.Size = new System.Drawing.Size(148, 21);
             this.drawingModeCombo.TabIndex = 6;
             this.drawingModeCombo.SelectedIndexChanged += new System.EventHandler(this.DrawingModeCombo_SelectedIndexChanged);
@@ -562,76 +636,6 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Height";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tb_width
-            // 
-            this.tb_width.AllowDecimal = false;
-            this.tb_width.AllowNegative = false;
-            this.tb_width.AllowSpaces = false;
-            this.tb_width.IgnoreClamping = true;
-            this.tb_width.Location = new System.Drawing.Point(4, 6);
-            this.tb_width.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.tb_width.Maximum = 3.402823E+38F;
-            this.tb_width.Minimum = -3.402823E+38F;
-            this.tb_width.Name = "tb_width";
-            this.tb_width.Size = new System.Drawing.Size(98, 20);
-            this.tb_width.TabIndex = 11;
-            this.tb_width.UsedFilter = DocMaker.MagicalTextBox.Filter.LettersAndDigits;
-            this.tb_width.TextChanged += new System.EventHandler(this.Tb_width_TextChanged);
-            // 
-            // customTextBox1
-            // 
-            this.customTextBox1.AllowDecimal = false;
-            this.customTextBox1.AllowSpace = false;
-            this.customTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.customTextBox1.IgnoreClampig = false;
-            this.customTextBox1.Location = new System.Drawing.Point(110, 278);
-            this.customTextBox1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.customTextBox1.MaximumValue = 10000;
-            this.customTextBox1.MaxLength = 32;
-            this.customTextBox1.MinimumValue = 1;
-            this.customTextBox1.Name = "customTextBox1";
-            this.customTextBox1.Size = new System.Drawing.Size(148, 20);
-            this.customTextBox1.TabIndex = 18;
-            this.customTextBox1.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.customTextBox1.Wheel_StepValue = 5;
-            // 
-            // tb_height
-            // 
-            this.tb_height.AllowDecimal = false;
-            this.tb_height.AllowNegative = false;
-            this.tb_height.AllowSpaces = false;
-            this.tb_height.IgnoreClamping = true;
-            this.tb_height.Location = new System.Drawing.Point(4, 38);
-            this.tb_height.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.tb_height.Maximum = 3.402823E+38F;
-            this.tb_height.Minimum = -3.402823E+38F;
-            this.tb_height.Name = "tb_height";
-            this.tb_height.Size = new System.Drawing.Size(98, 20);
-            this.tb_height.TabIndex = 11;
-            this.tb_height.UsedFilter = DocMaker.MagicalTextBox.Filter.LettersAndDigits;
-            this.tb_height.TextChanged += new System.EventHandler(this.Tb_height_TextChanged);
-            // 
-            // customTextBox2
-            // 
-            this.customTextBox2.AllowDecimal = false;
-            this.customTextBox2.AllowSpace = false;
-            this.customTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.customTextBox2.IgnoreClampig = false;
-            this.customTextBox2.Location = new System.Drawing.Point(4, 278);
-            this.customTextBox2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.customTextBox2.MaximumValue = 10000;
-            this.customTextBox2.MaxLength = 32;
-            this.customTextBox2.MinimumValue = 1;
-            this.customTextBox2.Name = "customTextBox2";
-            this.customTextBox2.Size = new System.Drawing.Size(98, 20);
-            this.customTextBox2.TabIndex = 19;
-            this.customTextBox2.UsedFilter = DocMaker.CustomTextBox.Filter.DigitsOnly;
-            this.customTextBox2.Wheel_StepValue = 5;
             // 
             // ImageEditor
             // 

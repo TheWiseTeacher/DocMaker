@@ -603,6 +603,11 @@ namespace DocMaker
             UpdateFormTitle();
         }
 
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Project.ExportProject();
+        }
+
         private void pan_VSplit_SplitterMoved(object sender, SplitterEventArgs e)
         {
             CenterPaper();
@@ -693,5 +698,7 @@ namespace DocMaker
         {
             Console.WriteLine("Text Changed");
         }
+
+
     }
 }

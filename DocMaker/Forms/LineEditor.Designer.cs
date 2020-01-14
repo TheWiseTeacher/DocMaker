@@ -52,8 +52,6 @@
             this.sizeMode = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.tbDashPattern = new DocMaker.MagicalTextBox();
             this.tb_key = new DocMaker.CustomTextBox();
             this.tb_color_r = new DocMaker.CustomTextBox();
@@ -210,7 +208,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 156F));
             this.tableLayoutPanel1.Controls.Add(this.tbDashPattern, 1, 8);
-            this.tableLayoutPanel1.Controls.Add(this.radioButton1, 1, 9);
             this.tableLayoutPanel1.Controls.Add(this.tb_name, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
@@ -226,7 +223,6 @@
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.lineThickness, 1, 7);
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.radioButton2, 0, 9);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 10;
@@ -373,9 +369,8 @@
             this.pan_LineOrientation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pan_LineOrientation.ColumnCount = 2;
-            this.pan_LineOrientation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.pan_LineOrientation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.pan_LineOrientation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.pan_LineOrientation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.pan_LineOrientation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.pan_LineOrientation.Controls.Add(this.radioHorizontal, 0, 0);
             this.pan_LineOrientation.Controls.Add(this.radioVertical, 1, 0);
             this.pan_LineOrientation.Location = new System.Drawing.Point(110, 148);
@@ -394,7 +389,7 @@
             this.radioHorizontal.Location = new System.Drawing.Point(4, 4);
             this.radioHorizontal.Margin = new System.Windows.Forms.Padding(4, 4, 0, 3);
             this.radioHorizontal.Name = "radioHorizontal";
-            this.radioHorizontal.Size = new System.Drawing.Size(70, 17);
+            this.radioHorizontal.Size = new System.Drawing.Size(72, 17);
             this.radioHorizontal.TabIndex = 2;
             this.radioHorizontal.Text = "Horizontal";
             this.radioHorizontal.UseVisualStyleBackColor = true;
@@ -405,10 +400,10 @@
             this.radioVertical.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radioVertical.AutoSize = true;
-            this.radioVertical.Location = new System.Drawing.Point(78, 4);
+            this.radioVertical.Location = new System.Drawing.Point(80, 4);
             this.radioVertical.Margin = new System.Windows.Forms.Padding(4, 4, 0, 3);
             this.radioVertical.Name = "radioVertical";
-            this.radioVertical.Size = new System.Drawing.Size(70, 17);
+            this.radioVertical.Size = new System.Drawing.Size(68, 17);
             this.radioVertical.TabIndex = 2;
             this.radioVertical.Text = "Vertical";
             this.radioVertical.UseVisualStyleBackColor = true;
@@ -465,32 +460,6 @@
             this.label9.TabIndex = 2;
             this.label9.Text = "Dash Pattern";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(110, 276);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 4, 0, 3);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(152, 17);
-            this.radioButton1.TabIndex = 2;
-            this.radioButton1.Text = "Vertical";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(4, 276);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 4, 0, 3);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(102, 17);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.Text = "Vertical";
-            this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // tbDashPattern
             // 
@@ -688,7 +657,5 @@
         private System.Windows.Forms.Label label9;
         private MagicalTextBox tbDashPattern;
         private MagicalTextBox lineLength;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
     }
 }

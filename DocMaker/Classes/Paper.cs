@@ -87,6 +87,16 @@ namespace DocMaker
 
             Project.fileHandler.Write(SelectedPaper.Kind.ToString());
         }
+
+        public static void ExportPaper()
+        {
+            //Project.fileHandler.Write(IsLandScape);
+            Project.fileHandler.Write(Width);
+            Project.fileHandler.Write(Height);
+
+            Console.WriteLine(Width);
+            Console.WriteLine(Height);
+        }
         
         public static void LoadPaper()
         {

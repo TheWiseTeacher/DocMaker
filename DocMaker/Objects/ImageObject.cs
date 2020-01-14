@@ -15,7 +15,9 @@ namespace DocMaker
 
         public string ResourceID { get; set; }
 
-        public Size ObjectSize { get; set; }
+        public float Width { get; set; }
+
+        public float Height { get; set; }
 
         public enum DrawingTypes : byte
         { 
@@ -43,10 +45,9 @@ namespace DocMaker
             Holder.SizeMode = PictureBoxSizeMode.StretchImage;
 
             IsVertical = false;
-            ObjectSize = new Size(100, 100);
-
-            IsVertical = false;
             SizeInPercent = false;
+
+            Width = Height = 100;
 
             drawingType = DrawingTypes.Center;
         }
@@ -77,14 +78,17 @@ namespace DocMaker
 
         public override void RenderObject()
         {
-            Size realObjectSize = ObjectSize;
+            Size realObjectSize;
             double xOffset, yOffset;
 
-            /*
-            if (SizeInPercent)
-                realObjectSize = new Size((int)((float)Paper.Width * ObjectSize.Width / 100.0f),
-                                          (int)((float)Paper.Height * ObjectSize.Height / 100.0f));
-            */
+            if (!SizeInPercent)
+                realObjectSize = new Size((int)Width, (int)Height);
+            else
+                realObjectSize = new Size((int)((float)Paper.Width * Width / 100.0f),
+                                          (int)((float)Paper.Height * Height / 100.0f));
+
+            // Limit Size to a minimum of 1
+            realObjectSize = realObjectSize.Max(1);
 
             Bitmap c = new Bitmap(realObjectSize.Width, realObjectSize.Height);
             Bitmap i = new Bitmap(Resources.Get(ResourceID));
@@ -197,8 +201,8 @@ namespace DocMaker
 
             Project.fileHandler.Write(ResourceID);
 
-            Project.fileHandler.Write(ObjectSize.Width);
-            Project.fileHandler.Write(ObjectSize.Height);
+            Project.fileHandler.Write(Width);
+            Project.fileHandler.Write(Height);
 
             Project.fileHandler.Write((byte)drawingType); 
         }
@@ -209,8 +213,8 @@ namespace DocMaker
 
             ResourceID = Project.fileHandler.ReadString();
 
-            ObjectSize = new Size(Project.fileHandler.ReadInteger(),
-                                  Project.fileHandler.ReadInteger());
+            Width = Project.fileHandler.ReadFloat();
+            Height = Project.fileHandler.ReadFloat();
 
             drawingType = (DrawingTypes)Project.fileHandler.ReadByte();
         }
