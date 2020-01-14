@@ -99,7 +99,7 @@ namespace DocMaker
             // Do the usual stuff
             base.LoadObject();
 
-            Length = Project.fileHandler.ReadInteger();
+            Length = Project.fileHandler.ReadFloat();
             Thickness = Project.fileHandler.ReadByte();
             DashPattern = Project.fileHandler.ReadString();
 
