@@ -197,7 +197,7 @@ namespace DocMaker
                     fileHandler = new BinaryFileHandler(fileDialog.FileName, BinaryFileHandler.FileMode.WRITE);
 
                     Paper.ExportPaper();
-                    //Fonts.SaveFonts();
+                    Fonts.ExportFonts();
                     //Languages.SaveLanguages();
 
                     //Resources.SaveResources();

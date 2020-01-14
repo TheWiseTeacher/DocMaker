@@ -146,6 +146,23 @@ namespace DocMaker
             }
         }
 
+        public static void ExportFonts()
+        {
+            Project.fileHandler.Write(fontList.Count);
+
+            foreach (var p in fontList)
+            {
+                Project.fileHandler.Write(p.Value.IsExternal);
+                Project.fileHandler.Write(p.Value.CustomName);
+
+                if (!p.Value.IsExternal)
+                    Project.fileHandler.Write(p.Key);
+                else
+                    Project.fileHandler.Write(p.Value.fontRawBytes);
+            }
+
+        }
+
         public static void LoadFonts()
         {        
             Initialize(true);   // Initialise and skip adding the default font because it will be loaded from file
